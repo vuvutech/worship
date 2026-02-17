@@ -13,6 +13,7 @@ import { Input } from "@/components/ui/input"
 import { useState } from "react"
 import { useRouter } from "next/navigation"
 import { signUp } from "@/lib/auth-client"
+import { toast } from "sonner"
 
 type SignUpProps = React.ComponentProps<"div"> & {
   costradCallbackUrl?: string | null;
@@ -34,7 +35,6 @@ export function SignupForm({
   const [imagePreview, setImagePreview] = useState<string | null>(null);
   const router = useRouter();
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState<string | null>(null);
 
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
@@ -50,16 +50,15 @@ export function SignupForm({
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    setError(null)
 
     // Validation
     if (password !== passwordConfirmation) {
-      setError("Passwords do not match")
+      toast.error("Passwords do not match")
       return
     }
 
     if (password.length < 8) {
-      setError("Password must be at least 8 characters")
+      toast.error("Password must be at least 8 characters")
       return
     }
 
@@ -73,14 +72,15 @@ export function SignupForm({
       })
 
       if (result.error) {
-        setError(result.error.message || "Sign up failed")
+        toast.error(result.error.message || "Sign up failed")
         setLoading(false)
         return
       }
 
+      toast.success("Account created successfully! Redirecting...")
       router.push("/")
     } catch (err) {
-      setError(err instanceof Error ? err.message : "An error occurred")
+      toast.error(err instanceof Error ? err.message : "An error occurred")
       setLoading(false)
     }
   }
@@ -97,11 +97,6 @@ export function SignupForm({
                  Sign up for Your Non-Stop Worship Experience
                 </p>
               </div>
-              {error && (
-                <div className="rounded-md bg-destructive/10 p-3 text-sm text-destructive">
-                  {error}
-                </div>
-              )}
               <div className="grid grid-cols-2 gap-4">
                 <Field>
                   <FieldLabel htmlFor="firstName">First Name</FieldLabel>

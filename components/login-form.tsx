@@ -14,6 +14,7 @@ import { Input } from "@/components/ui/input"
 import { useState } from "react"
 import { useRouter } from "next/navigation"
 import { signIn } from "@/lib/auth-client"
+import { toast } from "sonner"
 
 export function LoginForm({
   className,
@@ -22,13 +23,11 @@ export function LoginForm({
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const [loading, setLoading] = useState(false)
-  const [error, setError] = useState<string | null>(null)
   const router = useRouter()
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setLoading(true)
-    setError(null)
 
     try {
       const result = await signIn.email({
@@ -37,14 +36,15 @@ export function LoginForm({
       })
 
       if (result.error) {
-        setError(result.error.message || "Login failed")
+        toast.error(result.error.message || "Login failed")
         setLoading(false)
         return
       }
 
+      toast.success("Login successful! Redirecting...")
       router.push("/")
     } catch (err) {
-      setError(err instanceof Error ? err.message : "An error occurred")
+      toast.error(err instanceof Error ? err.message : "An error occurred")
       setLoading(false)
     }
   }
@@ -61,11 +61,6 @@ export function LoginForm({
                   Login to Your Non-Stop Worship Experience
                 </p>
               </div>
-              {error && (
-                <div className="rounded-md bg-destructive/10 p-3 text-sm text-destructive">
-                  {error}
-                </div>
-              )}
               <Field>
                 <FieldLabel htmlFor="email">Email</FieldLabel>
                 <Input
