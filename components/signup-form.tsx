@@ -59,7 +59,7 @@ export function SignupForm({
               <div className="flex flex-col items-center gap-2 text-center">
                 <h1 className="text-2xl font-bold">Welcome back</h1>
                 <p className="text-muted-foreground text-balance">
-                  Login to Your Non-Stop Worship Experience
+                 Sign up for Your Non-Stop Worship Experience
                 </p>
               </div>
               <div className="grid grid-cols-2 gap-4">
@@ -146,7 +146,7 @@ export function SignupForm({
             <img
               src="/non-stop-logo.webp"
               alt="Image"
-              className="absolute inset-0 h-full w-full object-cover dark:brightness-[0.2] dark:grayscale"
+              className="absolute inset-0 h-full w-full object-cover "
             />
           </div>
         </CardContent>
