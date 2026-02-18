@@ -49,7 +49,7 @@ export const auth = betterAuth({
     emailAndPassword: {
         autoSignIn: false,
         enabled: true,
-        requireEmailVerification: true,
+        requireEmailVerification: false,
         minPasswordLength: 8,
         async sendResetPassword({ user, url }) {
         await resend.emails.send({
