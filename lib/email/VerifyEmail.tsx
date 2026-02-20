@@ -19,12 +19,12 @@ interface VerifyEmailProps {
 export const VerifyEmail = ({ username = "there", verifyLink }: VerifyEmailProps) => (
   <Html>
     <Head />
-    <Preview>Verify your COSTrAD email address</Preview>
+    <Preview>Verify your The Non-Stop  email address</Preview>
     <Body style={{ backgroundColor: "#f4f4f4", fontFamily: "Arial, sans-serif" }}>
       <Container style={{ maxWidth: "600px", margin: "auto", padding: "20px" }}>
         <Section style={{ backgroundColor: "#ffffff", padding: "30px", borderRadius: "8px", boxShadow: "0 0 10px rgba(0,0,0,0.05)" }}>
           <Text style={{ fontSize: "20px", fontWeight: "bold", color: "#2c3e50" }}>
-            Welcome to COSTrAD
+            Welcome to The Non-Stop 
           </Text>
           <Text style={{ fontSize: "16px", color: "#333" }}>
             Hi {username},
@@ -54,7 +54,7 @@ export const VerifyEmail = ({ username = "there", verifyLink }: VerifyEmailProps
           </Text>
         </Section>
         <Text style={{ textAlign: "center", fontSize: "12px", color: "#aaa", marginTop: "20px" }}>
-          If you didn’t sign up for a COSTrAD account, you can safely ignore this email.
+          If you didn’t sign up for a The Non-Stop  account, you can safely ignore this email.
         </Text>
       </Container>
     </Body>

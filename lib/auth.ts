@@ -7,6 +7,8 @@ import { prisma } from "./prisma";
 import { admin, multiSession } from "better-auth/plugins"
 import { resend } from "./email/resend";
 import { reactResetPasswordEmail } from "./email/rest-password";
+import VerifyEmail from "./email/VerifyEmail";
+import { render } from "@react-email/render";
 
 
 
@@ -59,15 +61,22 @@ export const auth = betterAuth({
     enabled: true,
     requireEmailVerification: true,
     async sendVerificationEmail({ user, url }) {
-      await resend.emails.send({
-            from: "no-reply@thenonstop.org",
-            to: user.email,
-            subject: "Verify your TheNonStop email address",
-            react: reactResetPasswordEmail({
-            username: user.email,
-            resetLink: url,
-            }),
-        });
+        console.log("Sending verification email to:", user.email);
+        console.log("Verification URL:", url);
+        try {
+            const res = await resend.emails.send({
+                from: "no-reply@thenonstop.org",
+                to: user.email,
+                subject: "Verify your email address",
+                react: VerifyEmail({
+                    username: user.email,
+                    verifyLink: url,
+                }),
+            });
+            console.log("Resend response:", res);
+        } catch (error) {
+            console.error("Failed to send verification email:", error);
+        }
     },
   },
     emailAndPassword: {
@@ -76,15 +85,20 @@ export const auth = betterAuth({
         requireEmailVerification: true,
         minPasswordLength: 8,
         async sendResetPassword({ user, url }) {
-        await resend.emails.send({
-            from: "no-reply@thenonstop.org",
-            to: user.email,
-            subject: "Reset your TheNonStop password",
-            react: reactResetPasswordEmail({
-            username: user.email,
-            resetLink: url,
-            }),
-        });
+            try {
+                const res = await resend.emails.send({
+                    from: "no-reply@thenonstop.org",
+                    to: user.email,
+                    subject: "Reset your TheNonStop password",
+                    react: reactResetPasswordEmail({
+                        username: user.email,
+                        resetLink: url,
+                    }),
+                });
+                console.log("Resend response (Password Reset):", res);
+            } catch (error) {
+                console.error("Failed to send reset password email:", error);
+            }
         },
     },
     socialProviders: {
