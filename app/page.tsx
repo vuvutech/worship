@@ -2,7 +2,7 @@ import HeroSection from '@/components/hero-section';
 
 export default function Page() {
   return (
-    <main className="w-full">
+    <main className="w-full p-2 rounded-md ">
       <HeroSection />
       
       {/* Additional content sections can be added here */}
@@ -17,3 +17,4 @@ export default function Page() {
     </main>
   );
 }
+  

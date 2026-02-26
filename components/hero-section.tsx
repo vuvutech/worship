@@ -9,7 +9,7 @@ export default function HeroSection() {
   const [isEditingSubheading, setIsEditingSubheading] = useState(false);
 
   return (
-    <section className="relative w-full h-dvh overflow-hidden">
+    <section className="relative w-full h-dvh overflow-hidden rounded-3xl">
       {/* Video Background */}
       <video
         autoPlay
@@ -18,9 +18,10 @@ export default function HeroSection() {
         playsInline
         className="absolute inset-0 w-full h-full object-cover"
         preload="metadata"
+        poster='/123.jpg'
       >
         <source
-          src="https://videos.pexels.com/video-files/8954233/8954233-hd_1920_1080_30fps.mp4"
+          src="123.mp4"
           type="video/mp4"
         />
         {/* Fallback for browsers that don't support video */}
