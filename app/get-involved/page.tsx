@@ -8,7 +8,7 @@ export default function Home() {
         <div className="box" data-scroll data-scroll-speed="-0.2"></div>
         <div className="box" data-scroll data-scroll-speed="0.3"></div>
       </div>
-      <div style={{ height: "200vh" }}></div>
+      <div className="bg-red-500" style={{ height: "200vh" }}></div>
     </LocomotiveScrollWrapper>
   );
 }
