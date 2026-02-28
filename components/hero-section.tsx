@@ -34,75 +34,9 @@ export default function HeroSection() {
       {/* Content */}
       <div className="relative z-10 h-full flex flex-col items-center justify-center px-4 sm:px-6 lg:px-8">
         <div className="text-center max-w-3xl mx-auto space-y-6">
-          {/* Editable Heading */}
-          <div
-            className="cursor-pointer group"
-            onClick={() => setIsEditingHeading(true)}
-            role="button"
-            tabIndex={0}
-            onKeyDown={(e) => {
-              if (e.key === 'Enter' || e.key === ' ') {
-                setIsEditingHeading(true);
-              }
-            }}
-            aria-label="Click to edit heading"
-          >
-            {isEditingHeading ? (
-              <input
-                type="text"
-                value={heading}
-                onChange={(e) => setHeading(e.target.value)}
-                onBlur={() => setIsEditingHeading(false)}
-                onKeyDown={(e) => {
-                  if (e.key === 'Enter') {
-                    setIsEditingHeading(false);
-                  }
-                }}
-                autoFocus
-                className="w-full bg-transparent text-4xl sm:text-5xl lg:text-6xl font-bold text-white outline-none border-b-2 border-white/50 text-center pb-2 leading-tight"
-                aria-label="Edit heading text"
-              />
-            ) : (
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white text-balance leading-tight group-hover:text-white/90 transition-colors">
-                {heading}
-              </h1>
-            )}
-          </div>
-
-          {/* Editable Subheading */}
-          <div
-            className="cursor-pointer group"
-            onClick={() => setIsEditingSubheading(true)}
-            role="button"
-            tabIndex={0}
-            onKeyDown={(e) => {
-              if (e.key === 'Enter' || e.key === ' ') {
-                setIsEditingSubheading(true);
-              }
-            }}
-            aria-label="Click to edit subheading"
-          >
-            {isEditingSubheading ? (
-              <input
-                type="text"
-                value={subheading}
-                onChange={(e) => setSubheading(e.target.value)}
-                onBlur={() => setIsEditingSubheading(false)}
-                onKeyDown={(e) => {
-                  if (e.key === 'Enter') {
-                    setIsEditingSubheading(false);
-                  }
-                }}
-                autoFocus
-                className="w-full bg-transparent text-lg sm:text-xl lg:text-2xl text-white/90 outline-none border-b-2 border-white/30 text-center pb-2"
-                aria-label="Edit subheading text"
-              />
-            ) : (
-              <p className="text-lg sm:text-xl lg:text-2xl text-white/90 text-balance group-hover:text-white transition-colors">
-                {subheading}
-              </p>
-            )}
-          </div>
+<div>
+  Hello World
+</div>
 
           {/* CTA Button */}
           <div className="pt-8">
