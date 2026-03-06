@@ -1,20 +1,19 @@
-"use client"
+"use client";
 import { motion } from "motion/react";
 export default function Home() {
   return (
     <>
-      <div className='flex flex-col items-center justify-between md:flex-row md:items-center overflow-hidden px-8 relative text-clip w-full z-30'>
-        <motion.div initial={{ translateX: -50, opacity: 0 }}
-          animate={{ translateX: 0, opacity: 1 }}
-          transition={{
-            ease: [0, 0.1, 0.3, 0.9],
-            duration: 5,
-          }}
-          className='relative z-20 font-[anton] text-xl md:text-6xl uppercase leading-tight'>
-          A Gathering of Nations For 144 <br />
-          Hours Non-Stop Praise & Worship
-        </motion.div>
+      {/* Hero */}
+      <div className='px-4 sm:px-6 lg:px-8'>
+        <div className="h-120 md:h-[80dvh] flex flex-col bg-[url('https://images.unsplash.com/photo-1462917882517-e150004895fa?q=80&w=1920&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')] bg-cover bg-center bg-no-repeat rounded-2xl">
+          <div className='mt-auto w-2/3 md:max-w-lg ps-5 pb-5 md:ps-10 md:pb-10'>
+            <h1 className='text-xl md:text-3xl lg:text-5xl text-white'>
+              Bringing Art to everything
+            </h1>
+          </div>
+        </div>
       </div>
+      {/* End Hero */}
     </>
   );
 }

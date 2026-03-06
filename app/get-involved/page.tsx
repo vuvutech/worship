@@ -8,7 +8,7 @@ export default function Home() {
       <section className='bg-background py-8 sm:py-16 lg:py-24 '>
         <div className='mx-auto max-w-7xl px-4 sm:px-6 lg:px-8'>
           <div className='grid grid-cols-1 gap-9 lg:grid-cols-2'>
-            <div className='flex flex-col gap-9'>
+            <div className='flex flex-col gap-9 '  data-scroll data-scroll-speed="-0.1">
               <div className='flex items-center gap-6 overflow-hidden'>
                 <div className='to-primary h-52 w-4 bg-gradient-to-t from-transparent' />
                 <div
@@ -38,7 +38,7 @@ export default function Home() {
                 />
               </div>
             </div>
-            <div className='flex flex-col gap-6'>
+            <div className='flex flex-col gap-6'  data-scroll data-scroll-speed="-0.1">
               <div className='grid grid-cols-1 gap-6 sm:grid-cols-2'>
                 <div
                   style={{ filter: "blur(0px)", opacity: 1, transform: "none" }}
