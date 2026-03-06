@@ -1,12 +1,14 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono, Outfit } from "next/font/google";
+import { anton, ibmplex, opensans } from "@/config/fonts";
 import { Toaster } from "sonner";
 import LocomotiveScrollWrapper from "@/components/LocomotiveScrollWrapper";
 import NavbarWrapper from "@/components/NavbarWrapper";
+import FooterWrapper from "@/components/FooterWrapper";
 import { ThemeProvider } from "@/app/providers";
 import "./globals.css";
 
-const outfit = Outfit({subsets:['latin'],variable:'--font-sans'});
+const outfit = Outfit({ subsets: ["latin"], variable: "--font-sans" });
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -29,16 +31,23 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={outfit.variable}>
+    <html
+      lang='en'
+      className={outfit.variable}
+    >
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${ibmplex.variable} ${anton.variable} ${opensans.variable} antialiased bg-neutral-100`}
       >
         <ThemeProvider>
           <NavbarWrapper />
           <LocomotiveScrollWrapper>
             {children}
+            <FooterWrapper />
           </LocomotiveScrollWrapper>
-          <Toaster richColors position="top-center" />
+          <Toaster
+            richColors
+            position='top-center'
+          />
         </ThemeProvider>
       </body>
     </html>

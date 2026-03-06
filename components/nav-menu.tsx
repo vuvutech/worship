@@ -22,7 +22,7 @@ export const NavMenu = (props: ComponentProps<typeof NavigationMenu>) => {
 
   return (
     <NavigationMenu {...props}>
-      <NavigationMenuList className="space-x-0 data-[orientation=vertical]:flex-col data-[orientation=vertical]:items-start data-[orientation=vertical]:justify-start">
+      <NavigationMenuList className="space-x-2 data-[orientation=vertical]:flex-col data-[orientation=vertical]:items-start data-[orientation=vertical]:justify-start">
         {items.map((item) => (
           <NavigationMenuItem key={item.label}>
             <NavigationMenuLink asChild className={navigationMenuTriggerStyle()}>

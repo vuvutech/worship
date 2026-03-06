@@ -21,3 +21,10 @@
   height: 30vw;
   background-color: blue;
 }
+
+.header-wrapper {
+  background-color: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  padding: 0 20px;
+  border-radius: 14px;
+}

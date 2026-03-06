@@ -47,7 +47,10 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
 
   return (
     <ThemeContext.Provider value={{ theme, toggleTheme }}>
+      <div className="bg-background">
+
       {children}
+      </div>
     </ThemeContext.Provider>
   );
 }
