@@ -245,22 +245,7 @@ export default function Home() {
         </div>
       </section>
       <Separator className='my-5 mb-8' />
-      <HeroIntro
-        heading='We Are More Than a Brand — We Are a Mission in Motion'
-        description="We're a passionate team united by a common goal — to create meaningful solutions that make a real impact. From humble beginnings to ambitious visions, our journey is driven by innovation, trust, and a commitment to excellence."
-        ctaLabel='Read more'
-        ctaHref='#'
-        pins={[
-          {
-            label: "Driven by Passion 🤩",
-            className: "top-8 right-4 rotate-8",
-          },
-          {
-            label: "Rooted in Values 🙌🏻",
-            className: "bottom-15 left-6 -rotate-8",
-          },
-        ]}
-      />
+
     </LocomotiveScrollWrapper>
   );
 }
