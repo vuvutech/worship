@@ -91,11 +91,11 @@ const Ministration = ({ className }: ministrationsHomeProps) => {
   return (
     <section className={cn("py-16", className)}>
       <div className="w-full">
-        <div className="mb-16 px-8 max-w-7xl">
+        <div className="mb-16 px-8 max-w-6xl">
           <h1 className="text-3xl font-medium tracking-tight lg:text-6xl">
             Ministrations Spotlight
           </h1>
-          <div className="mt-6 space-y-4 text-lg text-muted-foreground leading-relaxed">
+          <div className="mt-6 space-y-4 text-xl text-muted-foreground leading-relaxed">
             <p>
               In the original Tabernacle of David, the music was never meant to have an ending. It was a continuous, living sound designed to host the Presence of God. Our <span className="text-foreground font-medium">Ministrations Spotlight</span> is a window into that same eternal rhythm. 
             </p>

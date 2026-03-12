@@ -10,6 +10,7 @@ import {
   Oswald,
   Anton,
   IBM_Plex_Sans,
+  Barlow_Condensed,
 } from "next/font/google";
 
 type Props = {
@@ -93,4 +94,10 @@ export const poppins = Poppins({
   display: "swap",
   adjustFontFallback: false,
   variable: "--font-poppins",
+});
+
+export const barlowCondensed = Barlow_Condensed({
+  subsets: ["latin"],
+  weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
+  variable: "--font-barlow-condensed",
 });

@@ -145,11 +145,10 @@ const FooterComponent = ({
           textAnchor='middle'
           dominantBaseline='middle'
           fill='url(#paint0_linear_FooterComponent)'
-          fontFamily='anton, system-ui, sans-serif'
-          fontSize='390'
+          fontFamily='Suisse Intl, system-ui, sans-serif'
+          fontSize='270'
           fontWeight='500'
           letterSpacing='-0.04em'
-          className='opacity-20'
         >
           NONSTOP
         </text>
