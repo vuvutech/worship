@@ -1,15 +1,11 @@
+import { AboutCompliment } from "@/components/about-compliment";
 import LocomotiveScrollWrapper from "@/components/LocomotiveScrollWrapper";
 
 export default function Home() {
   return (
     <LocomotiveScrollWrapper>
-      <div
-        className='flex min-h-svh w-full flex-col bg-background text-foreground'
-        id='screenshot'
-        data-theme-scope='preview'
-      >
         <div className='flex flex-1 items-center justify-center'>
-          <section className='py-32 w-full'>
+          <section className='py-6 w-full'>
             <div className='container'>
               <div className='flex flex-col items-center justify-start gap-6 lg:flex-row'>
                 <div className='flex w-full flex-col items-start justify-start gap-2 lg:w-1/2'>
@@ -26,7 +22,6 @@ export default function Home() {
                       hours, 96 hours, 120 hours, and now 144 hours; the first
                       session of which was held 2021.
                     </p>
-                    
                   </div>
 
                   <div className='flex flex-col items-center justify-center gap-6 md:flex-row'>
@@ -101,7 +96,7 @@ export default function Home() {
             </div>
           </section>
         </div>
-      </div>
+      <AboutCompliment />
     </LocomotiveScrollWrapper>
   );
 }

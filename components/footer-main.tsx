@@ -32,8 +32,8 @@ const FooterComponent = ({
   ctaText = "Get started",
   ctaHref = "#",
   navigation = [
-    { name: "Product", href: "#" },
-    { name: "About Us", href: "/about" },
+    { name: "Home", href: "/" },
+    { name: "Privacy", href: "/about" },
     { name: "Pricing", href: "/pricing" },
     { name: "FAQ", href: "/faq" },
     { name: "Contact", href: "/contact" },

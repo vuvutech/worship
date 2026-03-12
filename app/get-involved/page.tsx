@@ -8,7 +8,11 @@ export default function Home() {
       <section className='bg-background py-8 sm:py-16 lg:py-24 '>
         <div className='mx-auto max-w-7xl px-4 sm:px-6 lg:px-8'>
           <div className='grid grid-cols-1 gap-9 lg:grid-cols-2'>
-            <div className='flex flex-col gap-9 '  data-scroll data-scroll-speed="-0.1">
+            <div
+              className='flex flex-col gap-9 '
+              data-scroll
+              data-scroll-delay='-0.1'
+            >
               <div className='flex items-center gap-6 overflow-hidden'>
                 <div className='to-primary h-52 w-4 bg-gradient-to-t from-transparent' />
                 <div
@@ -38,7 +42,11 @@ export default function Home() {
                 />
               </div>
             </div>
-            <div className='flex flex-col gap-6'  data-scroll data-scroll-speed="-0.1">
+            <div
+              className='flex flex-col gap-6'
+              data-scroll
+              data-scroll-speed='-0.2'
+            >
               <div className='grid grid-cols-1 gap-6 sm:grid-cols-2'>
                 <div
                   style={{ filter: "blur(0px)", opacity: 1, transform: "none" }}
@@ -196,27 +204,9 @@ export default function Home() {
           </div>
         </div>
       </section>
-      <Separator className='my-5 mb-8' />
-      <HeroIntro
-        heading='We Are More Than a Brand — We Are a Mission in Motion'
-        description="We're a passionate team united by a common goal — to create meaningful solutions that make a real impact. From humble beginnings to ambitious visions, our journey is driven by innovation, trust, and a commitment to excellence."
-        ctaLabel='Read more'
-        ctaHref='#'
-        pins={[
-          {
-            label: "Driven by Passion 🤩",
-            className: "top-8 right-4 rotate-8",
-          },
-          {
-            label: "Rooted in Values 🙌🏻",
-            className: "bottom-15 left-6 -rotate-8",
-          },
-        ]}
-      />
-      <Separator className='my-8 ' />
-       <section className='bg-background py-8 sm:py-16 lg:py-24 mx-auto  px-4 sm:px-6 lg:px-8'>
+
+      <section className='bg-background py-8 sm:py-16 lg:py-24 mx-auto  px-4 sm:px-6 lg:px-8'>
         <div className='container space-y-10 lg:space-y-20'>
-        
           <div>
             <img
               alt='about us iamge'
@@ -225,13 +215,11 @@ export default function Home() {
             />
           </div>
           <div className='grid grid-cols-1 gap-4 space-y-12 lg:grid-cols-6 lg:space-y-0'>
-
             <div className='order-2 col-span-2 lg:order-none lg:pr-16 lg:pl-10'>
               <p className='text-foreground/40'>
                 We aim to bring diverse minds together, turning ideas into
                 experiences that matter.
               </p>
-
             </div>
             <div className='order-1 col-span-4 lg:order-none lg:mt-0 lg:pl-6'>
               <h2 className='text-2xl font-medium tracking-tight lg:text-3xl'>
@@ -245,7 +233,6 @@ export default function Home() {
         </div>
       </section>
       <Separator className='my-5 mb-8' />
-
     </LocomotiveScrollWrapper>
   );
 }
