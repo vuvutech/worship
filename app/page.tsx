@@ -23,7 +23,7 @@ export default function Page() {
         </div>
       </section>
       <div className='block-preview-wrapper'>
-        <section className="bg-[url('https://images.shadcnspace.com/assets/feature/feature-04.webp')] bg-cover bg-center bg-no-repeat">
+        <section className="bg-[url('/images/community_worship.jpg')] bg-cover bg-center bg-no-repeat">
           <div className='flex items-end sm:items-center justify-center lg:justify-start'>
             <div className='max-w-7xl px-4 lg:px-8 xl:px-16 lg:py-20 sm:py-16 py-8 mx-auto w-full'>
               <div style={{ opacity: 1, transform: "none" }}>

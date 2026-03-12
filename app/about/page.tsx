@@ -13,7 +13,7 @@ export default function Home() {
                     <h1 className='mb-6 text-2xl uppercase md:text-4xl lg:mb-8 lg:text-5xl'>
                       The Non-Stop Series
                     </h1>
-                    <p className='mb-9 text-muted-foreground lg:text-xl'>
+                    <p className='mb-9 text-muted-foreground '>
                       For the past 22 years , the Logos-Rhema Foundation for
                       Leadership Resource Development, based in Accra, Ghana,
                       has organised and held under its auspices, a series of
@@ -72,7 +72,7 @@ export default function Home() {
                     <h1 className='mb-8 text-2xl font-semibold lg:mb-6'>
                       Around-The-Clock Ministration
                     </h1>
-                    <p className='mb-9 lg:text-xl'>
+                    <p className='mb-9 lg:text-2xl'>
                       Jesus said, “The hour is coming and is already here when
                       the true worshipers will worship the Father in spirit and
                       truth; for the Father is looking for those who will

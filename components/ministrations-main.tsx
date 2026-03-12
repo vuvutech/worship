@@ -42,7 +42,7 @@ const ministrationsHomeProp = [
     category: "High Praise",
     description:
       "A unified roar of praise that breaks every chain. Watch as hundreds of voices join together to rebuild the fallen shelter of David through high-energy exaltation.",
-    image: "https://images.unsplash.com/photo-1514525253361-b83f859b71c0?q=80&w=1974&auto=format&fit=crop",
+    image: "/images/mass-choir3.jpg",
   },
   {
     id: 4,
@@ -52,7 +52,7 @@ const ministrationsHomeProp = [
     category: "Prophetic",
     description:
       "Beyond the rehearsal—this is the sound of spontaneous revival. Catch the unscripted moments where the Spirit led us into new dimensions of spiritual recovery.",
-    image: "https://images.unsplash.com/photo-1459749411177-042180ce6742?q=80&w=2070&auto=format&fit=crop",
+    image: "/images/mass-choir10.jpg",
   },
   {
     id: 5,
@@ -62,7 +62,7 @@ const ministrationsHomeProp = [
     category: "Recovery",
     description:
       "Welcoming the dawn with the first fruits of our lips. A refreshing session focused on the recovery of peace and the renewal of the weary soul.",
-    image: "https://images.unsplash.com/photo-1493225255756-d9584f8606e9?q=80&w=2070&auto=format&fit=crop",
+    image: "/images/24elders.jpg",
   },
 ];
 
@@ -95,7 +95,7 @@ const Ministration = ({ className }: ministrationsHomeProps) => {
           <h1 className="text-3xl font-medium tracking-tight lg:text-6xl">
             Ministrations Spotlight
           </h1>
-          <div className="mt-6 space-y-4 text-xl text-muted-foreground leading-relaxed">
+          <div className="mt-6 space-y-4 text-muted-foreground leading-relaxed">
             <p>
               In the original Tabernacle of David, the music was never meant to have an ending. It was a continuous, living sound designed to host the Presence of God. Our <span className="text-foreground font-medium">Ministrations Spotlight</span> is a window into that same eternal rhythm. 
             </p>
