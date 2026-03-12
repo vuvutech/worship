@@ -126,7 +126,7 @@ const AboutCompliment = ({
           <h1 className='text-5xl font-semibold tracking-tighter lg:text-6xl'>
             {title}
           </h1>
-          <p className='text-lg text-muted-foreground md:text-xl'>
+          <p className='text-xl text-muted-foreground md:text-xl'>
             {description}
           </p>
         </div>
@@ -144,7 +144,7 @@ const AboutCompliment = ({
                 className='mr-auto h-12 dark:invert'
               />
               <div>
-                <p className='mb-2 text-lg font-semibold'>{breakout.title}</p>
+                <p className='mb-2 text-xl font-semibold'>{breakout.title}</p>
                 <p className='text-muted-foreground'>{breakout.description}</p>
               </div>
               <Button
@@ -332,7 +332,7 @@ const AboutCompliment = ({
               ) => (
                 <div key={section.title + idx}>
                   <h2 className='mb-5 text-4xl font-medium'>{section.title}</h2>
-                  <p className='text-lg leading-7 whitespace-pre-line text-muted-foreground'>
+                  <p className='text-xl leading-7 whitespace-pre-line text-muted-foreground'>
                     {section.content}
                   </p>
                 </div>

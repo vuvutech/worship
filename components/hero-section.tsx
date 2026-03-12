@@ -43,7 +43,7 @@ export default function HeroSection() {
             <h1 className='text-5xl font-bold tracking-tight text-zinc-100 sm:text-4xl dark:text-zinc-100 '>
               Recovery, Revival and the Restoration  <br />of the Tabernacle of David
             </h1>
-            <p className='mt-4 text-base text-zinc-200 dark:text-zinc-400 text-lg'>
+            <p className='mt-4 text-base text-zinc-200 dark:text-zinc-400 text-xl'>
               Join us as we explore the profound truths of God's Word and experience His presence in a powerful way.
             </p>
             <div className='mt-6 flex gap-6'>

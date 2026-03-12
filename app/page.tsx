@@ -85,7 +85,7 @@ export default function Page() {
                               <path d='M2 17a1 1 0 0 0 .58.91l8.6 3.91a2 2 0 0 0 1.65 0l8.58-3.9A1 1 0 0 0 22 17' />
                             </svg>
                             <div className='flex flex-col gap-1'>
-                              <p className='text-lg font-medium'>
+                              <p className='text-xl font-medium'>
                                 Recovery
                               </p>
                               <p className='text-base text-muted-foreground'>
@@ -119,7 +119,7 @@ export default function Page() {
                               <path d='M2 17a1 1 0 0 0 .58.91l8.6 3.91a2 2 0 0 0 1.65 0l8.58-3.9A1 1 0 0 0 22 17' />
                             </svg>
                             <div className='flex flex-col gap-1'>
-                              <p className='text-lg font-medium'>
+                              <p className='text-xl font-medium'>
                                 Revival
                               </p>
                               <p className='text-base text-muted-foreground'>
@@ -163,7 +163,7 @@ export default function Page() {
                               />
                             </svg>
                             <div className='flex flex-col gap-1'>
-                              <p className='text-lg font-medium'>
+                              <p className='text-xl font-medium'>
                                 Restoration
                               </p>
                               <p className='text-base text-muted-foreground'>

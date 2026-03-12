@@ -45,14 +45,14 @@ const FAQ = () => {
         <h2 className="font-semibold text-4xl leading-[1.15]! tracking-[-0.035em] md:text-5xl text-center md:text-left">
           Frequently Asked Questions
         </h2>
-        <p className="mt-4 text-muted-foreground text-lg">
+        <p className="mt-4 text-muted-foreground text-xl">
           Everything you need to know about joining the 144-hour sacrifice of praise.
         </p>
 
         <Accordion className="mt-8" type="single" collapsible>
           {faq.map(({ question, answer }, index) => (
             <AccordionItem key={index} value={`question-${index}`}>
-              <AccordionTrigger className="text-left text-lg font-medium">
+              <AccordionTrigger className="text-left text-xl font-medium">
                 {question}
               </AccordionTrigger>
               <AccordionContent className="text-base text-muted-foreground leading-relaxed">

@@ -212,7 +212,7 @@ export default function Home() {
           </div>
           <div className='grid grid-cols-1 gap-4 space-y-12 lg:grid-cols-6 lg:space-y-0'>
             <div className='order-2 col-span-2 lg:order-none lg:pr-16 lg:pl-10 flex items-center'>
-              <p className='text-foreground/60 text-lg md:text-xl leading-relaxed'>
+              <p className='text-foreground/60 text-xl md:text-xl leading-relaxed'>
                 We are calling for worshippers, intercessors, and servants to help sustain the momentum. The fire on the altar must not go out.
               </p>
             </div>

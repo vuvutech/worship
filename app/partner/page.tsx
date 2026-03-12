@@ -48,7 +48,7 @@ export default function Home() {
               </h1>
             </div>
             <div>
-              <p className='text-lg leading-normal text-gray-500'>
+              <p className='text-xl leading-normal text-gray-500'>
                 The Non-Stop is a massive undertaking that requires tremendous resources—from high-quality broadcasting for our global stream, to ensuring the logistics, safety, and hospitality of thousands of attendees over 6 straight days. By partnering with us, you become a foundational part of this historic altar of worship.
               </p>
               <div className='mt-8 flex justify-start gap-4'>

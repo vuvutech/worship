@@ -44,7 +44,7 @@ export default function SignUp() {
     return (
         <Card className="z-50 rounded-md rounded-t-none max-w-md">
             <CardHeader>
-                <CardTitle className="text-lg md:text-xl">Sign Up</CardTitle>
+                <CardTitle className="text-xl md:text-xl">Sign Up</CardTitle>
                 <CardDescription className="text-xs md:text-sm">
                     Enter your information to create an account
                 </CardDescription>
