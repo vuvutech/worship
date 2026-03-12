@@ -5,13 +5,13 @@ export default function Home() {
   return (
     <LocomotiveScrollWrapper>
       <HeroIntro
-        heading="We Are More Than a Brand — We Are a Mission in Motion"
-        description="We're a passionate team united by a common goal — to create meaningful solutions that make a real impact. From humble beginnings to ambitious visions, our journey is driven by innovation, trust, and a commitment to excellence."
-        ctaLabel="Read more"
+        heading="Partner With Us for The Non-Stop"
+        description="The 144-hour sacrifice of praise cannot happen without the support of kingdom-minded partners and sponsors. Join us in sustaining the fire on the altar, facilitating global reach, and impacting lives through the power of unbroken worship."
+        ctaLabel="Become a Partner"
         ctaHref="#"
         pins={[
-          { label: "Driven by Passion 🤩", className: "top-8 right-4 rotate-8" },
-          { label: "Rooted in Values 🙌🏻", className: "bottom-15 left-6 -rotate-8" },
+          { label: "Kingdom Focused 👑", className: "top-8 right-4 rotate-8" },
+          { label: "Global Impact �", className: "bottom-15 left-6 -rotate-8" },
         ]}
       />
 
@@ -44,22 +44,19 @@ export default function Home() {
           <div className='grid grid-cols-2 gap-12 pt-12 max-w-5xl mx-auto'>
             <div>
               <h1 className='mb-8 flex max-w-5xl text-4xl font-semibold leading-none tracking-tight text-gray-800 md:text-5xl'>
-                Transform your business with our landing page blocks
+                Fueling the Vision of Recovery, Revival, and Restoration
               </h1>
             </div>
             <div>
               <p className='text-lg leading-normal text-gray-500'>
-                Wicked Blocks offers a wide array of both free and premium
-                components specifically designed for Tailwind CSS. Our extensive
-                collection features meticulously crafted Tailwind blocks that
-                cater to various design needs and preferences.
+                The Non-Stop is a massive undertaking that requires tremendous resources—from high-quality broadcasting for our global stream, to ensuring the logistics, safety, and hospitality of thousands of attendees over 6 straight days. By partnering with us, you become a foundational part of this historic altar of worship.
               </p>
               <div className='mt-8 flex justify-start gap-4'>
                 <button className='flex items-center rounded-xl bg-blue-600 px-5 py-3 text-center text-base font-medium text-white transition duration-500 ease-in-out hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 lg:px-6'>
-                  Get Bundle
+                  Sponsor the Event
                 </button>
                 <button className='flex items-center rounded-xl border border-gray-600 px-5 py-3 text-center font-medium text-gray-600 transition duration-500 ease-in-out hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 lg:px-6'>
-                  See Features
+                  View Sponsorship Tiers
                   <svg
                     width='24'
                     height='24'

@@ -27,22 +27,26 @@ interface FooterComponentProps {
 }
 
 const FooterComponent = ({
-  heading = "Start your free trial today",
-  description = "The fit-for-purpose tool for planning and building modern software products.",
-  ctaText = "Get started",
-  ctaHref = "#",
+  heading = "Join the 144-Hour Sacrifice of Praise",
+  description = "Experience unbroken worship, deep intercession, and the raw presence of God at The Non-Stop.",
+  ctaText = "Get Involved",
+  ctaHref = "/get-involved",
   navigation = [
     { name: "Home", href: "/" },
-    { name: "Privacy", href: "/about" },
-    { name: "Pricing", href: "/pricing" },
-    { name: "FAQ", href: "/faq" },
-    { name: "Contact", href: "/contact" },
+    { name: "About", href: "/about" },
+    { name: "Get Involved", href: "/get-involved" },
+    { name: "Partner", href: "/partner" },
+    { name: "FAQ", href: "/#faq" },
   ],
   social = [
     { name: "Twitter", href: "#" },
     { name: "LinkedIn", href: "#" },
   ],
-  legal = [{ name: "Privacy Policy", href: "/privacy" }],
+  legal = [
+    { name: "Terms of Service", href: "/terms" },
+    { name: "Privacy Policy", href: "/privacy" },
+    { name: "Cookies Policy", href: "/cookies" },
+  ],
   brandName = "NONSTOP",
   className,
 }: FooterComponentProps) => {
@@ -141,10 +145,11 @@ const FooterComponent = ({
           textAnchor='middle'
           dominantBaseline='middle'
           fill='url(#paint0_linear_FooterComponent)'
-          fontFamily='Suisse Intl, system-ui, sans-serif'
-          fontSize='270'
+          fontFamily='anton, system-ui, sans-serif'
+          fontSize='390'
           fontWeight='500'
           letterSpacing='-0.04em'
+          className='opacity-20'
         >
           NONSTOP
         </text>

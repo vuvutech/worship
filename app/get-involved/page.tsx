@@ -20,13 +20,12 @@ export default function Home() {
                 >
                   <div className='space-y-4'>
                     <h2 className='text-2xl font-semibold md:text-3xl lg:text-4xl'>
-                      Our story
+                      Get Involved
                     </h2>
                     <p className='text-muted-foreground text-xl font-semibold md:text-3xl'>
-                      Your vision Our Expertise Your Success Get Noticed
-                      Generate
+                      Step Into the Gap. Keep the Fire Burning.{' '}
                       <span className='text-primary inline-block'>
-                        Leads Dominate.
+                        Join The Non-Stop.
                       </span>
                     </p>
                   </div>
@@ -75,11 +74,8 @@ export default function Home() {
                 <div
                   style={{ filter: "blur(0px)", opacity: 1, transform: "none" }}
                 >
-                  <p className='text-muted-foreground text-xl'>
-                    Our story is a testament to the power of collaboration and
-                    resilience. Together, we have navigated challenges,
-                    celebrated milestones, and crafted a narrative of growth and
-                    achievement in the construction industry.
+                  <p className='text-muted-foreground text-xl leading-relaxed'>
+                    The Non-Stop is fueled entirely by believers willing to offer their time, voices, and skills to keep the altar burning. Whether you are a worship leader, an intercessor, a volunteer, or someone hungry for His presence, there is a place for you in this 144-hour sacrifice.
                   </p>
                 </div>
                 <div
@@ -88,26 +84,26 @@ export default function Home() {
                   <div className='grid gap-10 sm:grid-cols-3'>
                     <div className='flex flex-col items-center gap-2.5'>
                       <h3 className='text-foreground text-4xl font-medium'>
-                        <span className='inline-block tabular-nums'>10</span>K+
+                        144
                       </h3>
-                      <p className='text-muted-foreground text-center'>
-                        Completed Projects
+                      <p className='text-muted-foreground text-center font-medium'>
+                        Continuous Hours
                       </p>
                     </div>
                     <div className='flex flex-col items-center gap-2.5'>
                       <h3 className='text-foreground text-4xl font-medium'>
-                        <span className='inline-block tabular-nums'>15</span>K+
+                        24/7
                       </h3>
-                      <p className='text-muted-foreground text-center'>
-                        Satisfied Customers
+                      <p className='text-muted-foreground text-center font-medium'>
+                        Unbroken Worship
                       </p>
                     </div>
                     <div className='flex flex-col items-center gap-2.5'>
                       <h3 className='text-foreground text-4xl font-medium'>
-                        <span className='inline-block tabular-nums'>48</span>K+
+                        1
                       </h3>
-                      <p className='text-muted-foreground text-center'>
-                        Years of Mastery
+                      <p className='text-muted-foreground text-center font-medium'>
+                        Unified Focus
                       </p>
                     </div>
                   </div>
@@ -194,7 +190,7 @@ export default function Home() {
                         </svg>
                       </button>
                       <span className='text-base font-medium uppercase'>
-                        Watch Intro
+                        Watch the Vision
                       </span>
                     </a>
                   </div>
@@ -215,18 +211,14 @@ export default function Home() {
             />
           </div>
           <div className='grid grid-cols-1 gap-4 space-y-12 lg:grid-cols-6 lg:space-y-0'>
-            <div className='order-2 col-span-2 lg:order-none lg:pr-16 lg:pl-10'>
-              <p className='text-foreground/40'>
-                We aim to bring diverse minds together, turning ideas into
-                experiences that matter.
+            <div className='order-2 col-span-2 lg:order-none lg:pr-16 lg:pl-10 flex items-center'>
+              <p className='text-foreground/60 text-lg md:text-xl leading-relaxed'>
+                We are calling for worshippers, intercessors, and servants to help sustain the momentum. The fire on the altar must not go out.
               </p>
             </div>
             <div className='order-1 col-span-4 lg:order-none lg:mt-0 lg:pl-6'>
-              <h2 className='text-2xl font-medium tracking-tight lg:text-3xl'>
-                We are a team of creators, thinkers, and builders who believe in
-                crafting experiences that truly connect. Our story is built on
-                passion, innovation, and the drive to bring meaningful ideas to
-                life.
+              <h2 className='text-2xl font-medium tracking-tight lg:text-3xl leading-relaxed'>
+                It takes the whole body of Christ to sustain 144 hours of unbroken worship. From the platform to the prayer room, from ushering to technical support, your contribution matters. Step into the story of recovery, revival, and restoration by signing up to serve, lead, or support today.
               </h2>
             </div>
           </div>
