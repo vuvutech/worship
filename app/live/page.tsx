@@ -1,22 +1,25 @@
-import LightRays from "@/components/LightRays";
+import { prisma } from "@/lib/prisma";
+import { LiveDashboard } from "./live-dashboard";
 
-export default function Home() {
-  return (
-  <div style={{ width: '100%', height: '100%', position: 'relative' }}>
-  <LightRays
-    raysOrigin="top-center"
-    raysColor="#ffffff"
-    raysSpeed={1}
-    lightSpread={1}
-    rayLength={2}
-    pulsating={false}
-    fadeDistance={1}
-    saturation={1}
-    followMouse
-    mouseInfluence={0.1}
-    noiseAmount={0}
-    distortion={0}
-  />
-</div>
-  );
+export const dynamic = "force-dynamic"; // Ensure fresh data on load
+
+export default async function LivePage() {
+  // Fetch all videos, ordering newest first
+  const data = await prisma.video.findMany({
+    orderBy: {
+      createdAt: "desc",
+    },
+  });
+
+  // Prisma objects to POJOs for passing to Client Component
+  const videos = data.map((v: { id: any; title: any; url: any; thumbnail: any; type: any; createdAt: any; }) => ({
+    id: v.id,
+    title: v.title,
+    url: v.url,
+    thumbnail: v.thumbnail,
+    type: v.type, // VOD | LIVE
+    createdAt: v.createdAt,
+  }));
+
+  return <LiveDashboard videos={videos} />;
 }

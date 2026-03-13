@@ -102,3 +102,20 @@ model Verification {
   @@index([identifier])
   @@map("verification")
 }
+
+enum VideoType {
+  VOD
+  LIVE
+}
+
+model Video {
+  id        String    @id @default(auto()) @map("_id") @db.ObjectId
+  title     String
+  url       String
+  thumbnail String?
+  type      VideoType @default(VOD)
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+
+  @@map("videos")
+}
