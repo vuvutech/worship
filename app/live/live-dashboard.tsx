@@ -20,8 +20,8 @@ interface LiveDashboardProps {
 }
 
 export function LiveDashboard({ videos }: LiveDashboardProps) {
-  const liveStream = videos.find((v) => v.type === "LIVE");
-  const vods = videos.filter((v) => v.type === "VOD");
+  const liveStream = videos.find((video) => video.type === "LIVE");
+  const vods = videos.filter((video) => video.type === "VOD");
 
   // Default to live stream, or the first VOD if no live stream is available
   const [selectedVideo, setSelectedVideo] = useState<Video | null>(
@@ -29,11 +29,11 @@ export function LiveDashboard({ videos }: LiveDashboardProps) {
   );
 
   return (
-    <div className="min-h-screen bg-black text-white selection:bg-red-600 selection:text-white pb-24">
+    <div className="min-h-screen bg-background text-foreground selection:bg-red-600 selection:text-white pb-24">
       
       {/* Hero Player Section */}
       <section className="w-full relative pt-24 px-4 md:px-8 max-w-[1600px] mx-auto">
-        <div className="absolute top-0 left-0 w-full h-[50vh] bg-gradient-to-b from-red-900/10 to-black z-0" />
+        {/* <div className="absolute top-0 left-0 w-full h-[50vh] bg-gradient-to-b from-red-900/10 to-black z-20" /> */}
         
         <div className="relative z-10 w-full mx-auto grid grid-cols-1 lg:grid-cols-4 gap-8">
           
@@ -111,7 +111,7 @@ export function LiveDashboard({ videos }: LiveDashboardProps) {
                 </div>
                 
                 {/* Title overlay gradient */}
-                <div className="absolute bottom-0 left-0 w-full p-4 bg-gradient-to-t from-black to-transparent">
+                <div className=" absolute bottom-0 left-0 w-full p-4 bg-gradient-to-t from-black to-transparent">
                   <p className="font-medium truncate text-white">{video.title}</p>
                 </div>
 

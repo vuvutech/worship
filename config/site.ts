@@ -19,73 +19,7 @@ export const siteConfig = {
       href: "/about",
       number: "02",
     },
-    {
-      label: "COSTrAD",
-      href: "/institutes/college-of-sustainable-transformation-and-development",
-      number: "03",
-    },
-    {
-      label: "Institutes",
-      href: "/institutes",
-      number: "04",
-    },
-    {
-      label: "Donate",
-      href: "/donate",
-      number: "06",
-    },
-    {
-      label: "Contact",
-      href: "/contact",
-      number: "07",
-    },
-    {
-      label: "Apply",
-      href: "/apply",
-      number: "08",
-    },
-  ],
-  navMenuItems: [
-    {
-      label: "Profile",
-      href: "/profile",
-      number: "01",
-    },
-    {
-      label: "Dashboard",
-      href: "/dashboard",
-      number: "02",
-    },
-    {
-      label: "Projects",
-      href: "/projects",
-      number: "03",
-    },
-    {
-      label: "Team",
-      href: "/team",
-      number: "04",
-    },
-    {
-      label: "Calendar",
-      href: "/calendar",
-      number: "05",
-    },
-    {
-      label: "Settings",
-      href: "/settings",
-      number: "06",
-    },
-    {
-      label: "Help & Feedback",
-      href: "/help-feedback",
-      number: "07",
-    },
-    {
-      label: "Logout",
-      href: "/logout",
-      number: "08",
-    },
+
   ],
 
   links: {

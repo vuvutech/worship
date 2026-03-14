@@ -12,13 +12,13 @@ export default async function LivePage() {
   });
 
   // Prisma objects to POJOs for passing to Client Component
-  const videos = data.map((v: { id: any; title: any; url: any; thumbnail: any; type: any; createdAt: any; }) => ({
-    id: v.id,
-    title: v.title,
-    url: v.url,
-    thumbnail: v.thumbnail,
-    type: v.type, // VOD | LIVE
-    createdAt: v.createdAt,
+  const videos = data.map((video: { id: any; title: any; url: any; thumbnail: any; type: any; createdAt: any; }) => ({
+    id: video.id,
+    title: video.title,
+    url: video.url,
+    thumbnail: video.thumbnail,
+    type: video.type, // VOD | LIVE
+    createdAt: video.createdAt,
   }));
 
   return <LiveDashboard videos={videos} />;
