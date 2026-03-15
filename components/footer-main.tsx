@@ -28,7 +28,7 @@ interface FooterComponentProps {
 
 const FooterComponent = ({
   heading = "Join the 144-Hour Sacrifice of Praise",
-  description = "Experience unbroken worship, deep intercession, and the raw presence of God at The Non-Stop.",
+  description = "Experience unbroken worship, deep intercession, and the raw presence of God at The Non-Stop Series.",
   ctaText = "Get Involved",
   ctaHref = "/get-involved",
   navigation = [

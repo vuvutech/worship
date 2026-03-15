@@ -21,7 +21,7 @@ export default function Home() {
           <div className='relative h-[500px] flex-1'>
             <div className='absolute inset-0 flex size-full items-center justify-center overflow-hidden rounded-xl object-cover'>
               <img
-                src='/images/placeholders/original/1600x1200-video.png'
+                src='/images/partner.jpg'
                 alt='video'
                 className='inline-block size-full max-w-full object-cover align-middle'
               />

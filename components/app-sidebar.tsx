@@ -147,6 +147,20 @@ const defaultData = {
         },
       ],
     },
+    {
+      title: "Admin",
+      url: "/dashboard/admin",
+      icon: (
+        <TerminalIcon
+        />
+      ),
+      items: [
+        {
+          title: "Video Management",
+          url: "/dashboard/admin",
+        },
+      ],
+    },
   ],
   projects: [
     {
