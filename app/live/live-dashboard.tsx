@@ -31,12 +31,12 @@ export function LiveDashboard({ videos }: LiveDashboardProps) {
   return (
     <div className='min-h-screen bg-background text-foreground selection:bg-red-600 selection:text-white pb-24'>
       {/* Hero Player Section */}
-      <section className='w-full relative pt-24 px-4 md:px-8 max-w-[1600px] mx-auto'>
+      <section className='w-full relative pt-8 px-4 md:px-8 max-w-[1600px] mx-auto'>
         {/* <div className="absolute top-0 left-0 w-full h-[50vh] bg-gradient-to-b from-red-900/10 to-black z-20" /> */}
 
         <div className='relative z-10 w-full mx-auto grid grid-cols-1 lg:grid-cols-4 gap-4'>
           {/* Main Video Player */}
-          <div className='lg:col-span-3 space-y-4'>
+          <div className='lg:col-span-4 space-y-4'>
             {selectedVideo ? (
               <>
                 <VideoPlayer
@@ -64,7 +64,7 @@ export function LiveDashboard({ videos }: LiveDashboardProps) {
           </div>
 
           {/* Sidebar / Chat Simulator */}
-          <div className='lg:col-span-1 hidden lg:flex flex-col h-full min-h-[500px] bg-neutral-900/50 border border-white/10 rounded-xl overflow-hidden backdrop-blur-sm'>
+          {/* <div className='lg:col-span-1 hidden lg:flex flex-col h-full  bg-neutral-900/50 border-white/10 rounded-xl overflow-hidden backdrop-blur-sm'>
             <div className='p-4 border-b border-white/10 bg-black/40'>
               <h3 className='font-medium text-sm text-neutral-300 uppercase tracking-wider'>
                 Live Chat (Coming Soon)
@@ -81,7 +81,7 @@ export function LiveDashboard({ videos }: LiveDashboardProps) {
                 className='w-full bg-black/50 border border-white/10 rounded-lg px-4 py-2 text-sm focus:outline-none focus:ring-1 focus:ring-white/20 cursor-not-allowed'
               />
             </div>
-          </div>
+          </div> */}
         </div>
       </section>
 

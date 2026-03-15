@@ -159,6 +159,10 @@ const defaultData = {
           title: "Video Management",
           url: "/dashboard/admin",
         },
+        {
+          title: "User Management",
+          url: "/dashboard/admin/users",
+        },
       ],
     },
   ],

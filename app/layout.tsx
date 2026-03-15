@@ -44,7 +44,7 @@ export default function RootLayout({
           </LocomotiveScrollWrapper>
           <Toaster
             richColors
-            position='top-center'
+            position='bottom-right'
           />
         </ThemeProvider>
       </body>
