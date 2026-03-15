@@ -119,3 +119,48 @@ model Video {
 
   @@map("videos")
 }
+
+model Event {
+  id          String   @id @default(auto()) @map("_id") @db.ObjectId
+  title       String
+  slug        String   @unique
+  startDate   DateTime
+  endDate     DateTime
+  poster      String? // URL to image
+  description String?
+  status      String   @default("published") // draft, published, cancelled
+
+  // Ministers: Embedded list for simplicity in MongoDB
+  ministers Minister[]
+
+  // Sponsors: Array of ObjectIds for a Many-to-Many relation
+  sponsorIds String[]  @db.ObjectId
+  sponsors   Sponsor[] @relation(fields: [sponsorIds], references: [id])
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("events")
+}
+
+model Minister {
+  id      String  @id @default(auto()) @map("_id") @db.ObjectId
+  name    String
+  role    String? // e.g., "Lead Pastor", "Guest Worship Leader"
+  image   String?
+  eventId String  @db.ObjectId
+  event   Event   @relation(fields: [eventId], references: [id], onDelete: Cascade)
+
+  @@map("ministers")
+}
+
+model Sponsor {
+  id       String   @id @default(auto()) @map("_id") @db.ObjectId
+  name     String
+  logo     String?
+  website  String?
+  eventIds String[] @db.ObjectId
+  events   Event[]  @relation(fields: [eventIds], references: [id])
+
+  @@map("sponsors")
+}
