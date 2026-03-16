@@ -22,7 +22,7 @@ export default function Page() {
           </p>
         </div>
       </section>
-      <div className='block-preview-wrapper'>
+      <section className='block-preview-wrapper'>
         <section className="bg-[url('/images/community_worship.jpg')] bg-cover bg-center bg-no-repeat">
           <div className='flex items-end sm:items-center justify-center lg:justify-start'>
             <div className='max-w-7xl px-4 lg:px-8 xl:px-16 lg:py-20 sm:py-16 py-8 mx-auto w-full'>
@@ -85,15 +85,14 @@ export default function Page() {
                               <path d='M2 17a1 1 0 0 0 .58.91l8.6 3.91a2 2 0 0 0 1.65 0l8.58-3.9A1 1 0 0 0 22 17' />
                             </svg>
                             <div className='flex flex-col gap-1'>
-                              <p className='text-xl font-medium'>
-                                Recovery
-                              </p>
+                              <p className='text-xl font-medium'>Recovery</p>
                               <p className='text-base text-muted-foreground'>
-                               Reclaiming every spiritual inheritance that has been stolen or dormant.
+                                Reclaiming every spiritual inheritance that has
+                                been stolen or dormant.
                               </p>
                             </div>
                           </div>
-                           <div
+                          <div
                             data-orientation='horizontal'
                             role='separator'
                             aria-orientation='horizontal'
@@ -119,11 +118,10 @@ export default function Page() {
                               <path d='M2 17a1 1 0 0 0 .58.91l8.6 3.91a2 2 0 0 0 1.65 0l8.58-3.9A1 1 0 0 0 22 17' />
                             </svg>
                             <div className='flex flex-col gap-1'>
-                              <p className='text-xl font-medium'>
-                                Revival
-                              </p>
+                              <p className='text-xl font-medium'>Revival</p>
                               <p className='text-base text-muted-foreground'>
-                                Igniting a fresh passion for the Presence of God that outlasts the event.
+                                Igniting a fresh passion for the Presence of God
+                                that outlasts the event.
                               </p>
                             </div>
                           </div>
@@ -163,11 +161,11 @@ export default function Page() {
                               />
                             </svg>
                             <div className='flex flex-col gap-1'>
-                              <p className='text-xl font-medium'>
-                                Restoration
-                              </p>
+                              <p className='text-xl font-medium'>Restoration</p>
                               <p className='text-base text-muted-foreground'>
-                                Returning to the original pattern of intimacy where every believer has direct access to the Throne.
+                                Returning to the original pattern of intimacy
+                                where every believer has direct access to the
+                                Throne.
                               </p>
                             </div>
                           </div>
@@ -192,7 +190,126 @@ export default function Page() {
         </section>
         {/*$*/}
         {/*/$*/}
-      </div>
+      </section>
+      <section className='container py-12 md:py-20 p-4' id='achievements'>
+        <div className='mx-auto text-center'>
+          <h2 className='mb-4 text-3xl font-bold tracking-tight sm:text-4xl'>
+            Our Impact & Reach
+          </h2>
+          <p className='text-muted-foreground mx-auto mb-12 max-w-3xl text-base sm:text-lg'>
+            Rooted in faith, growing in community. Witness the transformative
+            power of worship as we reach souls across the globe and build a
+            legacy of spiritual revival.
+          </p>
+          <div className='grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4'>
+            <div
+              data-slot='card'
+              className='bg-card text-card-foreground flex flex-col rounded-xl border shadow-sm gap-0 p-6 text-left hover:shadow-md transition-shadow'
+            >
+              <svg
+                xmlns='http://www.w3.org/2000/svg'
+                width='24'
+                height='24'
+                viewBox='0 0 24 24'
+                fill='none'
+                stroke='currentColor'
+                strokeWidth='2'
+                strokeLinecap='round'
+                strokeLinejoin='round'
+                className='lucide lucide-users text-primary mb-4 h-8 w-8'
+              >
+                <path d='M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2'></path>
+                <circle cx='9' cy='7' r='4'></circle>
+                <path d='M22 21v-2a4 4 0 0 0-3-3.87'></path>
+                <path d='M16 3.13a4 4 0 0 1 0 7.75'></path>
+              </svg>
+              <div className='mb-1 text-3xl font-bold'>150k+</div>
+              <div className='mb-3 text-sm font-medium'>Faithful Believers</div>
+              <p className='text-muted-foreground text-sm'>
+                United in spirit across diverse congregations and digital
+                platforms.
+              </p>
+            </div>
+            <div
+              data-slot='card'
+              className='bg-card text-card-foreground flex flex-col rounded-xl border shadow-sm gap-0 p-6 text-left hover:shadow-md transition-shadow'
+            >
+              <svg
+                xmlns='http://www.w3.org/2000/svg'
+                width='24'
+                height='24'
+                viewBox='0 0 24 24'
+                fill='none'
+                stroke='currentColor'
+                strokeWidth='2'
+                strokeLinecap='round'
+                strokeLinejoin='round'
+                className='lucide lucide-video text-primary mb-4 h-8 w-8'
+              >
+                <path d='m22 8-6 4 6 4V8Z'></path>
+                <rect width='14' height='12' x='2' y='6' rx='2' ry='2'></rect>
+              </svg>
+              <div className='mb-1 text-3xl font-bold'>500k+</div>
+              <div className='mb-3 text-sm font-medium'>Sermons Streamed</div>
+              <p className='text-muted-foreground text-sm'>
+                Bringing the Word of God into homes and hearts everywhere.
+              </p>
+            </div>
+            <div
+              data-slot='card'
+              className='bg-card text-card-foreground flex flex-col rounded-xl border shadow-sm gap-0 p-6 text-left hover:shadow-md transition-shadow'
+            >
+              <svg
+                xmlns='http://www.w3.org/2000/svg'
+                width='24'
+                height='24'
+                viewBox='0 0 24 24'
+                fill='none'
+                stroke='currentColor'
+                strokeWidth='2'
+                strokeLinecap='round'
+                strokeLinejoin='round'
+                className='lucide lucide-heart text-primary mb-4 h-8 w-8'
+              >
+                <path d='M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z'></path>
+              </svg>
+              <div className='mb-1 text-3xl font-bold'>10k+</div>
+              <div className='mb-3 text-sm font-medium'>Souls Restored</div>
+              <p className='text-muted-foreground text-sm'>
+                Documented testimonies of spiritual growth and life-changing
+                renewal.
+              </p>
+            </div>
+            <div
+              data-slot='card'
+              className='bg-card text-card-foreground flex flex-col rounded-xl border shadow-sm gap-0 p-6 text-left hover:shadow-md transition-shadow'
+            >
+              <svg
+                xmlns='http://www.w3.org/2000/svg'
+                width='24'
+                height='24'
+                viewBox='0 0 24 24'
+                fill='none'
+                stroke='currentColor'
+                strokeWidth='2'
+                strokeLinecap='round'
+                strokeLinejoin='round'
+                className='lucide lucide-globe text-primary mb-4 h-8 w-8'
+              >
+                <circle cx='12' cy='12' r='10'></circle>
+                <line x1='2' x2='22' y1='12' y2='12'></line>
+                <path d='M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z'></path>
+              </svg>
+              <div className='mb-1 text-3xl font-bold'>25+</div>
+              <div className='mb-3 text-sm font-medium'>Global Ministries</div>
+              <p className='text-muted-foreground text-sm'>
+                Partnering with mission-driven organizations across multiple
+                nations.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
       <Ministration />
       <FAQ />
     </main>

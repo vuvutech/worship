@@ -58,6 +58,13 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
     avatar: user?.image || defaultData.user.avatar,
   };
 
+  const filteredNavMain = defaultData.navMain.filter(item => {
+    if (item.title === "Admin") {
+      return user?.role === "admin";
+    }
+    return true;
+  });
+
   return (
     <Sidebar collapsible="icon" {...props}>
       <SidebarHeader className="flex items-center justify-center h-16 border-b">
@@ -72,7 +79,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
           </div>
       </SidebarHeader>
       <SidebarContent>
-        <NavMain items={defaultData.navMain} />
+        <NavMain items={filteredNavMain} />
       </SidebarContent>
       <SidebarFooter>
         <NavUser user={userData} />
