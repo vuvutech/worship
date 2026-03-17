@@ -1,6 +1,6 @@
 export default function SchedulePage() {
   return (
-    <main className='w-full'>
+    <main className='w-full' id="UpNextCard">
       {/* Hero Banner */}
       <div
         className='w-full h-[220px] sm:h-[320px] bg-center bg-cover relative flex items-end'

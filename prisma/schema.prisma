@@ -28,23 +28,30 @@ model User {
 
   sessions Session[]
   accounts Account[]
-  profile  Profile[]
+  profile  Profile?
 
   @@map("user")
 }
 
 model Profile {
-  id          String  @id @default(auto()) @map("_id") @db.ObjectId
-  userId      String  @unique @db.ObjectId
-  user        User    @relation(fields: [userId], references: [id], onDelete: Cascade)
-  username    String? @unique
-  displayName String?
-  bio         String? @db.String
-  avatarUrl   String?
-  bannerUrl   String?
-  location    String?
-  website     String?
-  socialLinks Json? // { twitter: "...", github: "...", linkedin: "..." }
+  id             String   @id @default(auto()) @map("_id") @db.ObjectId
+  userId         String   @unique @db.ObjectId
+  user           User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  username       String?  @unique
+  displayName    String?
+  firstName      String?
+  lastName       String?
+  phone          String?
+  jobTitle       String?
+  company        String?
+  bio            String?  @db.String
+  avatarUrl      String?
+  bannerUrl      String?
+  location       String?
+  website        String?
+  socialLinks    Json? // { twitter: "...", github: "...", linkedin: "..." }
+  volunteerAreas String[]
+  membershipPlan String?  @default("Basic")
 
   isPublic Boolean @default(true)
   theme    String  @default("system") // light/dark/system

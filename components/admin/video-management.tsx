@@ -43,7 +43,11 @@ import { Input } from "@/components/ui/input";
 const videoSchema = z.object({
   title: z.string().min(1, "Title is required"),
   url: z.string().url("Invalid URL").min(1, "URL is required"),
-  thumbnail: z.string().url("Invalid thumbnail URL").optional().or(z.literal("")),
+  thumbnail: z.string().optional().refine(
+    (val) => !val || val.startsWith("/") || z.string().url().safeParse(val).success,
+    { message: "Must be a valid URL or a path starting with /" }
+  ).or(z.literal("")),
+
   type: z.enum(["VOD", "LIVE"]),
 });
 
