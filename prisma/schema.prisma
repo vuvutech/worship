@@ -121,14 +121,18 @@ model Video {
 }
 
 model Event {
-  id          String   @id @default(auto()) @map("_id") @db.ObjectId
-  title       String
-  slug        String   @unique
-  startDate   DateTime
-  endDate     DateTime
-  poster      String? // URL to image
-  description String?
-  status      String   @default("published") // draft, published, cancelled
+  id              String   @id @default(auto()) @map("_id") @db.ObjectId
+  title           String
+  slug            String   @unique
+  startDate       DateTime
+  endDate         DateTime
+  poster          String? // URL to image
+  description     String?
+  tagline         String?
+  location        String?
+  category        String?
+  registrationUrl String?
+  status          String   @default("published") // draft, published, cancelled
 
   // Ministers: Embedded list for simplicity in MongoDB
   ministers Minister[]

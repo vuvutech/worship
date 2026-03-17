@@ -26,25 +26,25 @@ const defaultData = {
       url: "/dashboard",
       icon: <LayoutDashboard />,
       isActive: true,
+      adminOnly: false,
     },
     {
-      title: "Admin",
+      title: "Video Management",
       url: "/dashboard/admin",
-      icon: <TerminalIcon />,
-      items: [
-        {
-          title: "Video Management",
-          url: "/dashboard/admin",
-        },
-        {
-          title: "Event Management",
-          url: "/dashboard/admin/events",
-        },
-        {
-          title: "User Management",
-          url: "/dashboard/admin/users",
-        },
-      ],
+      icon: <Video />,
+      adminOnly: true,
+    },
+    {
+      title: "Event Management",
+      url: "/dashboard/admin/events",
+      icon: <Calendar />,
+      adminOnly: true,
+    },
+    {
+      title: "User Management",
+      url: "/dashboard/admin/users",
+      icon: <Users />,
+      adminOnly: true,
     },
   ],
 }
@@ -59,7 +59,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   };
 
   const filteredNavMain = defaultData.navMain.filter(item => {
-    if (item.title === "Admin") {
+    if (item.adminOnly) {
       return user?.role === "admin";
     }
     return true;
@@ -67,12 +67,12 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
 
   return (
     <Sidebar collapsible="icon" {...props}>
-      <SidebarHeader className="flex items-center justify-center h-16 border-b">
-         <div className="flex items-center gap-2 px-4 py-2">
+      <SidebarHeader className="flex  justify-center h-16 border-b">
+         <div className="flex items-center gap-2 py-2">
             <div className="flex aspect-square size-8 items-center justify-center rounded-lg bg-primary text-primary-foreground">
               <TerminalIcon className="size-4" />
             </div>
-            <div className="flex flex-col gap-0.5 leading-none">
+            <div className="flex flex-col gap-0.5 leading-none group-data-[collapsible=icon]:hidden">
               <span className="font-semibold">Worship Admin</span>
               <span className="text-xs text-muted-foreground">v0.1.0</span>
             </div>
