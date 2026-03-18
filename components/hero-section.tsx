@@ -13,22 +13,15 @@ export default function HeroSection() {
   return (
     <header className='relative w-full h-dvh flex flex-col justify-end py-10 overflow-hidden '>
       {/* Video Background */}
-      <video
-        autoPlay
-        muted
-        loop
-        playsInline
-        className='absolute inset-0 w-full h-full object-cover'
-        preload='metadata'
-        poster='/123.jpg'
-      >
-        <source
-          src='https://www.youtube.com/watch?v=yDiD8F9ItX0'
-          type='video/mp4'
+      {/* YouTube Video Background */}
+      <div className='absolute inset-0 w-full h-full pointer-events-none overflow-hidden'>
+        <iframe
+          src='https://www.youtube.com/embed/yDiD8F9ItX0?autoplay=1&mute=1&loop=1&controls=0&showinfo=0&autohide=1&modestbranding=1&playlist=yDiD8F9ItX0&rel=0&enablejsapi=1'
+          className='absolute top-1/2 left-1/2 w-[115vw] h-[115vh] md:w-[150vw] md:h-[150vh] -translate-x-1/2 -translate-y-1/2 object-cover min-w-full min-h-full aspect-video'
+          allow='autoplay; encrypted-media'
+          title="Hero Video Background"
         />
-        {/* Fallback for browsers that don't support video */}
-        Your browser does not support the video tag.
-      </video>
+      </div>
 
       {/* Dark overlay for better text readability */}
       <div
