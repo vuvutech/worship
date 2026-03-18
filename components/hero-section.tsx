@@ -1,6 +1,15 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
+import { Volume2, VolumeX } from "lucide-react";
+import { Button } from "@/components/ui/button";
+
+declare global {
+  interface Window {
+    onYouTubeIframeAPIReady: () => void;
+    YT: any;
+  }
+}
 
 export default function HeroSection() {
   const [heading, setHeading] = useState("Discover Something Amazing");
@@ -9,6 +18,52 @@ export default function HeroSection() {
   );
   const [isEditingHeading, setIsEditingHeading] = useState(false);
   const [isEditingSubheading, setIsEditingSubheading] = useState(false);
+  const [isMuted, setIsMuted] = useState(true);
+  const [player, setPlayer] = useState<any>(null);
+  const iframeRef = useRef<HTMLIFrameElement>(null);
+
+  useEffect(() => {
+    // Load YouTube API script
+    if (!window.YT) {
+      const tag = document.createElement("script");
+      tag.src = "https://www.youtube.com/iframe_api";
+      const firstScriptTag = document.getElementsByTagName("script")[0];
+      firstScriptTag.parentNode?.insertBefore(tag, firstScriptTag);
+    }
+
+    // Initialize player when API is ready
+    const initPlayer = () => {
+      if (iframeRef.current && window.YT && window.YT.Player) {
+        new window.YT.Player(iframeRef.current, {
+          events: {
+            onReady: (event: any) => {
+              setPlayer(event.target);
+              // Ensure it starts muted as per background video norm
+              event.target.mute();
+            },
+          },
+        });
+      }
+    };
+
+    if (window.YT && window.YT.Player) {
+      initPlayer();
+    } else {
+      window.onYouTubeIframeAPIReady = initPlayer;
+    }
+  }, []);
+
+  const toggleMute = () => {
+    if (player) {
+      if (isMuted) {
+        player.unMute();
+        player.setVolume(100);
+      } else {
+        player.mute();
+      }
+      setIsMuted(!isMuted);
+    }
+  };
 
   return (
     <header className='relative w-full h-dvh flex flex-col justify-end py-10 overflow-hidden '>
@@ -16,11 +71,25 @@ export default function HeroSection() {
       {/* YouTube Video Background */}
       <div className='absolute inset-0 w-full h-full pointer-events-none overflow-hidden'>
         <iframe
-          src='https://www.youtube.com/embed/yDiD8F9ItX0?autoplay=1&mute=1&loop=1&controls=0&showinfo=0&autohide=1&modestbranding=1&playlist=yDiD8F9ItX0&rel=0&enablejsapi=1'
+          ref={iframeRef}
+          src='https://www.youtube.com/embed/1JybXxPpPf8?autoplay=1&mute=1&loop=1&controls=0&showinfo=0&autohide=1&modestbranding=1&playlist=1JybXxPpPf8&rel=0&enablejsapi=1&start=108'
           className='absolute top-1/2 left-1/2 w-[115vw] h-[115vh] md:w-[150vw] md:h-[150vh] -translate-x-1/2 -translate-y-1/2 object-cover min-w-full min-h-full aspect-video'
           allow='autoplay; encrypted-media'
           title="Hero Video Background"
         />
+      </div>
+
+      {/* Mute/Unmute Toggle */}
+      <div className="absolute top-24 right-6 z-30">
+        <Button
+          variant="outline"
+          size="icon"
+          onClick={toggleMute}
+          className="rounded-full bg-black/20 backdrop-blur-md border-white/20 hover:bg-black/40 text-white transition-all duration-300"
+          aria-label={isMuted ? "Unmute video" : "Mute video"}
+        >
+          {isMuted ? <VolumeX className="h-5 w-5" /> : <Volume2 className="h-5 w-5" />}
+        </Button>
       </div>
 
       {/* Dark overlay for better text readability */}
