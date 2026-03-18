@@ -3,6 +3,7 @@ import { ArrowUpRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 import { Button } from "@/components/ui/button";
+import { motion } from "framer-motion";
 
 interface NavItem {
   name: string;
@@ -78,25 +79,35 @@ const FooterComponent = ({
 
       <nav className='container flex flex-col items-center gap-4'>
         <ul className='flex flex-wrap items-center justify-center gap-6'>
-          {navigation.map((item) => (
-            <li key={item.name}>
+          {navigation.map((item, i) => (
+            <motion.li key={item.name}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: i * 0.1 }}
+              >
               <a
                 href={item.href}
                 className='font-medium transition-opacity hover:opacity-75'
               >
                 {item.name}
               </a>
-            </li>
+            </motion.li>
           ))}
-          {social.map((item) => (
-            <li key={item.name}>
+          {social.map((item, i) => (
+            <motion.li key={item.name}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: i * 0.1 }}
+              >
               <a
                 href={item.href}
                 className='flex items-center gap-0.5 font-medium transition-opacity hover:opacity-75'
               >
                 {item.name} <ArrowUpRight className='size-4' />
               </a>
-            </li>
+            </motion.li>
           ))}
         </ul>
         <ul className='flex flex-wrap items-center justify-center gap-6'>
@@ -119,7 +130,7 @@ const FooterComponent = ({
         viewBox='0 0 1200 300' // adjust viewBox to fit your desired proportions
         fill='none'
         xmlns='http://www.w3.org/2000/svg'
-        className='w-full'
+        className='w-full flex justify-center items-center pr-5'
         aria-label='NONSTOP'
       >
         <defs>

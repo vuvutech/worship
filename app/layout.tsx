@@ -6,6 +6,7 @@ import LocomotiveScrollWrapper from "@/components/LocomotiveScrollWrapper";
 import NavbarWrapper from "@/components/NavbarWrapper";
 import FooterWrapper from "@/components/FooterWrapper";
 import { ThemeProvider } from "@/app/providers";
+import PageTransition from "@/components/page-transition";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -39,7 +40,9 @@ export default function RootLayout({
         <ThemeProvider>
           <NavbarWrapper />
           <LocomotiveScrollWrapper>
-            {children}
+            <PageTransition>
+              {children}
+            </PageTransition>
             <FooterWrapper />
           </LocomotiveScrollWrapper>
           <Toaster
