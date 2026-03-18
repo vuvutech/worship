@@ -12,6 +12,9 @@ declare global {
 }
 
 export default function HeroSection() {
+  const VIDEO_ID = "Cl_kXbhTi8k"; // Updated to the ID requested by the user
+  const START_TIME = 108;
+
   const [heading, setHeading] = useState("Discover Something Amazing");
   const [subheading, setSubheading] = useState(
     "Premium experiences crafted for excellence",
@@ -72,7 +75,7 @@ export default function HeroSection() {
       <div className='absolute inset-0 w-full h-full pointer-events-none overflow-hidden'>
         <iframe
           ref={iframeRef}
-          src='https://www.youtube-nocookie.com/embed/1JybXxPpPf8?autoplay=1&mute=1&loop=1&controls=0&showinfo=0&autohide=1&modestbranding=1&playlist=1JybXxPpPf8&rel=0&enablejsapi=1&start=108'
+          src={`https://www.youtube-nocookie.com/embed/${VIDEO_ID}?autoplay=1&mute=1&loop=1&controls=0&showinfo=0&autohide=1&modestbranding=1&playlist=${VIDEO_ID}&rel=0&enablejsapi=1&start=${START_TIME}`}
           className='absolute top-1/2 left-1/2 w-[115vw] h-[115vh] md:w-[150vw] md:h-[150vh] -translate-x-1/2 -translate-y-1/2 object-cover min-w-full min-h-full aspect-video'
           allow='autoplay; encrypted-media'
           title="Hero Video Background"
@@ -80,7 +83,7 @@ export default function HeroSection() {
       </div>
 
       {/* Mute/Unmute Toggle */}
-      <div className="absolute top-24 right-6 z-30">
+      <div className="absolute bottom-10 right-10 z-30">
         <Button
           variant="outline"
           size="icon"
@@ -101,11 +104,11 @@ export default function HeroSection() {
       {/* Content */}
       <div className='relative px-4 sm:px-6 lg:px-8'>
         <div className='mx-auto max-w-(--breakpoint-xl)'>
-          <div className='max-w-3xl'>
-            <h1 className='text-5xl text-zinc-100 sm:text-4xl dark:text-zinc-100 '>
+          <div className='max-w-5xl'>
+            <h1 className='text-3xl text-zinc-100 sm:text-7xl dark:text-zinc-100 '>
               Recovery, Revival and the Restoration  <br />of the Tabernacle of David
             </h1>
-            <p className='mt-4 text-base text-zinc-200 dark:text-zinc-400 text-xl'>
+            <p className='mt-4 text-base text-zinc-200 dark:text-zinc-400 text-2xl'>
               Join us as we explore the profound truths of God's Word and experience His presence in a powerful way.
             </p>
             <div className='mt-6 flex gap-6'>

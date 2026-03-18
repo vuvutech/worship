@@ -27,7 +27,7 @@ export const NavMenu = (props: ComponentProps<typeof NavigationMenu>) => {
         {items.map((item) => (
           <NavigationMenuItem key={item.label}>
             <NavigationMenuLink asChild className={navigationMenuTriggerStyle()}>
-              <Link href={item.href} className="uppercase">{item.label}</Link>
+              <Link href={item.href} className="uppercase text-[12px]">{item.label}</Link>
             </NavigationMenuLink>
           </NavigationMenuItem>
         ))}
