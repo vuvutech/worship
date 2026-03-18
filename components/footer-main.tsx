@@ -37,6 +37,7 @@ const FooterComponent = ({
     { name: "Get Involved", href: "/get-involved" },
     { name: "Partner", href: "/partner" },
     { name: "FAQ", href: "/#faq" },
+    { name: "Contact", href: "/contact" },
   ],
   social = [
     { name: "Twitter", href: "#" },

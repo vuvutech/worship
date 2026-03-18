@@ -3,7 +3,7 @@ export default function SchedulePage() {
     <main className='w-full py-20' id="UpNextCard">
       {/* Hero Banner */}
       <div
-        className='w-full h-[220px] sm:h-[320px] bg-center bg-cover relative flex items-end pt-20'
+        className='w-full h-[220px] sm:h-[320px] rounded-xl bg-center bg-cover relative flex items-end pt-20'
         style={{ backgroundImage: "url('/images/community_worship.jpg')" }}
       >
         <div className='absolute inset-0 bg-black/50' />

@@ -18,6 +18,7 @@ export const NavMenu = (props: ComponentProps<typeof NavigationMenu>) => {
     { label: "Gallery", href: "/gallery" },
     { label: "Partner", href: "/partner" },
     { label: "Get Involved", href: "/get-involved" },
+    { label: "Contact", href: "/contact" },
   ];
 
   return (

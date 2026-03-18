@@ -211,15 +211,15 @@ export default function Home() {
             />
           </div>
           <div className='grid grid-cols-1 gap-4 space-y-12 lg:grid-cols-6 lg:space-y-0'>
-            <div className='order-2 col-span-2 lg:order-none lg:pr-16 lg:pl-10 flex items-center'>
-              <p className='text-foreground/60 text-xl md:text-xl leading-relaxed'>
+            <div className='order-2 col-span-2 lg:order-none lg:pr-16 lg:pl-10 flex '>
+              <p className='text-foreground/60 text-xl md:text-xl '>
                 We are calling for worshippers, intercessors, and servants to help sustain the momentum. The fire on the altar must not go out.
               </p>
             </div>
             <div className='order-1 col-span-4 lg:order-none lg:mt-0 lg:pl-6'>
-              <h2 className='text-2xl font-medium   lg:text-3xl leading-relaxed'>
+              <p className='text-3xl font-medium   lg:text-4xl leading-relaxed '>
                 It takes the whole body of Christ to sustain 144 hours of unbroken worship. From the platform to the prayer room, from ushering to technical support, your contribution matters. Step into the story of recovery, revival, and restoration by signing up to serve, lead, or support today.
-              </h2>
+              </p>
             </div>
           </div>
         </div>
