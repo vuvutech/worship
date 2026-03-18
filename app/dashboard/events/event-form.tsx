@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { useForm, useFieldArray } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
-import { Trash2, Plus, CalendarIcon } from "lucide-react";
+import { Trash2, Plus, CalendarIcon, Loader2 } from "lucide-react";
 import { toast } from "sonner";
 import { betterFetch } from "@better-fetch/fetch";
 
@@ -25,9 +25,17 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { Label } from "@/components/ui/label";
+import {
+  Form,
+  FormControl,
+  FormDescription,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/components/ui/form";
 import { Checkbox } from "@/components/ui/checkbox";
-import { DatePicker } from "@/components/date-picker";
+import { DateTimePicker } from "@/components/ui/date-time-picker";
 
 const formSchema = z.object({
   title: z.string().min(1, "Title is required"),
@@ -60,15 +68,7 @@ export function EventForm({ isOpen, onClose, onSuccess, event }: EventFormProps)
   const [sponsors, setSponsors] = useState<any[]>([]);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const {
-    register,
-    control,
-    handleSubmit,
-    setValue,
-    watch,
-    reset,
-    formState: { errors },
-  } = useForm<FormValues>({
+  const form = useForm<FormValues>({
     resolver: zodResolver(formSchema),
     defaultValues: {
       title: "",
@@ -82,7 +82,7 @@ export function EventForm({ isOpen, onClose, onSuccess, event }: EventFormProps)
   });
 
   const { fields, append, remove } = useFieldArray({
-    control,
+    control: form.control,
     name: "ministers",
   });
 
@@ -99,7 +99,7 @@ export function EventForm({ isOpen, onClose, onSuccess, event }: EventFormProps)
     if (isOpen) {
       fetchSponsors();
       if (event) {
-        reset({
+        form.reset({
           title: event.title,
           slug: event.slug,
           startDate: new Date(event.startDate),
@@ -111,16 +111,18 @@ export function EventForm({ isOpen, onClose, onSuccess, event }: EventFormProps)
           sponsorIds: event.sponsorIds || [],
         });
       } else {
-        reset({
+        form.reset({
           title: "",
           slug: "",
+          startDate: new Date(),
+          endDate: new Date(),
           status: "published",
           ministers: [],
           sponsorIds: [],
         });
       }
     }
-  }, [isOpen, event, reset]);
+  }, [isOpen, event, form]);
 
   const onSubmit = async (values: FormValues) => {
     try {
@@ -146,21 +148,6 @@ export function EventForm({ isOpen, onClose, onSuccess, event }: EventFormProps)
     }
   };
 
-  const selectedSponsors = watch("sponsorIds");
-  const startDate = watch("startDate");
-  const endDate = watch("endDate");
-
-  const toggleSponsor = (id: string) => {
-    const current = [...selectedSponsors];
-    const index = current.indexOf(id);
-    if (index > -1) {
-      current.splice(index, 1);
-    } else {
-      current.push(id);
-    }
-    setValue("sponsorIds", current);
-  };
-
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
       <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto">
@@ -168,151 +155,279 @@ export function EventForm({ isOpen, onClose, onSuccess, event }: EventFormProps)
           <DialogTitle>{event ? "Edit Event" : "Add New Event"}</DialogTitle>
         </DialogHeader>
 
-        <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
-          <div className="grid grid-cols-2 gap-4">
-            <div className="space-y-2">
-              <Label htmlFor="title">Event Title</Label>
-              <Input id="title" {...register("title")} />
-              {errors.title && (
-                <p className="text-sm text-destructive">{errors.title.message}</p>
-              )}
-            </div>
-            <div className="space-y-2">
-              <Label htmlFor="slug">Slug</Label>
-              <Input id="slug" {...register("slug")} />
-              {errors.slug && (
-                <p className="text-sm text-destructive">{errors.slug.message}</p>
-              )}
-            </div>
-          </div>
-
-          <div className="grid grid-cols-2 gap-4">
-            <div className="space-y-2">
-              <Label>Start Date</Label>
-              <DatePicker
-                date={startDate}
-                setDate={(date) => setValue("startDate", date as Date)}
+        <Form {...form}>
+          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <FormField
+                control={form.control}
+                name="title"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Event Title</FormLabel>
+                    <FormControl>
+                      <Input placeholder="Enter event title" {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
               />
-              {errors.startDate && (
-                <p className="text-sm text-destructive">{errors.startDate.message}</p>
-              )}
-            </div>
-            <div className="space-y-2">
-              <Label>End Date</Label>
-              <DatePicker
-                date={endDate}
-                setDate={(date) => setValue("endDate", date as Date)}
+              <FormField
+                control={form.control}
+                name="slug"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Slug</FormLabel>
+                    <FormControl>
+                      <Input placeholder="event-slug" {...field} />
+                    </FormControl>
+                    <FormDescription>
+                      This will be used in the URL.
+                    </FormDescription>
+                    <FormMessage />
+                  </FormItem>
+                )}
               />
-              {errors.endDate && (
-                <p className="text-sm text-destructive">{errors.endDate.message}</p>
-              )}
             </div>
-          </div>
 
-          <div className="space-y-2">
-            <Label htmlFor="poster">Poster URL</Label>
-            <Input id="poster" {...register("poster")} />
-          </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <FormField
+                control={form.control}
+                name="startDate"
+                render={({ field }) => (
+                  <FormItem className="flex flex-col">
+                    <FormLabel>Start Date & Time</FormLabel>
+                    <FormControl>
+                      <DateTimePicker
+                        date={field.value}
+                        setDate={field.onChange}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name="endDate"
+                render={({ field }) => (
+                  <FormItem className="flex flex-col">
+                    <FormLabel>End Date & Time</FormLabel>
+                    <FormControl>
+                      <DateTimePicker
+                        date={field.value}
+                        setDate={field.onChange}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+            </div>
 
-          <div className="space-y-2">
-            <Label htmlFor="description">Description</Label>
-            <Textarea id="description" {...register("description")} />
-          </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <FormField
+                control={form.control}
+                name="poster"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Poster URL</FormLabel>
+                    <FormControl>
+                      <Input placeholder="https://..." {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name="status"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Status</FormLabel>
+                    <Select onValueChange={field.onChange} defaultValue={field.value}>
+                      <FormControl>
+                        <SelectTrigger>
+                          <SelectValue placeholder="Select status" />
+                        </SelectTrigger>
+                      </FormControl>
+                      <SelectContent>
+                        <SelectItem value="draft">Draft</SelectItem>
+                        <SelectItem value="published">Published</SelectItem>
+                        <SelectItem value="cancelled">Cancelled</SelectItem>
+                      </SelectContent>
+                    </Select>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+            </div>
 
-          <div className="space-y-2">
-            <Label htmlFor="status">Status</Label>
-            <Select
-              defaultValue={event?.status || "published"}
-              onValueChange={(value) => setValue("status", value)}
-            >
-              <SelectTrigger>
-                <SelectValue placeholder="Select status" />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="draft">Draft</SelectItem>
-                <SelectItem value="published">Published</SelectItem>
-                <SelectItem value="cancelled">Cancelled</SelectItem>
-              </SelectContent>
-            </Select>
-          </div>
+            <FormField
+              control={form.control}
+              name="description"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Description</FormLabel>
+                  <FormControl>
+                    <Textarea 
+                      placeholder="Enter event description..." 
+                      className="resize-none min-h-[100px]" 
+                      {...field} 
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
 
-          <div className="space-y-4">
-            <div className="flex items-center justify-between">
-              <Label className="text-lg font-semibold">Ministers</Label>
+            <div className="space-y-4">
+              <div className="flex items-center justify-between">
+                <h3 className="text-lg font-semibold">Ministers</h3>
+                <Button
+                  type="button"
+                  variant="outline"
+                  size="sm"
+                  onClick={() => append({ name: "", role: "", image: "" })}
+                >
+                  <Plus className="mr-2 h-4 w-4" /> Add Minister
+                </Button>
+              </div>
+              <div className="space-y-4">
+                {fields.map((field, index) => (
+                  <div key={field.id} className="grid grid-cols-1 md:grid-cols-4 gap-4 items-end border p-4 rounded-xl bg-muted/30">
+                    <FormField
+                      control={form.control}
+                      name={`ministers.${index}.name`}
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel className="text-xs">Name</FormLabel>
+                          <FormControl>
+                            <Input placeholder="Name" {...field} />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+                    <FormField
+                      control={form.control}
+                      name={`ministers.${index}.role`}
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel className="text-xs">Role</FormLabel>
+                          <FormControl>
+                            <Input placeholder="Role" {...field} />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+                    <FormField
+                      control={form.control}
+                      name={`ministers.${index}.image`}
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel className="text-xs">Image URL (Optional)</FormLabel>
+                          <FormControl>
+                            <Input placeholder="Image URL" {...field} />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+                    <Button
+                      type="button"
+                      variant="destructive"
+                      size="icon"
+                      onClick={() => remove(index)}
+                      className="mb-0.5"
+                    >
+                      <Trash2 className="h-4 w-4" />
+                    </Button>
+                  </div>
+                ))}
+                {fields.length === 0 && (
+                  <p className="text-sm text-center text-muted-foreground py-4 border border-dashed rounded-xl">
+                    No ministers added yet.
+                  </p>
+                )}
+              </div>
+            </div>
+
+            <div className="space-y-4">
+              <h3 className="text-lg font-semibold">Sponsors</h3>
+              <FormField
+                control={form.control}
+                name="sponsorIds"
+                render={() => (
+                  <FormItem>
+                    <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 border p-4 rounded-xl bg-muted/30">
+                      {sponsors.map((sponsor) => (
+                        <FormField
+                          key={sponsor.id}
+                          control={form.control}
+                          name="sponsorIds"
+                          render={({ field }) => {
+                            return (
+                              <FormItem
+                                key={sponsor.id}
+                                className="flex flex-row items-center space-x-3 space-y-0"
+                              >
+                                <FormControl>
+                                  <Checkbox
+                                    checked={field.value?.includes(sponsor.id)}
+                                    onCheckedChange={(checked) => {
+                                      return checked
+                                        ? field.onChange([...field.value, sponsor.id])
+                                        : field.onChange(
+                                            field.value?.filter(
+                                              (value: string) => value !== sponsor.id
+                                            )
+                                          )
+                                    }}
+                                  />
+                                </FormControl>
+                                <FormLabel className="font-normal cursor-pointer">
+                                  {sponsor.name}
+                                </FormLabel>
+                              </FormItem>
+                            )
+                          }}
+                        />
+                      ))}
+                      {sponsors.length === 0 && (
+                        <p className="text-sm text-muted-foreground col-span-full">
+                          No sponsors found. Create some first.
+                        </p>
+                      )}
+                    </div>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+            </div>
+
+            <DialogFooter className="sticky bottom-0 bg-background pt-4 border-t">
               <Button
                 type="button"
                 variant="outline"
-                size="sm"
-                onClick={() => append({ name: "", role: "", image: "" })}
+                onClick={onClose}
+                disabled={isSubmitting}
               >
-                <Plus className="mr-2 h-4 w-4" /> Add Minister
+                Cancel
               </Button>
-            </div>
-            <div className="space-y-4">
-              {fields.map((field, index) => (
-                <div key={field.id} className="flex gap-4 items-end border p-4 rounded-md relative">
-                  <div className="grid grid-cols-3 gap-2 flex-1">
-                    <div className="space-y-2">
-                      <Label>Name</Label>
-                      <Input {...register(`ministers.${index}.name` as const)} />
-                    </div>
-                    <div className="space-y-2">
-                      <Label>Role</Label>
-                      <Input {...register(`ministers.${index}.role` as const)} />
-                    </div>
-                    <div className="space-y-2">
-                      <Label>Image URL (Optional)</Label>
-                      <Input {...register(`ministers.${index}.image` as const)} />
-                    </div>
-                  </div>
-                  <Button
-                    type="button"
-                    variant="destructive"
-                    size="icon"
-                    onClick={() => remove(index)}
-                  >
-                    <Trash2 className="h-4 w-4" />
-                  </Button>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          <div className="space-y-4">
-            <Label className="text-lg font-semibold">Sponsors</Label>
-            <div className="grid grid-cols-3 gap-4 border p-4 rounded-md">
-              {sponsors.map((sponsor) => (
-                <div key={sponsor.id} className="flex items-center space-x-2">
-                  <Checkbox
-                    id={`sponsor-${sponsor.id}`}
-                    checked={selectedSponsors.includes(sponsor.id)}
-                    onCheckedChange={() => toggleSponsor(sponsor.id)}
-                  />
-                  <Label htmlFor={`sponsor-${sponsor.id}`}>{sponsor.name}</Label>
-                </div>
-              ))}
-              {sponsors.length === 0 && (
-                <p className="text-sm text-muted-foreground col-span-3">
-                  No sponsors found. Create some first.
-                </p>
-              )}
-            </div>
-          </div>
-
-          <DialogFooter>
-            <Button
-              type="button"
-              variant="outline"
-              onClick={onClose}
-              disabled={isSubmitting}
-            >
-              Cancel
-            </Button>
-            <Button type="submit" disabled={isSubmitting}>
-              {isSubmitting ? "Saving..." : "Save Event"}
-            </Button>
-          </DialogFooter>
-        </form>
+              <Button type="submit" disabled={isSubmitting}>
+                {isSubmitting ? (
+                  <>
+                    <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                    Saving...
+                  </>
+                ) : (
+                  "Save Event"
+                )}
+              </Button>
+            </DialogFooter>
+          </form>
+        </Form>
       </DialogContent>
     </Dialog>
   );

@@ -23,7 +23,7 @@ export default function HeroSection() {
         poster='/123.jpg'
       >
         <source
-          src='123.mp4'
+          src='https://www.youtube.com/watch?v=yDiD8F9ItX0'
           type='video/mp4'
         />
         {/* Fallback for browsers that don't support video */}
