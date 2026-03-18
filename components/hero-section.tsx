@@ -72,7 +72,7 @@ export default function HeroSection() {
       <div className='absolute inset-0 w-full h-full pointer-events-none overflow-hidden'>
         <iframe
           ref={iframeRef}
-          src='https://www.youtube.com/embed/1JybXxPpPf8?autoplay=1&mute=1&loop=1&controls=0&showinfo=0&autohide=1&modestbranding=1&playlist=1JybXxPpPf8&rel=0&enablejsapi=1&start=108'
+          src='https://www.youtube-nocookie.com/embed/1JybXxPpPf8?autoplay=1&mute=1&loop=1&controls=0&showinfo=0&autohide=1&modestbranding=1&playlist=1JybXxPpPf8&rel=0&enablejsapi=1&start=108'
           className='absolute top-1/2 left-1/2 w-[115vw] h-[115vh] md:w-[150vw] md:h-[150vh] -translate-x-1/2 -translate-y-1/2 object-cover min-w-full min-h-full aspect-video'
           allow='autoplay; encrypted-media'
           title="Hero Video Background"
