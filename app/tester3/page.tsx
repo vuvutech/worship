@@ -238,7 +238,7 @@ export default function Home() {
               </div>
             </div>
             <div>
-              <h1 className='font-[anton] leading-relaxed tracking-wider text-xl font-bold mb-3'>
+              <h1 className='text-xl font-bold mb-3'>
                 Suggestions
               </h1>
               <p className='leading-relaxed mb-3 line-clamp-3'>

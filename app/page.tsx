@@ -193,7 +193,7 @@ export default function Page() {
       </section>
       <section className='container py-12 md:py-20 p-4' id='achievements'>
         <div className='mx-auto text-center'>
-          <h2 className='mb-4 text-3xl font-bold tracking-tight sm:text-4xl'>
+          <h2 className='mb-4 text-3xl sm:text-4xl'>
             Our Impact & Reach
           </h2>
           <p className='text-muted-foreground mx-auto mb-12 max-w-3xl text-base sm:text-lg'>

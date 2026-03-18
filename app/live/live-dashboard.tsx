@@ -59,7 +59,7 @@ export function LiveDashboard({ videos, events }: LiveDashboardProps) {
                   thumbnail={selectedVideo.thumbnail}
                 />
                 <div>
-                  <h1 className='text-3xl md:text-4xl font-bold tracking-tight mt-4'>
+                  <h1 className='text-3xl md:text-4xl font-bold   mt-4'>
                     {selectedVideo.title}
                   </h1>
                   <p className='text-neutral-400 mt-2'>
@@ -96,68 +96,6 @@ export function LiveDashboard({ videos, events }: LiveDashboardProps) {
             </div>
           </div> */}
         </div>
-      </section>
-
-      {/* Upcoming Events Section */}
-      <section className='w-full relative z-10 px-4 md:px-8 max-w-[1600px] mx-auto mt-16'>
-        <h2 className='text-2xl font-semibold mb-6'>Upcoming Events</h2>
-        {events.length > 0 ? (
-          <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8'>
-            {events.map((event) => (
-              <div key={event.id} className="bg-neutral-900/50 border border-white/10 rounded-xl overflow-hidden backdrop-blur-sm flex flex-col">
-                {event.poster && (
-                  <div className="aspect-[16/9] w-full overflow-hidden">
-                    <img src={event.poster} alt={event.title} className="w-full h-full object-cover" />
-                  </div>
-                )}
-                <div className="p-6 space-y-4 flex-1 flex flex-col">
-                  <div>
-                    <h3 className="text-xl font-bold">{event.title}</h3>
-                    <p className="text-red-500 font-medium text-sm mt-1">
-                      {new Date(event.startDate).toLocaleDateString(undefined, {
-                        weekday: 'long',
-                        year: 'numeric',
-                        month: 'long',
-                        day: 'numeric'
-                      })}
-                    </p>
-                  </div>
-                  {event.description && (
-                    <p className="text-neutral-400 text-sm line-clamp-3">
-                      {event.description}
-                    </p>
-                  )}
-                  {event.ministers.length > 0 && (
-                    <div className="pt-2">
-                      <p className="text-xs uppercase tracking-wider text-neutral-500 font-bold mb-2">Ministers</p>
-                      <div className="flex flex-wrap gap-2">
-                        {event.ministers.map((m) => (
-                          <span key={m.id} className="text-xs bg-white/5 border border-white/10 px-2 py-1 rounded">
-                            {m.name}
-                          </span>
-                        ))}
-                      </div>
-                    </div>
-                  )}
-                  <div className="flex-1" />
-                  {event.sponsors.length > 0 && (
-                    <div className="pt-4 border-t border-white/5">
-                      <div className="flex flex-wrap gap-4 items-center opacity-60">
-                        {event.sponsors.map((s) => (
-                          s.logo && <img key={s.id} src={s.logo} alt={s.name} className="h-6 object-contain" title={s.name} />
-                        ))}
-                      </div>
-                    </div>
-                  )}
-                </div>
-              </div>
-            ))}
-          </div>
-        ) : (
-          <div className='w-full py-12 text-center text-neutral-500 border border-white/10 border-dashed rounded-xl'>
-            Stay tuned for our upcoming spiritual gatherings.
-          </div>
-        )}
       </section>
 
       {/* VOD Grid Section */}
@@ -208,6 +146,89 @@ export function LiveDashboard({ videos, events }: LiveDashboardProps) {
         ) : (
           <div className='w-full py-12 text-center text-neutral-500 border border-white/10 border-dashed rounded-xl'>
             Check back later for past ministrations and recorded sessions.
+          </div>
+        )}
+      </section>
+
+      {/* Upcoming Events Section */}
+      <section className='w-full relative z-10 px-4 md:px-8 max-w-[1600px] mx-auto mt-16'>
+        <h2 className='text-2xl font-semibold mb-6'>Upcoming Events</h2>
+        {events.length > 0 ? (
+          <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8'>
+            {events.map((event) => (
+              <div
+                key={event.id}
+                className='bg-neutral-900/50 border border-white/10 rounded-xl overflow-hidden backdrop-blur-sm flex flex-col'
+              >
+                {event.poster && (
+                  <div className='aspect-[16/9] w-full overflow-hidden'>
+                    <img
+                      src={event.poster}
+                      alt={event.title}
+                      className='w-full h-full object-cover'
+                    />
+                  </div>
+                )}
+                <div className='p-6 space-y-4 flex-1 flex flex-col'>
+                  <div>
+                    <h3 className='text-xl font-bold'>{event.title}</h3>
+                    <p className='text-red-500 font-medium text-sm mt-1'>
+                      {new Date(event.startDate).toLocaleDateString(undefined, {
+                        weekday: "long",
+                        year: "numeric",
+                        month: "long",
+                        day: "numeric",
+                      })}
+                    </p>
+                  </div>
+                  {event.description && (
+                    <p className='text-neutral-400 text-sm line-clamp-3'>
+                      {event.description}
+                    </p>
+                  )}
+                  {event.ministers.length > 0 && (
+                    <div className='pt-2'>
+                      <p className='text-xs uppercase tracking-wider text-neutral-500 font-bold mb-2'>
+                        Ministers
+                      </p>
+                      <div className='flex flex-wrap gap-2'>
+                        {event.ministers.map((m) => (
+                          <span
+                            key={m.id}
+                            className='text-xs bg-white/5 border border-white/10 px-2 py-1 rounded'
+                          >
+                            {m.name}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+                  <div className='flex-1' />
+                  {event.sponsors.length > 0 && (
+                    <div className='pt-4 border-t border-white/5'>
+                      <div className='flex flex-wrap gap-4 items-center opacity-60'>
+                        {event.sponsors.map(
+                          (s) =>
+                            s.logo && (
+                              <img
+                                key={s.id}
+                                src={s.logo}
+                                alt={s.name}
+                                className='h-6 object-contain'
+                                title={s.name}
+                              />
+                            ),
+                        )}
+                      </div>
+                    </div>
+                  )}
+                </div>
+              </div>
+            ))}
+          </div>
+        ) : (
+          <div className='w-full py-12 text-center text-neutral-500 border border-white/10 border-dashed rounded-xl'>
+            Stay tuned for our upcoming spiritual gatherings.
           </div>
         )}
       </section>

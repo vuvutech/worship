@@ -51,7 +51,7 @@ const page = () => {
               <noscript />
             </span>
           </div>
-          <div className='font-[montserrat] text-4xl '>Feedback</div>
+          <h2 className=' text-4xl '>Feedback</h2>
           <div className='my-2 text-base dark:text-white line-clamp-2'>
             Let you know how we're doing. (We read everything, butsometimes we
             can't answer.) <br />
@@ -60,10 +60,10 @@ const page = () => {
           <br />
           <div className='flex md:gap-4 gap-8 flex-col md:flex-row justify-between '>
             <div>
-              <h1 className='font-[anton] leading-relaxed tracking-wider text-xl font-bold mb-3'>
+              <h1 className='mb-3'>
                 Testimonies
               </h1>
-              <p className='leading-relaxed mb-3 line-clamp-3'>
+              <p className='leading-relaxed text-base mb-3 line-clamp-3'>
                 Share your tesimonies with us with regards to what the Lord has
                 done in your life through this experience.{" "}
               </p>
@@ -89,10 +89,10 @@ const page = () => {
               </div>
             </div>
             <div>
-              <h1 className='font-[anton] leading-relaxed tracking-wider text-xl font-bold mb-3'>
+              <h1 className=' mb-3'>
                 Suggestions
               </h1>
-              <p className='leading-relaxed mb-3 line-clamp-3'>
+              <p className='leading-relaxed text-base mb-3 line-clamp-3'>
                 We welcome your Spirit led suggestions on the overall
                 organisation of the next Non-Stop Worship experience.
               </p>
@@ -118,10 +118,10 @@ const page = () => {
               </div>
             </div>
             <div>
-              <h1 className='font-[anton] leading-relaxed tracking-wider text-xl font-bold mb-3'>
+              <h1 className=' mb-3'>
                 Website Feedback
               </h1>
-              <p className='leading-relaxed mb-3 line-clamp-3'>
+              <p className='leading-relaxed text-base mb-3 line-clamp-3'>
                 We shall be glad to know your thoughts on ways we can improve
                 the overall web presence to better serve you.
               </p>

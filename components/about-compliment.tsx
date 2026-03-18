@@ -123,7 +123,7 @@ const AboutCompliment = ({
     <section className={cn("py-32", className)}>
       <div className='container'>
         <div className='mb-14 flex flex-col gap-5 lg:w-4/5'>
-          <h1 className='text-5xl font-semibold tracking-tighter lg:text-6xl'>
+          <h1 className='text-5xl font-semibold  er lg:text-6xl'>
             {title}
           </h1>
           <p className='text-xl text-muted-foreground md:text-xl'>

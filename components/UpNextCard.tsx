@@ -49,7 +49,7 @@ export const UpNextCard: React.FC<UpNextCardProps> = ({ event }) => {
               {event.category}
             </span>
           )}
-          <h2 className='text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight text-foreground'>
+          <h2 className='text-2xl sm:text-3xl lg:text-4xl font-extrabold   text-foreground'>
             {event.title}
           </h2>
           {event.tagline && (

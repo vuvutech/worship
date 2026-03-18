@@ -1,9 +1,9 @@
 export default function SchedulePage() {
   return (
-    <main className='w-full' id="UpNextCard">
+    <main className='w-full py-20' id="UpNextCard">
       {/* Hero Banner */}
       <div
-        className='w-full h-[220px] sm:h-[320px] bg-center bg-cover relative flex items-end'
+        className='w-full h-[220px] sm:h-[320px] bg-center bg-cover relative flex items-end pt-20'
         style={{ backgroundImage: "url('/images/community_worship.jpg')" }}
       >
         <div className='absolute inset-0 bg-black/50' />
@@ -31,7 +31,7 @@ export default function SchedulePage() {
           {/* Content Column */}
           <div className='p-5 sm:p-8 flex flex-col gap-4'>
             <div>
-              <h2 className='text-xl sm:text-3xl font-bold tracking-tight mb-1'>
+              <h2 className='text-xl sm:text-3xl font-bold   mb-1'>
                 The Non-Stop — Worship Without Ceasing
               </h2>
               <p className='text-xs sm:text-sm text-muted-foreground uppercase tracking-wider font-medium'>

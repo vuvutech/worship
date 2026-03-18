@@ -236,7 +236,7 @@ const Hero231 = ({ className }: Hero231Props) => {
             <span className="size-2.5 rounded-full bg-foreground" />
             Flexible Plan customized for you
           </Button>
-          <h1 className="font-calSans mt-12 text-5xl font-medium tracking-tight text-foreground md:text-7xl">
+          <h1 className="font-calSans mt-12 text-5xl font-medium   text-foreground md:text-7xl">
             Blocks Built <br /> With Shadcn & Tailwind.
           </h1>
           <p className="mt-3 max-w-lg text-muted-foreground/80">
@@ -246,14 +246,14 @@ const Hero231 = ({ className }: Hero231Props) => {
           <div className="flex gap-4 xl:mt-32">
             <Button
               variant="secondary"
-              className="group flex w-fit items-center justify-center gap-2 rounded-full px-4 py-1 tracking-tight"
+              className="group flex w-fit items-center justify-center gap-2 rounded-full px-4 py-1  "
             >
               <span>Documentation</span>
               <ArrowRight className="size-4 -rotate-45 transition-all ease-out group-hover:ml-3 group-hover:rotate-0" />
             </Button>
             <Button
               variant="default"
-              className="group flex w-fit items-center justify-center gap-2 rounded-full px-4 py-1 tracking-tight"
+              className="group flex w-fit items-center justify-center gap-2 rounded-full px-4 py-1  "
             >
               <span>Get Started</span>
               <ArrowRight className="size-4 -rotate-45 transition-all ease-out group-hover:ml-3 group-hover:rotate-0" />

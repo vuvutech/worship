@@ -217,7 +217,7 @@ export default function Home() {
               </p>
             </div>
             <div className='order-1 col-span-4 lg:order-none lg:mt-0 lg:pl-6'>
-              <h2 className='text-2xl font-medium tracking-tight lg:text-3xl leading-relaxed'>
+              <h2 className='text-2xl font-medium   lg:text-3xl leading-relaxed'>
                 It takes the whole body of Christ to sustain 144 hours of unbroken worship. From the platform to the prayer room, from ushering to technical support, your contribution matters. Step into the story of recovery, revival, and restoration by signing up to serve, lead, or support today.
               </h2>
             </div>

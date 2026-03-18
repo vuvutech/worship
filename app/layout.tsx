@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
-import { anton, ibmplex, opensans, barlowCondensed } from "@/config/fonts";
+import { anton, ibmplex, opensans, barlowCondensed, bebas } from "@/config/fonts";
 import { Toaster } from "sonner";
 import LocomotiveScrollWrapper from "@/components/LocomotiveScrollWrapper";
 import NavbarWrapper from "@/components/NavbarWrapper";
@@ -31,10 +31,10 @@ export default function RootLayout({
   return (
     <html
       lang='en'
-      className={barlowCondensed.variable}
+      className={opensans.variable}
     >
       <body
-        className={`${geistSans.variable} ${ibmplex.variable} ${anton.variable} ${opensans.variable} antialiased bg-neutral-100`}
+        className={`${geistSans.variable} ${ibmplex.variable} ${anton.variable} ${opensans.variable} ${bebas.variable} text-base antialiased bg-neutral-100`}
       >
         <ThemeProvider>
           <NavbarWrapper />

@@ -92,7 +92,7 @@ const Ministration = ({ className }: ministrationsHomeProps) => {
     <section className={cn("py-16", className)}>
       <div className="w-full">
         <div className="mb-16 px-8 max-w-6xl">
-          <h1 className="text-3xl font-medium tracking-tight lg:text-6xl">
+          <h1 className="text-3xl lg:text-6xl">
             Ministrations Spotlight
           </h1>
           <div className="mt-6 space-y-4 text-muted-foreground leading-relaxed">
@@ -132,7 +132,7 @@ const Ministration = ({ className }: ministrationsHomeProps) => {
                     <div className="space-y-3">
                       <div className="flex items-start justify-between gap-4">
                         <div>
-                          <h2 className="text-xl md:text-2xl font-normal tracking-tight">
+                          <h2 className="text-xl md:text-2xl font-normal  ">
                             {project.title}
                           </h2>
                           <p className="text-sm text-muted-foreground mt-1">

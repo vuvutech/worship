@@ -43,7 +43,7 @@ export default function Home() {
           </div>
           <div className='grid grid-cols-2 gap-12 pt-12 max-w-5xl mx-auto'>
             <div>
-              <h1 className='mb-8 flex max-w-5xl text-4xl font-semibold leading-none tracking-tight text-gray-800 md:text-5xl'>
+              <h1 className='mb-8 flex max-w-5xl text-4xl font-semibold leading-none   text-gray-800 md:text-5xl'>
                 Fueling the Vision of Recovery, Revival, and Restoration
               </h1>
             </div>

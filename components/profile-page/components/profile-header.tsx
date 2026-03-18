@@ -47,7 +47,7 @@ export default function ProfileHeader({ user, profile }: ProfileHeaderProps) {
           </div>
           <div className="flex-1 space-y-3 pt-2">
             <div className="flex flex-col gap-3 md:flex-row md:items-center">
-              <h1 className="text-3xl font-extrabold tracking-tight text-foreground">{user.name}</h1>
+              <h1 className="text-3xl font-extrabold   text-foreground">{user.name}</h1>
               <div className="flex gap-2">
                 <Badge variant="default" className="bg-primary text-primary-foreground font-semibold px-3 uppercase tracking-wider text-[10px]">
                   {profile.membershipPlan || "Basic"}

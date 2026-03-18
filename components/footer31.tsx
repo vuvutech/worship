@@ -40,10 +40,10 @@ const Footer31 = ({ className }: Footer31Props) => {
       <div className='container'>
         <div className='flex flex-col justify-between gap-15 lg:flex-row'>
           <div className='flex flex-col gap-10'>
-            <p className='relative text-4xl font-medium tracking-tight lg:text-5xl'>
+            <p className='relative text-4xl font-medium   lg:text-5xl'>
               Unlock 800+ blocks now
             </p>
-            <div className='space-y-1 text-sm font-light tracking-tight lg:text-base'>
+            <div className='space-y-1 text-sm font-light   lg:text-base'>
               <p>Get Support : </p>
               <a href='#'>hi@shadcnblocks.com</a>
             </div>
@@ -54,7 +54,7 @@ const Footer31 = ({ className }: Footer31Props) => {
                 <li key={item.label}>
                   <a
                     href={item.href}
-                    className='tracking-tight text-foreground hover:text-foreground/30'
+                    className='  text-foreground hover:text-foreground/30'
                   >
                     {item.label}
                   </a>
@@ -66,7 +66,7 @@ const Footer31 = ({ className }: Footer31Props) => {
                 <li key={item.label}>
                   <a
                     href={item.href}
-                    className='group flex items-center gap-1 tracking-tight text-foreground hover:text-foreground/30'
+                    className='group flex items-center gap-1   text-foreground hover:text-foreground/30'
                   >
                     {item.label}{" "}
                     <ArrowUpRight className='size-3.5 text-foreground group-hover:text-muted-foreground/50' />
@@ -78,7 +78,7 @@ const Footer31 = ({ className }: Footer31Props) => {
         </div>
         <div className='mt-20 flex flex-col justify-between gap-15 lg:flex-row'>
           <div className='flex w-full max-w-md flex-col gap-10'>
-            <div className='space-y-1 text-sm font-light tracking-tight lg:text-base'>
+            <div className='space-y-1 text-sm font-light   lg:text-base'>
               <p>Sign up for newsletter : </p>
               <form className='flex w-full items-end border-b border-b-foreground/10'>
                 <Input
@@ -102,7 +102,7 @@ const Footer31 = ({ className }: Footer31Props) => {
                 <li key={item.label}>
                   <a
                     href={item.href}
-                    className='group flex items-center gap-1 tracking-tight text-foreground hover:text-foreground/30'
+                    className='group flex items-center gap-1   text-foreground hover:text-foreground/30'
                   >
                     {item.label}{" "}
                   </a>

@@ -39,8 +39,8 @@ export default function HeroSection() {
       {/* Content */}
       <div className='relative px-4 sm:px-6 lg:px-8'>
         <div className='mx-auto max-w-(--breakpoint-xl)'>
-          <div className='max-w-5xl'>
-            <h1 className='text-5xl font-bold tracking-tight text-zinc-100 sm:text-4xl dark:text-zinc-100 '>
+          <div className='max-w-3xl'>
+            <h1 className='text-5xl text-zinc-100 sm:text-4xl dark:text-zinc-100 '>
               Recovery, Revival and the Restoration  <br />of the Tabernacle of David
             </h1>
             <p className='mt-4 text-base text-zinc-200 dark:text-zinc-400 text-xl'>

@@ -58,7 +58,7 @@ const FooterComponent = ({
       )}
     >
       <div className='container space-y-3 text-center'>
-        <h2 className='text-2xl tracking-tight md:text-4xl lg:text-5xl'>
+        <h2 className='text-2xl   md:text-4xl lg:text-5xl'>
           {heading}
         </h2>
         <p className='mx-auto max-w-xl leading-snug text-balance text-muted-foreground'>

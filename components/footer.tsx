@@ -13,7 +13,7 @@ const footer = () => {
     //       <div className='grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16'>
     //         {/* Newsletter */}
     //         <div>
-    //           <h3 className='text-2xl font-bold tracking-tight text-gray-900 dark:text-white'>
+    //           <h3 className='text-2xl font-bold   text-gray-900 dark:text-white'>
     //             Subscribe to our
     //             <br />
     //             Newsletter
