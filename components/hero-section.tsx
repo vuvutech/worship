@@ -56,6 +56,12 @@ export default function HeroSection() {
     }
   }, []);
 
+  const [origin, setOrigin] = useState("");
+
+  useEffect(() => {
+    setOrigin(window.location.origin);
+  }, []);
+
   const toggleMute = () => {
     if (player) {
       if (isMuted) {
@@ -74,8 +80,9 @@ export default function HeroSection() {
       {/* YouTube Video Background */}
       <div className='absolute inset-0 w-full h-full pointer-events-none overflow-hidden'>
         <iframe
+          key={VIDEO_ID}
           ref={iframeRef}
-          src={`https://www.youtube-nocookie.com/embed/${VIDEO_ID}?autoplay=1&mute=1&loop=1&controls=0&showinfo=0&autohide=1&modestbranding=1&playlist=${VIDEO_ID}&rel=0&enablejsapi=1&start=${START_TIME}`}
+          src={`https://www.youtube.com/embed/${VIDEO_ID}?autoplay=1&mute=1&loop=1&controls=0&showinfo=0&autohide=1&modestbranding=1&playlist=${VIDEO_ID}&rel=0&enablejsapi=1&start=${START_TIME}&iv_load_policy=3&disablekb=1${origin ? `&origin=${origin}&widget_referrer=${origin}` : ""}`}
           className='absolute top-1/2 left-1/2 w-[115vw] h-[115vh] md:w-[150vw] md:h-[150vh] -translate-x-1/2 -translate-y-1/2 object-cover min-w-full min-h-full aspect-video'
           allow='autoplay; encrypted-media'
           title="Hero Video Background"

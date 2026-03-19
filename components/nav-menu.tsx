@@ -2,15 +2,9 @@
 
 import Link from "next/link";
 import type { ComponentProps } from "react";
-import {
-  NavigationMenu,
-  NavigationMenuItem,
-  NavigationMenuLink,
-  NavigationMenuList,
-  navigationMenuTriggerStyle,
-} from "@/components/ui/navigation-menu";
+import { cn } from "@/lib/utils";
 
-export const NavMenu = (props: ComponentProps<typeof NavigationMenu>) => {
+export const NavMenu = ({ className, ...props }: ComponentProps<"nav">) => {
   const items = [
     { label: "About", href: "/about" },
     { label: "Schedule", href: "/schedule" },
@@ -22,16 +16,26 @@ export const NavMenu = (props: ComponentProps<typeof NavigationMenu>) => {
   ];
 
   return (
-    <NavigationMenu {...props}>
-      <NavigationMenuList className="space-x-2 data-[orientation=vertical]:flex-col data-[orientation=vertical]:items-start data-[orientation=vertical]:justify-start">
-        {items.map((item) => (
-          <NavigationMenuItem key={item.label}>
-            <NavigationMenuLink asChild className={navigationMenuTriggerStyle()}>
-              <Link href={item.href} className="uppercase text-[12px]">{item.label}</Link>
-            </NavigationMenuLink>
-          </NavigationMenuItem>
-        ))}
-      </NavigationMenuList>
-    </NavigationMenu>
+    <nav
+      className={cn("flex items-center justify-center space-x-1", className)}
+      {...props}
+    >
+      {items.map((item) => (
+        <Link
+          key={item.label}
+          href={item.href}
+          className='group relative block h-12 overflow-hidden px-4 font-bold '
+        >
+          <div className='flex flex-col transition-transform duration-300 group-hover:-translate-y-12 text-foreground '>
+            <span className='flex h-12 items-center justify-center text-[12px] font-medium uppercase tracking-wide text-foreground transition-colors duration-300 group-hover:text-foreground'>
+              {item.label}
+            </span>
+            <span className='flex h-12 items-center justify-center text-[12px] font-medium uppercase tracking-wide text-foreground'>
+              {item.label}
+            </span>
+          </div>
+        </Link>
+      ))}
+    </nav>
   );
 };

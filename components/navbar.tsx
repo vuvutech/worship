@@ -44,29 +44,36 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="fixed z-50 inset-x-4 top-6 mx-auto h-12 max-w-(--breakpoint-xl) rounded-full  bg-background border ">
-      <div className="mx-auto flex h-full items-center justify-between px-2">
+    <nav className='fixed z-50 inset-x-2 top-6 mx-auto h-12 max-w-(--breakpoint-xl) rounded-full bg-background/60 backdrop-blur-2xl border border-white/10 shadow-lg '>
+      <div className='mx-auto flex h-full items-center justify-between px-2'>
         <Logo />
 
         {/* Desktop Menu */}
-        <NavMenu className="hidden md:block" />
+        <NavMenu className="hidden md:flex" />
 
-        <div className="flex items-center gap-3">
+
+        <div className='flex items-center gap-3'>
           {isAuthenticated && user ? (
             <>
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
-                  <button className="rounded-full hover:opacity-80 transition-opacity">
-                    <Avatar className="h-8 w-8">
-                      <AvatarImage src={user.image || ""} alt={user.name || ""} />
+                  <button className='rounded-full hover:opacity-80 transition-opacity'>
+                    <Avatar className='h-8 w-8'>
+                      <AvatarImage
+                        src={user.image || ""}
+                        alt={user.name || ""}
+                      />
                       <AvatarFallback>{getInitials(user.name)}</AvatarFallback>
                     </Avatar>
                   </button>
                 </DropdownMenuTrigger>
-                <DropdownMenuContent align="end" className="w-56">
-                  <DropdownMenuLabel className="flex flex-col">
-                    <span className="font-medium">{user.name}</span>
-                    <span className="text-xs text-muted-foreground">
+                <DropdownMenuContent
+                  align='end'
+                  className='w-56'
+                >
+                  <DropdownMenuLabel className='flex flex-col'>
+                    <span className='font-medium'>{user.name}</span>
+                    <span className='text-xs text-muted-foreground'>
                       {user.email}
                     </span>
                   </DropdownMenuLabel>
@@ -74,16 +81,16 @@ const Navbar = () => {
                   <DropdownMenuGroup>
                     {user.role === "admin" && (
                       <DropdownMenuItem asChild>
-                        <Link href="/dashboard">Dashboard</Link>
+                        <Link href='/dashboard'>Dashboard</Link>
                       </DropdownMenuItem>
                     )}
                     <DropdownMenuItem asChild>
-                      <Link href="/profile">Profile</Link>
+                      <Link href='/profile'>Profile</Link>
                     </DropdownMenuItem>
                   </DropdownMenuGroup>
                   <DropdownMenuSeparator />
                   <DropdownMenuItem onClick={handleLogout}>
-                    <LogOut className="mr-2 h-4 w-4" />
+                    <LogOut className='mr-2 h-4 w-4' />
                     Log out
                   </DropdownMenuItem>
                 </DropdownMenuContent>
@@ -91,15 +98,18 @@ const Navbar = () => {
             </>
           ) : (
             <Button
-              className="hidden rounded-full sm:inline-flex"
-              variant="outline"
+              className='hidden rounded-full sm:inline-flex'
+              variant='outline'
               asChild
             >
-              <Link href="/login">Sign In</Link>
+              <Link href='/login'>Sign In</Link>
             </Button>
           )}
           <ThemeToggle />
-          <Button className="rounded-full" asChild>
+          <Button
+            className='rounded-full'
+            asChild
+          >
             <Link
               href={
                 isAuthenticated
@@ -118,7 +128,7 @@ const Navbar = () => {
           </Button>
 
           {/* Mobile Menu */}
-          <div className="md:hidden">
+          <div className='md:hidden'>
             <NavigationSheet />
           </div>
         </div>
