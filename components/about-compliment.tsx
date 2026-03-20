@@ -65,11 +65,11 @@ const AboutCompliment = ({
   breakout = {
     src: "https://deifkwefumgah.cloudfront.net/shadcnblocks/block/block-1.svg",
     alt: "logo",
-    title: "Hundreds of blocks at Shadcnblocks.com",
+    title: "Logos-Rhema Foundation",
     description:
-      "Providing businesses with effective tools to improve workflows, boost efficiency, and encourage growth.",
-    buttonText: "Discover more",
-    buttonUrl: "https://www.shadcnblocks.com",
+      "For 22 years, the Logos-Rhema Foundation has spearheaded spiritual revival through the Non-Stop Series across Ghana and beyond.",
+    buttonText: "Our Mission",
+    buttonUrl: "#mission",
   },
   companies = [
     {
@@ -97,13 +97,13 @@ const AboutCompliment = ({
       alt: "Watershed",
     },
   ],
-  achievementsTitle = "Our Achievements in Numbers",
-  achievementsDescription = "Providing businesses with effective tools to improve workflows, boost efficiency, and encourage growth.",
+  achievementsTitle = "A Legacy of Sacred Worship",
+  achievementsDescription = "What began as a 24-hour sacrifice has grown into a 144-hour global movement, restoring the altar of praise and transforming countless lives.",
   achievements = [
-    { label: "Companies ", value: "300+" },
-    { label: "Projects Finalized", value: "800+" },
-    { label: "Happy Customers", value: "99%" },
-    { label: "Recognized Awards", value: "10+" },
+    { label: "Faithful Years ", value: "22+" },
+    { label: "Hours per Session", value: "144h" },
+    { label: "Global Souls Met", value: "500k+" },
+    { label: "Ministries United", value: "30+" },
   ],
   contentSections = [
     {

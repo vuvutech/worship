@@ -14,9 +14,8 @@ export default function Page() {
         <section className='px-2 sm:px-4 md:px-6 lg:px-8 xl:px-12 2xl:px-16 pt-20 container max-w-(--breakpoint-xl) mx-auto '>
           <AboutCompliment />
 
-
-        <Ministration />
-        <FAQ />
+          <Ministration />
+          <FAQ />
         </section>
       </main>
     </LocomotiveScrollWrapper>
