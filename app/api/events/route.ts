@@ -32,11 +32,16 @@ export async function POST(req: Request) {
     }
 
     const body = await req.json();
-    const { title, slug, startDate, endDate, poster, description, status, ministers, sponsorIds } = body;
+    const { title, startDate, endDate, poster, description, status, ministers, sponsorIds } = body;
 
-    if (!title || !slug || !startDate || !endDate) {
+    if (!title || !startDate || !endDate) {
       return new NextResponse("Missing required fields", { status: 400 });
     }
+
+    const slug = title
+      .toLowerCase()
+      .replace(/[^\w ]+/g, "")
+      .replace(/ +/g, "-");
 
     const event = await prisma.event.create({
       data: {

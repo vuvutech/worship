@@ -2,9 +2,11 @@ import React from "react";
 import { Button } from "./ui/button";
 import { Marquee } from "./ui/marquee";
 import { FooterComponent } from "./footer-main";
+import CTASection from "./cta-section";
 const footer = () => {
   return (
     <>
+    <CTASection />
     <FooterComponent />
     </>
     // <footer className='bg-gray-50 dark:bg-gray-900 border-t border-gray-200 dark:border-gray-800'>

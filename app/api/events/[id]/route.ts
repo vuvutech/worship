@@ -18,11 +18,18 @@ export async function PATCH(
 
     const { id } = await params;
     const body = await req.json();
-    const { title, slug, startDate, endDate, poster, description, status, ministers, sponsorIds } = body;
+    const { title, startDate, endDate, poster, description, status, ministers, sponsorIds } = body;
 
     if (!id) {
       return new NextResponse("Event ID is required", { status: 400 });
     }
+
+    const slug = title
+      ? title
+          .toLowerCase()
+          .replace(/[^\w ]+/g, "")
+          .replace(/ +/g, "-")
+      : undefined;
 
     // Update the event
     const event = await prisma.event.update({

@@ -39,7 +39,6 @@ import { DateTimePicker } from "@/components/ui/date-time-picker";
 
 const formSchema = z.object({
   title: z.string().min(1, "Title is required"),
-  slug: z.string().min(1, "Slug is required"),
   startDate: z.date({ message: "Start date is required" }),
   endDate: z.date({ message: "End date is required" }),
   poster: z.string().optional(),
@@ -72,7 +71,6 @@ export function EventForm({ isOpen, onClose, onSuccess, event }: EventFormProps)
     resolver: zodResolver(formSchema),
     defaultValues: {
       title: "",
-      slug: "",
       startDate: new Date(),
       endDate: new Date(),
       status: "published",
@@ -101,7 +99,6 @@ export function EventForm({ isOpen, onClose, onSuccess, event }: EventFormProps)
       if (event) {
         form.reset({
           title: event.title,
-          slug: event.slug,
           startDate: new Date(event.startDate),
           endDate: new Date(event.endDate),
           poster: event.poster || "",
@@ -113,7 +110,6 @@ export function EventForm({ isOpen, onClose, onSuccess, event }: EventFormProps)
       } else {
         form.reset({
           title: "",
-          slug: "",
           startDate: new Date(),
           endDate: new Date(),
           status: "published",
@@ -167,22 +163,6 @@ export function EventForm({ isOpen, onClose, onSuccess, event }: EventFormProps)
                     <FormControl>
                       <Input placeholder="Enter event title" {...field} />
                     </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <FormField
-                control={form.control}
-                name="slug"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Slug</FormLabel>
-                    <FormControl>
-                      <Input placeholder="event-slug" {...field} />
-                    </FormControl>
-                    <FormDescription>
-                      This will be used in the URL.
-                    </FormDescription>
                     <FormMessage />
                   </FormItem>
                 )}
