@@ -5,8 +5,9 @@ const page = () => {
   return (
     <>
       <Contact31 />
-      <section>
-        <div className='rounded-xl dark:bg-slate-800 bg-slate-200 text-slate-900 dark:text-slate-300 shadow md:px-10 py-5 md:py-16 px-5 mb-5 md:mb-16 my-2 md:my-16 mx-2 md:mx-16 rounded-neat relative overflow-hidden'>
+
+      <section className=' container max-w-(--breakpoint-xl) mx-auto '>
+        <div className='rounded-2xl dark:bg-slate-800 bg-slate-200 text-slate-900 dark:text-slate-300 shadow md:px-10 py-5 md:py-16 px-5 mb-5 md:mb-16 my-2 md:my-16 mx-2 md:mx-16 rounded-neat relative overflow-hidden'>
           <div className='w-72 h-72 absolute -right-20 -top-16 z-20 opacity-10 -rotate-45'>
             <span
               style={{
@@ -60,9 +61,7 @@ const page = () => {
           <br />
           <div className='flex md:gap-4 gap-8 flex-col md:flex-row justify-between '>
             <div>
-              <h1 className='mb-3'>
-                Testimonies
-              </h1>
+              <h1 className='mb-3'>Testimonies</h1>
               <p className='leading-relaxed text-base mb-3 line-clamp-3'>
                 Share your tesimonies with us with regards to what the Lord has
                 done in your life through this experience.{" "}
@@ -89,9 +88,7 @@ const page = () => {
               </div>
             </div>
             <div>
-              <h1 className=' mb-3'>
-                Suggestions
-              </h1>
+              <h1 className=' mb-3'>Suggestions</h1>
               <p className='leading-relaxed text-base mb-3 line-clamp-3'>
                 We welcome your Spirit led suggestions on the overall
                 organisation of the next Non-Stop Worship experience.
@@ -118,9 +115,7 @@ const page = () => {
               </div>
             </div>
             <div>
-              <h1 className=' mb-3'>
-                Website Feedback
-              </h1>
+              <h1 className=' mb-3'>Website Feedback</h1>
               <p className='leading-relaxed text-base mb-3 line-clamp-3'>
                 We shall be glad to know your thoughts on ways we can improve
                 the overall web presence to better serve you.

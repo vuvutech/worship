@@ -33,6 +33,7 @@ export default function RootLayout({
     <html
       lang='en'
       className={opensans.variable}
+      data-scroll-behavior="smooth"
     >
       <body
         className={`${geistSans.variable} ${ibmplex.variable} ${anton.variable} ${opensans.variable} ${bebas.variable} text-base antialiased bg-neutral-100`}

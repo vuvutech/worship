@@ -274,72 +274,7 @@ const AboutCompliment = ({
             )}
           </div>
         </div>
-        {contentSections && contentSections.length > 0 && (
-          <div className='mx-auto grid max-w-5xl gap-16 py-28 md:grid-cols-2 md:gap-28'>
-            {contentSections.map(
-              (
-                section: {
-                  title:
-                    | string
-                    | number
-                    | bigint
-                    | boolean
-                    | ReactElement<unknown, string | JSXElementConstructor<any>>
-                    | Iterable<ReactNode>
-                    | ReactPortal
-                    | Promise<
-                        | string
-                        | number
-                        | bigint
-                        | boolean
-                        | ReactPortal
-                        | ReactElement<
-                            unknown,
-                            string | JSXElementConstructor<any>
-                          >
-                        | Iterable<ReactNode>
-                        | null
-                        | undefined
-                      >
-                    | null
-                    | undefined;
-                  content:
-                    | string
-                    | number
-                    | bigint
-                    | boolean
-                    | ReactElement<unknown, string | JSXElementConstructor<any>>
-                    | Iterable<ReactNode>
-                    | ReactPortal
-                    | Promise<
-                        | string
-                        | number
-                        | bigint
-                        | boolean
-                        | ReactPortal
-                        | ReactElement<
-                            unknown,
-                            string | JSXElementConstructor<any>
-                          >
-                        | Iterable<ReactNode>
-                        | null
-                        | undefined
-                      >
-                    | null
-                    | undefined;
-                },
-                idx: any,
-              ) => (
-                <div key={section.title + idx}>
-                  <h2 className='mb-5 text-4xl font-medium'>{section.title}</h2>
-                  <p className='text-xl leading-7 whitespace-pre-line text-muted-foreground'>
-                    {section.content}
-                  </p>
-                </div>
-              ),
-            )}
-          </div>
-        )}
+
       </div>
     </section>
   );

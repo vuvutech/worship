@@ -120,7 +120,7 @@ const Ministration = ({ className }: ministrationsHomeProps) => {
           >
             <CarouselContent>
               {ministrationsHomeProp.map((project) => (
-                <CarouselItem key={project.id} className="basis-auto pl-8">
+                <CarouselItem key={project.id} className="basis-auto pl-4">
                   <div className="w-[350px] md:w-[600px] lg:w-[700px] space-y-4">
                     <div className="aspect-video overflow-hidden rounded-xl bg-muted">
                       <img

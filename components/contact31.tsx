@@ -81,7 +81,7 @@ const Contact31 = ({
   };
 
   return (
-    <section className={cn("py-32", className)}>
+    <section className={cn("py-4 pt-32", className)}>
       <div className="container">
         <div className="mx-auto grid max-w-6xl overflow-hidden rounded-2xl bg-muted/50 lg:grid-cols-2">
           <div className="relative hidden lg:block">
