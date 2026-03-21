@@ -179,7 +179,7 @@
 
   /* Custom Scrollbar Utilities */
   .scrollbar-thin {
-    scrollbar-width: thin;
+    scrollbar-width: auto;
   }
 
   .no-scrollbar {
@@ -198,7 +198,7 @@
   }
 
   .scrollbar-track-transparent::-webkit-scrollbar-track {
-    background-color: transparent;
+    background-color: var(--secondary);
   }
 
   ::-webkit-scrollbar {
@@ -207,15 +207,15 @@
   }
 
   ::-webkit-scrollbar-track {
-    background: transparent;
+    background: var(--secondary);
   }
 
   ::-webkit-scrollbar-thumb {
-    background: color-mix(in srgb, var(--primary) 10%, transparent);
+    background: color-mix(in srgb, var(--primary) 30%, transparent);
     border-radius: 10px;
   }
 
   ::-webkit-scrollbar-thumb:hover {
-    background: color-mix(in srgb, var(--primary) 20%, transparent);
+    background: color-mix(in srgb, var(--primary) 40%, transparent);
   }
 }
