@@ -11,7 +11,7 @@ import {
   SidebarHeader,
   SidebarRail,
 } from "@/components/ui/sidebar"
-import { TerminalIcon, LayoutDashboard, Calendar, Video, Users } from "lucide-react"
+import { TerminalIcon, LayoutDashboard, Calendar, Video, Users, Settings } from "lucide-react"
 import { useCurrentSession } from "@/lib/use-current-session"
 
 const defaultData = {
@@ -38,6 +38,12 @@ const defaultData = {
       title: "Event Management",
       url: "/dashboard/admin/events",
       icon: <Calendar />,
+      adminOnly: true,
+    },
+    {
+      title: "Hero Settings",
+      url: "/dashboard/admin/hero",
+      icon: <Settings />,
       adminOnly: true,
     },
     {

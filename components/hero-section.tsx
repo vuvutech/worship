@@ -1,8 +1,10 @@
 "use client";
 
-import { useState, useRef, useEffect } from "react";
-import { Volume2, VolumeX } from "lucide-react";
+import { Volume2, VolumeX, Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import HeroHeadline from "./hero-headline";
+import { createFetch } from "@better-fetch/fetch";
+import { useEffect, useRef, useState } from "react";
 
 declare global {
   interface Window {
@@ -11,21 +13,40 @@ declare global {
   }
 }
 
-export default function HeroSection() {
-  const VIDEO_ID = "Cl_kXbhTi8k"; // Updated to the ID requested by the user
-  const START_TIME = 108;
+const $fetch = createFetch({
+  baseURL: "/api/settings",
+});
 
-  const [heading, setHeading] = useState("Discover Something Amazing");
-  const [subheading, setSubheading] = useState(
-    "Premium experiences crafted for excellence",
-  );
-  const [isEditingHeading, setIsEditingHeading] = useState(false);
-  const [isEditingSubheading, setIsEditingSubheading] = useState(false);
+export default function HeroSection() {
+  const [heroSettings, setHeroSettings] = useState<{
+    videoId: string;
+    startTime: number;
+  } | null>(null);
   const [isMuted, setIsMuted] = useState(true);
   const [player, setPlayer] = useState<any>(null);
   const iframeRef = useRef<HTMLIFrameElement>(null);
+  const [origin, setOrigin] = useState("");
 
   useEffect(() => {
+    const fetchSettings = async () => {
+      try {
+        const { data } = await $fetch<any>("/hero");
+        if (data) {
+          setHeroSettings(data);
+        } else {
+          setHeroSettings({ videoId: "bDk_nNbccnc", startTime: 108 });
+        }
+      } catch (error) {
+        console.error("Failed to fetch hero settings:", error);
+        setHeroSettings({ videoId: "bDk_nNbccnc", startTime: 108 });
+      }
+    };
+    fetchSettings();
+  }, []);
+
+  useEffect(() => {
+    if (!heroSettings) return;
+
     // Load YouTube API script
     if (!window.YT) {
       const tag = document.createElement("script");
@@ -54,9 +75,7 @@ export default function HeroSection() {
     } else {
       window.onYouTubeIframeAPIReady = initPlayer;
     }
-  }, []);
-
-  const [origin, setOrigin] = useState("");
+  }, [heroSettings]);
 
   useEffect(() => {
     setOrigin(window.location.origin);
@@ -74,31 +93,45 @@ export default function HeroSection() {
     }
   };
 
+  if (!heroSettings) {
+    return (
+      <header className='relative w-full h-[100dvh] bg-black flex items-center justify-center overflow-hidden'>
+        <Loader2 className='h-8 w-8 animate-spin text-white/20' />
+      </header>
+    );
+  }
+
+  const { videoId, startTime } = heroSettings;
+
   return (
-    <header className='relative w-full h-dvh flex flex-col justify-end py-10 overflow-hidden '>
+    <header className='relative md:relative absolute top-0 left-0 w-full h-[100dvh] flex flex-col justify-end pb-10 overflow-hidden z-0'>
       {/* Video Background */}
       {/* YouTube Video Background */}
       <div className='absolute inset-0 w-full h-full pointer-events-none overflow-hidden'>
         <iframe
-          key={VIDEO_ID}
+          key={videoId}
           ref={iframeRef}
-          src={`https://www.youtube.com/embed/${VIDEO_ID}?autoplay=1&mute=1&loop=1&controls=0&showinfo=0&autohide=1&modestbranding=1&playlist=${VIDEO_ID}&rel=0&enablejsapi=1&start=${START_TIME}&iv_load_policy=3&disablekb=1${origin ? `&origin=${origin}&widget_referrer=${origin}` : ""}`}
-          className='absolute top-1/2 left-1/2 w-[115vw] h-[115vh] md:w-[150vw] md:h-[150vh] -translate-x-1/2 -translate-y-1/2 object-cover min-w-full min-h-full aspect-video'
+          src={`https://www.youtube.com/embed/${videoId}?autoplay=1&mute=1&loop=1&controls=0&showinfo=0&autohide=1&modestbranding=1&playlist=${videoId}&rel=0&enablejsapi=1&start=${startTime}&iv_load_policy=3&disablekb=1${origin ? `&origin=${origin}&widget_referrer=${origin}` : ""}`}
+          className='absolute top-1/2 left-1/2 w-[150vw] h-[120vh] md:w-[150vw] md:h-[150vh] -translate-x-1/2 -translate-y-1/2 object-cover min-w-full min-h-full aspect-video'
           allow='autoplay; encrypted-media'
-          title="Hero Video Background"
+          title='Hero Video Background'
         />
       </div>
 
       {/* Mute/Unmute Toggle */}
-      <div className="absolute bottom-10 right-10 z-30">
+      <div className='absolute bottom-10 right-10 z-60'>
         <Button
-          variant="outline"
-          size="icon"
+          variant='outline'
+          size='icon'
           onClick={toggleMute}
-          className="rounded-full bg-black/20 backdrop-blur-md border-white/20 hover:bg-black/40 text-white transition-all duration-300"
+          className='rounded-full bg-black/20 backdrop-blur-md border-white/20 hover:bg-black/40 text-white transition-all duration-300'
           aria-label={isMuted ? "Unmute video" : "Mute video"}
         >
-          {isMuted ? <VolumeX className="h-5 w-5" /> : <Volume2 className="h-5 w-5" />}
+          {isMuted ? (
+            <VolumeX className='h-5 w-5' />
+          ) : (
+            <Volume2 className='h-5 w-5' />
+          )}
         </Button>
       </div>
 
@@ -107,16 +140,18 @@ export default function HeroSection() {
         className='absolute inset-0 bg-black/40'
         aria-hidden='true'
       />
-
+      <HeroHeadline className="z-50 px-4 md:px-16  xl:px-32 2xl:px-40 text-white" />
       {/* Content */}
-      <div className='relative px-4 sm:px-6 lg:px-8'>
+      <div className='relative px-4 sm:px-6 lg:px-8 hidden'>
         <div className='mx-auto max-w-(--breakpoint-xl)'>
           <div className='max-w-5xl'>
             <h1 className='text-3xl text-zinc-100 sm:text-7xl dark:text-zinc-100 '>
-              Recovery, Revival and the Restoration  <br />of the Tabernacle of David
+              Recovery, Revival and the Restoration <br />
+              of the Tabernacle of David
             </h1>
             <p className='mt-4 text-base text-zinc-200 dark:text-zinc-400 text-2xl'>
-              Join us as we explore the profound truths of God's Word and experience His presence in a powerful way.
+              Join us as we explore the profound truths of God's Word and
+              experience His presence in a powerful way.
             </p>
             <div className='mt-6 flex gap-6'>
               <a

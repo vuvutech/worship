@@ -45,3 +45,5 @@ next-env.d.ts
 
 /generated/prisma
 mcp.json
+# next-agents-md
+.next-docs/
