@@ -16,7 +16,7 @@ export const MissionVision = () => {
           stage for Recovery, Revival, and Restoration.
         </p>
       </div>
-      <div>
+      <div id="mission">
         <h2 className='mb-5 text-4xl font-medium'>
           The Non-Stop is more than a gathering
         </h2>

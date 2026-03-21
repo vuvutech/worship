@@ -38,6 +38,7 @@ export default function CTASection() {
                 src='/images/cta.webp'
                 fill
                 alt='The Non-Stop Series Call to Action'
+                sizes='(max-width: 1024px) 192px, 288px'
                 className='object-contain'
                 priority
               />

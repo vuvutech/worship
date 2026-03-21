@@ -63,13 +63,13 @@ const AboutCompliment = ({
     alt: "about",
   },
   breakout = {
-    src: "https://deifkwefumgah.cloudfront.net/shadcnblocks/block/block-1.svg",
+    src: "/images/music2.svg",
     alt: "logo",
     title: "Logos-Rhema Foundation",
     description:
       "For 22 years, the Logos-Rhema Foundation has spearheaded spiritual revival through the Non-Stop Series across Ghana and beyond.",
     buttonText: "Our Mission",
-    buttonUrl: "#mission",
+    buttonUrl: "/about/#mission",
   },
   companies = [
     {
