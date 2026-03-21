@@ -32,16 +32,19 @@ export async function POST(req: Request) {
     }
 
     const body = await req.json();
-    const { title, startDate, endDate, poster, description, status, ministers, sponsorIds } = body;
+    const { title, startDate, endDate, poster, description, location, status, ministers, sponsorIds } = body;
+
+    const locationValue = location || "Logos-Rhema Foundation, La, Accra";
 
     if (!title || !startDate || !endDate) {
       return new NextResponse("Missing required fields", { status: 400 });
     }
 
-    const slug = title
+    const dateSuffix = new Date(startDate).toISOString().split('T')[0];
+    const slug = `${title
       .toLowerCase()
       .replace(/[^\w ]+/g, "")
-      .replace(/ +/g, "-");
+      .replace(/ +/g, "-")}-${dateSuffix}`;
 
     const event = await prisma.event.create({
       data: {
@@ -51,6 +54,7 @@ export async function POST(req: Request) {
         endDate: new Date(endDate),
         poster,
         description,
+        location: locationValue,
         status: status || "published",
         ministers: {
           create: ministers?.map((m: any) => ({

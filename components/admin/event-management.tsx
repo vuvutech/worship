@@ -38,6 +38,7 @@ import {
   DialogContent,
   DialogHeader,
   DialogTitle,
+  DialogDescription,
   DialogTrigger,
   DialogFooter,
 } from "@/components/ui/dialog";
@@ -50,6 +51,8 @@ import {
 } from "@/components/ui/select";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
+import { Checkbox } from "@/components/ui/checkbox";
+import { FileUpload } from "@/components/file-upload";
 
 const ministerSchema = z.object({
   name: z.string().min(1, "Name is required"),
@@ -63,6 +66,7 @@ const eventSchema = z.object({
   endDate: z.string().min(1, "End date is required"),
   poster: z.string().url("Invalid poster URL").optional().or(z.literal("")),
   description: z.string().optional(),
+  location: z.string().optional(),
   status: z.enum(["draft", "published", "cancelled"]),
   ministers: z.array(ministerSchema).optional(),
   sponsorIds: z.array(z.string()).optional(),
@@ -91,6 +95,7 @@ interface Event {
   endDate: string;
   poster: string | null;
   description: string | null;
+  location: string | null;
   status: string;
   ministers: Minister[];
   sponsors: Sponsor[];
@@ -115,13 +120,18 @@ export function EventManagement() {
       endDate: "",
       poster: "",
       description: "",
+      location: "Logos-Rhema Foundation, La, Accra",
       status: "published",
       ministers: [],
       sponsorIds: [],
     },
   });
 
-  const { fields, append, remove } = useFieldArray({
+  const {
+    fields: ministerFields,
+    append: appendMinister,
+    remove: removeMinister,
+  } = useFieldArray({
     control: form.control,
     name: "ministers",
   });
@@ -202,6 +212,7 @@ export function EventManagement() {
       endDate: new Date(event.endDate).toISOString().slice(0, 16),
       poster: event.poster || "",
       description: event.description || "",
+      location: event.location || "Logos-Rhema Foundation, La, Accra",
       status: event.status as any,
       ministers: event.ministers.map((m) => ({
         name: m.name,
@@ -237,205 +248,265 @@ export function EventManagement() {
               <Plus className='h-4 w-4' /> New Event
             </Button>
           </DialogTrigger>
-          <DialogContent className='sm:max-w-[600px] max-h-[90vh] overflow-y-auto'>
-            <DialogHeader>
-              <DialogTitle>
-                {editingEvent ? "Edit Event" : "Add New Event"}
-              </DialogTitle>
+          <DialogContent className="sm:max-w-[700px] max-h-[95vh] p-0 flex flex-col overflow-hidden">
+            <DialogHeader className="p-6 pb-2">
+              <DialogTitle>{editingEvent ? "Edit Event" : "Add New Event"}</DialogTitle>
+              <DialogDescription className="sr-only">
+                Fill in the details for the event below.
+              </DialogDescription>
             </DialogHeader>
-            <form
-              onSubmit={form.handleSubmit(onSubmit)}
-              className='space-y-4'
-            >
-              <div className='grid grid-cols-1 gap-4'>
-                <Controller
-                  control={form.control}
-                  name='title'
-                  render={({ field, fieldState }) => (
-                    <Field data-invalid={fieldState.invalid}>
-                      <FieldLabel htmlFor={field.name}>Title</FieldLabel>
-                      <Input
-                        {...field}
-                        id={field.name}
-                        placeholder='Event Title'
-                      />
-                      {fieldState.invalid && (
-                        <FieldError errors={[fieldState.error]} />
-                      )}
-                    </Field>
-                  )}
-                />
-              </div>
-
-              <div className='grid grid-cols-2 gap-4'>
-                <Controller
-                  control={form.control}
-                  name='startDate'
-                  render={({ field, fieldState }) => (
-                    <Field data-invalid={fieldState.invalid}>
-                      <FieldLabel htmlFor={field.name}>Start Date</FieldLabel>
-                      <Input
-                        {...field}
-                        type='datetime-local'
-                        id={field.name}
-                      />
-                      {fieldState.invalid && (
-                        <FieldError errors={[fieldState.error]} />
-                      )}
-                    </Field>
-                  )}
-                />
-                <Controller
-                  control={form.control}
-                  name='endDate'
-                  render={({ field, fieldState }) => (
-                    <Field data-invalid={fieldState.invalid}>
-                      <FieldLabel htmlFor={field.name}>End Date</FieldLabel>
-                      <Input
-                        {...field}
-                        type='datetime-local'
-                        id={field.name}
-                      />
-                      {fieldState.invalid && (
-                        <FieldError errors={[fieldState.error]} />
-                      )}
-                    </Field>
-                  )}
-                />
-              </div>
-
-              <Controller
-                control={form.control}
-                name='poster'
-                render={({ field, fieldState }) => (
-                  <Field data-invalid={fieldState.invalid}>
-                    <FieldLabel htmlFor={field.name}>Poster URL</FieldLabel>
-                    <Input
-                      {...field}
-                      id={field.name}
-                      placeholder='https://...'
-                    />
-                    {fieldState.invalid && (
-                      <FieldError errors={[fieldState.error]} />
-                    )}
-                  </Field>
-                )}
-              />
-
-              <Controller
-                control={form.control}
-                name='description'
-                render={({ field, fieldState }) => (
-                  <Field data-invalid={fieldState.invalid}>
-                    <FieldLabel htmlFor={field.name}>Description</FieldLabel>
-                    <Textarea
-                      {...field}
-                      id={field.name}
-                      placeholder='Tell us more about the event...'
-                    />
-                    {fieldState.invalid && (
-                      <FieldError errors={[fieldState.error]} />
-                    )}
-                  </Field>
-                )}
-              />
-
-              <Controller
-                control={form.control}
-                name='status'
-                render={({ field, fieldState }) => (
-                  <Field data-invalid={fieldState.invalid}>
-                    <FieldLabel htmlFor={field.name}>Status</FieldLabel>
-                    <Select
-                      onValueChange={field.onChange}
-                      defaultValue={field.value}
-                    >
-                      <SelectTrigger id={field.name}>
-                        <SelectValue placeholder='Select status' />
-                      </SelectTrigger>
-                      <SelectContent>
-                        <SelectItem value='published'>Published</SelectItem>
-                        <SelectItem value='draft'>Draft</SelectItem>
-                        <SelectItem value='cancelled'>Cancelled</SelectItem>
-                      </SelectContent>
-                    </Select>
-                    {fieldState.invalid && (
-                      <FieldError errors={[fieldState.error]} />
-                    )}
-                  </Field>
-                )}
-              />
-
-              <div className='space-y-4 pt-4'>
-                <div className='flex justify-between items-center'>
-                  <h3 className='text-sm font-medium'>Ministers</h3>
-                  <Button
-                    type='button'
-                    variant='outline'
-                    size='sm'
-                    onClick={() => append({ name: "", role: "", image: "" })}
-                  >
-                    <Plus className='h-4 w-4 mr-2' /> Add Minister
-                  </Button>
-                </div>
-                <div className='space-y-4'>
-                  {fields.map((field, index) => (
-                    <div
-                      key={field.id}
-                      className='grid grid-cols-12 gap-2 items-start border p-3 rounded-md relative group'
-                    >
-                      <div className='col-span-11 grid grid-cols-2 gap-2'>
-                        <Controller
-                          control={form.control}
-                          name={`ministers.${index}.name`}
-                          render={({ field }) => (
-                            <Input
-                              {...field}
-                              placeholder='Name'
-                            />
-                          )}
-                        />
-                        <Controller
-                          control={form.control}
-                          name={`ministers.${index}.role`}
-                          render={({ field }) => (
-                            <Input
-                              {...field}
-                              placeholder='Role'
-                            />
-                          )}
-                        />
-                        <div className='col-span-2'>
-                          <Controller
-                            control={form.control}
-                            name={`ministers.${index}.image`}
-                            render={({ field }) => (
-                              <Input
-                                {...field}
-                                placeholder='Image URL'
-                              />
-                            )}
+            <form onSubmit={form.handleSubmit(onSubmit)} className="flex flex-col flex-1 min-h-0 overflow-hidden">
+              <div className="flex-1 overflow-y-auto p-6 pt-2 scrollbar-thin scrollbar-thumb-primary/10 scrollbar-track-transparent">
+                <div className="space-y-6">
+                  <div className='grid grid-cols-1 gap-4'>
+                    <Controller
+                      control={form.control}
+                      name='title'
+                      render={({ field, fieldState }) => (
+                        <Field data-invalid={fieldState.invalid}>
+                          <FieldLabel htmlFor={field.name}>Event Title</FieldLabel>
+                          <Input
+                            {...field}
+                            id={field.name}
+                            placeholder='Enter the title...'
                           />
-                        </div>
-                      </div>
+                          {fieldState.invalid && (
+                            <FieldError errors={[fieldState.error]} />
+                          )}
+                        </Field>
+                      )}
+                    />
+                  </div>
+
+                  <div className='grid grid-cols-1 sm:grid-cols-2 gap-4'>
+                    <Controller
+                      control={form.control}
+                      name='startDate'
+                      render={({ field, fieldState }) => (
+                        <Field data-invalid={fieldState.invalid}>
+                          <FieldLabel htmlFor={field.name}>Start Date</FieldLabel>
+                          <Input
+                            {...field}
+                            type='datetime-local'
+                            id={field.name}
+                          />
+                          {fieldState.invalid && (
+                            <FieldError errors={[fieldState.error]} />
+                          )}
+                        </Field>
+                      )}
+                    />
+                    <Controller
+                      control={form.control}
+                      name='endDate'
+                      render={({ field, fieldState }) => (
+                        <Field data-invalid={fieldState.invalid}>
+                          <FieldLabel htmlFor={field.name}>End Date</FieldLabel>
+                          <Input
+                            {...field}
+                            type='datetime-local'
+                            id={field.name}
+                          />
+                          {fieldState.invalid && (
+                            <FieldError errors={[fieldState.error]} />
+                          )}
+                        </Field>
+                      )}
+                    />
+                  </div>
+
+                  <Controller
+                    control={form.control}
+                    name='poster'
+                    render={({ field }) => (
+                      <FileUpload
+                        value={field.value}
+                        onChange={field.onChange}
+                        onRemove={() => field.onChange("")}
+                        label="Event Poster"
+                        description="Drag and drop or click to browse for a high-quality event poster (Max 4MB)"
+                      />
+                    )}
+                  />
+
+                  <Controller
+                    control={form.control}
+                    name='location'
+                    render={({ field, fieldState }) => (
+                      <Field data-invalid={fieldState.invalid}>
+                        <FieldLabel htmlFor={field.name}>Location</FieldLabel>
+                        <Input
+                          {...field}
+                          id={field.name}
+                          placeholder='Enter event location...'
+                        />
+                        {fieldState.invalid && (
+                          <FieldError errors={[fieldState.error]} />
+                        )}
+                      </Field>
+                    )}
+                  />
+
+                  <Controller
+                    control={form.control}
+                    name='description'
+                    render={({ field, fieldState }) => (
+                      <Field data-invalid={fieldState.invalid}>
+                        <FieldLabel htmlFor={field.name}>Description</FieldLabel>
+                        <Textarea
+                          {...field}
+                          id={field.name}
+                          className='min-h-[100px]'
+                          placeholder='Tell us more about the event...'
+                        />
+                        {fieldState.invalid && (
+                          <FieldError errors={[fieldState.error]} />
+                        )}
+                      </Field>
+                    )}
+                  />
+
+                  <Controller
+                    control={form.control}
+                    name='status'
+                    render={({ field, fieldState }) => (
+                      <Field data-invalid={fieldState.invalid}>
+                        <FieldLabel htmlFor={field.name}>Status</FieldLabel>
+                        <Select
+                          onValueChange={field.onChange}
+                          defaultValue={field.value}
+                        >
+                          <SelectTrigger id={field.name}>
+                            <SelectValue placeholder='Select status' />
+                          </SelectTrigger>
+                          <SelectContent>
+                            <SelectItem value='draft'>Draft</SelectItem>
+                            <SelectItem value='published'>Published</SelectItem>
+                            <SelectItem value='cancelled'>Cancelled</SelectItem>
+                          </SelectContent>
+                        </Select>
+                        {fieldState.invalid && (
+                          <FieldError errors={[fieldState.error]} />
+                        )}
+                      </Field>
+                    )}
+                  />
+
+                  <div className='pt-4 pb-2 border-t'>
+                    <div className='flex items-center justify-between mb-4'>
+                      <h4 className='text-sm font-bold uppercase tracking-wider text-muted-foreground'>
+                        Ministers
+                      </h4>
                       <Button
                         type='button'
-                        variant='ghost'
-                        size='icon'
-                        className='text-destructive'
-                        onClick={() => remove(index)}
+                        variant='outline'
+                        size='sm'
+                        onClick={() => appendMinister({ name: "", role: "", image: "" })}
                       >
-                        <X className='h-4 w-4' />
+                        <Plus className='h-3 w-3 mr-2' /> Add Minister
                       </Button>
                     </div>
-                  ))}
+
+                    <div className='grid grid-cols-1 gap-4'>
+                      {ministerFields.map((field, index) => (
+                        <div
+                          key={field.id}
+                          className='flex gap-4 items-start bg-muted/30 p-4 rounded-xl relative group'
+                        >
+                          <div className='grid grid-cols-1 sm:grid-cols-2 gap-4 flex-1'>
+                            <Controller
+                              control={form.control}
+                              name={`ministers.${index}.name`}
+                              render={({ field, fieldState }) => (
+                                <Field data-invalid={fieldState.invalid}>
+                                  <FieldLabel className='text-xs'>
+                                    Name
+                                  </FieldLabel>
+                                  <Input {...field} placeholder='Name' />
+                                </Field>
+                              )}
+                            />
+                            <Controller
+                              control={form.control}
+                              name={`ministers.${index}.role`}
+                              render={({ field, fieldState }) => (
+                                <Field data-invalid={fieldState.invalid}>
+                                  <FieldLabel className='text-xs'>
+                                    Role
+                                  </FieldLabel>
+                                  <Input {...field} placeholder='Role' />
+                                </Field>
+                              )}
+                            />
+                          </div>
+                          <Button
+                            type='button'
+                            variant='ghost'
+                            size='icon'
+                            className='text-muted-foreground hover:text-destructive transition-colors mt-6'
+                            onClick={() => removeMinister(index)}
+                          >
+                            <X className='h-4 w-4' />
+                          </Button>
+                        </div>
+                      ))}
+                      {ministerFields.length === 0 && (
+                        <p className='text-center text-sm text-muted-foreground py-4 border border-dashed rounded-xl'>
+                          No ministers added yet.
+                        </p>
+                      )}
+                    </div>
+                  </div>
+
+                  <div className='pt-4 pb-2 border-t'>
+                    <h4 className='text-sm font-bold uppercase tracking-wider text-muted-foreground mb-4'>
+                      Sponsors
+                    </h4>
+                    <div className='grid grid-cols-2 sm:grid-cols-3 gap-4 bg-muted/30 p-4 rounded-xl'>
+                      {sponsors.map((sponsor) => (
+                        <label
+                          key={sponsor.id}
+                          className='flex items-center gap-3 p-2 rounded-lg hover:bg-background/50 cursor-pointer transition-colors'
+                        >
+                          <Checkbox
+                            checked={form
+                              .watch("sponsorIds")
+                              ?.includes(sponsor.id)}
+                            onCheckedChange={(checked) => {
+                              const current = form.getValues("sponsorIds") || [];
+                              if (checked) {
+                                form.setValue("sponsorIds", [
+                                  ...current,
+                                  sponsor.id,
+                                ]);
+                              } else {
+                                form.setValue(
+                                  "sponsorIds",
+                                  current.filter((id) => id !== sponsor.id)
+                                );
+                              }
+                            }}
+                          />
+                          <span className='text-sm truncate'>
+                            {sponsor.name}
+                          </span>
+                        </label>
+                      ))}
+                      {sponsors.length === 0 && (
+                        <p className='text-sm text-muted-foreground col-span-full py-2'>
+                          No sponsors found.
+                        </p>
+                      )}
+                    </div>
+                  </div>
                 </div>
               </div>
 
-              <DialogFooter className='pt-4 pb-4'>
+              <DialogFooter className="p-6 pt-4 border-t bg-background/80 backdrop-blur-sm">
                 <Button
                   type='submit'
                   disabled={form.formState.isSubmitting}
+                  className='w-full sm:w-auto h-11 px-8 rounded-full'
                 >
                   {form.formState.isSubmitting && (
                     <Loader2 className='mr-2 h-4 w-4 animate-spin' />

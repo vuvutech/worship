@@ -10,10 +10,12 @@ export default function CTASection() {
           <div className='absolute bottom-0 left-0 w-64 h-64 bg-primary/5 rounded-full -ml-32 -mb-32 blur-3xl pointer-events-none' />
 
           <div className='grow space-y-6 relative z-10'>
-            <h6 className='text-3xl font-bold md:text-4xl lg:text-5xl tracking-tight leading-tight'>
+                 <h2 className="text-3xl md:text-5xl font-bebas tracking-wider uppercase">Join the <span className='text-primary'>Eternal Sound</span> of
+              Heaven</h2>
+            {/* <h6 className='text-3xl font-bold md:text-4xl lg:text-5xl tracking-tight leading-tight'>
               Join the <span className='text-primary'>Eternal Sound</span> of
               Heaven
-            </h6>
+            </h6> */}
             <p className='text-muted-foreground lg:text-xl max-w-3xl leading-relaxed'>
               Become part of a 22-year spiritual legacy. Join thousands across
               the globe in a movement of recovery, revival, and restoration

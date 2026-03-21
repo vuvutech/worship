@@ -11,15 +11,15 @@ interface UpcomingEventsListProps {
 }
 
 const statusStyles = {
-  available: "bg-primary text-primary-foreground hover:opacity-90",
-  "sold-out": "bg-destructive/20 text-destructive border border-destructive/30 cursor-default",
-  presale: "bg-amber-500/20 text-amber-600 border border-amber-500/30",
+  available: "bg-primary text-primary-foreground hover:opacity-90 shadow-sm",
+  "sold-out": "bg-neutral-800 text-neutral-400 border border-white/5 cursor-default",
+  presale: "bg-white/5 text-neutral-300 border border-white/10 italic",
 };
 
 const statusLabels = {
   available: "Register",
-  "sold-out": "Full",
-  presale: "Presale",
+  "sold-out": "Full Capacity",
+  presale: "Coming Soon",
 };
 
 export default function UpcomingEventsList({ events }: UpcomingEventsListProps) {
@@ -68,8 +68,21 @@ export default function UpcomingEventsList({ events }: UpcomingEventsListProps) 
                   <h3 className="text-2xl md:text-3xl font-bebas text-foreground tracking-tight group-hover:text-primary transition-colors">
                     {event.title}
                   </h3>
+                  <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-[10px] md:text-xs font-opensans text-muted-foreground/80 font-medium">
+                    <span className="flex items-center gap-1">
+                      <Calendar className="size-3 text-primary/60" />
+                      {format(date, "MMM d, yyyy")} @ {format(date, "h:mm aa")}
+                    </span>
+                    <span className="flex items-center gap-1 text-primary/40 text-[8px] uppercase tracking-widest font-bold">
+                      until
+                    </span>
+                    <span className="flex items-center gap-1">
+                      <Calendar className="size-3 text-primary/60" />
+                      {format(new Date(event.endDate), "MMM d, yyyy")} @ {format(new Date(event.endDate), "h:mm aa")}
+                    </span>
+                  </div>
                   {event.tagline && (
-                    <p className="text-sm font-opensans text-muted-foreground line-clamp-1 italic">
+                    <p className="text-[11px] md:text-[13px] font-opensans text-muted-foreground/60 line-clamp-1 italic">
                       {event.tagline}
                     </p>
                   )}

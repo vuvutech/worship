@@ -36,6 +36,7 @@ import {
 } from "@/components/ui/form";
 import { Checkbox } from "@/components/ui/checkbox";
 import { DateTimePicker } from "@/components/ui/date-time-picker";
+import { FileUpload } from "@/components/file-upload";
 
 const formSchema = z.object({
   title: z.string().min(1, "Title is required"),
@@ -146,256 +147,266 @@ export function EventForm({ isOpen, onClose, onSuccess, event }: EventFormProps)
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto">
-        <DialogHeader>
-          <DialogTitle>{event ? "Edit Event" : "Add New Event"}</DialogTitle>
-        </DialogHeader>
-
+      <DialogContent className="max-w-4xl max-h-[95vh] p-0 flex flex-col overflow-hidden">
         <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <FormField
-                control={form.control}
-                name="title"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Event Title</FormLabel>
-                    <FormControl>
-                      <Input placeholder="Enter event title" {...field} />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-            </div>
+          <form onSubmit={form.handleSubmit(onSubmit)} className="flex flex-col max-h-full overflow-hidden">
+            <div className="flex-1 overflow-y-auto p-6 scrollbar-thin scrollbar-thumb-primary/10 scrollbar-track-transparent">
+              <DialogHeader className="mb-6">
+                <DialogTitle>{event ? "Edit Event" : "Add New Event"}</DialogTitle>
+              </DialogHeader>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <FormField
-                control={form.control}
-                name="startDate"
-                render={({ field }) => (
-                  <FormItem className="flex flex-col">
-                    <FormLabel>Start Date & Time</FormLabel>
-                    <FormControl>
-                      <DateTimePicker
-                        date={field.value}
-                        setDate={field.onChange}
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <FormField
-                control={form.control}
-                name="endDate"
-                render={({ field }) => (
-                  <FormItem className="flex flex-col">
-                    <FormLabel>End Date & Time</FormLabel>
-                    <FormControl>
-                      <DateTimePicker
-                        date={field.value}
-                        setDate={field.onChange}
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-            </div>
+              <div className="space-y-8">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <FormField
+                    control={form.control}
+                    name="title"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Event Title</FormLabel>
+                        <FormControl>
+                          <Input placeholder="Enter event title" {...field} />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <FormField
-                control={form.control}
-                name="poster"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Poster URL</FormLabel>
-                    <FormControl>
-                      <Input placeholder="https://..." {...field} />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <FormField
-                control={form.control}
-                name="status"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Status</FormLabel>
-                    <Select onValueChange={field.onChange} defaultValue={field.value}>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <FormField
+                    control={form.control}
+                    name="startDate"
+                    render={({ field }) => (
+                      <FormItem className="flex flex-col">
+                        <FormLabel>Start Date & Time</FormLabel>
+                        <FormControl>
+                          <DateTimePicker
+                            date={field.value}
+                            setDate={field.onChange}
+                          />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                  <FormField
+                    control={form.control}
+                    name="endDate"
+                    render={({ field }) => (
+                      <FormItem className="flex flex-col">
+                        <FormLabel>End Date & Time</FormLabel>
+                        <FormControl>
+                          <DateTimePicker
+                            date={field.value}
+                            setDate={field.onChange}
+                          />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <FormField
+                    control={form.control}
+                    name="poster"
+                    render={({ field }) => (
+                      <FormItem className="col-span-1 md:col-span-2">
+                        <FormControl>
+                          <FileUpload
+                            value={field.value}
+                            onChange={field.onChange}
+                            onRemove={() => field.onChange("")}
+                            label="Event Poster"
+                            description="Drag and drop or click to browse for a high-quality event poster (Max 4MB)"
+                          />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                  <FormField
+                    control={form.control}
+                    name="status"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Status</FormLabel>
+                        <Select onValueChange={field.onChange} defaultValue={field.value}>
+                          <FormControl>
+                            <SelectTrigger>
+                              <SelectValue placeholder="Select status" />
+                            </SelectTrigger>
+                          </FormControl>
+                          <SelectContent>
+                            <SelectItem value="draft">Draft</SelectItem>
+                            <SelectItem value="published">Published</SelectItem>
+                            <SelectItem value="cancelled">Cancelled</SelectItem>
+                          </SelectContent>
+                        </Select>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                </div>
+
+                <FormField
+                  control={form.control}
+                  name="description"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Description</FormLabel>
                       <FormControl>
-                        <SelectTrigger>
-                          <SelectValue placeholder="Select status" />
-                        </SelectTrigger>
+                        <Textarea 
+                          placeholder="Enter event description..." 
+                          className="resize-none min-h-[100px]" 
+                          {...field} 
+                        />
                       </FormControl>
-                      <SelectContent>
-                        <SelectItem value="draft">Draft</SelectItem>
-                        <SelectItem value="published">Published</SelectItem>
-                        <SelectItem value="cancelled">Cancelled</SelectItem>
-                      </SelectContent>
-                    </Select>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-            </div>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
 
-            <FormField
-              control={form.control}
-              name="description"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Description</FormLabel>
-                  <FormControl>
-                    <Textarea 
-                      placeholder="Enter event description..." 
-                      className="resize-none min-h-[100px]" 
-                      {...field} 
-                    />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-
-            <div className="space-y-4">
-              <div className="flex items-center justify-between">
-                <h3 className="text-lg font-semibold">Ministers</h3>
-                <Button
-                  type="button"
-                  variant="outline"
-                  size="sm"
-                  onClick={() => append({ name: "", role: "", image: "" })}
-                >
-                  <Plus className="mr-2 h-4 w-4" /> Add Minister
-                </Button>
-              </div>
-              <div className="space-y-4">
-                {fields.map((field, index) => (
-                  <div key={field.id} className="grid grid-cols-1 md:grid-cols-4 gap-4 items-end border p-4 rounded-xl bg-muted/30">
-                    <FormField
-                      control={form.control}
-                      name={`ministers.${index}.name`}
-                      render={({ field }) => (
-                        <FormItem>
-                          <FormLabel className="text-xs">Name</FormLabel>
-                          <FormControl>
-                            <Input placeholder="Name" {...field} />
-                          </FormControl>
-                          <FormMessage />
-                        </FormItem>
-                      )}
-                    />
-                    <FormField
-                      control={form.control}
-                      name={`ministers.${index}.role`}
-                      render={({ field }) => (
-                        <FormItem>
-                          <FormLabel className="text-xs">Role</FormLabel>
-                          <FormControl>
-                            <Input placeholder="Role" {...field} />
-                          </FormControl>
-                          <FormMessage />
-                        </FormItem>
-                      )}
-                    />
-                    <FormField
-                      control={form.control}
-                      name={`ministers.${index}.image`}
-                      render={({ field }) => (
-                        <FormItem>
-                          <FormLabel className="text-xs">Image URL (Optional)</FormLabel>
-                          <FormControl>
-                            <Input placeholder="Image URL" {...field} />
-                          </FormControl>
-                          <FormMessage />
-                        </FormItem>
-                      )}
-                    />
+                <div className="space-y-4">
+                  <div className="flex items-center justify-between">
+                    <h3 className="text-lg font-semibold">Ministers</h3>
                     <Button
                       type="button"
-                      variant="destructive"
-                      size="icon"
-                      onClick={() => remove(index)}
-                      className="mb-0.5"
+                      variant="outline"
+                      size="sm"
+                      onClick={() => append({ name: "", role: "", image: "" })}
                     >
-                      <Trash2 className="h-4 w-4" />
+                      <Plus className="mr-2 h-4 w-4" /> Add Minister
                     </Button>
                   </div>
-                ))}
-                {fields.length === 0 && (
-                  <p className="text-sm text-center text-muted-foreground py-4 border border-dashed rounded-xl">
-                    No ministers added yet.
-                  </p>
-                )}
+                  <div className="space-y-4">
+                    {fields.map((field, index) => (
+                      <div key={field.id} className="grid grid-cols-1 md:grid-cols-4 gap-4 items-end border p-4 rounded-xl bg-muted/30">
+                        <FormField
+                          control={form.control}
+                          name={`ministers.${index}.name`}
+                          render={({ field }) => (
+                            <FormItem>
+                              <FormLabel className="text-xs">Name</FormLabel>
+                              <FormControl>
+                                <Input placeholder="Name" {...field} />
+                              </FormControl>
+                              <FormMessage />
+                            </FormItem>
+                          )}
+                        />
+                        <FormField
+                          control={form.control}
+                          name={`ministers.${index}.role`}
+                          render={({ field }) => (
+                            <FormItem>
+                              <FormLabel className="text-xs">Role</FormLabel>
+                              <FormControl>
+                                <Input placeholder="Role" {...field} />
+                              </FormControl>
+                              <FormMessage />
+                            </FormItem>
+                          )}
+                        />
+                        <FormField
+                          control={form.control}
+                          name={`ministers.${index}.image`}
+                          render={({ field }) => (
+                            <FormItem>
+                              <FormLabel className="text-xs">Image URL (Optional)</FormLabel>
+                              <FormControl>
+                                <Input placeholder="Image URL" {...field} />
+                              </FormControl>
+                              <FormMessage />
+                            </FormItem>
+                          )}
+                        />
+                        <Button
+                          type="button"
+                          variant="destructive"
+                          size="icon"
+                          onClick={() => remove(index)}
+                          className="mb-0.5"
+                        >
+                          <Trash2 className="h-4 w-4" />
+                        </Button>
+                      </div>
+                    ))}
+                    {fields.length === 0 && (
+                      <p className="text-sm text-center text-muted-foreground py-4 border border-dashed rounded-xl">
+                        No ministers added yet.
+                      </p>
+                    )}
+                  </div>
+                </div>
+
+                <div className="space-y-4">
+                  <h3 className="text-lg font-semibold">Sponsors</h3>
+                  <FormField
+                    control={form.control}
+                    name="sponsorIds"
+                    render={() => (
+                      <FormItem>
+                        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 border p-4 rounded-xl bg-muted/30">
+                          {sponsors.map((sponsor) => (
+                            <FormField
+                              key={sponsor.id}
+                              control={form.control}
+                              name="sponsorIds"
+                              render={({ field }) => {
+                                return (
+                                  <FormItem
+                                    key={sponsor.id}
+                                    className="flex flex-row items-center space-x-3 space-y-0"
+                                  >
+                                    <FormControl>
+                                      <Checkbox
+                                        checked={field.value?.includes(sponsor.id)}
+                                        onCheckedChange={(checked) => {
+                                          return checked
+                                            ? field.onChange([...field.value, sponsor.id])
+                                            : field.onChange(
+                                                field.value?.filter(
+                                                  (value: string) => value !== sponsor.id
+                                                )
+                                              )
+                                        }}
+                                      />
+                                    </FormControl>
+                                    <FormLabel className="font-normal cursor-pointer">
+                                      {sponsor.name}
+                                    </FormLabel>
+                                  </FormItem>
+                                )
+                              }}
+                            />
+                          ))}
+                          {sponsors.length === 0 && (
+                            <p className="text-sm text-muted-foreground col-span-full">
+                              No sponsors found. Create some first.
+                            </p>
+                          )}
+                        </div>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                </div>
               </div>
             </div>
 
-            <div className="space-y-4">
-              <h3 className="text-lg font-semibold">Sponsors</h3>
-              <FormField
-                control={form.control}
-                name="sponsorIds"
-                render={() => (
-                  <FormItem>
-                    <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 border p-4 rounded-xl bg-muted/30">
-                      {sponsors.map((sponsor) => (
-                        <FormField
-                          key={sponsor.id}
-                          control={form.control}
-                          name="sponsorIds"
-                          render={({ field }) => {
-                            return (
-                              <FormItem
-                                key={sponsor.id}
-                                className="flex flex-row items-center space-x-3 space-y-0"
-                              >
-                                <FormControl>
-                                  <Checkbox
-                                    checked={field.value?.includes(sponsor.id)}
-                                    onCheckedChange={(checked) => {
-                                      return checked
-                                        ? field.onChange([...field.value, sponsor.id])
-                                        : field.onChange(
-                                            field.value?.filter(
-                                              (value: string) => value !== sponsor.id
-                                            )
-                                          )
-                                    }}
-                                  />
-                                </FormControl>
-                                <FormLabel className="font-normal cursor-pointer">
-                                  {sponsor.name}
-                                </FormLabel>
-                              </FormItem>
-                            )
-                          }}
-                        />
-                      ))}
-                      {sponsors.length === 0 && (
-                        <p className="text-sm text-muted-foreground col-span-full">
-                          No sponsors found. Create some first.
-                        </p>
-                      )}
-                    </div>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-            </div>
-
-            <DialogFooter className="sticky bottom-0 bg-background pt-4 border-t">
+            <DialogFooter className="sticky bottom-0 bg-muted/80 backdrop-blur-sm pt-4 pb-4 px-6 border-t z-20">
               <Button
                 type="button"
                 variant="outline"
                 onClick={onClose}
                 disabled={isSubmitting}
+                className="h-11 px-8 rounded-full"
               >
                 Cancel
               </Button>
-              <Button type="submit" disabled={isSubmitting}>
+              <Button type="submit" disabled={isSubmitting} className="h-11 px-8 rounded-full">
                 {isSubmitting ? (
                   <>
                     <Loader2 className="mr-2 h-4 w-4 animate-spin" />

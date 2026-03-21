@@ -18,18 +18,29 @@ export async function PATCH(
 
     const { id } = await params;
     const body = await req.json();
-    const { title, startDate, endDate, poster, description, status, ministers, sponsorIds } = body;
+    const { title, startDate, endDate, poster, description, location, status, ministers, sponsorIds } = body;
 
     if (!id) {
       return new NextResponse("Event ID is required", { status: 400 });
     }
 
-    const slug = title
-      ? title
-          .toLowerCase()
-          .replace(/[^\w ]+/g, "")
-          .replace(/ +/g, "-")
-      : undefined;
+    // Get existing event to handle slug generation if fields are missing
+    const existingEvent = await prisma.event.findUnique({
+      where: { id },
+    });
+
+    if (!existingEvent) {
+      return new NextResponse("Event not found", { status: 404 });
+    }
+
+    const newTitle = title || existingEvent.title;
+    const newStartDate = startDate || existingEvent.startDate;
+    const dateSuffix = new Date(newStartDate).toISOString().split('T')[0];
+    
+    const slug = `${newTitle
+      .toLowerCase()
+      .replace(/[^\w ]+/g, "")
+      .replace(/ +/g, "-")}-${dateSuffix}`;
 
     // Update the event
     const event = await prisma.event.update({
@@ -43,27 +54,30 @@ export async function PATCH(
         endDate: endDate ? new Date(endDate) : undefined,
         poster,
         description,
+        location,
         status,
         sponsorIds: sponsorIds || [],
       },
     });
 
     // Sync ministers: Simple approach - delete and recreate
-    if (ministers) {
+    if (ministers && Array.isArray(ministers)) {
       await prisma.minister.deleteMany({
         where: {
           eventId: id,
         },
       });
 
-      await prisma.minister.createMany({
-        data: ministers.map((m: any) => ({
-          name: m.name,
-          role: m.role,
-          image: m.image,
-          eventId: id,
-        })),
-      });
+      if (ministers.length > 0) {
+        await prisma.minister.createMany({
+          data: ministers.map((m: any) => ({
+            name: m.name,
+            role: m.role,
+            image: m.image,
+            eventId: id,
+          })),
+        });
+      }
     }
 
     const updatedEvent = await prisma.event.findUnique({

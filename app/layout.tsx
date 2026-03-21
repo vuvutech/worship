@@ -34,6 +34,8 @@ export default function RootLayout({
       lang='en'
       className={opensans.variable}
       data-scroll-behavior="smooth"
+      scrollbar-width="thin"
+      scrollbar-color="#000 #fff"
     >
       <body
         className={`${geistSans.variable} ${ibmplex.variable} ${anton.variable} ${opensans.variable} ${bebas.variable} text-base antialiased bg-neutral-100`}

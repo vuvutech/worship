@@ -110,8 +110,20 @@ export default async function SchedulePage() {
                   </svg>
                 </div>
                 <div>
-                  <p className="font-bold text-foreground">Date & Time</p>
-                  <p>{fullDateRange}</p>
+                  <p className="font-bold text-foreground">When</p>
+                  <div className="flex flex-col gap-0.5">
+                    <p className="font-medium text-foreground">
+                      {format(startDate, "MMMM d, yyyy")} @ {format(startDate, "h:mm aa")}
+                    </p>
+                    <div className="flex items-center gap-2 text-xs text-muted-foreground/60">
+                      <div className="h-px w-4 bg-border" />
+                      <span>until</span>
+                      <div className="h-px w-4 bg-border" />
+                    </div>
+                    <p className="font-medium text-foreground">
+                      {format(new Date(nextEvent.endDate), "MMMM d, yyyy")} @ {format(new Date(nextEvent.endDate), "h:mm aa")}
+                    </p>
+                  </div>
                 </div>
               </div>
               <div className='flex items-center gap-3'>
