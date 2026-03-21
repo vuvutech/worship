@@ -176,10 +176,13 @@ model Sponsor {
   @@map("sponsors")
 }
 model HeroSettings {
-  id        String   @id @default(auto()) @map("_id") @db.ObjectId
-  videoId   String
-  startTime Int      @default(0)
-  updatedAt DateTime @updatedAt
+  id          String   @id @default(auto()) @map("_id") @db.ObjectId
+  videoSource String   @default("youtube") // youtube, mux, local
+  videoId     String?
+  videoUrl    String?
+  startTime   Int      @default(0)
+  updatedAt   DateTime @updatedAt
 
   @@map("hero_settings")
 }
+

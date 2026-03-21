@@ -9,6 +9,13 @@ import { Save, Loader2, Video as VideoIcon } from "lucide-react";
 import { toast } from "sonner";
 
 import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import {
   Field,
   FieldError,
   FieldGroup,
@@ -24,8 +31,11 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 
+
 const heroSchema = z.object({
-  videoId: z.string().min(1, "Video ID is required"),
+  videoSource: z.enum(["youtube", "mux", "local"]),
+  videoId: z.string().optional(),
+  videoUrl: z.string().optional(),
   startTime: z.number().min(0, "Start time must be a positive number"),
 });
 
@@ -41,10 +51,14 @@ export function HeroManagement() {
   const form = useForm<HeroFormValues>({
     resolver: zodResolver(heroSchema),
     defaultValues: {
+      videoSource: "youtube",
       videoId: "bDk_nNbccnc",
+      videoUrl: "",
       startTime: 108,
     },
   });
+
+  const videoSource = form.watch("videoSource");
 
   const fetchHeroSettings = async () => {
     try {
@@ -53,8 +67,10 @@ export function HeroManagement() {
       if (error) throw error;
       if (data) {
         form.reset({
-          videoId: data.videoId,
-          startTime: data.startTime,
+          videoSource: data.videoSource || "youtube",
+          videoId: data.videoId || "",
+          videoUrl: data.videoUrl || "",
+          startTime: data.startTime || 0,
         });
       }
     } catch (error) {
@@ -78,10 +94,13 @@ export function HeroManagement() {
       if (error) throw error;
       toast.success("Hero settings updated successfully");
       fetchHeroSettings();
-    } catch (error) {
+    } catch (error: any) {
       toast.error("Failed to update hero settings");
-      console.error(error);
+      console.error("Hero settings update failed:", error);
     }
+
+
+
   };
 
   if (loading) {
@@ -120,28 +139,81 @@ export function HeroManagement() {
             <FieldGroup>
               <Controller
                 control={form.control}
-                name='videoId'
-                render={({ field, fieldState }) => (
-                  <Field data-invalid={fieldState.invalid}>
-                    <FieldLabel htmlFor={field.name}>
-                      YouTube Video ID
-                    </FieldLabel>
-                    <Input
-                      {...field}
-                      id={field.name}
-                      placeholder='e.g., bDk_nNbccnc'
-                      aria-invalid={fieldState.invalid}
-                    />
-                    <p className='text-xs text-muted-foreground mt-1'>
-                      The alphanumeric ID from the YouTube URL (e.g., watch?v=
-                      <strong>bDk_nNbccnc</strong>)
-                    </p>
-                    {fieldState.invalid && (
-                      <FieldError errors={[fieldState.error]} />
-                    )}
+                name='videoSource'
+                render={({ field }) => (
+                  <Field>
+                    <FieldLabel>Video Source</FieldLabel>
+                    <Select
+                      onValueChange={field.onChange}
+                      defaultValue={field.value}
+                    >
+                      <SelectTrigger className='w-full'>
+                        <SelectValue placeholder='Select video source' />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value='youtube'>YouTube</SelectItem>
+                        <SelectItem value='mux'>Mux Video</SelectItem>
+                        <SelectItem value='local'>Local Video</SelectItem>
+                      </SelectContent>
+                    </Select>
                   </Field>
                 )}
               />
+
+              {videoSource === "youtube" && (
+                <Controller
+                  control={form.control}
+                  name='videoId'
+                  render={({ field, fieldState }) => (
+                    <Field data-invalid={fieldState.invalid}>
+                      <FieldLabel htmlFor={field.name}>
+                        YouTube Video ID
+                      </FieldLabel>
+                      <Input
+                        {...field}
+                        id={field.name}
+                        placeholder='e.g., bDk_nNbccnc'
+                        aria-invalid={fieldState.invalid}
+                      />
+                      <p className='text-xs text-muted-foreground mt-1'>
+                        The alphanumeric ID from the YouTube URL (e.g., watch?v=
+                        <strong>bDk_nNbccnc</strong>)
+                      </p>
+                      {fieldState.invalid && (
+                        <FieldError errors={[fieldState.error]} />
+                      )}
+                    </Field>
+                  )}
+                />
+              )}
+
+              {(videoSource === "mux" || videoSource === "local") && (
+                <Controller
+                  control={form.control}
+                  name='videoUrl'
+                  render={({ field, fieldState }) => (
+                    <Field data-invalid={fieldState.invalid}>
+                      <FieldLabel htmlFor={field.name}>
+                        {videoSource === "mux" ? "Mux Video URL" : "Local Video Path"}
+                      </FieldLabel>
+                      <Input
+                        {...field}
+                        id={field.name}
+                        placeholder={videoSource === "mux" ? "https://stream.mux.com/..." : "/videos/hero.mp4"}
+                        aria-invalid={fieldState.invalid}
+                      />
+                      <p className='text-xs text-muted-foreground mt-1'>
+                        {videoSource === "mux" 
+                          ? "The full stream URL from Mux." 
+                          : "The relative path to the video file in the public folder."}
+                      </p>
+                      {fieldState.invalid && (
+                        <FieldError errors={[fieldState.error]} />
+                      )}
+                    </Field>
+                  )}
+                />
+              )}
 
               <Controller
                 control={form.control}
@@ -193,3 +265,4 @@ export function HeroManagement() {
     </div>
   );
 }
+

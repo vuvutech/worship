@@ -44,13 +44,12 @@ const Navbar = () => {
   };
 
   return (
-    <nav className='fixed z-50 inset-x-2 top-6 mx-auto h-12 max-w-(--breakpoint-xl) rounded-full bg-background/30 backdrop-blur-3xl border border-white/10 shadow-lg '>
+    <nav className='fixed z-50 inset-x-2 top-6 mx-auto h-12 max-w-(--breakpoint-xl) rounded-full bg-black text-white backdrop-blur-3xl border border-white/10 shadow-lg '>
       <div className='mx-auto flex h-full items-center justify-between px-2'>
         <Logo />
 
         {/* Desktop Menu */}
-        <NavMenu className="hidden md:flex" />
-
+        <NavMenu className='hidden md:flex' />
 
         <div className='flex items-center gap-3'>
           {isAuthenticated && user ? (
@@ -98,20 +97,19 @@ const Navbar = () => {
             </>
           ) : (
             <Button
-              className='hidden rounded-full sm:inline-flex'
+              className='hidden px-4 bg-accent text-accent-foreground rounded-full sm:inline-flex'
               variant='outline'
               asChild
             >
               <Link href='/login'>Sign In</Link>
             </Button>
           )}
-          <ThemeToggle />
           <Button
             className='rounded-full'
             asChild
           >
             <Link
-            transitionTypes={['slide']}
+              transitionTypes={["slide"]}
               href={
                 isAuthenticated
                   ? user?.role === "admin"
@@ -127,6 +125,7 @@ const Navbar = () => {
                 : "Get Started"}
             </Link>
           </Button>
+          <ThemeToggle />
 
           {/* Mobile Menu */}
           <div className='md:hidden'>

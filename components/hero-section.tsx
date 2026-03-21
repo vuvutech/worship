@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import HeroHeadline from "./hero-headline";
 import { createFetch } from "@better-fetch/fetch";
 import { useEffect, useRef, useState } from "react";
+import MuxPlayer from "@mux/mux-player-react";
 
 declare global {
   interface Window {
@@ -19,12 +20,16 @@ const $fetch = createFetch({
 
 export default function HeroSection() {
   const [heroSettings, setHeroSettings] = useState<{
-    videoId: string;
+    videoSource: "youtube" | "mux" | "local";
+    videoId?: string;
+    videoUrl?: string;
     startTime: number;
   } | null>(null);
   const [isMuted, setIsMuted] = useState(true);
-  const [player, setPlayer] = useState<any>(null);
+  const [ytPlayer, setYtPlayer] = useState<any>(null);
   const iframeRef = useRef<HTMLIFrameElement>(null);
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const muxPlayerRef = useRef<any>(null);
   const [origin, setOrigin] = useState("");
 
   useEffect(() => {
@@ -34,18 +39,26 @@ export default function HeroSection() {
         if (data) {
           setHeroSettings(data);
         } else {
-          setHeroSettings({ videoId: "bDk_nNbccnc", startTime: 108 });
+          setHeroSettings({
+            videoSource: "youtube",
+            videoId: "bDk_nNbccnc",
+            startTime: 108,
+          });
         }
       } catch (error) {
         console.error("Failed to fetch hero settings:", error);
-        setHeroSettings({ videoId: "bDk_nNbccnc", startTime: 108 });
+        setHeroSettings({
+          videoSource: "youtube",
+          videoId: "bDk_nNbccnc",
+          startTime: 108,
+        });
       }
     };
     fetchSettings();
   }, []);
 
   useEffect(() => {
-    if (!heroSettings) return;
+    if (!heroSettings || heroSettings.videoSource !== "youtube") return;
 
     // Load YouTube API script
     if (!window.YT) {
@@ -61,7 +74,7 @@ export default function HeroSection() {
         new window.YT.Player(iframeRef.current, {
           events: {
             onReady: (event: any) => {
-              setPlayer(event.target);
+              setYtPlayer(event.target);
               // Ensure it starts muted as per background video norm
               event.target.mute();
             },
@@ -82,14 +95,20 @@ export default function HeroSection() {
   }, []);
 
   const toggleMute = () => {
-    if (player) {
-      if (isMuted) {
-        player.unMute();
-        player.setVolume(100);
+    const newMuted = !isMuted;
+    setIsMuted(newMuted);
+
+    if (heroSettings?.videoSource === "youtube" && ytPlayer) {
+      if (newMuted) {
+        ytPlayer.mute();
       } else {
-        player.mute();
+        ytPlayer.unMute();
+        ytPlayer.setVolume(100);
       }
-      setIsMuted(!isMuted);
+    } else if (heroSettings?.videoSource === "local" && videoRef.current) {
+      videoRef.current.muted = newMuted;
+    } else if (heroSettings?.videoSource === "mux" && muxPlayerRef.current) {
+      muxPlayerRef.current.muted = newMuted;
     }
   };
 
@@ -101,21 +120,48 @@ export default function HeroSection() {
     );
   }
 
-  const { videoId, startTime } = heroSettings;
+  const { videoSource, videoId, videoUrl, startTime } = heroSettings;
 
   return (
     <header className='relative md:relative absolute top-0 left-0 w-full h-[100dvh] flex flex-col justify-center pb-10 overflow-hidden z-0'>
-      {/* Video Background */}
-      {/* YouTube Video Background */}
+      {/* Video Background Selection */}
       <div className='absolute inset-0 w-full h-full pointer-events-none overflow-hidden'>
-        <iframe
-          key={videoId}
-          ref={iframeRef}
-          src={`https://www.youtube.com/embed/${videoId}?autoplay=1&mute=1&loop=1&controls=0&showinfo=0&autohide=1&modestbranding=1&playlist=${videoId}&rel=0&enablejsapi=1&start=${startTime}&iv_load_policy=3&disablekb=1${origin ? `&origin=${origin}&widget_referrer=${origin}` : ""}`}
-          className='absolute top-1/2 left-1/2 w-[150vw] h-[120vh] md:w-[150vw] md:h-[150vh] -translate-x-1/2 -translate-y-1/2 object-cover min-w-full min-h-full aspect-video'
-          allow='autoplay; encrypted-media'
-          title='Hero Video Background'
-        />
+        {videoSource === "youtube" && videoId && (
+          <iframe
+            key={videoId}
+            ref={iframeRef}
+            src={`https://www.youtube.com/embed/${videoId}?autoplay=1&mute=1&loop=1&controls=0&showinfo=0&autohide=1&modestbranding=1&playlist=${videoId}&rel=0&enablejsapi=1&start=${startTime}&iv_load_policy=3&disablekb=1${origin ? `&origin=${origin}&widget_referrer=${origin}` : ""}`}
+            className='absolute top-1/2 left-1/2 w-[150vw] h-[120vh] md:w-[150vw] md:h-[150vh] -translate-x-1/2 -translate-y-1/2 object-cover min-w-full min-h-full aspect-video'
+            allow='autoplay; encrypted-media'
+            title='Hero Video Background'
+          />
+        )}
+
+        {videoSource === "mux" && videoUrl && (
+          <MuxPlayer
+            ref={muxPlayerRef}
+            src={videoUrl}
+            autoPlay
+            muted
+            loop
+
+
+            className='absolute top-1/2 left-1/2 w-full h-full -translate-x-1/2 -translate-y-1/2 object-cover min-w-full min-h-full'
+            stream-type='on-demand'
+          />
+        )}
+
+        {videoSource === "local" && videoUrl && (
+          <video
+            ref={videoRef}
+            src={videoUrl}
+            autoPlay
+            muted
+            loop
+            playsInline
+            className='absolute top-1/2 left-1/2 w-full h-full -translate-x-1/2 -translate-y-1/2 object-cover min-w-full min-h-full'
+          />
+        )}
       </div>
 
       {/* Mute/Unmute Toggle */}
@@ -140,6 +186,7 @@ export default function HeroSection() {
         className='absolute inset-0 bg-black/40'
         aria-hidden='true'
       />
+
       <HeroHeadline className="z-50 px-4 md:px-16  xl:px-32 2xl:px-40 text-white" />
       {/* Content */}
       <div className='relative px-4 sm:px-6 lg:px-8 hidden'>

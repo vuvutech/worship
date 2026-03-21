@@ -34,35 +34,42 @@ export async function POST(req: Request) {
     }
 
     const body = await req.json();
-    const { videoId, startTime } = body;
+    
+    const { videoId, startTime, videoSource, videoUrl } = body;
 
-    if (!videoId) {
-      return new NextResponse("Missing videoId", { status: 400 });
-    }
+
 
     const currentSettings = await prisma.heroSettings.findFirst();
+
+
+    const data = {
+      videoSource: videoSource || "youtube",
+      videoId: videoId || null,
+      videoUrl: videoUrl || null,
+      startTime: parseInt(startTime) || 0,
+    };
 
     let settings;
     if (currentSettings) {
       settings = await prisma.heroSettings.update({
         where: { id: currentSettings.id },
-        data: {
-          videoId,
-          startTime: parseInt(startTime) || 0,
-        },
+        data,
       });
     } else {
       settings = await prisma.heroSettings.create({
-        data: {
-          videoId,
-          startTime: parseInt(startTime) || 0,
-        },
+        data,
       });
     }
 
+
     return NextResponse.json(settings);
-  } catch (error) {
+  } catch (error: any) {
     console.error("[ADMIN_HERO_POST]", error);
-    return new NextResponse("Internal Error", { status: 500 });
+    return NextResponse.json({ 
+      error: "Internal Error", 
+      message: error.message,
+      stack: process.env.NODE_ENV === "development" ? error.stack : undefined
+    }, { status: 500 });
   }
+
 }

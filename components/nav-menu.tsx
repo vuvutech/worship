@@ -45,11 +45,11 @@ export const NavMenu = ({
           )}
           transitionTypes={['slide', 'fade']}
         >
-          <div className='flex flex-col transition-transform duration-400 group-hover:-translate-y-12 text-foreground '>
-            <span className='flex h-12 items-center justify-center text-[12px] font-medium uppercase tracking-wide text-foreground transition-colors duration-400 group-hover:text-foreground'>
+          <div className='flex flex-col transition-transform duration-400 group-hover:-translate-y-12 text-white '>
+            <span className='flex h-12 items-center justify-center text-[12px] font-medium uppercase tracking-wide text-white transition-colors duration-400 group-hover:text-white'>
               {item.label}
             </span>
-            <span className='flex h-12 items-center justify-center text-[12px] font-medium uppercase tracking-wide text-foreground'>
+            <span className='flex h-12 items-center justify-center text-[12px] font-medium uppercase tracking-wide text-white'>
               {item.label}
             </span>
           </div>

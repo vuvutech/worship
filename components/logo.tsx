@@ -1,7 +1,20 @@
 import Link from "next/link";
+import { Infinity } from "lucide-react";
 
 export const Logo = () => (
-  <Link href={'/'}>
-    <span className="uppercase pl-4 text-primary font-bold">The NonStop Series</span> &trade;
+  <Link href={'/'} className="flex pl-2 items-center gap-2 group transition-all duration-300">
+    <div className="relative flex items-center justify-center">
+      <Infinity className="w-8 h-8 text-white group-hover:text-amber-400 transition-colors duration-500" />
+      <div className="absolute inset-0 bg-amber-400/20 blur-xl rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+    </div>
+    <div className="flex flex-col -gap-1">
+      <span className="uppercase text-[14px] leading-none text-white font-extrabold tracking-tighter glow-sm whitespace-nowrap">
+        The NonStop Series &trade;
+      </span>
+      <span className="text-[10px] hidden uppercase tracking-[0.2em] font-medium text-white/50 group-hover:text-amber-400/70 transition-colors duration-500">
+        Worship Experience
+      </span>
+    </div>
   </Link>
 );
+
