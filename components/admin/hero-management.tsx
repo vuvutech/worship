@@ -16,7 +16,13 @@ import {
 } from "@/components/ui/field";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 
 const heroSchema = z.object({
   videoId: z.string().min(1, "Video ID is required"),
@@ -80,76 +86,103 @@ export function HeroManagement() {
 
   if (loading) {
     return (
-      <div className="flex items-center justify-center h-48">
-        <Loader2 className="h-8 w-8 animate-spin text-muted-foreground" />
+      <div className='flex items-center justify-center h-48'>
+        <Loader2 className='h-8 w-8 animate-spin text-muted-foreground' />
       </div>
     );
   }
 
   return (
-    <div className="w-full max-w-2xl mx-auto">
-      <Card className="bg-card/50 backdrop-blur-sm">
+    <div className='w-full '>
+      <div className='flex justify-between items-center mb-8'>
+        <div>
+          <h1 className='text-3xl font-bold  '>Hero Video Settings</h1>
+          <p className='text-muted-foreground'>
+            Configure the main background video for your landing page.
+          </p>
+        </div>
+      </div>
+      <Card className='bg-card/50 backdrop-blur-sm p-4'>
         <CardHeader>
-          <div className="flex items-center gap-2">
-            <VideoIcon className="h-6 w-6 text-primary" />
-            <CardTitle className="text-2xl">Hero Video Settings</CardTitle>
+          <div className='flex items-center gap-2'>
+            <VideoIcon className='h-6 w-6 text-primary' />
+            <CardTitle className='text-2xl'>Hero Video Settings</CardTitle>
           </div>
           <CardDescription>
             Configure the main background video for your landing page.
           </CardDescription>
         </CardHeader>
         <CardContent>
-          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+          <form
+            onSubmit={form.handleSubmit(onSubmit)}
+            className='space-y-6'
+          >
             <FieldGroup>
               <Controller
                 control={form.control}
-                name="videoId"
+                name='videoId'
                 render={({ field, fieldState }) => (
                   <Field data-invalid={fieldState.invalid}>
-                    <FieldLabel htmlFor={field.name}>YouTube Video ID</FieldLabel>
+                    <FieldLabel htmlFor={field.name}>
+                      YouTube Video ID
+                    </FieldLabel>
                     <Input
                       {...field}
                       id={field.name}
-                      placeholder="e.g., bDk_nNbccnc"
+                      placeholder='e.g., bDk_nNbccnc'
                       aria-invalid={fieldState.invalid}
                     />
-                    <p className="text-xs text-muted-foreground mt-1">
-                      The alphanumeric ID from the YouTube URL (e.g., watch?v=<strong>bDk_nNbccnc</strong>)
+                    <p className='text-xs text-muted-foreground mt-1'>
+                      The alphanumeric ID from the YouTube URL (e.g., watch?v=
+                      <strong>bDk_nNbccnc</strong>)
                     </p>
-                    {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
+                    {fieldState.invalid && (
+                      <FieldError errors={[fieldState.error]} />
+                    )}
                   </Field>
                 )}
               />
 
               <Controller
                 control={form.control}
-                name="startTime"
+                name='startTime'
                 render={({ field, fieldState }) => (
                   <Field data-invalid={fieldState.invalid}>
-                    <FieldLabel htmlFor={field.name}>Start Time (Seconds)</FieldLabel>
+                    <FieldLabel htmlFor={field.name}>
+                      Start Time (Seconds)
+                    </FieldLabel>
                     <Input
                       {...field}
                       id={field.name}
-                      type="number"
+                      type='number'
                       value={field.value}
-                      onChange={(e) => field.onChange(parseInt(e.target.value) || 0)}
+                      onChange={(e) =>
+                        field.onChange(parseInt(e.target.value) || 0)
+                      }
                       aria-invalid={fieldState.invalid}
                     />
-                    <p className="text-xs text-muted-foreground mt-1">
-                      The exact second the background video should start looping from.
+                    <p className='text-xs text-muted-foreground mt-1'>
+                      The exact second the background video should start looping
+                      from.
                     </p>
-                    {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
+                    {fieldState.invalid && (
+                      <FieldError errors={[fieldState.error]} />
+                    )}
                   </Field>
                 )}
               />
             </FieldGroup>
 
-            <div className="flex justify-end pt-4">
-              <Button type="submit" disabled={form.formState.isSubmitting} className="w-full sm:w-auto">
+            <div className='flex justify-end pt-4'>
+              <Button
+                type='submit'
+                disabled={form.formState.isSubmitting}
+                className='w-full sm:w-auto'
+              >
                 {form.formState.isSubmitting ? (
-                  <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                  <Loader2 className='mr-2 h-4 w-4 animate-spin' />
                 ) : (
-                  <Save className="mr-2 h-4 w-4" />
+                  <Save className='mr-2 h-4 w-4' />
                 )}
                 Save Settings
               </Button>

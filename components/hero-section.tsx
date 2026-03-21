@@ -104,7 +104,7 @@ export default function HeroSection() {
   const { videoId, startTime } = heroSettings;
 
   return (
-    <header className='relative md:relative absolute top-0 left-0 w-full h-[100dvh] flex flex-col justify-end pb-10 overflow-hidden z-0'>
+    <header className='relative md:relative absolute top-0 left-0 w-full h-[100dvh] flex flex-col justify-center pb-10 overflow-hidden z-0'>
       {/* Video Background */}
       {/* YouTube Video Background */}
       <div className='absolute inset-0 w-full h-full pointer-events-none overflow-hidden'>
