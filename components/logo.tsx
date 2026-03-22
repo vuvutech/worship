@@ -2,7 +2,7 @@ import Link from "next/link";
 import { Infinity } from "lucide-react";
 
 export const Logo = () => (
-  <Link href={'/'} className="flex pl-2 items-center gap-2 group transition-all duration-300">
+  <Link href={'/'} className="flex pl-4 items-center gap-2 group transition-all duration-300">
     <div className="relative flex items-center justify-center">
       <Infinity className="w-8 h-8 text-white group-hover:text-amber-400 transition-colors duration-500" />
       <div className="absolute inset-0 bg-amber-400/20 blur-xl rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500" />

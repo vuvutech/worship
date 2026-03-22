@@ -49,7 +49,7 @@ export default function Home() {
       </div>
       <div
         ref={gallery}
-        className='h-[175dvh] bg-background relative flex gap-[2vw] p-[2vw] overflow-hidden'
+        className='h-[150dvh] bg-background relative flex gap-[2vw] p-[2vw] overflow-hidden'
       >
         <Column
           images={["images/144.jpg", "images/jerry2.jpg", "images/egypt.jpg"]}

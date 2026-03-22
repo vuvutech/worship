@@ -6,8 +6,8 @@ import React from "react";
 export default function GalleryPage() {
   return (
     <>
-      {/* <Parallax /> */}
       <GalleryMain />
+      <Parallax />
     </>
   );
 }
