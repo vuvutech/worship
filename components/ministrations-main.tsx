@@ -22,7 +22,7 @@ const ministrationsHomeProp = [
     category: "Intercession",
     description:
       "When the world falls silent, the fire burns brightest. Experience the weight of the Presence during the quietest hours of the 144-hour sacrifice.",
-    image: "https://images.unsplash.com/photo-1510915361894-db8b60106cb1?q=80&w=2070&auto=format&fit=crop", 
+    image: "/images/mass-choir8.jpg", 
   },
   {
     id: 2,
@@ -126,7 +126,7 @@ const Ministration = ({ className }: ministrationsHomeProps) => {
                       <img
                         src={project.image || "/placeholder.svg"}
                         alt={project.title}
-                        className="h-full w-full object-cover transition-transform duration-500 hover:scale-105"
+                        className="h-full w-full object-top object-cover transition-transform duration-500 hover:scale-105"
                       />
                     </div>
                     <div className="space-y-3">

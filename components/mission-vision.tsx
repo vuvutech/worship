@@ -2,7 +2,7 @@ import React from "react";
 
 export const MissionVision = () => {
   return (
-    <div className='mx-auto grid max-w-5xl gap-16 py-28 md:grid-cols-2 md:gap-28'>
+    <div className='mx-auto grid max-w-6xl px-2 md:px-4 gap-8 py-16 md:grid-cols-2 md:gap-8'>
       <div>
         <h2 className='mb-5 text-4xl font-medium'>
           Vision Statement: The Altar of Restoration

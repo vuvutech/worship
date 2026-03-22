@@ -55,14 +55,14 @@ export default function UpcomingEventsList({ events }: UpcomingEventsListProps) 
               >
                 {/* Date column */}
                 <div className="flex-shrink-0 mb-4 md:mb-0 md:mr-10 flex flex-row md:flex-col items-center md:items-start gap-2 md:gap-0">
-                  <div className="text-4xl md:text-5xl font-bebas text-primary leading-none">{day}</div>
+                  <div className="text-4xl md:text-5xl font-bebas text-amber-400 leading-none">{day}</div>
                   <div className="text-sm font-opensans text-muted-foreground uppercase tracking-widest">{month}</div>
                 </div>
 
                 {/* Info column */}
                 <div className="flex-grow space-y-1">
                   <div className="flex items-center gap-2 text-[10px] md:text-xs font-opensans text-primary/70 uppercase tracking-[0.2em] font-bold">
-                    <MapPin className="size-3" />
+                    <MapPin className="size-3 text-amber-400/70" />
                     {event.location || "To Be Announced"}
                   </div>
                   <h3 className="text-2xl md:text-3xl font-bebas text-foreground tracking-tight group-hover:text-primary transition-colors">
@@ -70,14 +70,14 @@ export default function UpcomingEventsList({ events }: UpcomingEventsListProps) 
                   </h3>
                   <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-[10px] md:text-xs font-opensans text-muted-foreground/80 font-medium">
                     <span className="flex items-center gap-1">
-                      <Calendar className="size-3 text-primary/60" />
+                      <Calendar className="size-3 text-amber-400/60" />
                       {format(date, "MMM d, yyyy")} @ {format(date, "h:mm aa")}
                     </span>
-                    <span className="flex items-center gap-1 text-primary/40 text-[8px] uppercase tracking-widest font-bold">
+                    <span className="flex items-center gap-1 text-amber-400/40 text-[8px] uppercase tracking-widest font-bold">
                       until
                     </span>
                     <span className="flex items-center gap-1">
-                      <Calendar className="size-3 text-primary/60" />
+                      <Calendar className="size-3 text-amber-400/60" />
                       {format(new Date(event.endDate), "MMM d, yyyy")} @ {format(new Date(event.endDate), "h:mm aa")}
                     </span>
                   </div>

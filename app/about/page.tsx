@@ -287,12 +287,12 @@ export default function Home() {
         <MissionVision /> 
       </section>
       <section
-        className='container py-12 md:py-20 p-4'
+        className='container py-12 md:py-8 p-4'
         id='achievements'
       >
-        <div className='mx-auto text-center'>
+        <div className=''>
           <h2 className='mb-4 text-3xl sm:text-4xl'>Our Impact & Reach</h2>
-          <p className='text-muted-foreground mx-auto mb-12 max-w-3xl text-base sm:text-lg'>
+          <p className='text-muted-foreground  mb-12 max-w-3xl text-base sm:text-lg'>
             Rooted in faith, growing in community. Witness the transformative
             power of worship as we reach souls across the globe and build a
             legacy of spiritual revival.

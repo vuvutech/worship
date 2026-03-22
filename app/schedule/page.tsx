@@ -101,7 +101,7 @@ export default async function SchedulePage() {
                     strokeWidth='2'
                     strokeLinecap='round'
                     strokeLinejoin='round'
-                    className='text-primary'
+                    className='text-amber-400'
                   >
                     <rect width='18' height='18' x='3' y='4' rx='2' ry='2' />
                     <line x1='16' x2='16' y1='2' y2='6' />
@@ -138,7 +138,7 @@ export default async function SchedulePage() {
                     strokeWidth='2'
                     strokeLinecap='round'
                     strokeLinejoin='round'
-                    className='text-primary'
+                    className='text-amber-400'
                   >
                     <path d='M20 10c0 6-8 12-8 12S4 16 4 10a8 8 0 1 1 16 0Z' />
                     <circle cx='12' cy='10' r='3' />

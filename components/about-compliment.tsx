@@ -59,7 +59,7 @@ const AboutCompliment = ({
     alt: "about",
   },
   secondaryImage = {
-    src: "https://deifkwefumgah.cloudfront.net/shadcnblocks/block/photos/annie-spratt-AkftcHujUmk-unsplash.jpg",
+    src: "/images/akosua.jpg",
     alt: "about",
   },
   breakout = {
@@ -122,7 +122,7 @@ const AboutCompliment = ({
   return (
     <section className={cn("py-32", className)}>
       <div className='container'>
-        <div className='mb-14 flex flex-col gap-5 lg:w-4/5'>
+        <div className='mb-14 flex flex-col gap-5 lg:w-4/5 '>
           <h1 className='text-5xl font-semibold  er lg:text-6xl'>
             {title}
           </h1>
