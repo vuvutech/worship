@@ -44,19 +44,19 @@ export default function Home() {
                   <img
                     alt='about 1'
                     className='aspect-[0.7] w-full rounded-lg object-cover md:w-1/2'
-                    src='https://deifkwefumgah.cloudfront.net/shadcnblocks/block/photos/annie-spratt-MChSQHxGZrQ-unsplash.jpg'
+                    src='/nonstop/nonstop-048.jpg'
                   />
 
                   <div className='flex w-full flex-col items-center justify-center gap-6 md:w-1/2'>
                     <img
                       alt='about 2'
                       className='aspect-[1.1] rounded-lg object-cover'
-                      src='https://deifkwefumgah.cloudfront.net/shadcnblocks/block/photos/annie-spratt-AkftcHujUmk-unsplash.jpg'
+                      src='/nonstop/nonstop-022.jpg'
                     />
                     <img
                       alt='about 3'
                       className='aspect-[0.7] rounded-lg object-cover'
-                      src='https://deifkwefumgah.cloudfront.net/shadcnblocks/block/photos/annie-spratt-vGgn0xLdy8s-unsplash.jpg'
+                      src='/nonstop/nonstop-004.jpg'
                     />
                   </div>
                 </div>
@@ -67,19 +67,19 @@ export default function Home() {
                   <img
                     alt='about 4'
                     className='aspect-[0.9] w-full rounded-lg object-cover md:w-1/2'
-                    src='https://deifkwefumgah.cloudfront.net/shadcnblocks/block/photos/johnson-wang-iI4sR_nkkbc-unsplash.jpg'
+                    src='/nonstop/nonstop-012.jpg'
                   />
 
                   <div className='flex w-full flex-col items-center justify-center gap-6 md:w-1/2'>
                     <img
                       alt='about 5'
                       className='aspect-[0.8] rounded-lg object-cover'
-                      src='https://deifkwefumgah.cloudfront.net/shadcnblocks/block/photos/nastuh-abootalebi-eHD8Y1Znfpk-unsplash.jpg'
+                      src='/nonstop/nonstop-026.jpg'
                     />
                     <img
                       alt='about 6'
                       className='aspect-[0.9] rounded-lg object-cover'
-                      src='https://deifkwefumgah.cloudfront.net/shadcnblocks/block/photos/alvin-engler-bIhpiQA009k-unsplash.jpg'
+                      src='/nonstop/nonstop-010.jpg'
                     />
                   </div>
                 </div>
@@ -114,7 +114,7 @@ export default function Home() {
       </div>
 
       <section className='block-preview-wrapper'>
-        <div className="bg-[url('/images/thank-you.jpg')] bg-cover bg-center rounded-xl bg-no-repeat">
+        <div className="bg-[url('/nonstop/nonstop-040.jpg')] bg-cover bg-center rounded-xl bg-no-repeat">
           <div className='flex items-end sm:items-center justify-center lg:justify-start'>
             <div className='max-w-7xl px-4 lg:px-8 xl:px-16 lg:py-20 sm:py-16 py-8 mx-auto w-full h-full min-h-screen '>
               <div style={{ opacity: 1, transform: "none" }}>

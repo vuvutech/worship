@@ -55,12 +55,12 @@ const AboutCompliment = ({
   title = "Why the Tabernacle of David?",
   description = "Thousands of years ago, King David set a precedent: 24/7 worship without a veil. He understood that God inhabits the praises of His people. At The Non-Stop, we are stepping into that ancient rhythm. For 144 hours, we remove the distractions of the world to sit at His feet, just as they did in the city of Zion. When the worship is non-stop, the atmosphere changes. Lives are recovered. Spirits are revived.",
   mainImage = {
-    src: "/images/john_shofar.jpg",
-    alt: "about",
+    src: "/nonstop/nonstop-017.jpg",
+    alt: "worship group",
   },
   secondaryImage = {
     src: "/images/akosua.jpg",
-    alt: "about",
+    alt: "worship ministration",
   },
   breakout = {
     src: "/images/music2.svg",
@@ -130,13 +130,13 @@ const AboutCompliment = ({
             {description}
           </p>
         </div>
-        <div className='grid gap-7 lg:grid-cols-3'>
+        <div className='grid gap-4 lg:grid-cols-3'>
           <img
             src={mainImage.src}
             alt={mainImage.alt}
             className='size-full max-h-[620px] rounded-xl object-cover object-top lg:col-span-2'
           />
-          <div className='flex flex-col gap-7 md:flex-row lg:flex-col'>
+          <div className='flex flex-col gap-4 md:flex-row lg:flex-col'>
             <div className='flex flex-col justify-between gap-6 rounded-xl bg-muted p-7 md:w-1/2 lg:w-auto'>
               <img
                 src={breakout.src}
@@ -163,7 +163,8 @@ const AboutCompliment = ({
             <img
               src={secondaryImage.src}
               alt={secondaryImage.alt}
-              className='grow basis-0 rounded-xl object-cover md:w-1/2 lg:min-h-0 lg:w-auto'
+              className='grow basis-0 rounded-xl object-cover object-top
+              aspect-square md:w-1/2 lg:min-h-0 lg:w-auto'
             />
           </div>
         </div>

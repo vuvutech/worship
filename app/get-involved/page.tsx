@@ -35,8 +35,8 @@ export default function Home() {
                 style={{ filter: "blur(0px)", opacity: 1, transform: "none" }}
               >
                 <img
-                  src='https://cdn.shadcnstudio.com/ss-assets/blocks/marketing/about-us/image-4.png'
-                  alt='Team meeting office'
+                  src='/nonstop/nonstop-043.jpg'
+                  alt='worship ministration'
                   className='max-h-91 w-full rounded-lg object-cover'
                 />
               </div>
@@ -52,8 +52,8 @@ export default function Home() {
                 >
                   <div className='relative overflow-hidden rounded-md'>
                     <img
-                      src='https://cdn.shadcnstudio.com/ss-assets/blocks/marketing/about-us/image-3.png'
-                      alt='Team collaboration'
+                      src='/nonstop/nonstop-029.jpg'
+                      alt='ministry service'
                       className='h-52 w-full rounded-md object-cover'
                     />
                   </div>
@@ -63,8 +63,8 @@ export default function Home() {
                 >
                   <div className='relative overflow-hidden rounded-md'>
                     <img
-                      src='https://cdn.shadcnstudio.com/ss-assets/blocks/marketing/about-us/image-2.png'
-                      alt='Team collaboration'
+                      src='/nonstop/nonstop-032.jpg'
+                      alt='worship atmosphere'
                       className='h-52 w-full rounded-md object-cover'
                     />
                   </div>
@@ -121,8 +121,8 @@ export default function Home() {
                         <img
                           data-slot='avatar-image'
                           className='aspect-square size-full'
-                          alt='Olivia Sparks'
-                          src='https://cdn.shadcnstudio.com/ss-assets/avatar/avatar-3.png'
+                          alt='worshipper'
+                          src='/nonstop/nonstop-001.jpg'
                         />
                       </span>
                       <span
@@ -133,8 +133,8 @@ export default function Home() {
                         <img
                           data-slot='avatar-image'
                           className='aspect-square size-full'
-                          alt='Howard Lloyd'
-                          src='https://cdn.shadcnstudio.com/ss-assets/avatar/avatar-6.png'
+                          alt='lead singer'
+                          src='/nonstop/nonstop-048.jpg'
                         />
                       </span>
                       <span
@@ -145,8 +145,8 @@ export default function Home() {
                         <img
                           data-slot='avatar-image'
                           className='aspect-square size-full'
-                          alt='Hallie Richards'
-                          src='https://cdn.shadcnstudio.com/ss-assets/avatar/avatar-5.png'
+                          alt='musician'
+                          src='/nonstop/nonstop-022.jpg'
                         />
                       </span>
                       <span
@@ -157,8 +157,8 @@ export default function Home() {
                         <img
                           data-slot='avatar-image'
                           className='aspect-square size-full'
-                          alt='Jenny Wilson'
-                          src='https://cdn.shadcnstudio.com/ss-assets/avatar/avatar-16.png'
+                          alt='volunteer'
+                          src='/nonstop/nonstop-047.jpg'
                         />
                       </span>
                     </div>
@@ -205,9 +205,9 @@ export default function Home() {
         <div className='container space-y-10 lg:space-y-20'>
           <div>
             <img
-              alt='about us iamge'
+              alt='144 hours non-stop worship'
               className='mt-4 h-132 w-full object-cover'
-              src='https://deifkwefumgah.cloudfront.net/shadcnblocks/block/guri4/img1.png'
+              src='/nonstop/nonstop-051.jpg'
             />
           </div>
           <div className='grid grid-cols-1 gap-4 space-y-12 lg:grid-cols-6 lg:space-y-0'>
