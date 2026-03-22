@@ -43,19 +43,19 @@ export default function Home() {
                 <div className='flex flex-col items-center justify-center gap-6 md:flex-row'>
                   <img
                     alt='about 1'
-                    className='aspect-[0.7] w-full rounded-lg object-cover md:w-1/2'
+                    className='aspect-[0.7] w-full rounded-lg object-cover object-top md:w-1/2'
                     src='/nonstop/nonstop-048.jpg'
                   />
 
                   <div className='flex w-full flex-col items-center justify-center gap-6 md:w-1/2'>
                     <img
                       alt='about 2'
-                      className='aspect-[1.1] rounded-lg object-cover'
+                      className='aspect-[1.1] rounded-lg object-cover object-top'
                       src='/nonstop/nonstop-022.jpg'
                     />
                     <img
                       alt='about 3'
-                      className='aspect-[0.7] rounded-lg object-cover'
+                      className='aspect-[0.7] rounded-lg object-cover object-top'
                       src='/nonstop/nonstop-004.jpg'
                     />
                   </div>
@@ -66,19 +66,19 @@ export default function Home() {
                 <div className='flex flex-col items-center justify-center gap-6 md:flex-row'>
                   <img
                     alt='about 4'
-                    className='aspect-[0.9] w-full rounded-lg object-cover md:w-1/2'
+                    className='aspect-[0.9] w-full rounded-lg object-cover object-top md:w-1/2'
                     src='/nonstop/nonstop-012.jpg'
                   />
 
                   <div className='flex w-full flex-col items-center justify-center gap-6 md:w-1/2'>
                     <img
                       alt='about 5'
-                      className='aspect-[0.8] rounded-lg object-cover'
+                      className='aspect-[0.8] rounded-lg object-cover object-top'
                       src='/nonstop/nonstop-026.jpg'
                     />
                     <img
                       alt='about 6'
-                      className='aspect-[0.9] rounded-lg object-cover'
+                      className='aspect-[0.9] rounded-lg object-cover object-top'
                       src='/nonstop/nonstop-010.jpg'
                     />
                   </div>

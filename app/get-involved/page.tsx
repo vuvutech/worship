@@ -37,7 +37,7 @@ export default function Home() {
                 <img
                   src='/nonstop/nonstop-043.jpg'
                   alt='worship ministration'
-                  className='max-h-91 w-full rounded-lg object-cover'
+                  className='max-h-91 w-full rounded-lg object-cover object-top'
                 />
               </div>
             </div>
@@ -54,7 +54,7 @@ export default function Home() {
                     <img
                       src='/nonstop/nonstop-029.jpg'
                       alt='ministry service'
-                      className='h-52 w-full rounded-md object-cover'
+                      className='h-52 w-full rounded-md object-cover object-top'
                     />
                   </div>
                 </div>
@@ -65,7 +65,7 @@ export default function Home() {
                     <img
                       src='/nonstop/nonstop-032.jpg'
                       alt='worship atmosphere'
-                      className='h-52 w-full rounded-md object-cover'
+                      className='h-52 w-full rounded-md object-cover object-top'
                     />
                   </div>
                 </div>
@@ -206,7 +206,7 @@ export default function Home() {
           <div>
             <img
               alt='144 hours non-stop worship'
-              className='mt-4 h-132 w-full object-cover'
+              className='mt-4 h-140 w-full object-cover object-center rounded-2xl'
               src='/nonstop/nonstop-051.jpg'
             />
           </div>
