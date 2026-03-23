@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 import { Shield, Key, Trash2, Loader2, CheckCircle2 } from "lucide-react";
 import { toast } from "sonner";
 
@@ -26,6 +27,7 @@ const VOLUNTEER_AREAS = [
 ];
 
 export default function ProfileContent({ user, profile }: ProfileContentProps) {
+  const router = useRouter();
   const [isSavingPersonal, setIsSavingPersonal] = useState(false);
   const [isSavingVolunteer, setIsSavingVolunteer] = useState(false);
 
@@ -62,6 +64,7 @@ export default function ProfileContent({ user, profile }: ProfileContentProps) {
         body: JSON.stringify(personalForm),
       });
       if (!res.ok) throw new Error("Failed to save profile");
+      router.refresh();
       toast.success("Personal information saved!");
     } catch {
       toast.error("Failed to save. Please try again.");
@@ -79,6 +82,7 @@ export default function ProfileContent({ user, profile }: ProfileContentProps) {
         body: JSON.stringify({ volunteerAreas }),
       });
       if (!res.ok) throw new Error("Failed to save volunteering preferences");
+      router.refresh();
       toast.success("Volunteering preferences saved!");
     } catch {
       toast.error("Failed to save. Please try again.");
@@ -99,7 +103,7 @@ export default function ProfileContent({ user, profile }: ProfileContentProps) {
 
       {/* Personal Information */}
       <TabsContent value="personal" className="space-y-6">
-        <Card>
+        <Card className="p-2 md:p-4 w-full">
           <CardHeader>
             <CardTitle>Personal Information</CardTitle>
             <CardDescription>Update your personal details and profile information.</CardDescription>
@@ -160,7 +164,7 @@ export default function ProfileContent({ user, profile }: ProfileContentProps) {
 
       {/* Volunteering Section */}
       <TabsContent value="volunteering" className="space-y-6">
-        <Card>
+        <Card data-usal='fade-u' className="p-2 md:p-4 w-full py-8">
           <CardHeader>
             <CardTitle>Volunteer & Service</CardTitle>
             <CardDescription>Select the areas where you would like to serve and volunteer.</CardDescription>
@@ -199,7 +203,7 @@ export default function ProfileContent({ user, profile }: ProfileContentProps) {
 
       {/* Account Settings */}
       <TabsContent value="account" className="space-y-6">
-        <Card>
+        <Card className="p-2 md:p-4 w-full">
           <CardHeader>
             <CardTitle>Account Settings</CardTitle>
             <CardDescription>Manage your account preferences and subscription.</CardDescription>
@@ -239,7 +243,7 @@ export default function ProfileContent({ user, profile }: ProfileContentProps) {
           </CardContent>
         </Card>
 
-        <Card className="border-destructive/50">
+        <Card className="border-destructive/50 p-2 md:p-4 w-full">
           <CardHeader>
             <CardTitle className="text-destructive">Danger Zone</CardTitle>
             <CardDescription>Irreversible and destructive actions</CardDescription>
@@ -261,7 +265,7 @@ export default function ProfileContent({ user, profile }: ProfileContentProps) {
 
       {/* Security Settings */}
       <TabsContent value="security" className="space-y-6">
-        <Card>
+        <Card className="p-2 md:p-4 w-full">
           <CardHeader>
             <CardTitle>Security Settings</CardTitle>
             <CardDescription>Manage your account security and authentication.</CardDescription>
@@ -315,7 +319,7 @@ export default function ProfileContent({ user, profile }: ProfileContentProps) {
 
       {/* Notification Settings */}
       <TabsContent value="notifications" className="space-y-6">
-        <Card>
+        <Card className="p-2 md:p-4 w-full">
           <CardHeader>
             <CardTitle>Notification Preferences</CardTitle>
             <CardDescription>Choose what notifications you want to receive.</CardDescription>

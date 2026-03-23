@@ -23,7 +23,7 @@ export default function ProfileHeader({ user, profile }: ProfileHeaderProps) {
   const isVolunteer = profile.volunteerAreas && profile.volunteerAreas.length > 0;
 
   return (
-    <Card className="overflow-hidden border-none shadow-lg bg-gradient-to-r from-primary/5 via-background to-background">
+    <Card className="overflow-hidden border-none shadow-lg bg-gradient-to-r from-primary/5 via-background to-background p-2 md:p-4 w-full">
       <CardContent className="p-0">
         <div className="relative h-32 w-full bg-gradient-to-r from-primary/20 to-primary/5 md:h-40">
            {profile.bannerUrl && (
@@ -77,7 +77,7 @@ export default function ProfileHeader({ user, profile }: ProfileHeaderProps) {
               </div>
             </div>
           </div>
-          <div className="flex gap-3 pt-4 md:pt-0">
+          <div className="flex gap-3 pt-4 md:pt-0 hidden">
             <Button variant="default" className="font-bold shadow-md px-6">Save Changes</Button>
           </div>
         </div>

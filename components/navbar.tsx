@@ -52,6 +52,7 @@ const Navbar = () => {
         <NavMenu className='hidden md:flex' />
 
         <div className='flex items-center gap-3'>
+          <ThemeToggle />
           {isAuthenticated && user ? (
             <>
               <DropdownMenu>
@@ -104,28 +105,20 @@ const Navbar = () => {
               <Link href='/login'>Sign In</Link>
             </Button>
           )}
-          <Button
-            className='rounded-full'
-            asChild
-          >
-            <Link
-              transitionTypes={["slide"]}
-              href={
-                isAuthenticated
-                  ? user?.role === "admin"
-                    ? "/dashboard"
-                    : "/"
-                  : "/signup"
-              }
+
+          {(!isAuthenticated || user?.role === "admin") && (
+            <Button
+              className='rounded-full'
+              asChild
             >
-              {isAuthenticated
-                ? user?.role === "admin"
-                  ? "Dashboard"
-                  : "Home"
-                : "Get Started"}
-            </Link>
-          </Button>
-          <ThemeToggle />
+              <Link
+                transitionTypes={["slide"]}
+                href={isAuthenticated ? "/dashboard" : "/signup"}
+              >
+                {isAuthenticated ? "Dashboard" : "Get Started"}
+              </Link>
+            </Button>
+          )}
 
           {/* Mobile Menu */}
           <div className='md:hidden'>

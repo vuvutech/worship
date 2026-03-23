@@ -4,7 +4,8 @@ import { prisma } from "@/lib/prisma";
 import { headers } from "next/headers";
 import { redirect } from "next/navigation";
 import React from "react";
-
+// make this page dynamic
+export const dynamic = "force-dynamic";
 const Profile = async () => {
   const session = await auth.api.getSession({
     headers: await headers(),
