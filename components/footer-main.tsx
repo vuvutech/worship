@@ -132,6 +132,7 @@ const FooterComponent = ({
         xmlns='http://www.w3.org/2000/svg'
         className='w-full flex justify-center items-center pr-5 opacity-20'
         aria-label='NONSTOP'
+        data-usal='fade-u duration-600 delay-200'
       >
         <defs>
           <linearGradient

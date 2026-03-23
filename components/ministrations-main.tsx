@@ -90,7 +90,7 @@ const Ministration = ({ className }: ministrationsHomeProps) => {
 
   return (
     <section className={cn("py-16", className)}>
-      <div className="w-full">
+      <div className="w-full" data-usal="fade-u duration-500">
         <div className="mb-16 px-8 max-w-6xl">
           <h1 className="text-3xl lg:text-6xl">
             Ministrations Spotlight

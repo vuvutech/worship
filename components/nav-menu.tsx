@@ -14,6 +14,7 @@ export const NavMenu = ({
   onItemClick?: () => void;
 }) => {
   const items = [
+    { label: "Home", href: "/" },
     { label: "About", href: "/about" },
     { label: "Schedule", href: "/schedule" },
     { label: "Live", href: "/live" },

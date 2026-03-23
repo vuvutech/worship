@@ -20,8 +20,15 @@ export default function Home() {
           </p>
         </div>
       </section>
-      <div className='flex flex-1 items-center justify-center'>
-        <section className='py-6 w-full'>
+
+      <section
+        className='flex flex-1 items-center justify-center'
+        data-usal='fade-u duration-500'
+      >
+        <div
+          className='py-6 w-full'
+          data-usal='fade-u duration-500 delay-200'
+        >
           <div className='container'>
             <div className='flex flex-col items-center justify-start gap-6 lg:flex-row'>
               <div className='flex w-full flex-col items-start justify-start gap-2 lg:w-1/2'>
@@ -84,7 +91,10 @@ export default function Home() {
                   </div>
                 </div>
 
-                <div className='px-8'>
+                <div
+                  className='px-8'
+                  data-usal='fade-u duration-500'
+                >
                   <h1 className='mb-8 text-2xl font-semibold lg:mb-6'>
                     Around-The-Clock Ministration
                   </h1>
@@ -110,11 +120,14 @@ export default function Home() {
               </div>
             </div>
           </div>
-        </section>
-      </div>
+        </div>
+      </section>
 
-      <section className='block-preview-wrapper'>
-        <div className="bg-[url('/nonstop/nonstop-040.jpg')] bg-cover bg-center rounded-xl bg-no-repeat">
+      <section
+        className='py-16 block-preview-wrapper'
+        data-usal='fade-u duration-500'
+      >
+        <div className="bg-[url('/nonstop/nonstop-040.jpg')] bg-cover bg-center rounded-xl bg-no-repeat pt-16">
           <div className='flex items-end sm:items-center justify-center lg:justify-start'>
             <div className='max-w-7xl px-4 lg:px-8 xl:px-16 lg:py-20 sm:py-16 py-8 mx-auto w-full h-full min-h-screen '>
               <div style={{ opacity: 1, transform: "none" }}>
@@ -284,11 +297,12 @@ export default function Home() {
         {/*/$*/}
       </section>
       <section>
-        <MissionVision /> 
+        <MissionVision />
       </section>
       <section
         className='container py-12 md:py-8 p-4'
         id='achievements'
+        data-usal='fade-u duration-500'
       >
         <div className=''>
           <h2 className='mb-4 text-3xl sm:text-4xl'>Our Impact & Reach</h2>
@@ -349,9 +363,12 @@ export default function Home() {
                 <path d='M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z'></path>
               </svg>
               <div className='mb-1 text-3xl font-bold'>500k+</div>
-              <div className='mb-3 text-sm font-medium'>Praise, Word & Prayer</div>
+              <div className='mb-3 text-sm font-medium'>
+                Praise, Word & Prayer
+              </div>
               <p className='text-muted-foreground text-sm'>
-                Sustaining a 144-hour continuous flow of worship, scripture reading, and intercession.
+                Sustaining a 144-hour continuous flow of worship, scripture
+                reading, and intercession.
               </p>
             </div>
             <div

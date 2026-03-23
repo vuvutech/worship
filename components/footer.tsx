@@ -3,11 +3,13 @@ import { Button } from "./ui/button";
 import { Marquee } from "./ui/marquee";
 import { FooterComponent } from "./footer-main";
 import CTASection from "./cta-section";
+import { Separator } from "./ui/separator";
 const footer = () => {
   return (
     <>
-    <CTASection />
-    <FooterComponent />
+      <Separator className='my-5 mb-8' />
+      <CTASection />
+      <FooterComponent />
     </>
     // <footer className='bg-gray-50 dark:bg-gray-900 border-t border-gray-200 dark:border-gray-800'>
     //   <div className='mx-auto max-w-7xl px-6 lg:px-8'>
@@ -173,7 +175,7 @@ const footer = () => {
     //       </div>
     //     </div>
     //      <div className='text-[6.5rem] md:text-[12.5rem] md:leading-[0.8] md:mt-10 absolute -left-14 bottom-16 md:bottom-5 '>
-       
+
     //   </div>
     //     {/* Bottom bar */}
     //     <div className='border-t border-gray-200 dark:border-gray-800 py-8'>
@@ -210,6 +212,3 @@ const footer = () => {
 };
 
 export default footer;
-
-
-

@@ -1,3 +1,4 @@
+"use client";
 import { cn } from "@/lib/utils";
 
 import { Button } from "@/components/ui/button";
@@ -13,6 +14,7 @@ import {
   ReactNode,
   ReactPortal,
 } from "react";
+import { motion } from "framer-motion";
 
 interface AboutComplimentProps {
   className?: string;
@@ -114,30 +116,41 @@ const AboutCompliment = ({
     },
     {
       title: "The Non-Stop is more than a gathering",
-      content:
-       `For 144 hours, we refuse to let the fire go out. We believe that as we saturate the atmosphere with the Word (Bible Reading) and the Sound (Praise & Worship), the "fallen shelter" is repaired in our personal lives, our families, and our nation.`,
+      content: `For 144 hours, we refuse to let the fire go out. We believe that as we saturate the atmosphere with the Word (Bible Reading) and the Sound (Praise & Worship), the "fallen shelter" is repaired in our personal lives, our families, and our nation.`,
     },
   ],
 }: AboutComplimentProps) => {
   return (
-    <section className={cn("py-32", className)}>
+    <section className={cn("py-32 ", className)}>
       <div className='container'>
-        <div className='mb-14 flex flex-col gap-5 lg:w-4/5 '>
-          <h1 className='text-5xl font-semibold  er lg:text-6xl'>
+        <div className='mb-14 flex flex-col gap-5 lg:w-4/5 '
+         data-usal='fade-u split-delay-10'>
+          <h1
+            className='text-5xl font-semibold  lg:text-6xl'
+           
+          >
             {title}
           </h1>
-          <p className='text-xl text-muted-foreground md:text-xl'>
+          <p
+            className='text-xl text-muted-foreground md:text-xl'
+          >
             {description}
           </p>
         </div>
-        <div className='grid gap-4 lg:grid-cols-3'>
+        <div
+          className='grid gap-4 lg:grid-cols-3'
+          data-usal='fade-u duration-500 delay-500'
+        >
           <img
             src={mainImage.src}
             alt={mainImage.alt}
             className='size-full max-h-[620px] rounded-xl object-cover object-top lg:col-span-2'
           />
           <div className='flex flex-col gap-4 md:flex-row lg:flex-col'>
-            <div className='flex flex-col justify-between gap-6 rounded-xl bg-muted p-7 md:w-1/2 lg:w-auto'>
+            <div
+              className='flex flex-col justify-between gap-6 rounded-xl bg-muted p-7 md:w-1/2 lg:w-auto'
+              data-usal='fade-u duration-500 delay-600'
+            >
               <img
                 src={breakout.src}
                 alt={breakout.alt}
@@ -198,7 +211,10 @@ const AboutCompliment = ({
             </Marquee>
           </div>
         )}
-        <div className='relative overflow-hidden rounded-xl bg-muted p-7 md:p-16'>
+        <div
+          className='relative overflow-hidden rounded-xl bg-muted p-7 md:p-16'
+          data-usal='fade-u duration-500'
+        >
           <div className='flex flex-col gap-4 text-center md:text-left'>
             <h2 className='text-3xl font-medium md:text-4xl'>
               {achievementsTitle}
@@ -275,7 +291,6 @@ const AboutCompliment = ({
             )}
           </div>
         </div>
-
       </div>
     </section>
   );

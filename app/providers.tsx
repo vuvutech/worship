@@ -1,6 +1,8 @@
 "use client";
 
 import { createContext, useContext, useEffect, useState, ReactNode } from "react";
+import { USALProvider } from '@usal/react';
+
 
 type Theme = "light" | "dark";
 
@@ -47,10 +49,13 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
 
   return (
     <ThemeContext.Provider value={{ theme, toggleTheme }}>
+      <USALProvider>
+
       <div className="bg-background">
 
       {children}
       </div>
+      </USALProvider>
     </ThemeContext.Provider>
   );
 }

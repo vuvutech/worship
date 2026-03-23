@@ -3,7 +3,7 @@ import React from "react";
 export const MissionVision = () => {
   return (
     <div className='mx-auto grid max-w-6xl px-2 md:px-4 gap-8 py-16 md:grid-cols-2 md:gap-8'>
-      <div>
+      <div data-usal="fade-u duration-500">
         <h2 className='mb-5 text-4xl font-medium'>
           Vision Statement: The Altar of Restoration
         </h2>
@@ -16,7 +16,7 @@ export const MissionVision = () => {
           stage for Recovery, Revival, and Restoration.
         </p>
       </div>
-      <div id="mission">
+      <div id="mission" data-usal="fade-u duration-800">
         <h2 className='mb-5 text-4xl font-medium'>
           The Non-Stop is more than a gathering
         </h2>

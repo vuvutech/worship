@@ -203,14 +203,14 @@ export default function Home() {
 
       <section className='bg-background py-8 sm:py-16 lg:py-24 mx-auto  px-4 sm:px-6 lg:px-8'>
         <div className='container space-y-10 lg:space-y-20'>
-          <div>
+          <div data-usal='fade-u duration-500'>
             <img
               alt='144 hours non-stop worship'
               className='mt-4 h-140 w-full object-cover object-center rounded-2xl'
               src='/nonstop/nonstop-051.jpg'
             />
           </div>
-          <div className='grid grid-cols-1 gap-4 space-y-12 lg:grid-cols-6 lg:space-y-0'>
+          <div className='grid grid-cols-1 gap-4 space-y-12 lg:grid-cols-6 lg:space-y-0' data-usal='fade-u duration-500'>
             <div className='order-2 col-span-2 lg:order-none lg:pr-16 lg:pl-10 flex '>
               <p className='text-foreground/60 text-xl md:text-xl '>
                 We are calling for worshippers, intercessors, and servants to help sustain the momentum. The fire on the altar must not go out.
@@ -224,7 +224,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-      <Separator className='my-5 mb-8' />
     </LocomotiveScrollWrapper>
   );
 }

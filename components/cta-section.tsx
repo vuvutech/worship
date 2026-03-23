@@ -3,7 +3,8 @@ import Image from "next/image";
 
 export default function CTASection() {
   return (
-    <section className='px-2 sm:px-4 md:px-6 lg:px-8 xl:px-12 2xl:px-16 pt-20 container max-w-(--breakpoint-2xl) mx-auto '>
+    <section className='px-2 sm:px-4 md:px-6 lg:px-8 xl:px-12 2xl:px-16 pt-20 container max-w-(--breakpoint-2xl) mx-auto '
+    data-usal="fade-u duration-500">
       <div className='container mx-auto px-4 text-center lg:text-start'>
         <div className='bg-primary/5 dark:bg-muted/30 border border-primary/10 flex w-full flex-col-reverse gap-4 rounded-lg p-12 md:rounded-3xl lg:flex-row lg:items-center lg:px-14 lg:py-10 min-h-[400px] overflow-hidden relative'>
           <div className='absolute top-0 right-0 w-64 h-64 bg-primary/5 rounded-full -mr-32 -mt-32 blur-3xl pointer-events-none' />

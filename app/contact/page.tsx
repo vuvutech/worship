@@ -6,7 +6,7 @@ const page = () => {
     <>
       <Contact31 />
 
-      <section className=' container max-w-(--breakpoint-xl) mx-auto '>
+      <section className=' container max-w-(--breakpoint-xl) mx-auto ' data-usal='fade-u duration-200 delay-200'>
         <div className='rounded-2xl dark:bg-slate-800 bg-slate-200 text-slate-900 dark:text-slate-300 shadow md:px-10 py-5 md:py-16 px-5 mb-5 md:mb-16 my-2 md:my-16 mx-2 md:mx-16 rounded-neat relative overflow-hidden'>
           <div className='w-72 h-72 absolute -right-20 -top-16 z-20 opacity-10 -rotate-45'>
             <span
@@ -18,7 +18,7 @@ const page = () => {
                 height: "initial",
                 background: "none",
                 opacity: 1,
-                border: "0px",
+                border: "0px",  
                 margin: "0px",
                 padding: "0px",
                 position: "absolute",

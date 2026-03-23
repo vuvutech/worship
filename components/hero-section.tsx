@@ -123,7 +123,8 @@ export default function HeroSection() {
   const { videoSource, videoId, videoUrl, startTime } = heroSettings;
 
   return (
-    <header className='relative md:relative absolute top-0 left-0 w-full h-[100dvh] flex flex-col justify-center pb-10 overflow-hidden z-0'>
+    <header className='relative md:relative absolute top-0 left-0 w-full h-[100dvh] flex flex-col justify-center pb-10 overflow-hidden z-0 ' data-aos="fade-up"
+     data-aos-anchor-placement="top-bottom">
       {/* Video Background Selection */}
       <div className='absolute inset-0 w-full h-full pointer-events-none overflow-hidden'>
         {videoSource === "youtube" && videoId && (
