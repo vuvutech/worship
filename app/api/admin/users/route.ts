@@ -37,7 +37,7 @@ export async function PATCH(req: NextRequest) {
     }
 
     const body = await req.json();
-    const { id, role, banned } = body;
+    const { id, role, banned, pendingDeletion } = body;
 
     if (!id) {
       return NextResponse.json({ error: "Missing user ID" }, { status: 400 });
@@ -46,6 +46,7 @@ export async function PATCH(req: NextRequest) {
     const updateData: any = {};
     if (role !== undefined) updateData.role = role;
     if (banned !== undefined) updateData.banned = banned;
+    if (pendingDeletion !== undefined) updateData.pendingDeletion = pendingDeletion;
 
     const user = await prisma.user.update({
       where: {

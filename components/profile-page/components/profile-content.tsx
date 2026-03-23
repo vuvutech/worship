@@ -7,6 +7,16 @@ import { toast } from "sonner";
 
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  AlertDialog,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/components/ui/alert-dialog";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Separator } from "@/components/ui/separator";
@@ -30,9 +40,11 @@ export default function ProfileContent({ user, profile }: ProfileContentProps) {
   const router = useRouter();
   const [isSavingPersonal, setIsSavingPersonal] = useState(false);
   const [isSavingVolunteer, setIsSavingVolunteer] = useState(false);
+  const [isDeleting, setIsDeleting] = useState(false);
+  const [deleteConfirmText, setDeleteConfirmText] = useState("");
+  const [deleteDialogOpen, setDeleteDialogOpen] = useState(false);
 
-  const [personalForm, setPersonalForm] = useState({
-    firstName: profile.firstName || "",
+  const [personalForm, setPersonalForm] = useState({    firstName: profile.firstName || "",
     lastName: profile.lastName || "",
     phone: profile.phone || "",
     jobTitle: profile.jobTitle || "",
@@ -88,6 +100,23 @@ export default function ProfileContent({ user, profile }: ProfileContentProps) {
       toast.error("Failed to save. Please try again.");
     } finally {
       setIsSavingVolunteer(false);
+    }
+  };
+
+  const handleRequestDeletion = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (deleteConfirmText !== "DELETE") return;
+    setIsDeleting(true);
+    try {
+      const res = await fetch("/api/user/request-deletion", { method: "POST" });
+      if (!res.ok) throw new Error("Failed to request deletion");
+      toast.success("Account deletion request submitted. An admin will process it shortly.");
+      setDeleteConfirmText("");
+      setDeleteDialogOpen(false);
+    } catch {
+      toast.error("Failed to request deletion.");
+    } finally {
+      setIsDeleting(false);
     }
   };
 
@@ -250,14 +279,51 @@ export default function ProfileContent({ user, profile }: ProfileContentProps) {
           </CardHeader>
           <CardContent>
             <div className="flex items-center justify-between">
-              <div className="space-y-1">
-                <Label className="text-base">Delete Account</Label>
-                <p className="text-muted-foreground text-sm">Permanently delete your account and all data</p>
-              </div>
-              <Button variant="destructive">
-                <Trash2 className="mr-2 h-4 w-4" />
-                Delete Account
-              </Button>
+               <div className="space-y-1">
+                 <Label className="text-base">Delete Account</Label>
+                 <p className="text-muted-foreground text-sm">Permanently delete your account and all data</p>
+               </div>
+               
+               <AlertDialog open={deleteDialogOpen} onOpenChange={setDeleteDialogOpen}>
+                 <AlertDialogTrigger asChild>
+                   <Button variant="destructive">
+                     <Trash2 className="mr-2 h-4 w-4" />
+                     Delete Account
+                   </Button>
+                 </AlertDialogTrigger>
+                 <AlertDialogContent className="sm:max-w-lg">
+                   <AlertDialogHeader>
+                     <AlertDialogTitle className="text-balance">Request Account Deletion</AlertDialogTitle>
+                     <AlertDialogDescription className="text-pretty">
+                       This action will flag your account for deletion. An administrator will review and finalize the removal of your data.
+                       Please type <strong>DELETE</strong> to confirm.
+                     </AlertDialogDescription>
+                   </AlertDialogHeader>
+                   <form className="space-y-4" onSubmit={handleRequestDeletion}>
+                     <div>
+                       <Label htmlFor="confirm-delete" className="text-sm font-medium">
+                         Confirm deletion
+                       </Label>
+                       <Input
+                         id="confirm-delete"
+                         value={deleteConfirmText}
+                         onChange={(e) => setDeleteConfirmText(e.target.value)}
+                         placeholder="Type DELETE"
+                         className="mt-2"
+                         required
+                       />
+                     </div>
+                     <AlertDialogFooter>
+                       <AlertDialogCancel onClick={() => setDeleteConfirmText("")}>Cancel</AlertDialogCancel>
+                       <Button type="submit" variant="destructive" disabled={deleteConfirmText !== "DELETE" || isDeleting}>
+                         {isDeleting ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : null}
+                         Request Deletion
+                       </Button>
+                     </AlertDialogFooter>
+                   </form>
+                 </AlertDialogContent>
+               </AlertDialog>
+               
             </div>
           </CardContent>
         </Card>

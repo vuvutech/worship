@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { createFetch } from "@better-fetch/fetch";
-import { Loader2, Shield, User as UserIcon, Ban, Trash2, ShieldAlert } from "lucide-react";
+import { Loader2, Shield, User as UserIcon, Ban, Trash2, ShieldAlert, Undo2 } from "lucide-react";
 import { toast } from "sonner";
 
 import {
@@ -13,6 +13,18 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/components/ui/alert-dialog";
+import { Badge } from "@/components/ui/badge";
 import {
   Select,
   SelectContent,
@@ -29,6 +41,7 @@ interface User {
   role: string;
   image: string | null;
   banned: boolean | null;
+  pendingDeletion: boolean | null;
   createdAt: string;
 }
 
@@ -88,9 +101,22 @@ export function UserManagement() {
     }
   };
 
-  const onDeleteUser = async (userId: string) => {
-    if (!confirm("Are you sure you want to PERMANENTLY delete this user? This action cannot be undone.")) return;
+  const onRevokeDeletion = async (userId: string) => {
+    try {
+      const { error } = await $fetch("/admin/users", {
+        method: "PATCH",
+        body: { id: userId, pendingDeletion: false },
+      });
+      if (error) throw error;
+      toast.success("Deletion request revoked successfully");
+      fetchUsers();
+    } catch (error) {
+      toast.error("Failed to revoke deletion request");
+      console.error(error);
+    }
+  };
 
+  const onDeleteUser = async (userId: string) => {
     try {
       const { error } = await $fetch(`/admin/users?id=${userId}`, {
         method: "DELETE",
@@ -172,6 +198,9 @@ export function UserManagement() {
                            Active
                          </div>
                        )}
+                       {user.pendingDeletion && (
+                         <Badge variant="destructive" className="ml-2">Deletion Requested</Badge>
+                       )}
                     </div>
                   </TableCell>
                   <TableCell className="text-right px-4">
@@ -199,15 +228,47 @@ export function UserManagement() {
                         <Ban className="h-4 w-4" />
                       </Button>
 
-                      <Button 
-                        variant="ghost" 
-                        size="icon" 
-                        className="text-destructive hover:bg-destructive/10"
-                        onClick={() => onDeleteUser(user.id)}
-                        title="Delete User"
-                      >
-                        <Trash2 className="h-4 w-4" />
-                      </Button>
+                      {user.pendingDeletion && (
+                        <Button 
+                          variant="outline" 
+                          size="icon" 
+                          className="text-orange-500 border-orange-500/30 hover:bg-orange-500/10"
+                          onClick={() => onRevokeDeletion(user.id)}
+                          title="Revoke Deletion Request"
+                        >
+                          <Undo2 className="h-4 w-4" />
+                        </Button>
+                      )}
+
+                      <AlertDialog>
+                        <AlertDialogTrigger asChild>
+                          <Button 
+                            variant="ghost" 
+                            size="icon" 
+                            className="text-destructive hover:bg-destructive/10"
+                            title="Delete User"
+                          >
+                            <Trash2 className="h-4 w-4" />
+                          </Button>
+                        </AlertDialogTrigger>
+                        <AlertDialogContent>
+                          <AlertDialogHeader>
+                            <AlertDialogTitle>Delete User</AlertDialogTitle>
+                            <AlertDialogDescription>
+                              Are you sure you want to PERMANENTLY delete this user? This action cannot be undone.
+                            </AlertDialogDescription>
+                          </AlertDialogHeader>
+                          <AlertDialogFooter>
+                            <AlertDialogCancel>Cancel</AlertDialogCancel>
+                            <AlertDialogAction 
+                              onClick={() => onDeleteUser(user.id)}
+                              className="bg-destructive text-destructive-foreground hover:bg-destructive/90"
+                            >
+                              Delete
+                            </AlertDialogAction>
+                          </AlertDialogFooter>
+                        </AlertDialogContent>
+                      </AlertDialog>
                     </div>
                   </TableCell>
                 </TableRow>
