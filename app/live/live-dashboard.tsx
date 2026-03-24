@@ -152,76 +152,74 @@ export function LiveDashboard({ videos, events }: LiveDashboardProps) {
 
       {/* Upcoming Events Section */}
       <section className='w-full relative z-10 px-4 md:px-8 max-w-[1600px] mx-auto mt-16'>
-        <h2 className='text-2xl font-semibold mb-6'>Upcoming Events</h2>
+        <h2 className='text-3xl font-bold mb-8'>Upcoming Events</h2>
         {events.length > 0 ? (
-          <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8'>
+          <div className='grid grid-cols-1 lg:grid-cols-2 gap-6 xl:gap-8'>
             {events.map((event) => (
               <div
                 key={event.id}
-                className='bg-neutral-900/50 border border-white/10 rounded-xl overflow-hidden backdrop-blur-sm flex flex-col'
+                className='bg-transparent border border-white/10 rounded-[2rem] p-4 flex flex-col sm:flex-row gap-6 hover:bg-white/5 transition-colors group'
               >
-                {event.poster && (
-                  <div className='aspect-[16/9] w-full overflow-hidden'>
+                {/* Left side: Image container */}
+                <div className='w-full sm:w-[45%] xl:w-[40%] relative aspect-[4/3] overflow-hidden rounded-2xl shrink-0'>
+                  {event.poster ? (
                     <img
                       src={event.poster}
                       alt={event.title}
-                      className='w-full h-full object-cover'
+                      className='w-full h-full object-cover rounded-2xl transition-transform duration-500 group-hover:scale-105'
                     />
+                  ) : (
+                    <div className='w-full h-full bg-neutral-900 flex items-center justify-center rounded-2xl'>
+                      <span className='text-neutral-600'>No poster</span>
+                    </div>
+                  )}
+                  {/* Badge */}
+                  <div className='absolute top-3 right-3 bg-white text-black text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-wider shadow-md'>
+                    event
                   </div>
-                )}
-                <div className='p-6 space-y-4 flex-1 flex flex-col'>
-                  <div>
-                    <h3 className='text-xl font-bold'>{event.title}</h3>
-                    <p className='text-red-500 font-medium text-sm mt-1'>
+                </div>
+
+                {/* Right side: Content */}
+                <div className='flex-1 flex flex-col py-2 pr-2 justify-center'>
+                  {/* Date and Time */}
+                  <div className='flex items-center gap-2 text-xs font-medium text-neutral-400 mb-3'>
+                    <span>
                       {new Date(event.startDate).toLocaleDateString(undefined, {
-                        weekday: "long",
-                        year: "numeric",
-                        month: "long",
-                        day: "numeric",
+                        year: 'numeric', month: 'long', day: 'numeric'
                       })}
-                    </p>
+                    </span>
+                    <span className="text-neutral-600">•</span>
+                    <span className="flex items-center gap-1">
+                      <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                      </svg>
+                      {new Date(event.startDate).toLocaleTimeString(undefined, {
+                        hour: '2-digit', minute: '2-digit'
+                      })}
+                    </span>
                   </div>
+
+                  {/* Title */}
+                  <h3 className='text-xl xl:text-2xl font-bold leading-snug mb-3 text-white group-hover:text-red-100 transition-colors'>
+                    {event.title}
+                  </h3>
+
+                  {/* Description */}
                   {event.description && (
-                    <p className='text-neutral-400 text-sm line-clamp-3'>
+                    <p className='text-sm text-neutral-400 line-clamp-3 leading-relaxed mb-4'>
                       {event.description}
                     </p>
                   )}
-                  {event.ministers.length > 0 && (
-                    <div className='pt-2'>
-                      <p className='text-xs uppercase tracking-wider text-neutral-500 font-bold mb-2'>
-                        Ministers
-                      </p>
-                      <div className='flex flex-wrap gap-2'>
-                        {event.ministers.map((m) => (
-                          <span
-                            key={m.id}
-                            className='text-xs bg-white/5 border border-white/10 px-2 py-1 rounded'
-                          >
-                            {m.name}
-                          </span>
-                        ))}
-                      </div>
-                    </div>
-                  )}
-                  <div className='flex-1' />
-                  {event.sponsors.length > 0 && (
-                    <div className='pt-4 border-t border-white/5'>
-                      <div className='flex flex-wrap gap-4 items-center opacity-60'>
-                        {event.sponsors.map(
-                          (s) =>
-                            s.logo && (
-                              <img
-                                key={s.id}
-                                src={s.logo}
-                                alt={s.name}
-                                className='h-6 object-contain'
-                                title={s.name}
-                              />
-                            ),
-                        )}
-                      </div>
-                    </div>
-                  )}
+
+                  {/* Link at bottom */}
+                  <div className='mt-auto pt-2'>
+                    <a href={`/schedule#${event.slug || event.id}`} className='inline-flex items-center text-sm font-bold text-teal-600 hover:text-teal-500 transition-colors'>
+                      Read article
+                      <svg className="ml-1.5 w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7" />
+                      </svg>
+                    </a>
+                  </div>
                 </div>
               </div>
             ))}
