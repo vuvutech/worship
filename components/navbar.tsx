@@ -44,7 +44,7 @@ const Navbar = () => {
   };
 
   return (
-    <nav className='fixed z-50 inset-x-2 top-6 mx-auto h-14 max-w-(--breakpoint-xl) rounded-full bg-black text-white backdrop-blur-xl border border-white/10 shadow-lg '>
+    <nav className='fixed z-50 inset-x-0 top-0 md:inset-x-2 md:top-6 mx-auto h-14 max-w-(--breakpoint-xl) md:rounded-full bg-black text-white backdrop-blur-xl border-b md:border border-white/10 shadow-lg'>
       <div className='mx-auto flex h-full items-center justify-between px-2'>
         <Logo />
 
