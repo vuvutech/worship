@@ -137,19 +137,37 @@ const AboutCompliment = ({
             {description}
           </p>
         </div>
-        <div
+        <motion.div
           className='grid gap-4 lg:grid-cols-3'
-          data-usal='fade-u duration-500 delay-500'
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: false, amount: 0.2 }}
+          variants={{
+            hidden: { opacity: 0 },
+            show: {
+              opacity: 1,
+              transition: {
+                staggerChildren: 0.2,
+              },
+            },
+          }}
         >
-          <img
+          <motion.img
             src={mainImage.src}
             alt={mainImage.alt}
-            className='size-full max-h-[620px] rounded-xl object-cover object-top lg:col-span-2'
+            className='size-full rounded-xl object-cover object-top lg:col-span-2'
+            variants={{
+              hidden: { opacity: 0, y: 50 },
+              show: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" } },
+            }}
           />
           <div className='flex flex-col gap-4 md:flex-row lg:flex-col'>
-            <div
+            <motion.div
               className='flex flex-col justify-between gap-6 rounded-xl bg-muted p-7 md:w-1/2 lg:w-auto'
-              data-usal='fade-u duration-500 delay-600'
+              variants={{
+                hidden: { opacity: 0, y: 50 },
+                show: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" } },
+              }}
             >
               <img
                 src={breakout.src}
@@ -172,15 +190,19 @@ const AboutCompliment = ({
                   {breakout.buttonText}
                 </a>
               </Button>
-            </div>
-            <img
+            </motion.div>
+            <motion.img
               src={secondaryImage.src}
               alt={secondaryImage.alt}
-              className='grow basis-0 rounded-xl object-cover object-top
-              aspect-square md:w-1/2 lg:min-h-0 lg:w-auto'
+              className='grow  rounded-xl object-cover object-top
+              min-h-64 md:w-1/2 lg:min-h-0 lg:w-auto'
+              variants={{
+                hidden: { opacity: 0, y: 50 },
+                show: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" } },
+              }}
             />
           </div>
-        </div>
+        </motion.div>
         {companies && (
           <div className='py-32'>
             <Marquee>

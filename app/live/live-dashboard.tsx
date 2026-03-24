@@ -59,15 +59,29 @@ export function LiveDashboard({ videos, events }: LiveDashboardProps) {
                   playing={true}
                   thumbnail={selectedVideo.thumbnail}
                 />
-                <div>
-                  <h1 className='text-3xl md:text-4xl font-bold   mt-4'>
-                    {selectedVideo.title}
-                  </h1>
-                  <p className='text-neutral-400 mt-2'>
-                    {selectedVideo.type === "LIVE"
-                      ? "Broadcasting live from The Non-Stop"
-                      : `Added on ${new Date(selectedVideo.createdAt).toLocaleDateString()}`}
-                  </p>
+                <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-4 mt-4">
+                  <div>
+                    <h1 className='text-3xl md:text-4xl font-bold'>
+                      {selectedVideo.title}
+                    </h1>
+                    <p className='text-neutral-400 mt-2'>
+                      {selectedVideo.type === "LIVE"
+                        ? "Broadcasting live from The Non-Stop"
+                        : `Added on ${new Date(selectedVideo.createdAt).toLocaleDateString()}`}
+                    </p>
+                  </div>
+                  {liveStream && selectedVideo.id !== liveStream.id && (
+                    <button 
+                      onClick={() => setSelectedVideo(liveStream)}
+                      className="group flex items-center gap-2 px-6 py-2.5 bg-red-600 hover:bg-red-700 text-white font-bold rounded-full transition-colors shadow-lg shadow-red-600/20 shrink-0"
+                    >
+                      <span className="relative flex h-2.5 w-2.5">
+                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"></span>
+                        <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-white"></span>
+                      </span>
+                      Return to Live Stream
+                    </button>
+                  )}
                 </div>
               </>
             ) : (
@@ -152,7 +166,7 @@ export function LiveDashboard({ videos, events }: LiveDashboardProps) {
       </section>
 
       {/* Upcoming Events Section */}
-      <section className='w-full relative z-10 px-4 md:px-8 max-w-[1600px] mx-auto mt-16'>
+      <section className='hidden w-full relative z-10 px-4 md:px-8 max-w-[1600px] mx-auto mt-16'>
         <h2 className='text-3xl font-bold mb-8'>Upcoming Events</h2>
         {events.length > 0 ? (
           <div className='grid grid-cols-1 lg:grid-cols-2 gap-6 xl:gap-8'>

@@ -1,3 +1,6 @@
+"use client";
+
+import { motion } from "framer-motion";
 import HeroIntro from "@/components/HeroIntro";
 import LocomotiveScrollWrapper from "@/components/LocomotiveScrollWrapper";
 import { Separator } from "@/components/ui/separator";
@@ -7,7 +10,19 @@ export default function Home() {
     <LocomotiveScrollWrapper>
       <section className='bg-background py-8 sm:py-16 lg:py-24 '>
         <div className='mx-auto max-w-7xl px-4 sm:px-6 lg:px-8'>
-          <div className='grid grid-cols-1 gap-9 lg:grid-cols-2'>
+          <motion.div
+            className='grid grid-cols-1 gap-9 lg:grid-cols-2'
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, amount: 0.1 }}
+            variants={{
+              hidden: { opacity: 0 },
+              show: {
+                opacity: 1,
+                transition: { staggerChildren: 0.15 },
+              },
+            }}
+          >
             <div
               className='flex flex-col gap-9 '
               data-scroll
@@ -15,9 +30,7 @@ export default function Home() {
             >
               <div className='flex items-center gap-6 overflow-hidden'>
                 <div className='to-primary h-52 w-4 bg-gradient-to-t from-transparent' />
-                <div
-                  style={{ filter: "blur(0px)", opacity: 1, transform: "none" }}
-                >
+                <motion.div variants={{ hidden: { opacity: 0, y: 40 }, show: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" } } }}>
                   <div className='space-y-4'>
                     <h2 className='text-2xl font-semibold md:text-3xl lg:text-4xl'>
                       Get Involved
@@ -29,17 +42,15 @@ export default function Home() {
                       </span>
                     </p>
                   </div>
-                </div>
+                </motion.div>
               </div>
-              <div
-                style={{ filter: "blur(0px)", opacity: 1, transform: "none" }}
-              >
+              <motion.div variants={{ hidden: { opacity: 0, y: 40 }, show: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" } } }}>
                 <img
                   src='/nonstop/nonstop-043.jpg'
                   alt='worship ministration'
                   className='max-h-91 w-full rounded-lg object-cover object-top'
                 />
-              </div>
+              </motion.div>
             </div>
             <div
               className='flex flex-col gap-6'
@@ -47,9 +58,7 @@ export default function Home() {
               data-scroll-speed='-0.2'
             >
               <div className='grid grid-cols-1 gap-6 sm:grid-cols-2'>
-                <div
-                  style={{ filter: "blur(0px)", opacity: 1, transform: "none" }}
-                >
+                <motion.div variants={{ hidden: { opacity: 0, scale: 0.95 }, show: { opacity: 1, scale: 1, transition: { duration: 0.8, ease: "easeOut" } } }}>
                   <div className='relative overflow-hidden rounded-md'>
                     <img
                       src='/nonstop/nonstop-029.jpg'
@@ -57,10 +66,8 @@ export default function Home() {
                       className='h-52 w-full rounded-md object-cover object-top'
                     />
                   </div>
-                </div>
-                <div
-                  style={{ filter: "blur(0px)", opacity: 1, transform: "none" }}
-                >
+                </motion.div>
+                <motion.div variants={{ hidden: { opacity: 0, scale: 0.95 }, show: { opacity: 1, scale: 1, transition: { duration: 0.8, ease: "easeOut" } } }}>
                   <div className='relative overflow-hidden rounded-md'>
                     <img
                       src='/nonstop/nonstop-032.jpg'
@@ -68,19 +75,15 @@ export default function Home() {
                       className='h-52 w-full rounded-md object-cover object-top'
                     />
                   </div>
-                </div>
+                </motion.div>
               </div>
               <div className='flex flex-1 flex-col justify-center gap-9'>
-                <div
-                  style={{ filter: "blur(0px)", opacity: 1, transform: "none" }}
-                >
+                <motion.div variants={{ hidden: { opacity: 0, y: 30 }, show: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" } } }}>
                   <p className='text-muted-foreground text-xl leading-relaxed'>
                     The Non-Stop is fueled entirely by believers willing to offer their time, voices, and skills to keep the altar burning. Whether you are a worship leader, an intercessor, a volunteer, or someone hungry for His presence, there is a place for you in this 144-hour sacrifice.
                   </p>
-                </div>
-                <div
-                  style={{ filter: "blur(0px)", opacity: 1, transform: "none" }}
-                >
+                </motion.div>
+                <motion.div variants={{ hidden: { opacity: 0, y: 30 }, show: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" } } }}>
                   <div className='grid gap-10 sm:grid-cols-3'>
                     <div className='flex flex-col items-center gap-2.5'>
                       <h3 className='text-foreground text-4xl font-medium'>
@@ -107,10 +110,8 @@ export default function Home() {
                       </p>
                     </div>
                   </div>
-                </div>
-                <div
-                  style={{ filter: "blur(0px)", opacity: 1, transform: "none" }}
-                >
+                </motion.div>
+                <motion.div variants={{ hidden: { opacity: 0, y: 30 }, show: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" } } }}>
                   <div className='flex items-center gap-6'>
                     <div className='flex -space-x-3'>
                       <span
@@ -194,10 +195,10 @@ export default function Home() {
                       </span>
                     </a>
                   </div>
-                </div>
+                </motion.div>
               </div>
             </div>
-          </div>
+          </motion.div>
         </div>
       </section>
 
