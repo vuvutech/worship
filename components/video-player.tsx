@@ -19,12 +19,28 @@ export function VideoPlayer({
   controls = true,
   thumbnail,
 }: VideoPlayerProps) {
-  const videoRef = useRef<HTMLVideoElement>(null);
+  const videoRef = useRef<HTMLDivElement>(null);
   const playerRef = useRef<Player | null>(null);
   const [isReady, setIsReady] = useState(false);
 
+  const isYouTube = url && (url.includes("youtube.com") || url.includes("youtu.be"));
+  
+  let ytVideoId = "";
+  if (isYouTube) {
+    if (url.includes("v=")) {
+      ytVideoId = url.split("v=")[1].split("&")[0];
+    } else if (url.includes("youtu.be/")) {
+      ytVideoId = url.split("youtu.be/")[1].split("?")[0];
+    } else if (url.includes("embed/")) {
+      ytVideoId = url.split("embed/")[1].split("?")[0];
+    }
+  }
+
   useEffect(() => {
+    if (isYouTube) return; // Video.js is not needed for YouTube
+
     // Make sure Video.js player is only initialized once
+
     if (!playerRef.current) {
       // The Video.js player needs to be _inside_ the component el for React 18 Strict Mode. 
       const videoElement = document.createElement("video-js");
@@ -70,6 +86,34 @@ export function VideoPlayer({
       }
     };
   }, [playerRef]);
+
+  if (isYouTube) {
+    return (
+      <div className="relative w-full aspect-video bg-black rounded-xl overflow-hidden shadow-2xl ring-1 ring-white/10">
+        {isLive && (
+          <div className="absolute top-4 left-4 z-20 flex items-center gap-2 bg-red-600/90 text-white px-3 py-1 rounded-full text-sm font-semibold tracking-wider backdrop-blur-sm shadow-xl">
+            <span className="relative flex h-2 w-2">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-white"></span>
+            </span>
+            LIVE
+          </div>
+        )}
+        {ytVideoId ? (
+          <iframe
+            src={`https://www.youtube.com/embed/${ytVideoId}?autoplay=${playing ? 1 : 0}&controls=${controls ? 1 : 0}&rel=0`}
+            className="w-full h-full border-0 absolute inset-0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowFullScreen
+          />
+        ) : (
+          <div className="w-full h-full flex items-center justify-center text-neutral-500">
+            Invalid YouTube URL
+          </div>
+        )}
+      </div>
+    );
+  }
 
   return (
     <div className="relative w-full aspect-video bg-black rounded-xl overflow-hidden shadow-2xl ring-1 ring-white/10" data-vjs-player>
