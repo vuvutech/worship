@@ -53,6 +53,7 @@ export function LiveDashboard({ videos, events }: LiveDashboardProps) {
             {selectedVideo ? (
               <>
                 <VideoPlayer
+                  key={selectedVideo.id}
                   url={selectedVideo.url}
                   isLive={selectedVideo.type === "LIVE"}
                   playing={true}

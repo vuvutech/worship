@@ -27,12 +27,9 @@ export function VideoPlayer({
   
   let ytVideoId = "";
   if (isYouTube) {
-    if (url.includes("v=")) {
-      ytVideoId = url.split("v=")[1].split("&")[0];
-    } else if (url.includes("youtu.be/")) {
-      ytVideoId = url.split("youtu.be/")[1].split("?")[0];
-    } else if (url.includes("embed/")) {
-      ytVideoId = url.split("embed/")[1].split("?")[0];
+    const match = url.match(/(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=|live\/))([\w-]{11})/);
+    if (match && match[1]) {
+      ytVideoId = match[1];
     }
   }
 
