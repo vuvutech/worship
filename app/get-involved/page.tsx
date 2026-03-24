@@ -14,7 +14,7 @@ export default function Home() {
             className='grid grid-cols-1 gap-9 lg:grid-cols-2'
             initial="hidden"
             whileInView="show"
-            viewport={{ once: true, amount: 0.1 }}
+            viewport={{ once: false, amount: 0.1 }}
             variants={{
               hidden: { opacity: 0 },
               show: {

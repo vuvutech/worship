@@ -41,7 +41,7 @@ interface Contact31Props {
 const Contact31 = ({
   title = "Get in Touch",
   description = "Jesus said, “The hour is coming and is already here when the true worshipers will worship the Father in spirit and truth; for the Father is looking for those who will worship Him that way.” (John 4:23-25)",
-  image = "https://deifkwefumgah.cloudfront.net/shadcnblocks/block/lummi/Modern%20Architectural%20Elegance%20at%20Twilight.png",
+  image = "/nonstop/nonstop-001.jpg",
   className,
   onSubmit,
 }: Contact31Props) => {
