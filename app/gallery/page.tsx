@@ -7,7 +7,7 @@ export default function GalleryPage() {
   return (
     <>
       <GalleryMain />
-      <Parallax />
+      {/* <Parallax /> */}
     </>
   );
 }
