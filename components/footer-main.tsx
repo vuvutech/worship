@@ -4,6 +4,7 @@ import { cn } from "@/lib/utils";
 
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
+import Link from "next/link";
 
 interface NavItem {
   name: string;
@@ -86,12 +87,12 @@ const FooterComponent = ({
               viewport={{ once: false }}
               transition={{ duration: 0.5, delay: i * 0.1 }}
               >
-              <a
+              <Link
                 href={item.href}
                 className='font-medium transition-opacity hover:opacity-75'
               >
                 {item.name}
-              </a>
+              </Link>
             </motion.li>
           ))}
           {social.map((item, i) => (
@@ -101,24 +102,24 @@ const FooterComponent = ({
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: i * 0.1 }}
               >
-              <a
+              <Link
                 href={item.href}
                 className='flex items-center gap-0.5 font-medium transition-opacity hover:opacity-75'
               >
                 {item.name} <ArrowUpRight className='size-4' />
-              </a>
+              </Link>
             </motion.li>
           ))}
         </ul>
         <ul className='flex flex-wrap items-center justify-center gap-6'>
           {legal.map((item) => (
             <li key={item.name}>
-              <a
+              <Link
                 href={item.href}
                 className='text-sm text-muted-foreground transition-opacity hover:opacity-75'
               >
                 {item.name}
-              </a>
+              </Link>
             </li>
           ))}
         </ul>

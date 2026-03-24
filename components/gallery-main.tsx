@@ -46,7 +46,7 @@ const GalleryMain = ({ className }: GalleryMainProps) => {
       <div className="relative container">
         <div className="grid grid-cols-2 gap-4 md:grid-cols-4">
           {/* Column 1 */}
-          <div className="grid gap-4">
+          <div className="flex flex-col gap-4">
             {column1Images.map((image, index) => (
               <motion.div
                 initial={{ opacity: 0, scale: 0.9, y: 50 }}
@@ -62,7 +62,7 @@ const GalleryMain = ({ className }: GalleryMainProps) => {
           </div>
 
           {/* Column 2 */}
-          <div className="grid gap-4">
+          <div className="flex flex-col gap-4">
             {column2Images.map((image, index) => (
               <motion.div
                 initial={{ opacity: 0, scale: 0.9, y: -50 }}
@@ -78,7 +78,7 @@ const GalleryMain = ({ className }: GalleryMainProps) => {
           </div>
 
           {/* Column 3 */}
-          <div className="grid gap-4">
+          <div className="flex flex-col gap-4">
             {column3Images.map((image, index) => (
               <motion.div
                 initial={{ opacity: 0, scale: 0.9, y: 50 }}
@@ -94,7 +94,7 @@ const GalleryMain = ({ className }: GalleryMainProps) => {
           </div>
 
           {/* Column 4 */}
-          <div className="grid gap-4">
+          <div className="flex flex-col gap-4">
             {column4Images.map((image, index) => (
               <motion.div
                 initial={{ opacity: 0, scale: 0.9, y: -50 }}

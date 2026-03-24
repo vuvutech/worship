@@ -166,81 +166,116 @@ export function LiveDashboard({ videos, events }: LiveDashboardProps) {
       </section>
 
       {/* Upcoming Events Section */}
-      <section className='hidden w-full relative z-10 px-4 md:px-8 max-w-[1600px] mx-auto mt-16'>
-        <h2 className='text-3xl font-bold mb-8'>Upcoming Events</h2>
+      <section className='w-full relative z-10 px-4 md:px-8 max-w-[1600px] mx-auto mt-24'>
+        {/* Header Section */}
+        <div className='text-left mb-16'>
+          <h2 className='text-4xl md:text-5xl font-bold text-foreground mb-4'>
+            Upcoming Ministrations
+          </h2>
+          <p className='text-muted-foreground text-lg'>
+            Discover upcoming gatherings and experiences crafted for unforgettable moments in His presence.
+          </p>
+        </div>
+
         {events.length > 0 ? (
-          <div className='grid grid-cols-1 lg:grid-cols-2 gap-6 xl:gap-8'>
-            {events.map((event) => (
-              <div
-                key={event.id}
-                className='bg-transparent border border-white/10 rounded-[2rem] p-4 flex flex-col sm:flex-row gap-6 hover:bg-white/5 transition-colors group'
-              >
-                {/* Left side: Image container */}
-                <div className='w-full sm:w-[45%] xl:w-[40%] relative aspect-[4/3] overflow-hidden rounded-2xl shrink-0'>
-                  {event.poster ? (
-                    <img
-                      src={event.poster}
-                      alt={event.title}
-                      className='w-full h-full object-cover rounded-2xl transition-transform duration-500 group-hover:scale-105'
-                    />
-                  ) : (
-                    <div className='w-full h-full bg-neutral-900 flex items-center justify-center rounded-2xl'>
-                      <span className='text-neutral-600'>No poster</span>
+          <>
+            {/* Event Cards Grid */}
+            <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8 mb-16'>
+              {events.map((event, idx) => {
+                const fallbackImages = [
+                  "/nonstop/nonstop-032.jpg",
+                  "/nonstop/nonstop-038.jpg",
+                  "/nonstop/nonstop-054.jpg",
+                  "/nonstop/nonstop-009.jpg",
+                  "/nonstop/nonstop-011.jpg",
+                ];
+                const displayPoster =
+                  event.poster ||
+                  fallbackImages[idx % fallbackImages.length];
+
+                return (
+                  <div
+                    key={event.id}
+                    className='bg-none dark:bg-white/5 rounded-3xl border border-black/10 dark:border-white/10 hover:border-black/20 dark:hover:border-white/20 transition-all duration-300 overflow-hidden group flex flex-col'
+                  >
+                    <div className='relative overflow-hidden'>
+                      <img
+                        src={displayPoster}
+                        alt={event.title}
+                        className='w-full h-64 sm:h-72 object-cover group-hover:scale-105 transition-transform duration-700 ease-out'
+                      />
+                      <div className='absolute top-4 right-4 bg-white/95 backdrop-blur-sm rounded-xl px-3.5 py-2 text-center shadow-xl'>
+                        <div className='text-2xl font-black text-black leading-none'>
+                          {new Date(event.startDate).getDate()}
+                        </div>
+                        <div className='text-xs text-neutral-600 font-bold uppercase mt-1'>
+                          {new Date(event.startDate).toLocaleString("default", {
+                            month: "short",
+                          })}
+                        </div>
+                      </div>
                     </div>
-                  )}
-                  {/* Badge */}
-                  <div className='absolute top-3 right-3 bg-white text-black text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-wider shadow-md'>
-                    event
+                    <div className='p-6 md:p-8 flex flex-col flex-grow'>
+                      <h3 className='text-xl md:text-2xl font-bold text-foreground mb-3 group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors'>
+                        {event.title}
+                      </h3>
+                      <p className='text-muted-foreground text-sm md:text-base leading-relaxed mb-6 line-clamp-3'>
+                        {event.description ||
+                          "Join us for a powerful time of worship, prayer, and ministry as we keep the altar burning."}
+                      </p>
+                      
+                      <div className='mt-auto pt-4 flex items-center justify-between border-t border-black/10 dark:border-white/10'>
+                        <a
+                          href={`/schedule#${event.slug || event.id}`}
+                          className='inline-flex items-center text-sm font-semibold text-teal-500 hover:text-teal-400 transition-colors group/link'
+                        >
+                          View Details
+                          <svg
+                            className='ml-1.5 w-4 h-4 transition-transform group-hover/link:translate-x-1'
+                            fill='none'
+                            stroke='currentColor'
+                            viewBox='0 0 24 24'
+                          >
+                            <path
+                              strokeLinecap='round'
+                              strokeLinejoin='round'
+                              strokeWidth='2.5'
+                              d='M9 5l7 7-7 7'
+                            ></path>
+                          </svg>
+                        </a>
+                      </div>
+                    </div>
                   </div>
-                </div>
+                );
+              })}
+            </div>
 
-                {/* Right side: Content */}
-                <div className='flex-1 flex flex-col py-2 pr-2 justify-center'>
-                  {/* Date and Time */}
-                  <div className='flex items-center gap-2 text-xs font-medium text-neutral-400 mb-3'>
-                    <span>
-                      {new Date(event.startDate).toLocaleDateString(undefined, {
-                        year: 'numeric', month: 'long', day: 'numeric'
-                      })}
-                    </span>
-                    <span className="text-neutral-600">•</span>
-                    <span className="flex items-center gap-1">
-                      <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                      </svg>
-                      {new Date(event.startDate).toLocaleTimeString(undefined, {
-                        hour: '2-digit', minute: '2-digit'
-                      })}
-                    </span>
-                  </div>
-
-                  {/* Title */}
-                  <h3 className='text-xl xl:text-2xl font-bold leading-snug mb-3 text-white group-hover:text-red-100 transition-colors'>
-                    {event.title}
-                  </h3>
-
-                  {/* Description */}
-                  {event.description && (
-                    <p className='text-sm text-neutral-400 line-clamp-3 leading-relaxed mb-4'>
-                      {event.description}
-                    </p>
-                  )}
-
-                  {/* Link at bottom */}
-                  <div className='mt-auto pt-2'>
-                    <a href={`/schedule#${event.slug || event.id}`} className='inline-flex items-center text-sm font-bold text-teal-600 hover:text-teal-500 transition-colors'>
-                      Read article
-                      <svg className="ml-1.5 w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7" />
-                      </svg>
-                    </a>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
+            {/* See More Button */}
+            <div className='text-center'>
+              <a
+                href='/schedule'
+                className='inline-flex items-center px-8 py-4 text-sm font-bold text-foreground bg-transparent border-2 border-black/20 dark:border-white/20 rounded-2xl hover:bg-black/5 dark:hover:bg-white/5 transition-all duration-300'
+              >
+                <span>See Full Schedule</span>
+                <svg
+                  className='ml-2 w-4 h-4'
+                  fill='none'
+                  stroke='currentColor'
+                  viewBox='0 0 24 24'
+                >
+                  <path
+                    strokeLinecap='round'
+                    strokeLinejoin='round'
+                    strokeWidth='2.5'
+                    d='M9 5l7 7-7 7'
+                  ></path>
+                </svg>
+              </a>
+            </div>
+          </>
         ) : (
-          <div className='w-full py-12 text-center text-neutral-500 border border-white/10 border-dashed rounded-xl'>
+          <div className='w-full py-20 text-center text-muted-foreground border border-black/10 dark:border-white/10 border-dashed rounded-3xl bg-black/5 dark:bg-white/5'>
             Stay tuned for our upcoming spiritual gatherings.
           </div>
         )}

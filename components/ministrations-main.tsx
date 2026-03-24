@@ -16,33 +16,34 @@ import {
 const ministrationsHomeProp = [
   {
     id: 1,
+    title: "Sunrise Mercies: A New Sound for a New Day",
+    location: "Main Sanctuary",
+    year: "2024",
+    category: "Recovery",
+    description:
+      "Welcoming the dawn with the first fruits of our lips. A refreshing session focused on the recovery of peace and the renewal of the weary soul.",
+    image: "/images/24elders.jpg",
+  },
+  {
+    id: 2,
     title: "The Midnight Altar: Deep Intercessory Worship",
     location: "Main Sanctuary",
     year: "2024",
     category: "Intercession",
     description:
       "When the world falls silent, the fire burns brightest. Experience the weight of the Presence during the quietest hours of the 144-hour sacrifice.",
-    image: "/images/mass-choir8.jpg", 
+    image: "/images/mass-choir8.jpg",
   },
   {
-    id: 2,
+    id: 3,
     title: "Living Water: The Bible Reading Series",
     location: "Global Stream",
     year: "2024",
     category: "The Word",
     description:
       "Scripture isn't just read; it is proclaimed over our city. Witness the atmosphere shift as the Word of God is spoken without end, chapter by chapter.",
-    image: "https://images.unsplash.com/photo-1504052434569-70ad5836ab65?q=80&w=2070&auto=format&fit=crop",
-  },
-  {
-    id: 3,
-    title: "The Sound of Victory: Mass Choir Highlights",
-    location: "The Tabernacle",
-    year: "2024",
-    category: "High Praise",
-    description:
-      "A unified roar of praise that breaks every chain. Watch as hundreds of voices join together to rebuild the fallen shelter of David through high-energy exaltation.",
-    image: "/images/mass-choir3.jpg",
+    image:
+      "https://images.unsplash.com/photo-1504052434569-70ad5836ab65?q=80&w=2070&auto=format&fit=crop",
   },
   {
     id: 4,
@@ -56,13 +57,13 @@ const ministrationsHomeProp = [
   },
   {
     id: 5,
-    title: "Sunrise Mercies: A New Sound for a New Day",
-    location: "Main Sanctuary",
+    title: "The Sound of Victory: Mass Choir Highlights",
+    location: "The Tabernacle",
     year: "2024",
-    category: "Recovery",
+    category: "High Praise",
     description:
-      "Welcoming the dawn with the first fruits of our lips. A refreshing session focused on the recovery of peace and the renewal of the weary soul.",
-    image: "/images/24elders.jpg",
+      "A unified roar of praise that breaks every chain. Watch as hundreds of voices join together to rebuild the fallen shelter of David through high-energy exaltation.",
+    image: "/images/mass-choir3.jpg",
   },
 ];
 
@@ -90,21 +91,34 @@ const Ministration = ({ className }: ministrationsHomeProps) => {
 
   return (
     <section className={cn("py-16", className)}>
-      <div className="w-full" data-usal="fade-u duration-500">
-        <div className="mb-16 px-8 max-w-6xl">
-          <h1 className="text-3xl lg:text-6xl">
-            Ministrations Spotlight
-          </h1>
-          <div className="mt-6 space-y-4 text-muted-foreground leading-relaxed">
+      <div
+        className='w-full'
+        data-usal='fade-u duration-500'
+      >
+        <div className='mb-16 px-8 max-w-6xl'>
+          <h1 className='text-3xl lg:text-6xl'>Ministrations Spotlight</h1>
+          <div className='mt-6 space-y-4 text-muted-foreground leading-relaxed'>
             <p>
-              In the original Tabernacle of David, the music was never meant to have an ending. It was a continuous, living sound designed to host the Presence of God. Our <span className="text-foreground font-medium">Ministrations Spotlight</span> is a window into that same eternal rhythm. 
+              In the original Tabernacle of David, the music was never meant to
+              have an ending. It was a continuous, living sound designed to host
+              the Presence of God. Our{" "}
+              <span className='text-foreground font-medium'>
+                Ministrations Spotlight
+              </span>{" "}
+              is a window into that same eternal rhythm.
             </p>
             <p>
-              Here, we celebrate the diverse voices, choirs, and ministers who have stepped into the 144-hour gap to offer their "sacrifice of praise." These are not merely performances; they are prophetic moments of <span className="italic">Recovery, Revival, and Restoration.</span>
+              Here, we celebrate the diverse voices, choirs, and ministers who
+              have stepped into the 144-hour gap to offer their "sacrifice of
+              praise." These are not merely performances; they are prophetic
+              moments of{" "}
+              <span className='italic'>
+                Recovery, Revival, and Restoration.
+              </span>
             </p>
           </div>
         </div>
-        <div className="relative w-full">
+        <div className='relative w-full'>
           <Carousel
             setApi={setCarouselApi}
             opts={{
@@ -116,30 +130,33 @@ const Ministration = ({ className }: ministrationsHomeProps) => {
                 },
               },
             }}
-            className="w-full"
+            className='w-full'
           >
             <CarouselContent>
               {ministrationsHomeProp.map((project) => (
-                <CarouselItem key={project.id} className="basis-auto pl-4">
-                  <div className="w-[350px] md:w-[600px] lg:w-[700px] space-y-4">
-                    <div className="aspect-video overflow-hidden rounded-xl bg-muted">
+                <CarouselItem
+                  key={project.id}
+                  className='basis-auto pl-4'
+                >
+                  <div className='w-[350px] md:w-[600px] lg:w-[700px] space-y-4'>
+                    <div className='aspect-video overflow-hidden rounded-xl bg-muted'>
                       <img
                         src={project.image || "/placeholder.svg"}
                         alt={project.title}
-                        className="h-full w-full object-top object-cover transition-transform duration-500 hover:scale-105"
+                        className='h-full w-full object-top object-cover transition-transform duration-500 hover:scale-105'
                       />
                     </div>
-                    <div className="space-y-3">
-                      <div className="flex items-start justify-between gap-4">
+                    <div className='space-y-3'>
+                      <div className='flex items-start justify-between gap-4'>
                         <div>
-                          <h2 className="text-xl md:text-2xl font-normal  ">
+                          <h2 className='text-xl md:text-2xl font-normal  '>
                             {project.title}
                           </h2>
-                          <p className="text-sm text-muted-foreground mt-1">
+                          <p className='text-sm text-muted-foreground mt-1'>
                             {project.description}
                           </p>
                         </div>
-                        <span className="shrink-0 rounded-full bg-primary/10 px-3 py-1 text-xs font-medium text-primary">
+                        <span className='shrink-0 rounded-full bg-primary/10 px-3 py-1 text-xs font-medium text-primary'>
                           {project.category}
                         </span>
                       </div>
@@ -149,26 +166,26 @@ const Ministration = ({ className }: ministrationsHomeProps) => {
               ))}
             </CarouselContent>
           </Carousel>
-          
+
           {/* Navigation Buttons */}
-          <div className="pointer-events-none absolute inset-y-0 top-1/2 -translate-y-1/2 right-4 left-4 z-10 flex justify-between">
+          <div className='pointer-events-none absolute inset-y-0 top-1/2 -translate-y-1/2 right-4 left-4 z-10 flex justify-between'>
             <Button
-              size="icon"
-              variant="outline"
+              size='icon'
+              variant='outline'
               onClick={() => carouselApi?.scrollPrev()}
               disabled={!canScrollPrev}
-              className="pointer-events-auto h-12 w-12 rounded-full border-gray-200 bg-white/90 shadow-sm hover:bg-white disabled:opacity-0 transition-opacity"
+              className='pointer-events-auto h-12 w-12 rounded-full border-gray-200 bg-white/90 shadow-sm hover:bg-white disabled:opacity-0 transition-opacity'
             >
-              <ArrowLeft className="h-5 w-5" />
+              <ArrowLeft className='h-5 w-5' />
             </Button>
             <Button
-              size="icon"
-              variant="outline"
+              size='icon'
+              variant='outline'
               onClick={() => carouselApi?.scrollNext()}
               disabled={!canScrollNext}
-              className="pointer-events-auto h-12 w-12 rounded-full border-gray-200 bg-white/90 shadow-sm hover:bg-white disabled:opacity-0 transition-opacity"
+              className='pointer-events-auto h-12 w-12 rounded-full border-gray-200 bg-white/90 shadow-sm hover:bg-white disabled:opacity-0 transition-opacity'
             >
-              <ArrowRight className="h-5 w-5" />
+              <ArrowRight className='h-5 w-5' />
             </Button>
           </div>
         </div>
