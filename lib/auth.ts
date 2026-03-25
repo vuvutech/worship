@@ -13,7 +13,7 @@ import { render } from "@react-email/render";
 
 
 export const auth = betterAuth({
-    appName: "Worship",
+    appName: "TheNonStop Series",
     database: prismaAdapter(prisma, {
         provider: "mongodb",
     }),
