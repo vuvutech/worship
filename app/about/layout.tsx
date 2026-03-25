@@ -1,4 +1,18 @@
+import type { Metadata } from "next";
 import React from 'react'
+
+export const metadata: Metadata = {
+  title: "About — Our Story & Mission",
+  description:
+    "Learn about The Non-Stop Series™ — 22 years of continuous praise and worship organised by the Logos-Rhema Foundation. Discover the story behind Africa's premier 144-hour non-stop worship experience.",
+  alternates: { canonical: "https://thenonstop.org/about" },
+  openGraph: {
+    url: "https://thenonstop.org/about",
+    title: "About The Non-Stop Series™ — 22 Years of Continuous Worship",
+    description:
+      "For 22 years the Logos-Rhema Foundation has led the world in continuous praise and worship. Discover the mission of recovery, revival, and restoration behind The Non-Stop Series.",
+  },
+};
 
 const layouts = ({children}: {children: React.ReactNode}) => {
   return (
@@ -8,4 +22,4 @@ const layouts = ({children}: {children: React.ReactNode}) => {
   )
 }
 
-export default layouts
+export default layouts

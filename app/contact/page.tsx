@@ -1,5 +1,20 @@
+import type { Metadata } from "next";
 import { Contact31 } from "@/components/contact31";
 import React from "react";
+
+export const metadata: Metadata = {
+  title: "Contact Us",
+  description:
+    "Get in touch with The Non-Stop Series™ team. Share your testimony, submit a suggestion, or reach out for partnership and media enquiries.",
+  alternates: { canonical: "https://thenonstop.org/contact" },
+  openGraph: {
+    url: "https://thenonstop.org/contact",
+    title: "Contact The Non-Stop Series™",
+    description:
+      "Reach out to the team behind Africa's premier continuous praise and worship event.",
+  },
+};
+
 
 const page = () => {
   return (

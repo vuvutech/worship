@@ -1,5 +1,6 @@
 "use client";
 
+// NOTE: SEO metadata for this page is defined in app/about/metadata.ts (server-side)
 import { AboutCompliment } from "@/components/about-compliment";
 import { MissionVision } from "@/components/mission-vision";
 import { motion, Variants } from "framer-motion";

@@ -1,5 +1,20 @@
+import type { Metadata } from "next";
 import { prisma } from "@/lib/prisma";
 import { LiveDashboard } from "./live-dashboard";
+
+export const metadata: Metadata = {
+  title: "Live — Watch Non-Stop Praise & Worship",
+  description:
+    "Watch The Non-Stop Series™ live stream — 24/7 unbroken praise and worship, intercession, and the Word. Experience continuous worship from anywhere in the world.",
+  alternates: { canonical: "https://thenonstop.org/live" },
+  openGraph: {
+    url: "https://thenonstop.org/live",
+    title: "Live Stream — 24/7 Non-Stop Praise & Worship",
+    description:
+      "Watch live: 144 hours of unbroken praise and worship, intercession, and the Word streaming from Accra, Ghana.",
+  },
+};
+
 
 export const dynamic = "force-dynamic"; // Ensure fresh data on load
 

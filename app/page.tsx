@@ -1,8 +1,22 @@
+import type { Metadata } from "next";
 import HeroSection from "@/components/hero-section";
 import { Ministration } from "../components/ministrations-main";
 import FAQ from "@/components/faq";
 import { AboutCompliment } from "@/components/about-compliment";
 import HeroHeadline from "@/components/hero-headline";
+
+export const metadata: Metadata = {
+  title: "Home",
+  description:
+    "Welcome to The Non-Stop Series™ — Africa's premier 144-hour continuous praise and worship experience. 6 days and 6 nights of unbroken worship, intercession, and the Word of God, streaming live to the world from Accra, Ghana.",
+  alternates: { canonical: "https://thenonstop.org" },
+  openGraph: {
+    url: "https://thenonstop.org",
+    title: "The Non-Stop Series™ — 144 Hours of Continuous Praise & Worship",
+    description:
+      "6 days. 6 nights. Non-stop praise, worship, and intercession from Accra, Ghana. Join thousands online and on-ground.",
+  },
+};
 
 export default function Page() {
   return (

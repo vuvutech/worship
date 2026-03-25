@@ -1,6 +1,21 @@
+import type { Metadata } from "next";
 import { prisma } from "@/lib/prisma";
 import { format } from "date-fns";
 import UpcomingEventsList from "@/components/upcoming-events-list";
+
+export const metadata: Metadata = {
+  title: "Schedule — Upcoming Ministrations",
+  description:
+    "View the upcoming schedule for The Non-Stop Series™ — including dates, locations, and registration details for the next 144-hour continuous praise and worship event.",
+  alternates: { canonical: "https://thenonstop.org/schedule" },
+  openGraph: {
+    url: "https://thenonstop.org/schedule",
+    title: "Schedule — Upcoming Non-Stop Worship Events",
+    description:
+      "Find out when the next 144-hour Non-Stop praise and worship event is happening. Register now and be part of history.",
+  },
+};
+
 
 export default async function SchedulePage() {
   const events = await prisma.event.findMany({
