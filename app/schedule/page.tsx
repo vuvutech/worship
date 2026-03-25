@@ -62,7 +62,7 @@ export default async function SchedulePage() {
 
 			{/* Main Event Card */}
 			<div className='max-w-7xl mx-auto -mt-16 relative z-20 px-4'>
-				<div className='flex flex-col md:flex-row rounded-3xl overflow-hidden border shadow-2xl bg-card text-card-foreground'>
+				<div className='flex flex-col md:flex-row rounded-3xl overflow-hidden shadow-2xl bg-card text-card-foreground'>
 					{/* Date Strip */}
 					<div className='flex flex-row items-center justify-center gap-3 md:flex-col md:justify-center md:items-center py-6 px-8 md:py-12 md:w-1/4 bg-primary text-primary-foreground font-bebas shrink-0'>
 						<div className='text-xl md:text-3xl'>{month}</div>
@@ -216,8 +216,8 @@ export default async function SchedulePage() {
 			</div>
 
 			{/* CTA section preserved */}
-			<div className='max-w-5xl mx-auto py-20 px-4'>
-				<div className='rounded-3xl p-8 sm:p-12 bg-neutral-900 border border-white/10 text-center relative overflow-hidden'>
+			<div className='max-w-6xl mx-auto py-10 px-4'>
+				<div className='rounded-3xl p-8 sm:p-12 bg-neutral-900  border-white/10 text-center relative overflow-hidden'>
 					<div className='absolute inset-0 bg-gradient-to-br from-primary/10 to-transparent pointer-events-none' />
 					<h2 className='text-3xl md:text-5xl font-bebas mb-4 text-white'>
 						Sustain the Fire
@@ -229,7 +229,7 @@ export default async function SchedulePage() {
 					</p>
 					<a
 						href='/get-involved'
-						className='inline-flex items-center justify-center h-14 px-12 rounded-full bg-white text-black font-bebas text-xl tracking-wider hover:bg-neutral-200 transition-colors'
+						className='inline-flex items-center justify-center h-10 px-12 rounded-full bg-white text-black font-bebas text-xl tracking-wider hover:bg-neutral-200 transition-colors'
 					>
 						Get Involved
 					</a>

@@ -12,7 +12,8 @@ import {
 } from "@/components/ui/sheet";
 import { Logo } from "@/components/logo";
 import Link from "next/link";
-import { motion, AnimatePresence } from "framer-motion";
+import { useCurrentSession } from "@/lib/use-current-session";
+import { motion, AnimatePresence, Variants } from "framer-motion";
 
 const navItems = [
   { label: "Home", href: "/" },
@@ -24,7 +25,7 @@ const navItems = [
   { label: "Contact", href: "/contact" },
 ];
 
-const containerVariants = {
+const containerVariants: Variants = {
   hidden: { opacity: 0 },
   show: {
     opacity: 1,
@@ -42,13 +43,13 @@ const containerVariants = {
   },
 };
 
-const itemVariants = {
+const itemVariants: Variants = {
   hidden: { opacity: 0, y: 40, skewY: 4 },
   show: {
     opacity: 1,
     y: 0,
     skewY: 0,
-    transition: { duration: 0.4, ease: [0.22, 1, 0.36, 1] },
+    transition: { duration: 0.4, ease: [0.22, 1, 0.36, 1] as const },
   },
   exit: {
     opacity: 0,
@@ -58,6 +59,7 @@ const itemVariants = {
 };
 
 export const NavigationSheet = () => {
+  const { user, isAuthenticated } = useCurrentSession();
   const [open, setOpen] = useState(false);
 
   return (
@@ -132,22 +134,26 @@ export const NavigationSheet = () => {
               {/* Footer of sheet */}
               <motion.div
                 variants={itemVariants}
-                className='mt-auto pt-6 flex items-center gap-4'
+                className='mt-auto pt-6 flex flex-col gap-4'
               >
-                <Link
-                  href='/signup'
-                  onClick={() => setOpen(false)}
-                  className='flex-1 text-center rounded-full border border-white/20 py-3 text-sm font-semibold text-white transition-colors hover:bg-white/10'
-                >
-                  Get Started
-                </Link>
-                <Link
-                  href='/login'
-                  onClick={() => setOpen(false)}
-                  className='flex-1 text-center rounded-full bg-white py-3 text-sm font-semibold text-black transition-colors hover:bg-white/90'
-                >
-                  Sign In
-                </Link>
+                {!isAuthenticated && (
+                  <Link
+                    href='/login'
+                    onClick={() => setOpen(false)}
+                    className='text-center rounded-full bg-white py-3 text-sm font-semibold text-black transition-colors hover:bg-white/90'
+                  >
+                    Sign In
+                  </Link>
+                )}
+                {isAuthenticated && user?.role === "admin" && (
+                  <Link
+                    href='/dashboard'
+                    onClick={() => setOpen(false)}
+                    className='text-center rounded-full bg-white py-3 text-sm font-semibold text-black transition-colors hover:bg-white/90'
+                  >
+                    Dashboard
+                  </Link>
+                )}
               </motion.div>
             </motion.nav>
           )}

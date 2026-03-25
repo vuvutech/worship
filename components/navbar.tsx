@@ -24,12 +24,21 @@ import { useState, useEffect } from "react";
 const Navbar = () => {
   const { user, isAuthenticated } = useCurrentSession();
   const [scrolledPast, setScrolledPast] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
     const threshold = window.innerHeight; // 100dvh equivalent
     const onScroll = () => setScrolledPast(window.scrollY > threshold);
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  useEffect(() => {
+    const MD_BREAKPOINT = 768;
+    const check = () => setIsMobile(window.innerWidth < MD_BREAKPOINT);
+    check(); // run once on mount
+    window.addEventListener("resize", check, { passive: true });
+    return () => window.removeEventListener("resize", check);
   }, []);
 
   const handleLogout = async () => {
@@ -57,8 +66,8 @@ const Navbar = () => {
       id="navbar"
       className='fixed z-50 inset-x-0 top-0 md:inset-x-2 md:top-6 mx-auto h-14 md:rounded-full bg-black text-white backdrop-blur-xl border-b md:border border-white/10 shadow-lg'
       style={{
-        maxWidth: scrolledPast ? '72vw' : '96vw',
-        transition: 'max-width 1.2s cubic-bezier(0.22, 1, 0.36, 1)',
+        maxWidth: isMobile ? '100%' : scrolledPast ? '80vw' : '96vw',
+        transition: isMobile ? 'none' : 'max-width 1.2s cubic-bezier(0.22, 1, 0.36, 1)',
       }}
     >
       <div className='mx-auto flex h-full items-center justify-between px-2'>
@@ -122,19 +131,19 @@ const Navbar = () => {
             </Button>
           )}
 
-          {(!isAuthenticated || user?.role === "admin") && (
+          {/* {isAuthenticated && user?.role === "admin" && (
             <Button
               className='rounded-full'
               asChild
             >
               <Link
                 transitionTypes={["slide"]}
-                href={isAuthenticated ? "/dashboard" : "/signup"}
+                href="/dashboard"
               >
-                {isAuthenticated ? "Dashboard" : "Get Started"}
+                Dashboard
               </Link>
             </Button>
-          )}
+          )} */}
 
           {/* Mobile Menu */}
           <div className='md:hidden'>
