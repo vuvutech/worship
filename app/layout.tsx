@@ -101,6 +101,10 @@ export const metadata: Metadata = {
       "max-snippet": -1,
     },
   },
+  icons: {
+    icon: "/images/non-stop-logo.jpg",
+    apple: "/images/non-stop-logo.jpg",
+  },
 };
 
 export default function RootLayout({
@@ -117,7 +121,7 @@ export default function RootLayout({
 			scrollbar-color='#000 #fff'
 		>
 			<body
-				className={`${geistSans.variable} ${ibmplex.variable} ${anton.variable} ${opensans.variable} ${bebas.variable} text-base antialiased bg-neutral-100`}
+				className={`${geistSans.variable} ${ibmplex.variable} ${anton.variable} ${opensans.variable} ${bebas.variable} text-base antialiased`}
 			>
 				<ThemeProvider>
 					<NavbarWrapper />

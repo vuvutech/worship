@@ -45,7 +45,7 @@ export function DonationDialog({ children }: { children: React.ReactNode }) {
 					<DialogHeader>
 						<DialogTitle className='text-4xl font-bebas tracking-wider flex items-center gap-2'>
 							{/* <Heart className='text-amber-500 size-7 fill-amber-500' /> */}
-							Partner with the Fire
+							Partner with the Non-Stop Series
 						</DialogTitle>
 						<DialogDescription className='text-muted-foreground text-lg'>
 							Your sacrifice sustains the 144-hour altar of
@@ -56,7 +56,7 @@ export function DonationDialog({ children }: { children: React.ReactNode }) {
 
 				<div className='px-6 py-6 max-h-[70vh] overflow-y-auto no-scrollbar'>
 					<Tabs defaultValue='cash' className='w-full'>
-						<TabsList className='grid w-full grid-cols-2 bg-muted border border-border mb-8 h-14 min-h-[54px]'>
+						<TabsList className='grid w-full grid-cols-2 bg-muted border border-border mb-8 h-14 min-h-[44px]'>
 							<TabsTrigger
 								value='cash'
 								className='data-[state=active]:bg-amber-500 data-[state=active]:text-primary-foreground uppercase font-semibold text-xs sm:text-sm tracking-wide h-full'
