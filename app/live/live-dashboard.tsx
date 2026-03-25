@@ -1,8 +1,8 @@
 "use client";
-
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import useSWR from "swr";
 import { VideoPlayer } from "@/components/video-player";
-import { Play } from "lucide-react";
+import { Play, Mic2, Calendar, Users } from "lucide-react";
 
 type VideoType = "VOD" | "LIVE";
 
@@ -15,6 +15,13 @@ interface Video {
   createdAt: Date;
 }
 
+interface Minister {
+  id: string;
+  name: string;
+  role: string | null;
+  image: string | null;
+}
+
 interface Event {
   id: string;
   title: string;
@@ -23,63 +30,193 @@ interface Event {
   endDate: Date;
   poster: string | null;
   description: string | null;
-  ministers: any[];
+  ministers: Minister[];
   sponsors: any[];
 }
 
-interface LiveDashboardProps {
+interface LiveStatusResponse {
   videos: Video[];
-  events: Event[];
+  activeEvent: Event | null;
+  nextEvent: Event | null;
+  serverTime: string;
 }
 
-export function LiveDashboard({ videos, events }: LiveDashboardProps) {
+interface LiveDashboardProps {
+  initialVideos: Video[];
+  initialEvents: Event[];
+}
+
+const fetcher = (url: string) => {
+  if (process.env.NODE_ENV === "development") {
+    console.log(`[SYNC] Refreshing live status: ${new Date().toLocaleTimeString()}`);
+  }
+  return fetch(url).then((res) => res.json());
+};
+
+export function LiveDashboard({ initialVideos, initialEvents }: LiveDashboardProps) {
+  // Poll for live status every 60 seconds (using a generic sync path for obfuscation)
+  const { data: status, error } = useSWR<LiveStatusResponse>(
+    "/api/v1/sync",
+    fetcher,
+    {
+      refreshInterval: 60000, // 1 minute
+      fallbackData: {
+        videos: initialVideos,
+        activeEvent: null, 
+        nextEvent: null,
+        serverTime: new Date().toISOString(),
+      },
+    }
+  );
+
+  // Debug logging for status updates (Dev only)
+  useEffect(() => {
+    if (status && process.env.NODE_ENV === "development") {
+      console.log("[SYNC] Live status synchronized:", {
+        activeEvent: status.activeEvent?.title || "NONE",
+        liveVideos: status.videos.filter(v => v.type === "LIVE").length,
+        serverTime: status.serverTime
+      });
+    }
+  }, [status]);
+
+  const videos = status?.videos || initialVideos;
   const liveStream = videos.find((video) => video.type === "LIVE");
   const vods = videos.filter((video) => video.type === "VOD");
 
-  // Default to live stream, or the first VOD if no live stream is available
   const [selectedVideo, setSelectedVideo] = useState<Video | null>(
     liveStream || vods[0] || null,
   );
+
+  // Automatically switch to live stream if a new one appears and user hasn't manually selected a VOD
+  useEffect(() => {
+    if (liveStream && (!selectedVideo || selectedVideo.type !== "LIVE")) {
+       if (!selectedVideo || selectedVideo.type === "LIVE") {
+         if (process.env.NODE_ENV === "development") {
+           console.log(`[SYNC] Auto-switching to live stream: ${liveStream.title}`);
+         }
+         setSelectedVideo(liveStream);
+       }
+    }
+  }, [liveStream?.id]);
+
+  const activeEvent = status?.activeEvent;
 
   return (
     <div className='min-h-screen bg-background text-foreground selection:bg-red-600 selection:text-white pb-24'>
       {/* Hero Player Section */}
       <section className='w-full relative pt-8 px-4 md:px-8 max-w-[1600px] mx-auto'>
-        {/* <div className="absolute top-0 left-0 w-full h-[50vh] bg-gradient-to-b from-red-900/10 to-black z-20" /> */}
+        <div className='relative z-10 w-full mx-auto grid grid-cols-1 lg:grid-cols-4 gap-6'>
+          {/* Main Video Player Container */}
+          <div className='lg:col-span-4 space-y-6'>
+            
+            {/* Now Playing Banner (Dynamic) */}
+            {activeEvent && (
+              <div className="bg-red-600/10 border border-red-600/20 rounded-2xl p-4 md:p-6 flex flex-col md:flex-row md:items-center justify-between gap-4 animate-in fade-in slide-in-from-top-4 duration-700">
+                <div className="flex items-center gap-4">
+                  <div className="relative">
+                    <div className="size-12 md:size-16 rounded-full bg-red-600 animate-pulse overflow-hidden border-2 border-red-600">
+                      {activeEvent.ministers?.[0]?.image ? (
+                        <img 
+                          src={activeEvent.ministers[0].image} 
+                          alt={activeEvent.ministers[0].name}
+                          className="w-full h-full object-cover"
+                        />
+                      ) : (
+                        <div className="flex items-center justify-center h-full">
+                          <Mic2 className="size-6 text-white" />
+                        </div>
+                      )}
+                    </div>
+                    <div className="absolute -bottom-1 -right-1 bg-red-600 text-[10px] font-black px-1.5 py-0.5 rounded text-white uppercase tracking-tighter shadow-lg">
+                      Live
+                    </div>
+                  </div>
+                  <div>
+                    <div className="flex items-center gap-2 mb-1">
+                      <span className="text-red-600 text-xs font-black uppercase tracking-widest flex items-center gap-1">
+                        <span className="relative flex h-2 w-2">
+                          <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
+                          <span className="relative inline-flex rounded-full h-2 w-2 bg-red-600"></span>
+                        </span>
+                        Now Playing
+                      </span>
+                    </div>
+                    <h2 className="text-xl md:text-2xl font-bold line-clamp-1">{activeEvent.title}</h2>
+                    <p className="text-sm text-neutral-500 font-medium">
+                      Ministering: <span className="text-foreground">{activeEvent.ministers?.map(m => m.name).join(", ") || "The Body of Christ"}</span>
+                    </p>
+                  </div>
+                </div>
+                
+                <div className="hidden md:flex flex-col items-end text-right">
+                  <div className="flex items-center gap-2 text-neutral-400 text-xs font-bold uppercase tracking-wider mb-2">
+                    <Users className="size-4" />
+                    Join global worshippers
+                  </div>
+                  <div className="flex -space-x-3">
+                    {[1,2,3,4].map(i => (
+                      <div key={i} className="size-8 rounded-full border-2 border-background bg-neutral-800 flex items-center justify-center overflow-hidden">
+                        <img src={`https://i.pravatar.cc/100?u=${i}`} alt="user" className="w-full h-full grayscale opacity-50" />
+                      </div>
+                    ))}
+                    <div className="size-8 rounded-full border-2 border-background bg-red-600 flex items-center justify-center text-[10px] font-bold text-white">
+                      +1.2k
+                    </div>
+                  </div>
+                </div>
+              </div>
+            )}
 
-        <div className='relative z-10 w-full mx-auto grid grid-cols-1 lg:grid-cols-4 gap-4'>
-          {/* Main Video Player */}
-          <div className='lg:col-span-4 space-y-4'>
             {selectedVideo ? (
               <>
-                <VideoPlayer
-                  key={selectedVideo.id}
-                  url={selectedVideo.url}
-                  isLive={selectedVideo.type === "LIVE"}
-                  playing={true}
-                  thumbnail={selectedVideo.thumbnail}
-                />
-                <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-4 mt-4">
+                <div className="rounded-2xl overflow-hidden shadow-2xl shadow-black/50 border border-white/5 bg-neutral-900 group/player relative">
+                  <VideoPlayer
+                    key={selectedVideo.id}
+                    url={selectedVideo.url}
+                    isLive={selectedVideo.type === "LIVE"}
+                    playing={true}
+                    thumbnail={selectedVideo.thumbnail}
+                  />
+                  {!activeEvent && selectedVideo.type === "LIVE" && (
+                    <div className="absolute bottom-4 left-4 bg-black/60 backdrop-blur-md px-4 py-2 rounded-full border border-white/10 z-30">
+                       <p className="text-xs font-bold text-white flex items-center gap-2">
+                         <span className="relative flex h-2 w-2">
+                            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-500 opacity-75"></span>
+                            <span className="relative inline-flex rounded-full h-2 w-2 bg-red-600"></span>
+                         </span>
+                         Continuous Praise & Worship is Active
+                       </p>
+                    </div>
+                  )}
+                </div>
+                
+                <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-4 mt-6">
                   <div>
-                    <h1 className='text-3xl md:text-4xl font-bold'>
+                    <h1 className='text-3xl md:text-5xl font-bebas uppercase tracking-tight'>
                       {selectedVideo.title}
                     </h1>
-                    <p className='text-neutral-400 mt-2'>
-                      {selectedVideo.type === "LIVE"
-                        ? "Broadcasting live from The Non-Stop"
-                        : `Added on ${new Date(selectedVideo.createdAt).toLocaleDateString()}`}
-                    </p>
+                    <div className="flex items-center gap-3 mt-3">
+                      <span className={`text-[10px] font-black uppercase px-2 py-0.5 rounded ${selectedVideo.type === "LIVE" ? "bg-red-600 text-white" : "bg-neutral-800 text-neutral-400"}`}>
+                        {selectedVideo.type}
+                      </span>
+                      <p className='text-neutral-500 text-sm font-medium'>
+                        {selectedVideo.type === "LIVE"
+                          ? "Broadcasting live from The Non-Stop Series™"
+                          : `Recorded session from ${new Date(selectedVideo.createdAt).toLocaleDateString()}`}
+                      </p>
+                    </div>
                   </div>
                   {liveStream && selectedVideo.id !== liveStream.id && (
                     <button 
                       onClick={() => setSelectedVideo(liveStream)}
-                      className="group flex items-center gap-2 px-6 py-2.5 bg-red-600 hover:bg-red-700 text-white font-bold rounded-full transition-colors shadow-lg shadow-red-600/20 shrink-0"
+                      className="group flex items-center gap-2 px-8 py-3.5 bg-red-600 hover:bg-red-700 text-white text-sm font-black uppercase rounded-full transition-all hover:scale-105 active:scale-95 shadow-xl shadow-red-600/30 shrink-0"
                     >
                       <span className="relative flex h-2.5 w-2.5">
                         <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"></span>
                         <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-white"></span>
                       </span>
-                      Return to Live Stream
+                      View Live Stream
                     </button>
                   )}
                 </div>
@@ -177,11 +314,11 @@ export function LiveDashboard({ videos, events }: LiveDashboardProps) {
           </p>
         </div>
 
-        {events.length > 0 ? (
+        {initialEvents.length > 0 ? (
           <>
             {/* Event Cards Grid */}
             <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8 mb-16'>
-              {events.map((event, idx) => {
+              {initialEvents.map((event, idx) => {
                 const fallbackImages = [
                   "/nonstop/nonstop-032.jpg",
                   "/nonstop/nonstop-038.jpg",

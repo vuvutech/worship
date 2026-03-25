@@ -66,5 +66,5 @@ export default async function LivePage() {
     sponsors: event.sponsors,
   }));
 
-  return <LiveDashboard videos={videos} events={events} />;
+  return <LiveDashboard initialVideos={videos} initialEvents={events} />;
 }
