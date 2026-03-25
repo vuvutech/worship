@@ -1,10 +1,6 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
 import {
-	anton,
-	ibmplex,
 	opensans,
-	barlowCondensed,
 	bebas,
 } from "@/config/fonts";
 import { Toaster } from "sonner";
@@ -15,15 +11,7 @@ import { ThemeProvider } from "@/app/providers";
 import PageTransition from "@/components/page-transition";
 import "./globals.css";
 
-const geistSans = Geist({
-	variable: "--font-geist-sans",
-	subsets: ["latin"],
-});
 
-const geistMono = Geist_Mono({
-	variable: "--font-geist-mono",
-	subsets: ["latin"],
-});
 
 const BASE_URL = "https://thenonstop.org";
 const OG_IMAGE = `${BASE_URL}/non-stop-logo.webp`;
@@ -115,13 +103,13 @@ export default function RootLayout({
 	return (
 		<html
 			lang='en'
-			className={opensans.variable}
+			className={`${opensans.variable} ${bebas.variable}`}
 			data-scroll-behavior='smooth'
 			scrollbar-width='thin'
 			scrollbar-color='#000 #fff'
 		>
 			<body
-				className={`${geistSans.variable} ${ibmplex.variable} ${anton.variable} ${opensans.variable} ${bebas.variable} text-base antialiased`}
+				className={`${opensans.variable} ${bebas.variable} text-base antialiased`}
 			>
 				<ThemeProvider>
 					<NavbarWrapper />
