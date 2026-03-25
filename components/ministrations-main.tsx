@@ -168,13 +168,13 @@ const Ministration = ({ className }: ministrationsHomeProps) => {
           </Carousel>
 
           {/* Navigation Buttons */}
-          <div className='pointer-events-none absolute inset-y-0 top-1/2 -translate-y-1/2 right-4 left-4 z-10 flex justify-between'>
+          <div className='pointer-events-none absolute top-[calc(50%-3rem)] left-0 right-0 z-10 flex justify-between px-4 sm:px-8'>
             <Button
               size='icon'
               variant='outline'
               onClick={() => carouselApi?.scrollPrev()}
               disabled={!canScrollPrev}
-              className='pointer-events-auto h-12 w-12 rounded-full border-gray-200 bg-white/90 shadow-sm hover:bg-white disabled:opacity-0 transition-opacity'
+              className='pointer-events-auto cursor-pointer h-12 w-12 rounded-full border-gray-200 bg-white shadow-sm hover:bg-white disabled:opacity-0 transition-opacity'
             >
               <ArrowLeft className='h-5 w-5' />
             </Button>
@@ -183,7 +183,7 @@ const Ministration = ({ className }: ministrationsHomeProps) => {
               variant='outline'
               onClick={() => carouselApi?.scrollNext()}
               disabled={!canScrollNext}
-              className='pointer-events-auto h-12 w-12 rounded-full border-gray-200 bg-white/90 shadow-sm hover:bg-white disabled:opacity-0 transition-opacity'
+              className='pointer-events-auto cursor-pointer h-12 w-12 rounded-full border-gray-200 bg-white shadow-sm hover:bg-white disabled:opacity-0 transition-opacity'
             >
               <ArrowRight className='h-5 w-5' />
             </Button>
