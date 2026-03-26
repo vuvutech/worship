@@ -121,7 +121,7 @@ const AboutCompliment = ({
   ],
 }: AboutComplimentProps) => {
   return (
-    <section className={cn("py-32 ", className)}>
+    <section id="why-the-tabernacle" className={cn("py-32 ", className)}>
       <div className='container'>
         <div className='mb-14 flex flex-col gap-5 lg:w-4/5 '
          data-usal='fade-u split-delay-10'>

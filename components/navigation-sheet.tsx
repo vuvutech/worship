@@ -73,11 +73,11 @@ export const NavigationSheet = () => {
 
       <SheetTrigger asChild>
         <Button
-          className='rounded-full'
+          className='rounded-full text-white bg-transparent border-white/10 hover:bg-white/10 hover:text-white'
           size='icon'
-          variant='outline'
+          variant='ghost'
         >
-          <Menu />
+          <Menu className="h-6 w-6" />
         </Button>
       </SheetTrigger>
 

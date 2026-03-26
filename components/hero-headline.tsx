@@ -74,8 +74,13 @@ export default function HeroHeadline({
         <motion.div
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
+          whileHover={{ y: 10, opacity: 0.8 }}
           transition={{ duration: 1, ease: [0.22, 1, 0.36, 1], delay: 0.5 }}
-          className="w-16 h-16 border rounded-full flex items-center justify-center p-3 opacity-20 hover:opacity-50 transition-opacity cursor-pointer rotate-45"
+          onClick={() => {
+            const element = document.getElementById('why-the-tabernacle');
+            element?.scrollIntoView({ behavior: 'smooth' });
+          }}
+          className="w-16 h-16 border rounded-full flex items-center justify-center p-3 opacity-20 hover:opacity-100 transition-all cursor-pointer rotate-[135deg] bg-white/5 hover:bg-white/20"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
