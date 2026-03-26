@@ -5,6 +5,8 @@ import { LoaderIcon } from "lucide-react";
 import { useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 import { z } from "zod";
+import { Turnstile } from "nextjs-turnstile";
+import { toast } from "sonner";
 
 import { cn } from "@/lib/utils";
 
@@ -47,6 +49,7 @@ const Contact31 = ({
 }: Contact31Props) => {
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [showSuccess, setShowSuccess] = useState(false);
+  const [turnstileToken, setTurnstileToken] = useState<string | null>(null);
 
   const form = useForm<ContactFormData>({
     resolver: zodResolver(contactFormSchema),
@@ -61,22 +64,31 @@ const Contact31 = ({
   });
 
   const handleFormSubmit = async (data: ContactFormData) => {
+    if (!turnstileToken) {
+      toast.error("Please complete the security check");
+      return;
+    }
+
     try {
-      if (onSubmit) {
-        await onSubmit(data);
-      } else {
-        console.log("Form submitted:", data);
-        await new Promise((resolve) => setTimeout(resolve, 1000));
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ ...data, turnstileToken }),
+      });
+
+      const result = await response.json();
+
+      if (!response.ok) {
+        throw new Error(result.error || "Failed to send message");
       }
+
       setIsSubmitted(true);
       setShowSuccess(true);
       form.reset();
       setTimeout(() => setShowSuccess(false), 4500);
       setTimeout(() => setIsSubmitted(false), 5000);
-    } catch {
-      form.setError("root", {
-        message: "Something went wrong. Please try again.",
-      });
+    } catch (error) {
+      toast.error(error instanceof Error ? error.message : "Something went wrong. Please try again.");
     }
   };
 
@@ -206,6 +218,13 @@ const Contact31 = ({
                     {form.formState.errors.root.message}
                   </p>
                 )}
+
+                <div className="flex justify-center -mb-2 mt-2">
+                  <Turnstile
+                    siteKey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY!}
+                    onSuccess={(token) => setTurnstileToken(token)}
+                  />
+                </div>
 
                 <Button
                   size="lg"

@@ -123,9 +123,9 @@ export function SignupForm({
           <form className="p-6 md:p-8" onSubmit={handleSubmit}>
             <FieldGroup>
               <div className="flex flex-col items-center gap-2 text-center">
-                <h1 className="text-2xl font-bold">Welcome back</h1>
+                <h1 className="text-2xl tracking-tight">Join the Experience</h1>
                 <p className="text-muted-foreground text-balance">
-                 Sign up for Your Non-Stop Worship Experience
+                  Start your journey into Non-Stop Worship
                 </p>
               </div>
               <div className="grid grid-cols-2 gap-4">
@@ -212,13 +212,14 @@ export function SignupForm({
                       fill="currentColor"
                     />
                   </svg>
-                  Login with Google
+                  Continue with Google
                 </Button>
               </Field>
-              <div className="flex justify-center my-2">
+              <div className="flex justify-center my-2 w-full">
                 <Turnstile
                   siteKey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY!}
                   onSuccess={(token) => setTurnstileToken(token)}
+                  size="flexible"
                 />
               </div>
               <FieldDescription className="text-center">
