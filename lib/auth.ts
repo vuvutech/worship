@@ -49,7 +49,8 @@ export const auth = betterAuth({
         },
     },
     },
-    trustedOrigins: [process.env.NEXT_PUBLIC_APP_URL!, "http://localhost:3000", "http://localhost:3001", "http://localhost:3002"],
+    trustedOrigins: [process.env.NEXT_PUBLIC_APP_URL!, "http://localhost:3000"]
+        .concat(process.env.NODE_ENV === "development" ? ["http://localhost:3001", "http://localhost:3002"] : []),
      account: {
     accountLinking: {
       enabled: true,

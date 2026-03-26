@@ -18,6 +18,7 @@ import { toast } from "sonner"
 import { ArrowLeft } from "lucide-react"
 import Link from "next/link"
 import { ThemeToggle } from "@/components/theme-toggle"
+import { Turnstile } from "nextjs-turnstile"
 
 export function LoginForm({
   className,
@@ -26,6 +27,7 @@ export function LoginForm({
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const [loading, setLoading] = useState(false)
+  const [turnstileToken, setTurnstileToken] = useState<string | null>(null)
   const router = useRouter()
 
   const handleSocialSignIn = async (provider: "google") => {
@@ -41,6 +43,12 @@ export function LoginForm({
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
+
+    if (!turnstileToken) {
+      toast.error("Please complete the security check")
+      return
+    }
+
     setLoading(true)
 
     try {
@@ -140,6 +148,12 @@ export function LoginForm({
                   Login with Google
                 </Button>
               </Field>
+              <div className="flex justify-center my-2">
+                <Turnstile
+                  siteKey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY!}
+                  onSuccess={(token) => setTurnstileToken(token)}
+                />
+              </div>
               <FieldDescription className="text-center">
                 Don&apos;t have an account? <a href="/signup">Sign up</a>
               </FieldDescription>

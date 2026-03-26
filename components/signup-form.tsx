@@ -17,6 +17,7 @@ import { toast } from "sonner"
 import { ArrowLeft } from "lucide-react"
 import Link from "next/link"
 import { ThemeToggle } from "@/components/theme-toggle"
+import { Turnstile } from "nextjs-turnstile"
 
 type SignUpProps = React.ComponentProps<"div"> & {
   costradCallbackUrl?: string | null;
@@ -38,6 +39,7 @@ export function SignupForm({
   const [imagePreview, setImagePreview] = useState<string | null>(null);
   const router = useRouter();
   const [loading, setLoading] = useState(false);
+  const [turnstileToken, setTurnstileToken] = useState<string | null>(null);
 
   const handleSocialSignIn = async (provider: "google") => {
     try {
@@ -64,6 +66,11 @@ export function SignupForm({
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
+
+    if (!turnstileToken) {
+      toast.error("Please complete the security check")
+      return
+    }
 
     // Validation
     if (password !== passwordConfirmation) {
@@ -208,6 +215,12 @@ export function SignupForm({
                   Login with Google
                 </Button>
               </Field>
+              <div className="flex justify-center my-2">
+                <Turnstile
+                  siteKey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY!}
+                  onSuccess={(token) => setTurnstileToken(token)}
+                />
+              </div>
               <FieldDescription className="text-center">
                 Already have an account? <a href="/login">Login</a>
               </FieldDescription>
