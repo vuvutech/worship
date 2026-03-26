@@ -1,36 +1,68 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# The Non-Stop Series
 
-## Getting Started
+A premium worship experience platform designed for the Non-Stop Series community. This application provides a dynamic dashboard, event management, and a seamless user experience for worshipers and administrators alike.
 
-First, run the development server:
+## 🚀 Getting Started
+
+First, install the dependencies:
+
+```bash
+npm install
+# or
+pnpm install
+```
+
+Then, run the development server:
 
 ```bash
 npm run dev
 # or
-yarn dev
-# or
 pnpm dev
-# or
-bun dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 🛠 Tech Stack
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- **Framework**: [Next.js 16.2](https://nextjs.org) (App Router, React 19)
+- **Language**: [TypeScript 5](https://www.typescriptlang.org/)
+- **Authentication**: [Better-Auth 1.4](https://better-auth.com/) (Google OAuth integration)
+- **Styling**: [Tailwind CSS v4](https://tailwindcss.com/) with OKLCH color support
+- **Database**: [MongoDB](https://www.mongodb.com/)
+- **ORM**: [Prisma 6.19](https://www.prisma.io/)
+- **UI Architecture**: 
+  - [Shadcn UI 3.8](https://ui.shadcn.com/)
+  - [Radix UI primitives](https://www.radix-ui.com/)
+  - [Base UI](https://base-ui.com/) (Headless primitives)
+- **Animations & Smoothness**: 
+  - [Framer Motion 12](https://www.framer.com/motion/)
+  - [Lenis 1.3](https://lenis.darkroom.engineering/) for standard smooth scroll
+  - [Locomotive Scroll 5](https://locomotivemtl.github.io/locomotive-scroll/) for advanced parallax
+- **E-commerce & Payments**: [Resend](https://resend.com/) for emails
+- **Media**: [Mux Player](https://www.mux.com/player) for video playback
+- **Forms**: React Hook Form with Zod validation
+- **Notifications**: Sonner
 
-## Learn More
+## 🎨 Design System
 
-To learn more about Next.js, take a look at the following resources:
+The project uses a sophisticated OKLCH-based color palette defined in `app/globals.css`, featuring:
+- Primary Violet theme
+- Adaptive Light/Dark modes
+- Glassmorphism effects and backdrop blurs
+- Premium typography using **Bebas Neue** for headings and **Open Sans** for body text
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 📁 Project Structure
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- `app/`: Next.js App Router pages and API routes
+- `components/`: Reusable UI components and page-specific sections
+- `lib/`: Core utilities, auth configuration, and database clients
+- `prisma/`: Database schema and MongoDB integration
+- `react-email-starter/`: Email templates and development environment
+- `public/`: Static assets such as logos and hero videos
 
-## Deploy on Vercel
+## 🔧 Admin Features
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- **Video Management**: Dynamic control over hero section videos and live streams using Mux.
+- **Event Management**: Create and manage upcoming ministrations with custom poster uploads.
+- **User Management**: Unified dashboard using **Better-Auth Admin API** to manage roles, bans, and account lifecycle.
+- **Theme Support**: Real-time theme toggling integrated into the admin sidebar and user profile menu.

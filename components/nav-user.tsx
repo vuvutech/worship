@@ -20,8 +20,21 @@ import {
   SidebarMenuItem,
   useSidebar,
 } from "@/components/ui/sidebar"
-import { ChevronsUpDownIcon, SparklesIcon, BadgeCheckIcon, CreditCardIcon, BellIcon, LogOutIcon } from "lucide-react"
+import { 
+  ChevronsUpDownIcon, 
+  SparklesIcon, 
+  BadgeCheckIcon, 
+  CreditCardIcon, 
+  BellIcon, 
+  LogOutIcon, 
+  MoonIcon, 
+  SunIcon,
+  LayoutDashboardIcon,
+  UserIcon
+} from "lucide-react"
 import { signOut } from "@/lib/auth-client"
+import { useTheme } from "@/app/providers"
+import Link from "next/link"
 
 export function NavUser({
   user,
@@ -33,6 +46,7 @@ export function NavUser({
   }
 }) {
   const { isMobile } = useSidebar()
+  const { theme, toggleTheme } = useTheme()
 
   const handleLogout = async () => {
     await signOut({
@@ -42,6 +56,15 @@ export function NavUser({
         },
       },
     });
+  };
+
+  const getInitials = (name: string) => {
+    return name
+      .split(" ")
+      .map((n) => n[0])
+      .join("")
+      .toUpperCase()
+      .slice(0, 2);
   };
 
   return (
@@ -55,11 +78,11 @@ export function NavUser({
             >
               <Avatar className="h-8 w-8 rounded-lg">
                 <AvatarImage src={user.avatar} alt={user.name} />
-                <AvatarFallback className="rounded-lg">CN</AvatarFallback>
+                <AvatarFallback className="rounded-lg">{getInitials(user.name)}</AvatarFallback>
               </Avatar>
               <div className="grid flex-1 text-left text-sm leading-tight">
                 <span className="truncate font-medium">{user.name}</span>
-                <span className="truncate text-xs">{user.email}</span>
+                <span className="truncate text-xs text-muted-foreground">{user.email}</span>
               </div>
               <ChevronsUpDownIcon className="ml-auto size-4" />
             </SidebarMenuButton>
@@ -74,45 +97,47 @@ export function NavUser({
               <div className="flex items-center gap-2 px-1 py-1.5 text-left text-sm">
                 <Avatar className="h-8 w-8 rounded-lg">
                   <AvatarImage src={user.avatar} alt={user.name} />
-                  <AvatarFallback className="rounded-lg">CN</AvatarFallback>
+                  <AvatarFallback className="rounded-lg">{getInitials(user.name)}</AvatarFallback>
                 </Avatar>
                 <div className="grid flex-1 text-left text-sm leading-tight">
                   <span className="truncate font-medium">{user.name}</span>
-                  <span className="truncate text-xs">{user.email}</span>
+                  <span className="truncate text-xs text-muted-foreground">{user.email}</span>
                 </div>
               </div>
             </DropdownMenuLabel>
             <DropdownMenuSeparator />
             <DropdownMenuGroup>
-              <DropdownMenuItem>
-                <SparklesIcon
-                />
-                Upgrade to Pro
+              <DropdownMenuItem asChild className="cursor-pointer">
+                <Link href="/">
+                  <LayoutDashboardIcon className="mr-2 h-4 w-4" />
+                  Back to Website
+                </Link>
+              </DropdownMenuItem>
+              <DropdownMenuItem asChild className="cursor-pointer">
+                <Link href="/profile">
+                  <UserIcon className="mr-2 h-4 w-4" />
+                  Account Profile
+                </Link>
               </DropdownMenuItem>
             </DropdownMenuGroup>
             <DropdownMenuSeparator />
             <DropdownMenuGroup>
-              <DropdownMenuItem>
-                <BadgeCheckIcon
-                />
-                Account
-              </DropdownMenuItem>
-              <DropdownMenuItem>
-                <CreditCardIcon
-                />
-                Billing
-              </DropdownMenuItem>
-              <DropdownMenuItem>
-                <BellIcon
-                />
-                Notifications
+              <DropdownMenuItem onClick={toggleTheme} className="cursor-pointer">
+                {theme === "light" ? (
+                  <MoonIcon className="mr-2 h-4 w-4" /> 
+                ) : (
+                  <SunIcon className="mr-2 h-4 w-4" />
+                )}
+                <span>{theme === "light" ? "Dark Mode" : "Light Mode"}</span>
               </DropdownMenuItem>
             </DropdownMenuGroup>
             <DropdownMenuSeparator />
-            <DropdownMenuItem onClick={handleLogout}>
-              <LogOutIcon
-              />
-              Log out
+            <DropdownMenuItem 
+              onClick={handleLogout} 
+              className="cursor-pointer text-destructive focus:text-destructive focus:bg-destructive/10"
+            >
+              <LogOutIcon className="mr-2 h-4 w-4" />
+              <span>Log out</span>
             </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>

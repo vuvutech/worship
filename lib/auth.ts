@@ -53,7 +53,7 @@ export const auth = betterAuth({
      account: {
     accountLinking: {
       enabled: true,
-      trustedProviders: ["google", "facebook", "microsoft", "linkedin", "apple"],
+      trustedProviders: ["google"],
       updateAccountOnSignIn: true,
     },
   },
@@ -106,18 +106,6 @@ export const auth = betterAuth({
             clientId: process.env.GOOGLE_CLIENT_ID!,
             clientSecret: process.env.GOOGLE_CLIENT_SECRET!
         },
-        microsoft: {
-            clientId: process.env.MICROSOFT_CLIENT_ID!,
-            clientSecret: process.env.MICROSOFT_CLIENT_SECRET!
-        },
-        apple: {
-            clientId: process.env.APPLE_CLIENT_ID!,
-            clientSecret: process.env.APPLE_CLIENT_SECRET!
-        },
-        linkedin: {
-            clientId: process.env.LINKEDIN_CLIENT_ID!,
-            clientSecret: process.env.LINKEDIN_CLIENT_SECRET!
-        }
     },
     plugins: [
         admin(),

@@ -14,6 +14,11 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import {
+  Avatar,
+  AvatarFallback,
+  AvatarImage,
+} from "@/components/ui/avatar";
+import {
   AlertDialog,
   AlertDialogAction,
   AlertDialogCancel,
@@ -130,6 +135,16 @@ export function UserManagement() {
     }
   };
 
+  const getInitials = (name?: string | null) => {
+    if (!name) return "U";
+    return name
+      .split(" ")
+      .map((n) => n[0])
+      .join("")
+      .toUpperCase()
+      .slice(0, 2);
+  };
+
   return (
     <div className="w-full">
       <div className="flex justify-between items-center mb-8">
@@ -169,13 +184,16 @@ export function UserManagement() {
                 <TableRow key={user.id}>
                   <TableCell className="font-medium">
                     <div className="flex items-center gap-3">
-                      {user.image ? (
-                        <img src={user.image} alt={user.name} className="h-8 w-8 rounded-full" />
-                      ) : (
-                        <div className="h-8 w-8 rounded-full bg-muted flex items-center justify-center">
-                          <UserIcon className="h-4 w-4 text-muted-foreground" />
-                        </div>
-                      )}
+                      <Avatar className="h-9 w-9 border-2 border-background shadow-sm">
+                        <AvatarImage 
+                          src={user.image || ""} 
+                          alt={user.name} 
+                          className="object-cover"
+                        />
+                        <AvatarFallback className="bg-primary/10 text-primary text-xs font-semibold">
+                          {getInitials(user.name)}
+                        </AvatarFallback>
+                      </Avatar>
                       <div>
                         <div className="flex items-center gap-2">
                           <span>{user.name}</span>
