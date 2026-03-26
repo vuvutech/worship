@@ -48,6 +48,9 @@ interface User {
   banned: boolean | null;
   pendingDeletion: boolean | null;
   createdAt: string;
+  profile?: {
+    volunteerAreas: string[];
+  } | null;
 }
 
 const $fetch = createFetch({
@@ -196,9 +199,22 @@ export function UserManagement() {
                       </Avatar>
                       <div>
                         <div className="flex items-center gap-2">
-                          <span>{user.name}</span>
-                          {user.role === "admin" && <Shield className="h-3 w-3 text-primary" />}
+                          <span className="truncate max-w-[150px]">{user.name}</span>
+                          {user.role === "admin" && <Shield className="h-3 w-3 text-primary shrink-0" />}
+                          {user.profile?.volunteerAreas && user.profile.volunteerAreas.length > 0 && (
+                            <Badge 
+                              variant="secondary" 
+                              className="text-[10px] h-4 px-1.5 font-bold uppercase bg-warning/20 text-warning-foreground border-warning/30 hover:bg-warning/30 transition-colors shrink-0"
+                            >
+                              Volunteer
+                            </Badge>
+                          )}
                         </div>
+                        {user.profile?.volunteerAreas && user.profile.volunteerAreas.length > 0 && (
+                          <div className="text-[10px] text-muted-foreground mt-0.5 line-clamp-1 italic">
+                            {user.profile.volunteerAreas.join(", ")}
+                          </div>
+                        )}
                       </div>
                     </div>
                   </TableCell>
