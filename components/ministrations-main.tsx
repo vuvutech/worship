@@ -43,7 +43,7 @@ const ministrationsHomeProp = [
     description:
       "Scripture isn't just read; it is proclaimed over our city. Witness the atmosphere shift as the Word of God is spoken without end, chapter by chapter.",
     image:
-      "https://images.unsplash.com/photo-1504052434569-70ad5836ab65?q=80&w=2070&auto=format&fit=crop",
+      "/nonstop/nonstop-055.jpg",
   },
   {
     id: 4,
