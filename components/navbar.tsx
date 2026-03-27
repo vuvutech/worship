@@ -66,13 +66,13 @@ const Navbar = () => {
   return (
     <nav
       id="navbar"
-      className='fixed z-50 inset-x-0 top-0 md:inset-x-2 md:top-6 mx-auto h-14 md:rounded-full bg-black text-white backdrop-blur-xl border-b md:border border-white/10 shadow-lg'
+      className='fixed z-50 inset-x-0 top-0 md:inset-x-2 md:top-6 mx-auto py-2 h-12 md:rounded-full bg-black text-white backdrop-blur-xl border-b md:border border-white/10 shadow-lg'
       style={{
         maxWidth: isMobile ? '100%' : scrolledPast ? '80vw' : '96vw',
         transition: isMobile ? 'none' : 'max-width 1.2s cubic-bezier(0.22, 1, 0.36, 1)',
       }}
     >
-      <div className='mx-auto flex h-full items-center justify-between px-2'>
+      <div className='mx-auto flex h-full items-center justify-between pl-2 pr-1'>
         <Logo />
 
         {/* Desktop Menu */}

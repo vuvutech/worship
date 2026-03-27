@@ -10,7 +10,8 @@ export function PartnerFAB() {
   const pathname = usePathname();
   
   // Hide FAB on the actual partner page to avoid redundancy
-  if (pathname === "/partner") return null;
+  // if (pathname === "/partner") return null;
+  return null;
 
   return (
     <AnimatePresence>
