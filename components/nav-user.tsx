@@ -20,20 +20,22 @@ import {
   SidebarMenuItem,
   useSidebar,
 } from "@/components/ui/sidebar"
-import { 
-  ChevronsUpDownIcon, 
-  SparklesIcon, 
-  BadgeCheckIcon, 
-  CreditCardIcon, 
-  BellIcon, 
-  LogOutIcon, 
-  MoonIcon, 
-  SunIcon,
-  LayoutDashboardIcon,
-  UserIcon
+import {
+  ChevronsUpDown,
+  Sparkles,
+  BadgeCheck,
+  CreditCard,
+  Bell,
+  LogOut,
+  Moon,
+  Sun,
+  LayoutDashboard,
+  User,
+  Heart
 } from "lucide-react"
 import { signOut } from "@/lib/auth-client"
 import { useTheme } from "@/app/providers"
+import { DonationDialog } from "./DonationDialog"
 import Link from "next/link"
 
 export function NavUser({
@@ -84,7 +86,7 @@ export function NavUser({
                 <span className="truncate font-medium">{user.name}</span>
                 <span className="truncate text-xs text-muted-foreground">{user.email}</span>
               </div>
-              <ChevronsUpDownIcon className="ml-auto size-4" />
+              <ChevronsUpDown className="ml-auto size-4" />
             </SidebarMenuButton>
           </DropdownMenuTrigger>
           <DropdownMenuContent
@@ -109,24 +111,33 @@ export function NavUser({
             <DropdownMenuGroup>
               <DropdownMenuItem asChild className="cursor-pointer">
                 <Link href="/">
-                  <LayoutDashboardIcon className="mr-2 h-4 w-4" />
+                  <LayoutDashboard className="mr-2 h-4 w-4" />
                   Back to Website
                 </Link>
               </DropdownMenuItem>
               <DropdownMenuItem asChild className="cursor-pointer">
                 <Link href="/profile">
-                  <UserIcon className="mr-2 h-4 w-4" />
+                  <User className="mr-2 h-4 w-4" />
                   Account Profile
                 </Link>
               </DropdownMenuItem>
             </DropdownMenuGroup>
             <DropdownMenuSeparator />
             <DropdownMenuGroup>
+              <DonationDialog>
+                <DropdownMenuItem className="cursor-pointer" onSelect={(e) => e.preventDefault()}>
+                  <Heart className="mr-2 h-4 w-4 text-amber-500 fill-amber-500/10" />
+                  <span className="font-semibold text-amber-600 dark:text-amber-400">Partner with Us</span>
+                </DropdownMenuItem>
+              </DonationDialog>
+            </DropdownMenuGroup>
+            <DropdownMenuSeparator />
+            <DropdownMenuGroup>
               <DropdownMenuItem onClick={toggleTheme} className="cursor-pointer">
                 {theme === "light" ? (
-                  <MoonIcon className="mr-2 h-4 w-4" /> 
+                  <Moon className="mr-2 h-4 w-4" /> 
                 ) : (
-                  <SunIcon className="mr-2 h-4 w-4" />
+                  <Sun className="mr-2 h-4 w-4" />
                 )}
                 <span>{theme === "light" ? "Dark Mode" : "Light Mode"}</span>
               </DropdownMenuItem>
@@ -136,7 +147,7 @@ export function NavUser({
               onClick={handleLogout} 
               className="cursor-pointer text-destructive focus:text-destructive focus:bg-destructive/10"
             >
-              <LogOutIcon className="mr-2 h-4 w-4" />
+              <LogOut className="mr-2 h-4 w-4" />
               <span>Log out</span>
             </DropdownMenuItem>
           </DropdownMenuContent>

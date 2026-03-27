@@ -1,6 +1,7 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
+import { motion } from "framer-motion";
 import { Logo } from "@/components/logo";
 import { NavMenu } from "@/components/nav-menu";
 import { NavigationSheet } from "@/components/navigation-sheet";
@@ -16,8 +17,9 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { LogOut, Settings } from "lucide-react";
+import { LogOut, Settings, Heart } from "lucide-react";
 import { signOut } from "@/lib/auth-client";
+import { DonationDialog } from "./DonationDialog";
 import Link from "next/link";
 import { useState, useEffect } from "react";
 
@@ -77,6 +79,25 @@ const Navbar = () => {
         <NavMenu className='hidden md:flex' />
 
         <div className='flex items-center gap-3'>
+          <DonationDialog>
+            <motion.button
+              whileHover="hover"
+              initial="initial"
+              className="relative flex items-center h-9 bg-amber-500 hover:bg-amber-600 text-white rounded-full p-2.5 overflow-hidden shadow-lg shadow-amber-500/20 active:scale-95 transition-colors cursor-pointer hidden sm:flex"
+            >
+              <Heart className="size-4 fill-white shrink-0" />
+              <motion.span
+                variants={{
+                  initial: { width: 0, opacity: 0, marginLeft: 0 },
+                  hover: { width: "auto", opacity: 1, marginLeft: 8 }
+                }}
+                transition={{ duration: 0.3, ease: "easeOut" }}
+                className="overflow-hidden whitespace-nowrap text-[11px] font-bold uppercase tracking-widest"
+              >
+                Partner
+              </motion.span>
+            </motion.button>
+          </DonationDialog>
           <ThemeToggle />
           {isAuthenticated && user ? (
             <>
