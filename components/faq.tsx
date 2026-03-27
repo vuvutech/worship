@@ -40,7 +40,7 @@ const faq = [
 
 const FAQ = () => {
   return (
-    <div className="flex min-h-screen items-center justify-center px-6 py-12" data-usal="fade-u duration-500">
+    <div className="flex min-h-screen items-center justify-center px-6 py-8" data-usal="fade-u duration-500">
       <div className="max-w-2xl w-full">
         <h2 className="font-semibold text-4xl  md:text-5xl text-center md:text-left">
           Frequently Asked Questions

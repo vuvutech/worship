@@ -353,7 +353,7 @@ export function LiveDashboard({ initialVideos, initialEvents }: LiveDashboardPro
                       </div>
                     </div>
                     <div className='p-6 md:p-8 flex flex-col flex-grow'>
-                      <h3 className='text-xl md:text-2xl font-bold text-foreground mb-3 group-hover:text-red-600 dark:group-hover:text-yellow-400 transition-colors'>
+                      <h3 className='text-xl md:text-2xl font-bold text-foreground mb-3 group-hover:text-primary  dark:group-hover:text-yellow-400 transition-colors'>
                         {event.title}
                       </h3>
                       <p className='text-muted-foreground text-sm md:text-base leading-relaxed mb-6 line-clamp-3'>

@@ -3,11 +3,11 @@ import HeroSection from "@/components/hero-section";
 import { Ministration } from "../components/ministrations-main";
 import FAQ from "@/components/faq";
 import { AboutCompliment } from "@/components/about-compliment";
-import HeroHeadline from "@/components/hero-headline";
+import FeaturedReflections from "@/components/featured-reflections";
 
 export const metadata: Metadata = {
   title: "Home",
-  description:
+  description:  
     "Welcome to The Non-Stop Series™ — Africa's premier 144-hour continuous praise and worship experience. 6 days and 6 nights of unbroken worship, intercession, and the Word of God, streaming live to the world from Accra, Ghana.",
   alternates: { canonical: "https://thenonstop.org" },
   openGraph: {
@@ -25,6 +25,7 @@ export default function Page() {
         <section className='px-2 sm:px-4 md:px-6 lg:px-8 xl:px-12 2xl:px-16 pt-20 container max-w-(--breakpoint-xl) mx-auto '>
           <AboutCompliment />
           <Ministration />
+          <FeaturedReflections />
         </section>
         <section id="faq" className="px-2 sm:px-4 md:px-6 lg:px-8 xl:px-12 2xl:px-16 container max-w-(--breakpoint-xl) mx-auto">
           <FAQ />
