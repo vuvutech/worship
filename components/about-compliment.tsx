@@ -82,22 +82,22 @@ const AboutCompliment = ({
       src: "https://deifkwefumgah.cloudfront.net/shadcnblocks/block/logos/company/fictional-company-logo-2.svg",
       alt: "Descript",
     },
-    {
-      src: "https://deifkwefumgah.cloudfront.net/shadcnblocks/block/logos/company/fictional-company-logo-3.svg",
-      alt: "Mercury",
-    },
-    {
-      src: "https://deifkwefumgah.cloudfront.net/shadcnblocks/block/logos/company/fictional-company-logo-4.svg",
-      alt: "Ramp",
-    },
-    {
-      src: "https://deifkwefumgah.cloudfront.net/shadcnblocks/block/logos/company/fictional-company-logo-5.svg",
-      alt: "Retool",
-    },
-    {
-      src: "https://deifkwefumgah.cloudfront.net/shadcnblocks/block/logos/company/fictional-company-logo-6.svg",
-      alt: "Watershed",
-    },
+    // {
+    //   src: "https://deifkwefumgah.cloudfront.net/shadcnblocks/block/logos/company/fictional-company-logo-3.svg",
+    //   alt: "Mercury",
+    // },
+    // {
+    //   src: "https://deifkwefumgah.cloudfront.net/shadcnblocks/block/logos/company/fictional-company-logo-4.svg",
+    //   alt: "Ramp",
+    // },
+    // {
+    //   src: "https://deifkwefumgah.cloudfront.net/shadcnblocks/block/logos/company/fictional-company-logo-5.svg",
+    //   alt: "Retool",
+    // },
+    // {
+    //   src: "https://deifkwefumgah.cloudfront.net/shadcnblocks/block/logos/company/fictional-company-logo-6.svg",
+    //   alt: "Watershed",
+    // },
   ],
   achievementsTitle = "A Legacy of Sacred Worship",
   achievementsDescription = "What began as a 24-hour sacrifice has grown into a 144-hour global movement, restoring the altar of praise and transforming countless lives.",

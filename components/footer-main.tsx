@@ -29,26 +29,31 @@ interface FooterComponentProps {
 }
 
 const FooterComponent = ({
-  heading = "Join the 144-Hour Sacrifice of Praise",
+  heading = "Join the Nonstop Sacrifice of Praise",
   description = "Experience unbroken worship, deep intercession, and the raw presence of God at The Non-Stop Series.",
   ctaText = "Get Involved",
   ctaHref = "/get-involved",
   navigation = [
     { name: "Home", href: "/" },
-    { name: "About", href: "/about" },
-    { name: "Get Involved", href: "/get-involved" },
+    // { name: "About", href: "/about" },
+    // { name: "Get Involved", href: "/get-involved" },
     { name: "Partner", href: "/partner" },
-    { name: "FAQ", href: "/#faq" },
     { name: "Contact", href: "/contact" },
   ],
   social = [
-    { name: "Twitter", href: "#" },
-    { name: "LinkedIn", href: "#" },
+    { name: "Facebook", href: "https://www.facebook.com/nonstopseries/" },
+    {
+      name: "YouTube",
+      href: "https://www.youtube.com/channel/UCszsGdub8qkbJOz_rdx-5IA",
+    },
+    { name: "TikTok", href: "https://www.tiktok.com/@thenonstopseries" },
+    { name: "Twitter", href: "https://twitter.com/thenonstopserie" },
   ],
   legal = [
     { name: "Terms of Service", href: "/terms" },
     { name: "Privacy Policy", href: "/privacy" },
     { name: "Cookies Policy", href: "/cookies" },
+    { name: "FAQs", href: "/#faq" },
   ],
   brandName = "NONSTOP",
   className,
@@ -61,9 +66,7 @@ const FooterComponent = ({
       )}
     >
       <div className='container space-y-3 text-center'>
-        <h2 className='text-2xl   md:text-4xl lg:text-5xl'>
-          {heading}
-        </h2>
+        <h2 className='text-2xl   md:text-5xl lg:text-6xl'>{heading}</h2>
         <p className='mx-auto max-w-xl leading-snug text-balance text-muted-foreground'>
           {description}
         </p>
@@ -81,12 +84,13 @@ const FooterComponent = ({
       <nav className='container flex flex-col items-center gap-4'>
         <ul className='flex flex-wrap items-center justify-center gap-6'>
           {navigation.map((item, i) => (
-            <motion.li key={item.name}
+            <motion.li
+              key={item.name}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: false }}
               transition={{ duration: 0.5, delay: i * 0.1 }}
-              >
+            >
               <Link
                 href={item.href}
                 className='font-medium transition-opacity hover:opacity-75'
@@ -96,12 +100,13 @@ const FooterComponent = ({
             </motion.li>
           ))}
           {social.map((item, i) => (
-            <motion.li key={item.name}
+            <motion.li
+              key={item.name}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: i * 0.1 }}
-              >
+            >
               <Link
                 href={item.href}
                 className='flex items-center gap-0.5 font-medium transition-opacity hover:opacity-75'
@@ -123,6 +128,11 @@ const FooterComponent = ({
             </li>
           ))}
         </ul>
+        <div className='text-xs text-muted-foreground transition-opacity hover:opacity-75 pt-2 '>
+          &copy; {new Date().getFullYear()}{" "}
+          <a href="/" className='font-semibold'>{" The Nonstop Series"}</a>.{" "}
+          <span className='capitalize'>All rights reserved.</span>
+        </div>
       </nav>
 
       <svg

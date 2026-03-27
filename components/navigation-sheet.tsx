@@ -134,24 +134,38 @@ export const NavigationSheet = () => {
               {/* Footer of sheet */}
               <motion.div
                 variants={itemVariants}
-                className='mt-auto pt-6 flex flex-col gap-4'
+                className='mt-auto pt-8 flex flex-col gap-6'
               >
-                {!isAuthenticated && (
+                <div className='flex flex-wrap items-center gap-x-6 gap-y-2 text-white/50 text-xs font-bold uppercase tracking-widest'>
+                  <a href="https://www.facebook.com/nonstopseries/" target="_blank" className="hover:text-white transition-colors">Facebook</a>
+                  <a href="https://twitter.com/thenonstopserie" target="_blank" className="hover:text-white transition-colors">Twitter (X)</a>
+                  <a href="https://www.youtube.com/channel/UCszsGdub8qkbJOz_rdx-5IA" target="_blank" className="hover:text-white transition-colors">YouTube</a>
+                  <a href="https://www.tiktok.com/@thenonstopseries" target="_blank" className="hover:text-white transition-colors">TikTok</a>
+                </div>
+
+                {!isAuthenticated ? (
                   <Link
                     href='/login'
                     onClick={() => setOpen(false)}
-                    className='text-center rounded-full bg-white py-3 text-sm font-semibold text-black transition-colors hover:bg-white/90'
+                    className='text-center rounded-full bg-white py-3.5 text-sm font-bold uppercase tracking-widest text-black transition-all hover:bg-white/90 active:scale-95'
                   >
                     Sign In
                   </Link>
-                )}
-                {isAuthenticated && user?.role === "admin" && (
+                ) : user?.role === "admin" ? (
                   <Link
                     href='/dashboard'
                     onClick={() => setOpen(false)}
-                    className='text-center rounded-full bg-white py-3 text-sm font-semibold text-black transition-colors hover:bg-white/90'
+                    className='text-center rounded-full bg-amber-500 py-3.5 text-sm font-bold uppercase tracking-widest text-white transition-all hover:bg-amber-600 active:scale-95'
                   >
                     Dashboard
+                  </Link>
+                ) : (
+                  <Link
+                    href='/profile'
+                    onClick={() => setOpen(false)}
+                    className='text-center rounded-full bg-white py-3.5 text-sm font-bold uppercase tracking-widest text-black transition-all hover:bg-white/90 active:scale-95'
+                  >
+                    View Profile
                   </Link>
                 )}
               </motion.div>
