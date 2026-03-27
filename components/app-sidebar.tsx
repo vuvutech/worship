@@ -11,7 +11,7 @@ import {
   SidebarHeader,
   SidebarRail,
 } from "@/components/ui/sidebar"
-import { TerminalIcon, LayoutDashboard, Calendar, Video, Users, Settings, Heart } from "lucide-react"
+import { TerminalIcon, LayoutDashboard, Calendar, Video, Users, Settings, Heart, BookOpen } from "lucide-react"
 import { useCurrentSession } from "@/lib/use-current-session"
 
 const defaultData = {
@@ -56,6 +56,12 @@ const defaultData = {
       title: "User Management",
       url: "/dashboard/admin/users",
       icon: <Users />,
+      adminOnly: true,
+    },
+    {
+      title: "Reflections",
+      url: "/dashboard/admin/reflections",
+      icon: <BookOpen />,
       adminOnly: true,
     },
   ],

@@ -24,6 +24,7 @@ import { Switch } from "@/components/ui/switch";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Textarea } from "@/components/ui/textarea";
 import { Badge } from "@/components/ui/badge";
+import ReflectionForm from "./reflection-form";
 
 interface ProfileContentProps {
   user: any;
@@ -122,12 +123,13 @@ export default function ProfileContent({ user, profile }: ProfileContentProps) {
 
   return (
     <Tabs defaultValue="personal" className="space-y-6">
-      <TabsList className="grid w-full grid-cols-5">
-        <TabsTrigger value="personal">Personal</TabsTrigger>
-        <TabsTrigger value="volunteering">Volunteering</TabsTrigger>
-        <TabsTrigger value="account">Account</TabsTrigger>
-        <TabsTrigger value="security">Security</TabsTrigger>
-        <TabsTrigger value="notifications">Notifications</TabsTrigger>
+      <TabsList className="grid w-full grid-cols-2 md:grid-cols-6 h-auto p-1.5 bg-muted/40 rounded-xl gap-1">
+        <TabsTrigger value="personal" className="rounded-lg py-2.5">Personal</TabsTrigger>
+        <TabsTrigger value="volunteering" className="rounded-lg py-2.5">Volunteering</TabsTrigger>
+        <TabsTrigger value="reflections" className="rounded-lg py-2.5">Reflections</TabsTrigger>
+        <TabsTrigger value="account" className="rounded-lg py-2.5">Account</TabsTrigger>
+        <TabsTrigger value="security" className="rounded-lg py-2.5">Security</TabsTrigger>
+        <TabsTrigger value="notifications" className="rounded-lg py-2.5">Notifications</TabsTrigger>
       </TabsList>
 
       {/* Personal Information */}
@@ -229,6 +231,12 @@ export default function ProfileContent({ user, profile }: ProfileContentProps) {
           </CardContent>
         </Card>
       </TabsContent>
+
+      {/* Reflections Section */}
+      <TabsContent value="reflections" className="space-y-6">
+        <ReflectionForm />
+      </TabsContent>
+
 
       {/* Account Settings */}
       <TabsContent value="account" className="space-y-6">
