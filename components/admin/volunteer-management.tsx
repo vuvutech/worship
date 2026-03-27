@@ -117,7 +117,7 @@ export function VolunteerManagement() {
   return (
     <div className="w-full space-y-8">
       <div>
-        <h1 className="text-3xl font-bold tracking-tight">Volunteer Management</h1>
+        <h1 className="text-3xl tracking-tight">Volunteer Management</h1>
         <p className="text-muted-foreground">
           Coordinate and manage our dedicated volunteers across all departments.
         </p>
@@ -176,7 +176,7 @@ export function VolunteerManagement() {
       </div>
 
       <div className="rounded-md border bg-card/50 backdrop-blur-sm">
-        <Table>
+        <Table className="w-full p-2">
           <TableHeader>
             <TableRow>
               <TableHead>Volunteer</TableHead>

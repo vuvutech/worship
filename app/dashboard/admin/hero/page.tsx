@@ -1,3 +1,4 @@
+export const dynamic = "force-dynamic";
 import { HeroManagement } from "@/components/admin/hero-management";
 
 export default function HeroSettingsPage() {

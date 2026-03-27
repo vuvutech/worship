@@ -83,7 +83,7 @@ const Navbar = () => {
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
                   <button className='rounded-full hover:opacity-80 transition-opacity'>
-                    <Avatar className='h-8 w-8'>
+                    <Avatar className='h-10 w-10'>
                       <AvatarImage
                         src={user.image || ""}
                         alt={user.name || ""}

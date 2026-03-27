@@ -80,7 +80,7 @@ export default function HeroHeadline({
             const element = document.getElementById('why-the-tabernacle');
             element?.scrollIntoView({ behavior: 'smooth' });
           }}
-          className="w-16 h-16 border rounded-full flex items-center justify-center p-3 opacity-20 hover:opacity-100 transition-all cursor-pointer rotate-[135deg] bg-white/5 hover:bg-white/20"
+          className="w-16 h-16 border rounded-full flex items-center justify-center p-3 opacity-20 hover:opacity-100 transition-all cursor-pointer rotate-[45deg] bg-white/5 hover:bg-white/20"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
