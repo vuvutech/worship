@@ -115,7 +115,10 @@ export default function HeroSection() {
   if (!heroSettings) {
     return (
       <header className='relative w-full h-[100dvh] bg-black flex items-center justify-center overflow-hidden'>
-        <Loader2 className='h-8 w-8 animate-spin text-white/20' />
+        <div 
+          className="absolute inset-0 w-full h-full bg-[url('/images/bgHero.jpg')] bg-cover bg-center bg-no-repeat opacity-50 block"
+        />
+        <Loader2 className='h-8 w-8 animate-spin text-white/50 z-10' />
       </header>
     );
   }
