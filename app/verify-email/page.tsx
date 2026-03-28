@@ -27,7 +27,9 @@ export default function VerifyEmailPage() {
 
       try {
         const result = await verifyEmail({
-          token,
+          query: {
+            token,
+          },
         });
 
         if (result?.error) {
