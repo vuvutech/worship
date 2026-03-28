@@ -17,10 +17,9 @@ export const metadata: Metadata = {
 
 
 export default function GalleryPage() {
-  return (
+  return (  
     <>
       <GalleryMain />
-      {/* <Parallax /> */}
     </>
   );
 }
