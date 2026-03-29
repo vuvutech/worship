@@ -14,6 +14,10 @@ import { Logo } from "@/components/logo";
 import Link from "next/link";
 import { useCurrentSession } from "@/lib/use-current-session";
 import { motion, AnimatePresence, Variants } from "framer-motion";
+import useSWR from "swr";
+
+const fetcher = (url: string) => fetch(url).then((res) => res.json());
+
 
 const navItems = [
   { label: "Home", href: "/" },
@@ -61,6 +65,12 @@ const itemVariants: Variants = {
 export const NavigationSheet = () => {
   const { user, isAuthenticated } = useCurrentSession();
   const [open, setOpen] = useState(false);
+
+  const { data } = useSWR("/api/events/live", fetcher, {
+    refreshInterval: 60000,
+  });
+
+  const isLive = data?.isLive || false;
 
   return (
     <Sheet
@@ -118,12 +128,20 @@ export const NavigationSheet = () => {
                     onClick={() => setOpen(false)}
                     className='group flex items-center justify-between py-3 transition-colors hover:text-white/60'
                   >
-                    <span
-                      className='text-3xl font-normal leading-none tracking-tight text-white'
-                      style={{ fontFamily: "var(--font-bebas)" }}
-                    >
-                      {item.label}
-                    </span>
+                    <div className='flex items-center gap-3'>
+                      <span
+                        className='text-3xl font-normal leading-none tracking-tight text-white'
+                        style={{ fontFamily: "var(--font-bebas)" }}
+                      >
+                        {item.label}
+                      </span>
+                      {item.label === "Live" && isLive && (
+                        <span className='relative flex h-3 w-3'>
+                          <span className='absolute inline-flex h-full w-full animate-ping rounded-full bg-red-400 opacity-75'></span>
+                          <span className='relative inline-flex h-3 w-3 rounded-full bg-red-500'></span>
+                        </span>
+                      )}
+                    </div>
                     <span className='text-sm font-mono text-white/30 tabular-nums'>
                       0{i + 1}
                     </span>

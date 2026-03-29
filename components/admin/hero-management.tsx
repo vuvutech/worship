@@ -115,7 +115,7 @@ export function HeroManagement() {
     <div className='w-full '>
       <div className='flex justify-between items-center mb-8'>
         <div>
-          <h1 className='text-3xl font-bold  '>Hero Video Settings</h1>
+          <h1 className='text-3xl'>Hero Video Settings</h1>
           <p className='text-muted-foreground'>
             Configure the main background video for your landing page.
           </p>

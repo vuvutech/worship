@@ -152,7 +152,7 @@ export function UserManagement() {
     <div className="w-full">
       <div className="flex justify-between items-center mb-8">
         <div>
-          <h1 className="text-3xl font-bold  ">User Management</h1>
+          <h1 className="text-3xl">User Management</h1>
           <p className="text-muted-foreground">
             Manage user roles, bans, and account deletion.
           </p>

@@ -6,7 +6,7 @@ export default function TermsOfService() {
   return (
     <>
       <div className='max-w-5xl mx-auto  md:p-16   space-y-6'>
-        <h1 className='text-xl md:text-3xl font-bold mb-4'>
+        <h1 className='text-3xl mb-4'>
           Terms of Service for The Non-Stop Series   Website
         </h1>
 

@@ -4,6 +4,10 @@ import Link from "next/link";
 import type { ComponentProps } from "react";
 import { cn } from "@/lib/utils";
 
+import useSWR from "swr";
+
+const fetcher = (url: string) => fetch(url).then((res) => res.json());
+
 export const NavMenu = ({
   className,
   orientation = "horizontal",
@@ -13,15 +17,20 @@ export const NavMenu = ({
   orientation?: "horizontal" | "vertical";
   onItemClick?: () => void;
 }) => {
+  const { data } = useSWR("/api/events/live", fetcher, {
+    refreshInterval: 60000, // Refresh every minute
+  });
+
+  const isLive = data?.isLive || false;
+
   const items = [
-		{ label: "Home", href: "/" },
-		{ label: "About", href: "/about" },
-		{ label: "Schedule", href: "/schedule" },
-		{ label: "Live", href: "/live" },
-		{ label: "Gallery", href: "/gallery" },
-		// { label: "Partner", href: "/partner" },
-		{ label: "Get Involved", href: "/get-involved" },
-		{ label: "Contact", href: "/contact" },
+    { label: "Home", href: "/" },
+    { label: "About", href: "/about" },
+    { label: "Schedule", href: "/schedule" },
+    { label: "Live", href: "/live", showPulse: true },
+    { label: "Gallery", href: "/gallery" },
+    { label: "Get Involved", href: "/get-involved" },
+    { label: "Contact", href: "/contact" },
   ];
 
   const isVertical = orientation === "vertical";
@@ -47,12 +56,24 @@ export const NavMenu = ({
           transitionTypes={['slide', 'fade']}
         >
           <div className='flex flex-col transition-transform duration-400 group-hover:-translate-y-12 text-white '>
-            <span className='flex h-12 items-center justify-center text-[12px] font-medium uppercase tracking-wide text-white transition-colors duration-400 group-hover:text-white'>
+            <div className='flex h-12 items-center justify-center text-[12px] font-medium uppercase tracking-wide text-white transition-colors duration-400 group-hover:text-white gap-2'>
               {item.label}
-            </span>
-            <span className='flex h-12 items-center justify-center text-[12px] font-medium uppercase tracking-wide text-white'>
+              {item.label === "Live" && isLive && (
+                <span className='relative flex h-2 w-2'>
+                  <span className='absolute inline-flex h-full w-full animate-ping rounded-full bg-red-400 opacity-75'></span>
+                  <span className='relative inline-flex h-2 w-2 rounded-full bg-red-500'></span>
+                </span>
+              )}
+            </div>
+            <div className='flex h-12 items-center justify-center text-[12px] font-medium uppercase tracking-wide text-white gap-2'>
               {item.label}
-            </span>
+              {item.label === "Live" && isLive && (
+                <span className='relative flex h-2 w-2'>
+                  <span className='absolute inline-flex h-full w-full animate-ping rounded-full bg-red-400 opacity-75'></span>
+                  <span className='relative inline-flex h-2 w-2 rounded-full bg-red-500'></span>
+                </span>
+              )}
+            </div>
           </div>
         </Link>
       ))}

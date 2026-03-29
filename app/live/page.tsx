@@ -19,52 +19,60 @@ export const metadata: Metadata = {
 export const dynamic = "force-dynamic"; // Ensure fresh data on load
 
 export default async function LivePage() {
-  // Fetch all videos, ordering newest first
-  const [data, eventsData] = await Promise.all([
-    prisma.video.findMany({
-      orderBy: {
-        createdAt: "desc",
-      },
-    }),
-    prisma.event.findMany({
-      where: {
-        status: "published",
-        endDate: {
-          gt: new Date(),
+  let videos: any[] = [];
+  let events: any[] = [];
+
+  try {
+    // Fetch all videos, ordering newest first
+    const [data, eventsData] = await Promise.all([
+      prisma.video.findMany({
+        orderBy: {
+          createdAt: "desc",
         },
-      },
-      include: {
-        ministers: true,
-        sponsors: true,
-      },
-      orderBy: {
-        startDate: "asc",
-      },
-    }),
-  ]);
+      }),
+      prisma.event.findMany({
+        where: {
+          status: "published",
+          endDate: {
+            gt: new Date(),
+          },
+        },
+        include: {
+          ministers: true,
+          sponsors: true,
+        },
+        orderBy: {
+          startDate: "asc",
+        },
+      }),
+    ]);
 
-  // Prisma objects to POJOs for passing to Client Component
-  const videos = data.map((video) => ({
-    id: video.id,
-    title: video.title,
-    url: video.url,
-    thumbnail: video.thumbnail,
-    type: video.type, // VOD | LIVE
-    createdAt: video.createdAt,
-  }));
+    // Prisma objects to POJOs for passing to Client Component
+    videos = data.map((video) => ({
+      id: video.id,
+      title: video.title,
+      url: video.url,
+      thumbnail: video.thumbnail,
+      type: video.type, // VOD | LIVE
+      createdAt: video.createdAt,
+    }));
 
-  const events = eventsData.map((event) => ({
-    id: event.id,
-    title: event.title,
-    slug: event.slug,
-    startDate: event.startDate,
-    endDate: event.endDate,
-    poster: event.poster,
-    description: event.description,
-    status: event.status,
-    ministers: event.ministers,
-    sponsors: event.sponsors,
-  }));
+    events = eventsData.map((event) => ({
+      id: event.id,
+      title: event.title,
+      slug: event.slug,
+      startDate: event.startDate,
+      endDate: event.endDate,
+      poster: event.poster,
+      description: event.description,
+      status: event.status,
+      ministers: event.ministers,
+      sponsors: event.sponsors,
+    }));
+  } catch (err) {
+    console.error("LivePage Data Fetch Error:", err);
+    // Silent fail or potentially handle in UI with empty arrays
+  }
 
   return <LiveDashboard initialVideos={videos} initialEvents={events} />;
 }

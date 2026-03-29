@@ -33,15 +33,15 @@ const GalleryMain = ({ className }: GalleryMainProps) => {
   ];
 
   const column2Images = [
+    { src: "/nonstop/nonstop-014.jpg", alt: "Nonstop 14", height: "28rem" },
     { src: "/gallery/akosua.jpg", alt: "Gallery Image 5", height: "13rem" },
-    { src: "/gallery/gallery-006.jpg", alt: "Gallery Image 6", height: "32rem" },
     { src: "/gallery/gallery-007.jpg", alt: "Gallery Image 7", height: "18rem" },
     { src: "/gallery/gallery-008.jpg", alt: "Gallery Image 8", height: "20rem" },
     // Nonstop photos — Column 2
     { src: "/nonstop/nonstop-002.jpg", alt: "Nonstop 2", height: "26rem" },
     { src: "/nonstop/nonstop-006.jpg", alt: "Nonstop 6", height: "20rem" },
+    { src: "/gallery/gallery-012.jpg", alt: "Gallery Image 12", height: "25rem" },
     { src: "/nonstop/nonstop-010.jpg", alt: "Nonstop 10", height: "16rem" },
-    { src: "/nonstop/nonstop-014.jpg", alt: "Nonstop 14", height: "28rem" },
     { src: "/nonstop/nonstop-018.jpg", alt: "Nonstop 18", height: "22rem" },
     { src: "/nonstop/nonstop-022.jpg", alt: "Nonstop 22", height: "18rem" },
     { src: "/nonstop/nonstop-026.jpg", alt: "Nonstop 26", height: "24rem" },
@@ -52,12 +52,12 @@ const GalleryMain = ({ className }: GalleryMainProps) => {
     { src: "/nonstop/nonstop-046.jpg", alt: "Nonstop 46", height: "22rem" },
     { src: "/nonstop/nonstop-050.jpg", alt: "Nonstop 50", height: "28rem" },
   ];
-
+  
   const column3Images = [
+    { src: "/gallery/gallery-006.jpg", alt: "Gallery Image 6", height: "32rem" },
     { src: "/gallery/gallery-009.jpg", alt: "Gallery Image 9", height: "32rem" },
     { src: "/gallery/gallery-010.jpg", alt: "Gallery Image 10", height: "22rem" },
     { src: "/gallery/gallery-011.jpg", alt: "Gallery Image 11", height: "15rem" },
-    { src: "/gallery/gallery-012.jpg", alt: "Gallery Image 12", height: "25rem" },
     { src: "/gallery/gallery-013.jpg", alt: "Gallery Image 13", height: "18rem" },
     // Nonstop photos — Column 3
     { src: "/nonstop/nonstop-003.jpg", alt: "Nonstop 3", height: "24rem" },
@@ -100,7 +100,12 @@ const GalleryMain = ({ className }: GalleryMainProps) => {
   return (
     <section className={cn("py-32", className)}>
       <div className="relative container">
-        <div className="grid grid-cols-2 gap-4 md:grid-cols-4">
+        <h1 className="mb-4 text-4xl tracking-tight lg:mb-6">The Visual Testimony</h1>
+        <p className="mb-12 max-w-2xl text-lg text-muted-foreground lg:text-xl">
+          A glimpse into the heart of the Non-Stop Series™. These are the moments of prayer, praise, and pure devotion 
+          we've shared together. It's more than just a gallery—it's a journey of worship that never stops.
+        </p>
+        <div className="grid grid-cols-1 gap-4 md:grid-cols-4">
           {/* Column 1 */}
           <div className="flex flex-col gap-4">
             {column1Images.map((image, index) => (

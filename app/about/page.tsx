@@ -83,7 +83,7 @@ export default function Home() {
               {/* Left column – text + photos */}
               <motion.div
                 className='flex w-full flex-col items-start justify-start gap-2 lg:w-1/2'
-                variants={slideLeft}
+                variants={fadeUp}
               >
                 <div className='pr-2'>
                   <motion.h1
@@ -170,7 +170,7 @@ export default function Home() {
                   </motion.div>
                 </motion.div>
 
-                <motion.div className='px-8' variants={container}>
+                <motion.div className='p-2 sm:px-8 ' variants={container}>
                   <motion.h1
                     className='mb-8 text-2xl font-semibold lg:mb-6'
                     variants={fadeUp}
@@ -178,7 +178,7 @@ export default function Home() {
                     Around-The-Clock Ministration
                   </motion.h1>
                   <motion.p className='mb-9 lg:text-2xl' variants={fadeUp}>
-                    Jesus said, "The hour is coming and is already here when the
+                    Jesus said, "The hour is coming and is already  here when the
                     true worshipers will worship the Father in spirit and truth;
                     for the Father is looking for those who will worship Him
                     that way." (John 4:23-25)
