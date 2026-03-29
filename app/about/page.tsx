@@ -300,7 +300,7 @@ export default function Home() {
 
       {/* ── Section 4: Impact stats ─────────────────────────────────────── */}
       <section
-        className='container py-12 md:py-8 p-4'
+        className='container py-12 md:py-8 p-2'
         id='achievements'
       >
         <motion.div
