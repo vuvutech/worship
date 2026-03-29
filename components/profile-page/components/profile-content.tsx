@@ -123,18 +123,18 @@ export default function ProfileContent({ user, profile }: ProfileContentProps) {
 
   return (
     <Tabs defaultValue="personal" className="space-y-6">
-      <TabsList className="grid w-full grid-cols-2 md:grid-cols-6 h-auto p-1.5 bg-muted/40 rounded-xl gap-1">
-        <TabsTrigger value="personal" className="rounded-lg py-2.5">Personal</TabsTrigger>
-        <TabsTrigger value="volunteering" className="rounded-lg py-2.5">Volunteering</TabsTrigger>
-        <TabsTrigger value="reflections" className="rounded-lg py-2.5">Reflections</TabsTrigger>
-        <TabsTrigger value="account" className="rounded-lg py-2.5">Account</TabsTrigger>
-        <TabsTrigger value="security" className="rounded-lg py-2.5">Security</TabsTrigger>
-        <TabsTrigger value="notifications" className="rounded-lg py-2.5">Notifications</TabsTrigger>
+      <TabsList className="grid w-full grid-cols-3 md:grid-cols-6 h-auto p-1.5 bg-muted/40 rounded-xl gap-1">
+        <TabsTrigger value="personal" className="rounded-lg py-2.5 text-xs sm:text-sm">Personal</TabsTrigger>
+        <TabsTrigger value="volunteering" className="rounded-lg py-2.5 text-xs sm:text-sm">Volunteering</TabsTrigger>
+        <TabsTrigger value="reflections" className="rounded-lg py-2.5 text-xs sm:text-sm">Reflections</TabsTrigger>
+        <TabsTrigger value="account" className="rounded-lg py-2.5 text-xs sm:text-sm">Account</TabsTrigger>
+        <TabsTrigger value="security" className="rounded-lg py-2.5 text-xs sm:text-sm">Security</TabsTrigger>
+        <TabsTrigger value="notifications" className="rounded-lg py-2.5 text-xs sm:text-sm">Notifications</TabsTrigger>
       </TabsList>
 
       {/* Personal Information */}
       <TabsContent value="personal" className="space-y-6">
-        <Card className="p-2 md:p-4 w-full">
+        <Card className="p-2 py-4  md:p-4 w-full">
           <CardHeader>
             <CardTitle>Personal Information</CardTitle>
             <CardDescription>Update your personal details and profile information.</CardDescription>
@@ -195,7 +195,7 @@ export default function ProfileContent({ user, profile }: ProfileContentProps) {
 
       {/* Volunteering Section */}
       <TabsContent value="volunteering" className="space-y-6">
-        <Card data-usal='fade-u' className="p-2 md:p-4 w-full py-8">
+        <Card data-usal='fade-u' className="p-2 py-4  md:p-4 w-full py-8">
           <CardHeader>
             <CardTitle>Volunteer & Service</CardTitle>
             <CardDescription>Select the areas where you would like to serve and volunteer.</CardDescription>
@@ -240,42 +240,42 @@ export default function ProfileContent({ user, profile }: ProfileContentProps) {
 
       {/* Account Settings */}
       <TabsContent value="account" className="space-y-6">
-        <Card className="p-2 md:p-4 w-full">
+        <Card className="p-2 py-4  md:p-4 w-full">
           <CardHeader>
             <CardTitle>Account Settings</CardTitle>
             <CardDescription>Manage your account preferences and subscription.</CardDescription>
           </CardHeader>
           <CardContent className="space-y-6">
-            <div className="flex items-center justify-between">
+            <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
               <div className="space-y-1">
                 <Label className="text-base">Account Status</Label>
                 <p className="text-muted-foreground text-sm">Your account is currently active</p>
               </div>
-              <Badge variant="outline" className="border-green-200 bg-green-50 text-green-700">Active</Badge>
+              <Badge variant="outline" className="border-green-200 bg-green-50 text-green-700 self-start sm:self-center">Active</Badge>
             </div>
             <Separator />
-            <div className="flex items-center justify-between">
+            <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
               <div className="space-y-1">
                 <Label className="text-base">Subscription Plan</Label>
                 <p className="text-muted-foreground text-sm">{profile.membershipPlan || "Basic"} Plan</p>
               </div>
-              <Button variant="outline">Manage Subscription</Button>
+              <Button variant="outline" className="self-start sm:self-center">Manage Subscription</Button>
             </div>
             <Separator />
-            <div className="flex items-center justify-between">
+            <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
               <div className="space-y-1">
                 <Label className="text-base">Account Visibility</Label>
                 <p className="text-muted-foreground text-sm">Make your profile visible to other users</p>
               </div>
-              <Switch defaultChecked />
+              <Switch defaultChecked className="self-start sm:self-center" />
             </div>
             <Separator />
-            <div className="flex items-center justify-between">
+            <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
               <div className="space-y-1">
                 <Label className="text-base">Data Export</Label>
                 <p className="text-muted-foreground text-sm">Download a copy of your data</p>
               </div>
-              <Button variant="outline">Export Data</Button>
+              <Button variant="outline" className="self-start sm:self-center">Export Data</Button>
             </div>
           </CardContent>
         </Card>
@@ -286,7 +286,7 @@ export default function ProfileContent({ user, profile }: ProfileContentProps) {
             <CardDescription>Irreversible and destructive actions</CardDescription>
           </CardHeader>
           <CardContent>
-            <div className="flex items-center justify-between">
+            <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
                <div className="space-y-1">
                  <Label className="text-base">Delete Account</Label>
                  <p className="text-muted-foreground text-sm">Permanently delete your account and all data</p>
@@ -339,49 +339,49 @@ export default function ProfileContent({ user, profile }: ProfileContentProps) {
 
       {/* Security Settings */}
       <TabsContent value="security" className="space-y-6">
-        <Card className="p-2 md:p-4 w-full">
+        <Card className="p-2 py-4  md:p-4 w-full">
           <CardHeader>
             <CardTitle>Security Settings</CardTitle>
             <CardDescription>Manage your account security and authentication.</CardDescription>
           </CardHeader>
           <CardContent className="space-y-6">
             <div className="space-y-4">
-              <div className="flex items-center justify-between">
+              <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
                 <div className="space-y-1">
                   <Label className="text-base">Password</Label>
                   <p className="text-muted-foreground text-sm">Last changed 3 months ago</p>
                 </div>
-                <Button variant="outline">
+                <Button variant="outline" className="self-start sm:self-center">
                   <Key className="mr-2 h-4 w-4" />
                   Change Password
                 </Button>
               </div>
               <Separator />
-              <div className="flex items-center justify-between">
+              <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
                 <div className="space-y-1">
                   <Label className="text-base">Two-Factor Authentication</Label>
                   <p className="text-muted-foreground text-sm">Add an extra layer of security</p>
                 </div>
-                <div className="flex items-center gap-2">
+                <div className="flex items-center gap-2 self-start sm:self-center">
                   <Badge variant="outline" className="border-green-200 bg-green-50 text-green-700">Enabled</Badge>
                   <Button variant="outline" size="sm">Configure</Button>
                 </div>
               </div>
               <Separator />
-              <div className="flex items-center justify-between">
+              <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
                 <div className="space-y-1">
                   <Label className="text-base">Login Notifications</Label>
                   <p className="text-muted-foreground text-sm">Get notified when someone logs into your account</p>
                 </div>
-                <Switch defaultChecked />
+                <Switch defaultChecked className="self-start sm:self-center" />
               </div>
               <Separator />
-              <div className="flex items-center justify-between">
+              <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
                 <div className="space-y-1">
                   <Label className="text-base">Active Sessions</Label>
                   <p className="text-muted-foreground text-sm">Manage devices logged into your account</p>
                 </div>
-                <Button variant="outline">
+                <Button variant="outline" className="self-start sm:self-center">
                   <Shield className="mr-2 h-4 w-4" />
                   View Sessions
                 </Button>
@@ -393,51 +393,51 @@ export default function ProfileContent({ user, profile }: ProfileContentProps) {
 
       {/* Notification Settings */}
       <TabsContent value="notifications" className="space-y-6">
-        <Card className="p-2 md:p-4 w-full">
+        <Card className="p-2 py-4  md:p-4 w-full">
           <CardHeader>
             <CardTitle>Notification Preferences</CardTitle>
             <CardDescription>Choose what notifications you want to receive.</CardDescription>
           </CardHeader>
           <CardContent className="space-y-6">
             <div className="space-y-4">
-              <div className="flex items-center justify-between">
+              <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
                 <div className="space-y-1">
                   <Label className="text-base">Email Notifications</Label>
                   <p className="text-muted-foreground text-sm">Receive notifications via email</p>
                 </div>
-                <Switch defaultChecked />
+                <Switch defaultChecked className="self-start sm:self-center" />
               </div>
               <Separator />
-              <div className="flex items-center justify-between">
+              <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
                 <div className="space-y-1">
                   <Label className="text-base">Push Notifications</Label>
                   <p className="text-muted-foreground text-sm">Receive push notifications in your browser</p>
                 </div>
-                <Switch />
+                <Switch className="self-start sm:self-center" />
               </div>
               <Separator />
-              <div className="flex items-center justify-between">
+              <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
                 <div className="space-y-1">
                   <Label className="text-base">Marketing Emails</Label>
                   <p className="text-muted-foreground text-sm">Receive emails about new features and updates</p>
                 </div>
-                <Switch defaultChecked />
+                <Switch defaultChecked className="self-start sm:self-center" />
               </div>
               <Separator />
-              <div className="flex items-center justify-between">
+              <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
                 <div className="space-y-1">
                   <Label className="text-base">Weekly Summary</Label>
                   <p className="text-muted-foreground text-sm">Get a weekly summary of your activity</p>
                 </div>
-                <Switch defaultChecked />
+                <Switch defaultChecked className="self-start sm:self-center" />
               </div>
               <Separator />
-              <div className="flex items-center justify-between">
+              <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
                 <div className="space-y-1">
                   <Label className="text-base">Security Alerts</Label>
                   <p className="text-muted-foreground text-sm">Important security notifications (always enabled)</p>
                 </div>
-                <Switch checked disabled />
+                <Switch checked disabled className="self-start sm:self-center" />
               </div>
             </div>
           </CardContent>

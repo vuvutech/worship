@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft } from "lucide-react";
 
@@ -28,11 +29,13 @@ export default function NotFound() {
           </Button>
         </div>
         
-        <div className="pt-12">
-          <img 
-            src="/non-stop-logo.webp" 
-            alt="The Non-Stop Series" 
-            className="h-12 mx-auto grayscale opacity-50"
+        <div className="pt-12 flex justify-center">
+          <Image
+            src="/non-stop-logo.webp"
+            alt="The Non-Stop Series"
+            width={160}
+            height={48}
+            className="h-12 w-auto grayscale opacity-50"
           />
         </div>
       </div>

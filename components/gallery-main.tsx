@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { motion } from "framer-motion";
 import React from "react";
 
@@ -114,10 +115,18 @@ const GalleryMain = ({ className }: GalleryMainProps) => {
                 whileInView={{ opacity: 1, scale: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 key={index}
-                className="w-full overflow-hidden rounded-2xl bg-muted"
+                className="relative w-full overflow-hidden rounded-2xl bg-muted"
                 style={{ height: image.height }}
               >
-                <img className="h-full w-full rounded-2xl object-cover object-top" src={image.src} alt={image.alt} />
+                <Image
+                  className="rounded-2xl object-cover object-top"
+                  src={image.src}
+                  alt={image.alt}
+                  fill
+                  sizes="(max-width: 768px) 100vw, 25vw"
+                  priority={index === 0}
+                  loading={index === 0 ? undefined : "lazy"}
+                />
               </motion.div>
             ))}
           </div>
@@ -130,10 +139,18 @@ const GalleryMain = ({ className }: GalleryMainProps) => {
                 whileInView={{ opacity: 1, scale: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 key={index}
-                className="w-full overflow-hidden rounded-2xl bg-muted"
+                className="relative w-full overflow-hidden rounded-2xl bg-muted"
                 style={{ height: image.height }}
               >
-                <img className="h-full w-full rounded-2xl object-cover object-top" src={image.src} alt={image.alt} />
+                <Image
+                  className="rounded-2xl object-cover object-top"
+                  src={image.src}
+                  alt={image.alt}
+                  fill
+                  sizes="(max-width: 768px) 100vw, 25vw"
+                  priority={index === 0}
+                  loading={index === 0 ? undefined : "lazy"}
+                />
               </motion.div>
             ))}
           </div>
@@ -146,10 +163,18 @@ const GalleryMain = ({ className }: GalleryMainProps) => {
                 whileInView={{ opacity: 1, scale: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 key={index}
-                className="w-full overflow-hidden rounded-2xl bg-muted"
+                className="relative w-full overflow-hidden rounded-2xl bg-muted"
                 style={{ height: image.height }}
               >
-                <img className="h-full w-full rounded-2xl object-cover object-top" src={image.src} alt={image.alt} />
+                <Image
+                  className="rounded-2xl object-cover object-top"
+                  src={image.src}
+                  alt={image.alt}
+                  fill
+                  sizes="(max-width: 768px) 100vw, 25vw"
+                  priority={index === 0}
+                  loading={index === 0 ? undefined : "lazy"}
+                />
               </motion.div>
             ))}
           </div>
@@ -162,10 +187,18 @@ const GalleryMain = ({ className }: GalleryMainProps) => {
                 whileInView={{ opacity: 1, scale: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 key={index}
-                className="w-full overflow-hidden rounded-2xl bg-muted"
+                className="relative w-full overflow-hidden rounded-2xl bg-muted"
                 style={{ height: image.height }}
               >
-                <img className="h-full w-full rounded-2xl object-cover" src={image.src} alt={image.alt} />
+                <Image
+                  className="rounded-2xl object-cover"
+                  src={image.src}
+                  alt={image.alt}
+                  fill
+                  sizes="(max-width: 768px) 100vw, 25vw"
+                  priority={index === 0}
+                  loading={index === 0 ? undefined : "lazy"}
+                />
               </motion.div>
             ))}
           </div>

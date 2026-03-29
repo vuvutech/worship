@@ -1,6 +1,7 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
 import useSWR from "swr";
+import Image from "next/image";
 import { motion, useInView } from "framer-motion";
 import { VideoPlayer } from "@/components/video-player";
 import { Play, Mic2, Calendar, Users } from "lucide-react";
@@ -274,7 +275,13 @@ export function LiveDashboard({ initialVideos, initialEvents }: LiveDashboardPro
                       <div className="flex -space-x-3 items-center">
                         {[1, 2, 3, 4].map((i) => (
                           <div key={i} className="size-8 rounded-full border-2 border-background bg-neutral-800 overflow-hidden">
-                            <img src={`https://i.pravatar.cc/100?u=${i + 10}`} alt="worshipper" className="w-full h-full grayscale opacity-60" />
+                            <Image
+                              src={`https://i.pravatar.cc/100?u=${i + 10}`}
+                              alt="worshipper"
+                              width={32}
+                              height={32}
+                              className="w-full h-full grayscale opacity-60"
+                            />
                           </div>
                         ))}
                         <div className="size-8 rounded-full border-2 border-background bg-red-600 flex items-center justify-center text-[10px] font-bold text-white transition-all duration-700">

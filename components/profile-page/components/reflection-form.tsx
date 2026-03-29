@@ -52,9 +52,9 @@ export default function ReflectionForm() {
           {/* <div className="p-2 rounded-xl bg-primary/10 text-primary">
             <PenTool className="size-5" />
           </div> */}
-          <CardTitle className="text-2xl font-bold uppercase tracking-tight">Post a Sacred Reflection/Testimony</CardTitle>
+          <CardTitle className="text-lg font-bold uppercase tracking-tight sm:text-xl md:text-2xl">Post a Sacred Reflection/Testimony</CardTitle>
         </div>
-        <CardDescription className="text-base">
+        <CardDescription className="text-sm sm:text-base">
           Share your experience of the 144-hour altar. What did God speak to you?
         </CardDescription>
       </CardHeader>

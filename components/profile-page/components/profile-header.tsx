@@ -30,8 +30,9 @@ export default function ProfileHeader({ user, profile }: ProfileHeaderProps) {
              <img src={profile.bannerUrl} alt="Banner" className="h-full w-full object-cover opacity-50" />
            )}
         </div>
-        <div className="flex flex-col items-start gap-6 px-6 pb-6 md:flex-row md:items-end md:gap-8 -mt-12 md:-mt-16">
-          <div className="relative group">
+        <div className="flex flex-col gap-4 px-4 pb-6 sm:px-6 md:flex-row md:items-end md:gap-8 -mt-12 md:-mt-16">
+          {/* Avatar */}
+          <div className="relative group shrink-0">
             <Avatar className="h-24 w-24 border-4 border-background shadow-xl md:h-32 md:w-32">
               <AvatarImage src={user.image || undefined} alt={user.name} />
               <AvatarFallback className="text-3xl font-bold bg-muted text-muted-foreground">{initials}</AvatarFallback>
@@ -45,10 +46,11 @@ export default function ProfileHeader({ user, profile }: ProfileHeaderProps) {
               <Camera className="size-4" />
             </Button>
           </div>
-          <div className="flex-1 space-y-3 pt-2">
-            <div className="flex flex-col gap-3 md:flex-row md:items-center">
-              <h1 className="text-3xl font-extrabold   text-foreground">{user.name}</h1>
-              <div className="flex gap-2">
+          {/* Info */}
+          <div className="flex-1 min-w-0 space-y-2 pt-1 md:pt-2">
+            <div className="flex flex-wrap items-center gap-2">
+              <h1 className="text-2xl font-extrabold text-foreground sm:text-3xl">{user.name}</h1>
+              <div className="flex flex-wrap gap-2">
                 <Badge variant="default" className="bg-primary text-primary-foreground font-semibold px-3 uppercase tracking-wider text-[10px]">
                   {profile.membershipPlan || "Basic"}
                 </Badge>
@@ -57,28 +59,25 @@ export default function ProfileHeader({ user, profile }: ProfileHeaderProps) {
                 )}
               </div>
             </div>
-            <p className="text-lg font-medium text-primary/80">
+            <p className="text-base font-medium text-primary/80 truncate">
               {profile.jobTitle || "Member"} {profile.company ? ` at ${profile.company}` : ""}
             </p>
-            <div className="text-muted-foreground flex flex-wrap gap-x-6 gap-y-2 text-sm font-medium">
-              <div className="flex items-center gap-1.5 hover:text-foreground transition-colors cursor-pointer">
-                <Mail className="size-4 text-primary" />
-                {user.email}
+            <div className="text-muted-foreground flex flex-wrap gap-x-4 gap-y-2 text-sm font-medium">
+              <div className="flex items-center gap-1.5 hover:text-foreground transition-colors cursor-pointer min-w-0">
+                <Mail className="size-4 text-primary shrink-0" />
+                <span className="truncate">{user.email}</span>
               </div>
               {profile.location && (
                 <div className="flex items-center gap-1.5 hover:text-foreground transition-colors cursor-pointer">
-                  <MapPin className="size-4 text-primary" />
+                  <MapPin className="size-4 text-primary shrink-0" />
                   {profile.location}
                 </div>
               )}
               <div className="flex items-center gap-1.5">
-                <Calendar className="size-4 text-primary" />
+                <Calendar className="size-4 text-primary shrink-0" />
                 Joined {format(joinedDate, "MMMM yyyy")}
               </div>
             </div>
-          </div>
-          <div className="flex gap-3 pt-4 md:pt-0 hidden">
-            <Button variant="default" className="font-bold shadow-md px-6">Save Changes</Button>
           </div>
         </div>
       </CardContent>
