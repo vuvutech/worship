@@ -284,7 +284,7 @@ function ReflectionCard({
   const isApproved = reflection.status === "approved";
 
   return (
-    <Card className='relative overflow-hidden group'>
+    <Card className='relative overflow-hidden group p-2'>
       {reflection.featured && (
         <div className='absolute top-0 inset-x-0 h-1 bg-gradient-to-r from-amber-400 to-amber-600' />
       )}

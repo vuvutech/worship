@@ -78,7 +78,7 @@ export default function DashboardPage() {
       title: "Total Members",
       value: data?.stats.totalUsers || 0,
       icon: Users,
-      description: "People joined the Non-Stop altar",
+      description: "People joined ",
       color: "text-blue-500",
       bg: "bg-blue-500/10",
       link: "/dashboard/admin/users"
@@ -169,7 +169,7 @@ export default function DashboardPage() {
 
       <div className="grid gap-4 grid-cols-1 lg:grid-cols-7">
         {/* Recent Members */}
-        <Card className="lg:col-span-4 border-muted/50">
+        <Card className="lg:col-span-4 border-muted/50 p-2">
           <CardHeader className="flex flex-row items-center justify-between">
             <div>
               <CardTitle className="text-xl">Recent Fire Starters</CardTitle>
@@ -210,7 +210,7 @@ export default function DashboardPage() {
         </Card>
 
         {/* Upcoming Ministrations */}
-        <Card className="lg:col-span-3 border-muted/50 bg-muted/20">
+        <Card className="lg:col-span-3 border-muted/50 bg-muted/20 p-2">
           <CardHeader>
             <CardTitle className="text-xl">Upcoming Ministrations</CardTitle>
             <CardDescription>Sacrifice of praise on the calendar.</CardDescription>

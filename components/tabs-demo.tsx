@@ -22,7 +22,7 @@ export function TabsDemo() {
                 <TabsTrigger value="settings">Settings</TabsTrigger>
             </TabsList>
             <TabsContent value="overview">
-                <Card>
+                <Card className="p-2">
                     <CardHeader>
                         <CardTitle>Overview</CardTitle>
                         <CardDescription>
@@ -36,7 +36,7 @@ export function TabsDemo() {
                 </Card>
             </TabsContent>
             <TabsContent value="analytics">
-                <Card>
+                <Card className="p-2">
                     <CardHeader>
                         <CardTitle>Analytics</CardTitle>
                         <CardDescription>
@@ -50,7 +50,7 @@ export function TabsDemo() {
                 </Card>
             </TabsContent>
             <TabsContent value="reports">
-                <Card>
+                <Card className="p-2">
                     <CardHeader>
                         <CardTitle>Reports</CardTitle>
                         <CardDescription>
@@ -64,7 +64,7 @@ export function TabsDemo() {
                 </Card>
             </TabsContent>
             <TabsContent value="settings">
-                <Card>
+                <Card className="p-2">
                     <CardHeader>
                         <CardTitle>Settings</CardTitle>
                         <CardDescription>

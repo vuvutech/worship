@@ -13,7 +13,7 @@ import { render } from "@react-email/render";
 
 
 export const auth = betterAuth({
-    appName: "TheNonStop Series",
+    appName: "The NonStop Series",
     database: prismaAdapter(prisma, {
         provider: "mongodb",
     }),
@@ -62,8 +62,6 @@ export const auth = betterAuth({
     enabled: true,
     requireEmailVerification: true,
     async sendVerificationEmail({ user, url }) {
-        console.log("Sending verification email to:", user.email);
-        console.log("Verification URL:", url);
         try {
             const res = await resend.emails.send({
                 from: "no-reply@thenonstop.org",
@@ -74,7 +72,7 @@ export const auth = betterAuth({
                     verifyLink: url,
                 }),
             });
-            console.log("Resend response:", res);
+            console.log("Verification email sent successfully");
         } catch (error) {
             console.error("Failed to send verification email:", error);
         }
@@ -96,7 +94,7 @@ export const auth = betterAuth({
                         resetLink: url,
                     }),
                 });
-                console.log("Resend response (Password Reset):", res);
+                console.log("Password reset email sent successfully");
             } catch (error) {
                 console.error("Failed to send reset password email:", error);
             }

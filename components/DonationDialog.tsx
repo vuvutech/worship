@@ -10,6 +10,7 @@ import {
 	DialogTrigger,
 } from "@/components/ui/dialog";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { ScrollArea } from "@/components/ui/scroll-area";
 import {
 	Accordion,
 	AccordionItem,
@@ -38,7 +39,7 @@ export function DonationDialog({ children }: { children: React.ReactNode }) {
 	return (
 		<Dialog>
 			<DialogTrigger asChild>{children}</DialogTrigger>
-			<DialogContent className='sm:max-w-[550px] border-amber-500/20 bg-background text-foreground p-0 overflow-hidden'>
+			<DialogContent className='sm:max-w-[550px] max-h-[90vh] sm:max-h-[85vh] border-amber-500/20 bg-background text-foreground p-0 gap-0 !flex !flex-col overflow-hidden'>
 				<div className='bg-gradient-to-r from-amber-600 to-amber-400 h-2 w-full shrink-0' />
 
 				<div className='px-6 pt-8 pb-4 border-b border-border/50 shrink-0'>
@@ -54,13 +55,14 @@ export function DonationDialog({ children }: { children: React.ReactNode }) {
 					</DialogHeader>
 				</div>
 
-				<div className='px-6 py-6 max-h-[70vh] overflow-y-auto no-scrollbar'>
-					<Tabs defaultValue='cash' className='w-full'>
-						<TabsList className='grid w-full grid-cols-2 bg-muted border border-border mb-8 h-14 min-h-[44px]'>
-							<TabsTrigger
-								value='cash'
-								className='data-[state=active]:bg-amber-500 data-[state=active]:text-primary-foreground uppercase font-semibold text-xs sm:text-sm tracking-wide h-full'
-							>
+				<ScrollArea className='flex-1 shrink min-h-0 w-full max-h-[60vh] sm:max-h-[calc(85vh-10rem)]'>
+					<div className='px-6 py-6 relative'>
+						<Tabs defaultValue='cash' className='w-full'>
+							<TabsList className='grid w-full grid-cols-2 bg-muted border border-border mb-8 h-14 min-h-[44px]'>
+								<TabsTrigger
+									value='cash'
+									className='data-[state=active]:bg-amber-500 data-[state=active]:text-primary-foreground uppercase font-semibold text-xs sm:text-sm tracking-wide h-full'
+								>
 								Cash Donation
 							</TabsTrigger>
 							<TabsTrigger
@@ -384,7 +386,8 @@ export function DonationDialog({ children }: { children: React.ReactNode }) {
 					<p className='mt-8 text-center text-xs font-semibold text-muted-foreground uppercase tracking-[0.2em]'>
 						Thank you for your generosity
 					</p>
-				</div>
+					</div>
+				</ScrollArea>
 			</DialogContent>
 		</Dialog>
 	);

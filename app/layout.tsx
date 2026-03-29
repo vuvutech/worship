@@ -114,9 +114,11 @@ export default function RootLayout({
 			>
 				<ThemeProvider>
 					<NavbarWrapper />
-					<PartnerFAB />
 					<LocomotiveScrollWrapper>
-						<PageTransition>{children}</PageTransition>
+						<PageTransition>
+							{children}
+							<PartnerFAB />
+						</PageTransition>
 						<FooterWrapper />
 					</LocomotiveScrollWrapper>
 					<Toaster richColors position='bottom-right' />
