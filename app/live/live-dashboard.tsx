@@ -60,18 +60,29 @@ const fetcher = (url: string) => {
   });
 };
 
-// Helper: format a duration (ms) as HH:MM:SS
+// Helper: format a duration (ms) into a human-friendly string
+// • > 1 day  → "X days, HH:MM:SS"  (or "1 day, HH:MM:SS")
+// • ≤ 1 day  → "HH:MM:SS"
+// • ≤ 1 hour → "MM:SS"
 function formatDuration(ms: number): string {
-  if (ms <= 0) return "00:00:00";
+  if (ms <= 0) return "00:00";
   const totalSecs = Math.floor(ms / 1000);
-  const h = Math.floor(totalSecs / 3600);
-  const m = Math.floor((totalSecs % 3600) / 60);
-  const s = totalSecs % 60;
-  return [
-    h.toString().padStart(2, "0"),
-    m.toString().padStart(2, "0"),
-    s.toString().padStart(2, "0"),
-  ].join(":");
+  const days = Math.floor(totalSecs / 86400);
+  const h    = Math.floor((totalSecs % 86400) / 3600);
+  const m    = Math.floor((totalSecs % 3600) / 60);
+  const s    = totalSecs % 60;
+
+  const hh = h.toString().padStart(2, "0");
+  const mm = m.toString().padStart(2, "0");
+  const ss = s.toString().padStart(2, "0");
+
+  if (days >= 1) {
+    return `${days} ${days === 1 ? "day" : "days"}, ${hh}:${mm}:${ss}`;
+  }
+  if (h >= 1) {
+    return `${hh}:${mm}:${ss}`;
+  }
+  return `${mm}:${ss}`;
 }
 
 export function LiveDashboard({ initialVideos, initialEvents }: LiveDashboardProps) {
@@ -169,7 +180,7 @@ export function LiveDashboard({ initialVideos, initialEvents }: LiveDashboardPro
       opacity: 1,
       y: 0,
       scale: 1,
-      transition: { duration, ease: [0.22, 1, 0.36, 1] },
+      transition: { duration, ease: [0.22, 1, 0.36, 1] as [number, number, number, number] },
     },
   });
 
@@ -273,8 +284,8 @@ export function LiveDashboard({ initialVideos, initialEvents }: LiveDashboardPro
                     </>
                   ) : (
                     <>
-                      <div className="text-xs font-bold uppercase tracking-wider text-neutral-400 mb-1">Starting In</div>
-                      <div className="font-mono text-3xl font-black text-amber-400 tabular-nums tracking-tight">
+                      <div className="text-xs font-bold uppercase  text-neutral-400 mb-1">Starting In</div>
+                      <div className="font-mono text-2xl font-black text-amber-400 tabular-nums tracking-tight">
                         {countdown}
                       </div>
                       <div className="text-xs text-neutral-500 mt-1">
@@ -477,7 +488,7 @@ export function LiveDashboard({ initialVideos, initialEvents }: LiveDashboardPro
                       </div>
                     </div>
                     <div className='p-6 md:p-8 flex flex-col flex-grow'>
-                      <h3 className='text-xl md:text-2xl font-bold text-foreground mb-3 group-hover:text-primary  dark:group-hover:text-yellow-400 transition-colors'>
+                      <h3 className='text-xl md:text-2xl font-bold text-foreground mb-3 group-hover:text-primary cursor-pointer  dark:group-hover:text-yellow-400 transition-colors'>
                         {event.title}
                       </h3>
                       <p className='text-muted-foreground text-sm md:text-base leading-relaxed mb-6 line-clamp-3'>

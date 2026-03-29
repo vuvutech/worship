@@ -57,7 +57,7 @@ const AboutCompliment = ({
   title = "Why the Tabernacle of David?",
   description = "Thousands of years ago, King David set a precedent: 24/7 worship without a veil. He understood that God inhabits the praises of His people. At The Non-Stop, we are stepping into that ancient rhythm. For 144 hours, we remove the distractions of the world to sit at His feet, just as they did in the city of Zion. When the worship is non-stop, the atmosphere changes. Lives are recovered. Spirits are revived.",
   mainImage = {
-    src: "/nonstop/nonstop-017.jpg",
+    src: "/nonstop/nonstop-040.jpg",
     alt: "worship group",
   },
   secondaryImage = {

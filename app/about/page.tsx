@@ -203,7 +203,7 @@ export default function Home() {
 
       {/* ── Section 2: Full-bleed image / pillars ───────────────────────── */}
       <section className='py-16 block-preview-wrapper'>
-        <div className="bg-[url('/nonstop/nonstop-040.jpg')] bg-cover bg-center rounded-xl bg-no-repeat pt-16">
+        <div className="bg-[url('/nonstop/nonstop-017.jpg')] bg-cover bg-center rounded-xl bg-no-repeat pt-16">
           <div className='flex items-end sm:items-center justify-center lg:justify-start'>
             <div className='max-w-7xl px-4 lg:px-8 xl:px-16 lg:py-20 sm:py-16 py-8 mx-auto w-full h-full min-h-screen'>
               <div style={{ opacity: 1, transform: "none" }}>
