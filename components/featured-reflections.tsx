@@ -87,7 +87,7 @@ export default async function FeaturedReflections() {
 
   return (
     <div className="w-full py-20 pb-24 overflow-hidden" data-usal="fade-u duration-500">
-      <div className="container px-4 sm:px-6 mx-auto mb-10 text-center lg:text-left">
+      <div className="container mx-auto mb-10 lg:text-left">
         <h2 className="text-3xl md:text-5xl mb-4">
           One Sacrifice, Global <span className="text-primary">Voices</span>
         </h2>

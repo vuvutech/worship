@@ -101,7 +101,7 @@ const GalleryMain = ({ className }: GalleryMainProps) => {
     <section className={cn("py-32", className)}>
       <div className="relative container">
         <h1 className="mb-4 text-4xl tracking-tight lg:mb-6">The Visual Testimony</h1>
-        <p className="mb-12 max-w-2xl text-lg text-muted-foreground lg:text-xl">
+        <p className="mb-12 max-w-4xl text-lg text-muted-foreground lg:text-xl">
           A glimpse into the heart of the Non-Stop Series™. These are the moments of prayer, praise, and pure devotion 
           we've shared together. It's more than just a gallery—it's a journey of worship that never stops.
         </p>

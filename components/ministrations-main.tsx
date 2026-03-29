@@ -95,7 +95,7 @@ const Ministration = ({ className }: ministrationsHomeProps) => {
         className='w-full'
         data-usal='fade-u duration-500'
       >
-        <div className='mb-16 px-8 max-w-6xl'>
+        <div className='mb-16 max-w-6xl'>
           <h1 className='text-3xl lg:text-6xl'>Ministrations Spotlight</h1>
           <div className='mt-6 space-y-4 text-muted-foreground leading-relaxed'>
             <p>

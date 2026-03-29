@@ -7,6 +7,7 @@ import { NavMenu } from "@/components/nav-menu";
 import { NavigationSheet } from "@/components/navigation-sheet";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { useCurrentSession } from "@/lib/use-current-session";
+import { cn } from "@/lib/utils";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import {
   DropdownMenu,
@@ -36,8 +37,8 @@ const Navbar = () => {
   }, []);
 
   useEffect(() => {
-    const MD_BREAKPOINT = 768;
-    const check = () => setIsMobile(window.innerWidth < MD_BREAKPOINT);
+    const LG_BREAKPOINT = 1024;
+    const check = () => setIsMobile(window.innerWidth < LG_BREAKPOINT);
     check(); // run once on mount
     window.addEventListener("resize", check, { passive: true });
     return () => window.removeEventListener("resize", check);
@@ -66,7 +67,12 @@ const Navbar = () => {
   return (
     <nav
       id="navbar"
-      className='fixed z-50 inset-x-0 top-0 md:inset-x-2 md:top-6 mx-auto py-2 h-12 md:rounded-full bg-black text-white backdrop-blur-xl border-b md:border border-white/10 shadow-lg'
+      className={cn(
+        "fixed z-50 mx-auto py-2 h-12 bg-black text-white backdrop-blur-xl transition-all duration-300",
+        isMobile 
+          ? "inset-x-0 top-0 border-b border-white/10" 
+          : "inset-x-2 top-6 rounded-full border border-white/10 shadow-lg"
+      )}
       style={{
         maxWidth: isMobile ? '100%' : scrolledPast ? '84vw' : '96vw',
         transition: isMobile ? 'none' : 'max-width 1.2s cubic-bezier(0.22, 1, 0.36, 1)',
@@ -76,7 +82,7 @@ const Navbar = () => {
         <Logo />
 
         {/* Desktop Menu */}
-        <NavMenu className='hidden md:flex' />
+        <NavMenu className='hidden lg:flex' />
 
         <div className='flex items-center gap-3'>
           <DonationDialog>
@@ -167,7 +173,7 @@ const Navbar = () => {
           )} */}
 
           {/* Mobile Menu */}
-          <div className='md:hidden'>
+          <div className='lg:hidden'>
             <NavigationSheet />
           </div>
         </div>

@@ -105,7 +105,7 @@ export function LiveDashboard({ initialVideos, initialEvents }: LiveDashboardPro
   return (
     <div className='min-h-screen bg-background text-foreground selection:bg-red-600 selection:text-white pb-24'>
       {/* Hero Player Section */}
-      <section className='w-full relative pt-8 px-4 md:px-8 max-w-[1600px] mx-auto'>
+      <section className='w-full relative pt-8 md:px-8 max-w-[1600px] mx-auto'>
         <div className='relative z-10 w-full mx-auto grid grid-cols-1 lg:grid-cols-4 gap-6'>
           {/* Main Video Player Container */}
           <div className='lg:col-span-4 space-y-6'>
@@ -251,7 +251,7 @@ export function LiveDashboard({ initialVideos, initialEvents }: LiveDashboardPro
       </section>
 
       {/* VOD Grid Section */}
-      <section className='w-full relative z-10 px-4 md:px-8 max-w-[1600px] mx-auto mt-16'>
+      <section className='w-full relative z-10 md:px-8 max-w-[1600px] mx-auto mt-16'>
         <h2 className='text-2xl font-semibold mb-6'>Past Ministrations</h2>
 
         {vods.length > 0 ? (
@@ -303,7 +303,7 @@ export function LiveDashboard({ initialVideos, initialEvents }: LiveDashboardPro
       </section>
 
       {/* Upcoming Events Section */}
-      <section className='w-full relative z-10 px-4 md:px-8 max-w-[1600px] mx-auto mt-24'>
+      <section className='w-full relative z-10 md:px-8 max-w-[1600px] mx-auto mt-24'>
         {/* Header Section */}
         <div className='text-left mb-16'>
           <h2 className='text-4xl md:text-5xl font-bold text-foreground mb-4'>

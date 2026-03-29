@@ -77,8 +77,7 @@ export default function Home() {
               className='flex flex-col items-center justify-start gap-6 lg:flex-row'
               variants={container}
               initial='hidden'
-              whileInView='show'
-              viewport={{ once: false, amount: 0.15 }}
+              animate='show'
             >
               {/* Left column – text + photos */}
               <motion.div
@@ -222,7 +221,7 @@ export default function Home() {
                       variants={container}
                       initial='hidden'
                       whileInView='show'
-                      viewport={{ once: true, amount: 0.2 }}
+                      viewport={{ once: true, amount: 0.05 }}
                     >
                       <motion.div
                         className='hidden sm:block'
@@ -308,7 +307,7 @@ export default function Home() {
           variants={container}
           initial='hidden'
           whileInView='show'
-          viewport={{ once: true, amount: 0.15 }}
+          viewport={{ once: true, amount: 0.05 }}
         >
           <motion.h2 className='mb-4 text-3xl sm:text-4xl' variants={fadeUp}>
             Our Impact &amp; Reach
