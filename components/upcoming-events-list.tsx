@@ -26,7 +26,7 @@ export default function UpcomingEventsList({ events }: UpcomingEventsListProps) 
   if (events.length === 0) return null;
 
   return (
-    <div className="w-full py-12 px-4 md:px-0">
+    <div className="w-full py-6 px-2  md:px-0">
       <div className="max-w-5xl mx-auto">
         <div className="flex items-center gap-4 mb-8">
           <h2 className="text-3xl md:text-5xl font-bebas tracking-wider uppercase">More Upcoming Gatherings</h2>
