@@ -13,10 +13,11 @@ export async function GET(req: NextRequest) {
 
   // 1. Basic Protection: Origin/Referer check
   // Ensures people cannot easily embed your live data status on their own sites
-  const allowedPattern = /thenonstop\.(org|net|com)/;
+  const allowedPattern = /thenonstop\.(org|net|com)|vercel\.app/;
   const isAllowedDomain = 
     process.env.NODE_ENV === "development" || 
-    (referer && allowedPattern.test(referer)) || 
+    !referer || // Allow direct or same-origin if referer is somehow missing
+    allowedPattern.test(referer) || 
     (origin && allowedPattern.test(origin));
 
   if (!isAllowedDomain) {

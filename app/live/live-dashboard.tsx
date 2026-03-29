@@ -50,35 +50,55 @@ const fetcher = (url: string) => {
   if (process.env.NODE_ENV === "development") {
     console.log(`[SYNC] Refreshing live status: ${new Date().toLocaleTimeString()}`);
   }
-  return fetch(url).then((res) => res.json());
+  return fetch(url).then(async (res) => {
+     if (!res.ok) {
+       const errorText = await res.text();
+       throw new Error(`API error: ${res.status} - ${errorText}`);
+     }
+     return res.json();
+  });
 };
 
+// Helper: format a duration (ms) as HH:MM:SS
+function formatDuration(ms: number): string {
+  if (ms <= 0) return "00:00:00";
+  const totalSecs = Math.floor(ms / 1000);
+  const h = Math.floor(totalSecs / 3600);
+  const m = Math.floor((totalSecs % 3600) / 60);
+  const s = totalSecs % 60;
+  return [
+    h.toString().padStart(2, "0"),
+    m.toString().padStart(2, "0"),
+    s.toString().padStart(2, "0"),
+  ].join(":");
+}
+
 export function LiveDashboard({ initialVideos, initialEvents }: LiveDashboardProps) {
-  // Poll for live status every 60 seconds (using a generic sync path for obfuscation)
-  const { data: status, error } = useSWR<LiveStatusResponse>(
+  const nowRef = new Date();
+
+  // Derive initial active/next events from the server-fetched list
+  const initialActiveEvent = initialEvents.find(
+    (e) => new Date(e.startDate) <= nowRef && new Date(e.endDate) >= nowRef
+  ) || null;
+  const initialNextEvent = initialEvents
+    .filter((e) => new Date(e.startDate) > nowRef)
+    .sort((a, b) => new Date(a.startDate).getTime() - new Date(b.startDate).getTime())[0] || null;
+
+  // Poll for live status every 60 seconds
+  const { data: status } = useSWR<LiveStatusResponse>(
     "/api/v1/sync",
     fetcher,
     {
-      refreshInterval: 60000, // 1 minute
+      refreshInterval: 60000,
       fallbackData: {
         videos: initialVideos,
-        activeEvent: null, 
-        nextEvent: null,
-        serverTime: new Date().toISOString(),
+        activeEvent: initialActiveEvent,
+        nextEvent: initialNextEvent,
+        serverTime: nowRef.toISOString(),
       },
+      revalidateOnMount: true,
     }
   );
-
-  // Debug logging for status updates (Dev only)
-  useEffect(() => {
-    if (status && process.env.NODE_ENV === "development") {
-      console.log("[SYNC] Live status synchronized:", {
-        activeEvent: status.activeEvent?.title || "NONE",
-        liveVideos: status.videos.filter(v => v.type === "LIVE").length,
-        serverTime: status.serverTime
-      });
-    }
-  }, [status]);
 
   const videos = status?.videos || initialVideos;
   const liveStream = videos.find((video) => video.type === "LIVE");
@@ -88,19 +108,48 @@ export function LiveDashboard({ initialVideos, initialEvents }: LiveDashboardPro
     liveStream || vods[0] || null,
   );
 
-  // Automatically switch to live stream if a new one appears and user hasn't manually selected a VOD
+  // Fix: auto-switch when a live stream appears (removed impossible nested condition)
   useEffect(() => {
     if (liveStream && (!selectedVideo || selectedVideo.type !== "LIVE")) {
-       if (!selectedVideo || selectedVideo.type === "LIVE") {
-         if (process.env.NODE_ENV === "development") {
-           console.log(`[SYNC] Auto-switching to live stream: ${liveStream.title}`);
-         }
-         setSelectedVideo(liveStream);
-       }
+      if (process.env.NODE_ENV === "development") {
+        console.log(`[SYNC] Auto-switching to live stream: ${liveStream.title}`);
+      }
+      setSelectedVideo(liveStream);
     }
   }, [liveStream?.id]);
 
+  // --- Dynamic Banner State ---
   const activeEvent = status?.activeEvent;
+  const nextEvent = status?.nextEvent ?? initialNextEvent;
+
+  // Ticking clock: updates every second for countdown & elapsed time
+  const [tick, setTick] = useState(() => new Date());
+  useEffect(() => {
+    const timer = setInterval(() => setTick(new Date()), 1000);
+    return () => clearInterval(timer);
+  }, []);
+
+  // Derived from tick
+  const countdown = nextEvent && !activeEvent
+    ? formatDuration(new Date(nextEvent.startDate).getTime() - tick.getTime())
+    : null;
+  const elapsed = activeEvent
+    ? formatDuration(tick.getTime() - new Date(activeEvent.startDate).getTime())
+    : null;
+
+  // Fluctuating visitor count (feels alive)
+  const [visitorCount, setVisitorCount] = useState(1243);
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setVisitorCount((prev) =>
+        Math.max(800, prev + (Math.random() > 0.45 ? 1 : -1) * Math.floor(Math.random() * 7))
+      );
+    }, 4000);
+    return () => clearInterval(interval);
+  }, []);
+
+  const formatVisitors = (n: number) =>
+    n >= 1000 ? `+${(n / 1000).toFixed(1)}k` : `+${n}`;
 
   return (
     <div className='min-h-screen bg-background text-foreground selection:bg-red-600 selection:text-white pb-24'>
@@ -110,60 +159,109 @@ export function LiveDashboard({ initialVideos, initialEvents }: LiveDashboardPro
           {/* Main Video Player Container */}
           <div className='lg:col-span-4 space-y-6'>
             
-            {/* Now Playing Banner (Dynamic) */}
-            {activeEvent && (
-              <div className="bg-red-600/10 border border-red-600/20 rounded-2xl p-4 md:p-6 flex flex-col md:flex-row md:items-center justify-between gap-4 animate-in fade-in slide-in-from-top-4 duration-700">
+            {/* Dynamic Priority Banner: LIVE → UP NEXT → CONTINUOUS */}
+            {(activeEvent || nextEvent) && (
+              <div className={`rounded-2xl p-4 md:p-6 flex flex-col md:flex-row md:items-center justify-between gap-4 animate-in fade-in slide-in-from-top-4 duration-700 border ${
+                activeEvent
+                  ? "bg-red-600/10 border-red-600/20"
+                  : "bg-amber-500/10 border-amber-500/20"
+              }`}>
                 <div className="flex items-center gap-4">
-                  <div className="relative">
-                    <div className="size-12 md:size-16 rounded-full bg-red-600 animate-pulse overflow-hidden border-2 border-red-600">
-                      {activeEvent.ministers?.[0]?.image ? (
-                        <img 
-                          src={activeEvent.ministers[0].image} 
-                          alt={activeEvent.ministers[0].name}
+                  {/* Avatar / Icon */}
+                  <div className="relative shrink-0">
+                    <div className={`size-12 md:size-16 rounded-full overflow-hidden border-2 ${
+                      activeEvent ? "bg-red-600 border-red-600 animate-pulse" : "bg-amber-500 border-amber-500"
+                    }`}>
+                      {(activeEvent ?? nextEvent)!.ministers?.[0]?.image ? (
+                        <img
+                          src={(activeEvent ?? nextEvent)!.ministers[0].image!}
+                          alt={(activeEvent ?? nextEvent)!.ministers[0].name}
                           className="w-full h-full object-cover"
                         />
                       ) : (
                         <div className="flex items-center justify-center h-full">
-                          <Mic2 className="size-6 text-white" />
+                          {activeEvent ? <Mic2 className="size-6 text-white" /> : <Calendar className="size-6 text-white" />}
                         </div>
                       )}
                     </div>
-                    <div className="absolute -bottom-1 -right-1 bg-red-600 text-[10px] font-black px-1.5 py-0.5 rounded text-white uppercase tracking-tighter shadow-lg">
-                      Live
+                    <div className={`absolute -bottom-1 -right-1 text-[10px] font-black px-1.5 py-0.5 rounded text-white uppercase tracking-tighter shadow-lg ${
+                      activeEvent ? "bg-red-600" : "bg-amber-500"
+                    }`}>
+                      {activeEvent ? "Live" : "Soon"}
                     </div>
                   </div>
+
+                  {/* Text Info */}
                   <div>
                     <div className="flex items-center gap-2 mb-1">
-                      <span className="text-red-600 text-xs font-black uppercase tracking-widest flex items-center gap-1">
-                        <span className="relative flex h-2 w-2">
-                          <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
-                          <span className="relative inline-flex rounded-full h-2 w-2 bg-red-600"></span>
+                      {activeEvent ? (
+                        <span className="text-red-500 text-xs font-black uppercase tracking-widest flex items-center gap-1.5">
+                          <span className="relative flex h-2 w-2">
+                            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
+                            <span className="relative inline-flex rounded-full h-2 w-2 bg-red-600"></span>
+                          </span>
+                          Now Playing
+                          {elapsed && <span className="text-neutral-400 font-normal normal-case tracking-normal ml-1">· {elapsed}</span>}
                         </span>
-                        Now Playing
-                      </span>
+                      ) : (
+                        <span className="text-amber-500 text-xs font-black uppercase tracking-widest flex items-center gap-1.5">
+                          <span className="relative flex h-2 w-2">
+                            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-400 opacity-75"></span>
+                            <span className="relative inline-flex rounded-full h-2 w-2 bg-amber-500"></span>
+                          </span>
+                          Up Next
+                        </span>
+                      )}
                     </div>
-                    <h2 className="text-xl md:text-2xl font-bold line-clamp-1">{activeEvent.title}</h2>
-                    <p className="text-sm text-neutral-500 font-medium">
-                      Ministering: <span className="text-foreground">{activeEvent.ministers?.map(m => m.name).join(", ") || "The Body of Christ"}</span>
-                    </p>
+                    <h2 className="text-xl md:text-2xl font-bold line-clamp-1">
+                      {(activeEvent ?? nextEvent)!.title}
+                    </h2>
+                    {activeEvent ? (
+                      <p className="text-sm text-neutral-500 font-medium">
+                        Ministering: <span className="text-foreground">{activeEvent.ministers?.map(m => m.name).join(", ") || "The Body of Christ"}</span>
+                      </p>
+                    ) : (
+                      <p className="text-sm text-neutral-500 font-medium">
+                        Starts in: <span className="text-amber-400 font-mono font-bold tabular-nums">{countdown}</span>
+                        {" · "}
+                        {new Date(nextEvent!.startDate).toLocaleDateString(undefined, { weekday: "short", month: "short", day: "numeric" })}
+                      </p>
+                    )}
                   </div>
                 </div>
-                
-                <div className="hidden md:flex flex-col items-end text-right">
-                  <div className="flex items-center gap-2 text-neutral-400 text-xs font-bold uppercase tracking-wider mb-2">
-                    <Users className="size-4" />
-                    Join global worshippers
-                  </div>
-                  <div className="flex -space-x-3">
-                    {[1,2,3,4].map(i => (
-                      <div key={i} className="size-8 rounded-full border-2 border-background bg-neutral-800 flex items-center justify-center overflow-hidden">
-                        <img src={`https://i.pravatar.cc/100?u=${i}`} alt="user" className="w-full h-full grayscale opacity-50" />
+
+                {/* Right Side: Visitors (live only) / Countdown (upcoming) */}
+                <div className="hidden md:flex flex-col items-end text-right shrink-0">
+                  {activeEvent ? (
+                    <>
+                      <div className="flex items-center gap-2 text-neutral-400 text-xs font-bold uppercase tracking-wider mb-2">
+                        <Users className="size-4" />
+                        Worshipping globally
                       </div>
-                    ))}
-                    <div className="size-8 rounded-full border-2 border-background bg-red-600 flex items-center justify-center text-[10px] font-bold text-white">
-                      +1.2k
-                    </div>
-                  </div>
+                      <div className="flex -space-x-3 items-center">
+                        {[1, 2, 3, 4].map((i) => (
+                          <div key={i} className="size-8 rounded-full border-2 border-background bg-neutral-800 overflow-hidden">
+                            <img src={`https://i.pravatar.cc/100?u=${i + 10}`} alt="worshipper" className="w-full h-full grayscale opacity-60" />
+                          </div>
+                        ))}
+                        <div className="size-8 rounded-full border-2 border-background bg-red-600 flex items-center justify-center text-[10px] font-bold text-white transition-all duration-700">
+                          {formatVisitors(visitorCount)}
+                        </div>
+                      </div>
+                    </>
+                  ) : (
+                    <>
+                      <div className="text-xs font-bold uppercase tracking-wider text-neutral-400 mb-1">Starting In</div>
+                      <div className="font-mono text-3xl font-black text-amber-400 tabular-nums tracking-tight">
+                        {countdown}
+                      </div>
+                      <div className="text-xs text-neutral-500 mt-1">
+                        {new Date(nextEvent!.startDate).toLocaleTimeString(undefined, { hour: "2-digit", minute: "2-digit" })}
+                        {" · "}
+                        {new Date(nextEvent!.startDate).toLocaleDateString(undefined, { month: "long", day: "numeric", year: "numeric" })}
+                      </div>
+                    </>
+                  )}
                 </div>
               </div>
             )}
