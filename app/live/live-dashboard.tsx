@@ -1,6 +1,7 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import useSWR from "swr";
+import { motion, useInView } from "framer-motion";
 import { VideoPlayer } from "@/components/video-player";
 import { Play, Mic2, Calendar, Users } from "lucide-react";
 
@@ -150,6 +151,27 @@ export function LiveDashboard({ initialVideos, initialEvents }: LiveDashboardPro
 
   const formatVisitors = (n: number) =>
     n >= 1000 ? `+${(n / 1000).toFixed(1)}k` : `+${n}`;
+
+  // --- Scroll-triggered stagger animation refs ---
+  const vodsRef = useRef(null);
+  const vodsInView = useInView(vodsRef, { once: true, margin: "-80px" });
+  const eventsRef = useRef(null);
+  const eventsInView = useInView(eventsRef, { once: true, margin: "-80px" });
+
+  // Shared animation variants
+  const staggerContainer = (stagger = 0.08) => ({
+    hidden: {},
+    visible: { transition: { staggerChildren: stagger } },
+  });
+  const fadeUpCard = (duration = 0.5) => ({
+    hidden: { opacity: 0, y: 32, scale: 0.97 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      scale: 1,
+      transition: { duration, ease: [0.22, 1, 0.36, 1] },
+    },
+  });
 
   return (
     <div className='min-h-screen bg-background text-foreground selection:bg-red-600 selection:text-white pb-24'>
@@ -325,38 +347,31 @@ export function LiveDashboard({ initialVideos, initialEvents }: LiveDashboardPro
               </div>
             )}
           </div>
-
-          {/* Sidebar / Chat Simulator */}
-          {/* <div className='lg:col-span-1 hidden lg:flex flex-col h-full  bg-neutral-900/50 border-white/10 rounded-xl overflow-hidden backdrop-blur-sm'>
-            <div className='p-4 border-b border-white/10 bg-black/40'>
-              <h3 className='font-medium text-sm text-neutral-300 uppercase tracking-wider'>
-                Live Chat (Coming Soon)
-              </h3>
-            </div>
-            <div className='flex-1 flex items-center justify-center p-8 text-center text-neutral-500 italic text-sm'>
-              Connect with worshippers globally. Chat will be available during
-              the 144-hour live stream.
-            </div>
-            <div className='p-4 border-t border-white/10 bg-black/40'>
-              <input
-                disabled
-                placeholder='Log in to chat...'
-                className='w-full bg-black/50 border border-white/10 rounded-lg px-4 py-2 text-sm focus:outline-none focus:ring-1 focus:ring-white/20 cursor-not-allowed'
-              />
-            </div>
-          </div> */}
         </div>
       </section>
 
       {/* VOD Grid Section */}
-      <section className='w-full relative z-10 md:px-8 max-w-[1600px] mx-auto mt-16'>
-        <h2 className='text-2xl font-semibold mb-6'>Past Ministrations</h2>
+      <section ref={vodsRef} className='w-full relative z-10 md:px-8 max-w-[1600px] mx-auto mt-16'>
+        <motion.h2
+          className='text-2xl font-semibold mb-6'
+          initial={{ opacity: 0, y: 16 }}
+          animate={vodsInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.5, ease: "easeOut" }}
+        >
+          Past Ministrations
+        </motion.h2>
 
         {vods.length > 0 ? (
-          <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6'>
+          <motion.div
+            className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6'
+            variants={staggerContainer(0.08)}
+            initial="hidden"
+            animate={vodsInView ? "visible" : "hidden"}
+          >
             {vods.map((video) => (
-              <div
+              <motion.div
                 key={video.id}
+                variants={fadeUpCard(0.5)}
                 onClick={() => setSelectedVideo(video)}
                 className={`group relative aspect-video bg-neutral-900 rounded-lg overflow-hidden cursor-pointer transition-all duration-300 hover:scale-105 hover:ring-2 hover:ring-white/50 hover:shadow-2xl ${selectedVideo?.id === video.id ? "ring-2 ring-red-600" : "ring-1 ring-white/10"}`}
               >
@@ -390,9 +405,9 @@ export function LiveDashboard({ initialVideos, initialEvents }: LiveDashboardPro
                     Playing
                   </div>
                 )}
-              </div>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
         ) : (
           <div className='w-full py-12 text-center text-neutral-500 border border-white/10 border-dashed rounded-xl'>
             Check back later for past ministrations and recorded sessions.
@@ -401,21 +416,31 @@ export function LiveDashboard({ initialVideos, initialEvents }: LiveDashboardPro
       </section>
 
       {/* Upcoming Events Section */}
-      <section className='w-full relative z-10 md:px-8 max-w-[1600px] mx-auto mt-24'>
+      <section ref={eventsRef} className='w-full relative z-10 md:px-8 max-w-[1600px] mx-auto mt-24'>
         {/* Header Section */}
-        <div className='text-left mb-16'>
+        <motion.div
+          className='text-left mb-16'
+          initial={{ opacity: 0, y: 24 }}
+          animate={eventsInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6, ease: "easeOut" }}
+        >
           <h2 className='text-4xl md:text-5xl font-bold text-foreground mb-4'>
             Upcoming Ministrations
           </h2>
           <p className='text-muted-foreground text-lg'>
             Discover upcoming gatherings and experiences crafted for unforgettable moments in His presence.
           </p>
-        </div>
+        </motion.div>
 
         {initialEvents.length > 0 ? (
           <>
             {/* Event Cards Grid */}
-            <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8 mb-16'>
+            <motion.div
+              className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8 mb-16'
+              variants={staggerContainer(0.12)}
+              initial="hidden"
+              animate={eventsInView ? "visible" : "hidden"}
+            >
               {initialEvents.map((event, idx) => {
                 const fallbackImages = [
                   "/nonstop/nonstop-032.jpg",
@@ -429,8 +454,9 @@ export function LiveDashboard({ initialVideos, initialEvents }: LiveDashboardPro
                   fallbackImages[idx % fallbackImages.length];
 
                 return (
-                  <div
+                  <motion.div
                     key={event.id}
+                    variants={fadeUpCard(0.6)}
                     className='bg-none dark:bg-white/5 rounded-3xl border border-black/10 dark:border-white/10 hover:border-black/20 dark:hover:border-white/20 transition-all duration-300 overflow-hidden group flex flex-col'
                   >
                     <div className='relative overflow-hidden'>
@@ -481,13 +507,18 @@ export function LiveDashboard({ initialVideos, initialEvents }: LiveDashboardPro
                         </a>
                       </div>
                     </div>
-                  </div>
+                  </motion.div>
                 );
               })}
-            </div>
+            </motion.div>
 
             {/* See More Button */}
-            <div className='text-center'>
+            <motion.div
+              className='text-center'
+              initial={{ opacity: 0, y: 16 }}
+              animate={eventsInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.5, delay: 0.4, ease: "easeOut" }}
+            >
               <a
                 href='/schedule'
                 className='inline-flex items-center px-8 py-4 text-sm font-bold text-foreground bg-transparent border-2 border-black/20 dark:border-white/20 rounded-2xl hover:bg-black/5 dark:hover:bg-white/5 transition-all duration-300'
@@ -507,7 +538,7 @@ export function LiveDashboard({ initialVideos, initialEvents }: LiveDashboardPro
                   ></path>
                 </svg>
               </a>
-            </div>
+            </motion.div>
           </>
         ) : (
           <div className='w-full py-20 text-center text-muted-foreground border border-black/10 dark:border-white/10 border-dashed rounded-3xl bg-black/5 dark:bg-white/5'>
