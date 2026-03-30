@@ -1,16 +1,23 @@
 "use client";
 
+import React from "react";
 import { motion } from "framer-motion";
-import { DonationDialog } from "@/components/DonationDialog";
+import { DonationOptions } from "@/components/DonationOptions";
+import { Button } from "@/components/ui/button";
+
 export default function PartnerPage() {
+  const scrollToDonations = () => {
+    document.getElementById("give")?.scrollIntoView({ behavior: "smooth" });
+  };
+
   return (
     <main className='flex flex-col min-h-screen w-full relative'>
       <section className='bg-background sm:py-16 lg:py-24 '>
         <div className='mx-auto max-w-7xl sm:px-6 lg:px-8'>
           <motion.div
             className='grid grid-cols-1 gap-9 lg:grid-cols-2'
-            initial="hidden"
-            whileInView="show"
+            initial='hidden'
+            whileInView='show'
             viewport={{ once: false, amount: 0.1 }}
             variants={{
               hidden: { opacity: 0 },
@@ -27,13 +34,22 @@ export default function PartnerPage() {
             >
               <div className='flex items-center gap-6 overflow-hidden'>
                 <div className='to-amber-500 h-52 w-4 bg-gradient-to-t from-transparent' />
-                <motion.div variants={{ hidden: { opacity: 0, y: 40 }, show: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" } } }}>
+                <motion.div
+                  variants={{
+                    hidden: { opacity: 0, y: 40 },
+                    show: {
+                      opacity: 1,
+                      y: 0,
+                      transition: { duration: 0.8, ease: "easeOut" },
+                    },
+                  }}
+                >
                   <div className='space-y-4'>
                     <h2 className='text-2xl font-semibold md:text-3xl lg:text-4xl'>
                       Partner With Us
                     </h2>
                     <p className='text-muted-foreground text-xl font-semibold md:text-3xl'>
-                      Fuel the Vision of Recovery, Revival, and Restoration.{' '}
+                      Fuel the Vision of Recovery, Revival, and Restoration.{" "}
                       <span className='text-amber-500 inline-block'>
                         Join The Non-Stop.
                       </span>
@@ -41,7 +57,16 @@ export default function PartnerPage() {
                   </div>
                 </motion.div>
               </div>
-              <motion.div variants={{ hidden: { opacity: 0, y: 40 }, show: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" } } }}>
+              <motion.div
+                variants={{
+                  hidden: { opacity: 0, y: 40 },
+                  show: {
+                    opacity: 1,
+                    y: 0,
+                    transition: { duration: 0.8, ease: "easeOut" },
+                  },
+                }}
+              >
                 <img
                   src='/images/live-worship.jpg'
                   alt='worship ministration'
@@ -55,7 +80,16 @@ export default function PartnerPage() {
               data-scroll-speed='-0.2'
             >
               <div className='grid grid-cols-1 gap-6 sm:grid-cols-2'>
-                <motion.div variants={{ hidden: { opacity: 0, scale: 0.95 }, show: { opacity: 1, scale: 1, transition: { duration: 0.8, ease: "easeOut" } } }}>
+                <motion.div
+                  variants={{
+                    hidden: { opacity: 0, scale: 0.95 },
+                    show: {
+                      opacity: 1,
+                      scale: 1,
+                      transition: { duration: 0.8, ease: "easeOut" },
+                    },
+                  }}
+                >
                   <div className='relative overflow-hidden rounded-md'>
                     <img
                       src='/images/uche.jpg'
@@ -64,7 +98,16 @@ export default function PartnerPage() {
                     />
                   </div>
                 </motion.div>
-                <motion.div variants={{ hidden: { opacity: 0, scale: 0.95 }, show: { opacity: 1, scale: 1, transition: { duration: 0.8, ease: "easeOut" } } }}>
+                <motion.div
+                  variants={{
+                    hidden: { opacity: 0, scale: 0.95 },
+                    show: {
+                      opacity: 1,
+                      scale: 1,
+                      transition: { duration: 0.8, ease: "easeOut" },
+                    },
+                  }}
+                >
                   <div className='relative overflow-hidden rounded-md'>
                     <img
                       src='/images/mass-choir7.jpg'
@@ -75,12 +118,35 @@ export default function PartnerPage() {
                 </motion.div>
               </div>
               <div className='flex flex-1 flex-col justify-center gap-9'>
-                <motion.div variants={{ hidden: { opacity: 0, y: 30 }, show: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" } } }}>
+                <motion.div
+                  variants={{
+                    hidden: { opacity: 0, y: 30 },
+                    show: {
+                      opacity: 1,
+                      y: 0,
+                      transition: { duration: 0.8, ease: "easeOut" },
+                    },
+                  }}
+                >
                   <p className='text-muted-foreground text-xl leading-relaxed'>
-                    The Non-Stop is a massive undertaking that requires tremendous resources—from high-quality broadcasting for our global stream, to ensuring the logistics, safety, and hospitality of thousands of attendees over 6 straight days. By partnering with us, you become a foundational part of this historic altar of worship.
+                    The Non-Stop is a massive undertaking that requires
+                    tremendous resources—from high-quality broadcasting for our
+                    global stream, to ensuring the logistics, safety, and
+                    hospitality of thousands of attendees over 6 straight days.
+                    By partnering with us, you become a foundational part of
+                    this historic altar of worship.
                   </p>
                 </motion.div>
-                <motion.div variants={{ hidden: { opacity: 0, y: 30 }, show: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" } } }}>
+                <motion.div
+                  variants={{
+                    hidden: { opacity: 0, y: 30 },
+                    show: {
+                      opacity: 1,
+                      y: 0,
+                      transition: { duration: 0.8, ease: "easeOut" },
+                    },
+                  }}
+                >
                   <div className='grid gap-10 sm:grid-cols-3'>
                     <div className='flex flex-col items-center gap-2.5'>
                       <h3 className='text-foreground text-4xl font-medium'>
@@ -108,7 +174,16 @@ export default function PartnerPage() {
                     </div>
                   </div>
                 </motion.div>
-                <motion.div variants={{ hidden: { opacity: 0, y: 30 }, show: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" } } }}>
+                <motion.div
+                  variants={{
+                    hidden: { opacity: 0, y: 30 },
+                    show: {
+                      opacity: 1,
+                      y: 0,
+                      transition: { duration: 0.8, ease: "easeOut" },
+                    },
+                  }}
+                >
                   <div className='flex items-center justify-between gap-6'>
                     <div className='flex -space-x-3'>
                       <span
@@ -160,15 +235,13 @@ export default function PartnerPage() {
                         />
                       </span>
                     </div>
-                    
-                    <DonationDialog>
-                      <button
-                        className="inline-flex shrink-0 items-center justify-center gap-2 text-sm font-bold whitespace-nowrap transition-all outline-none bg-amber-500 hover:bg-amber-600 text-white shadow-xs h-12 px-8 rounded-full uppercase tracking-wider cursor-pointer active:scale-95"
-                      >
-                        Partner Now
-                      </button>
-                    </DonationDialog>
-                    
+
+                    <Button
+                      onClick={scrollToDonations}
+                      className='shrink-0 rounded-full bg-amber-500 hover:bg-amber-600 text-white shadow-xs h-12 px-8 uppercase tracking-wider active:scale-95 transition-all'
+                    >
+                      Partner Now
+                    </Button>
                   </div>
                 </motion.div>
               </div>
@@ -177,6 +250,24 @@ export default function PartnerPage() {
         </div>
       </section>
 
+      <section>
+        <div
+          id='give'
+          className='pt-12 scroll-mt-24 max-w-7xl mx-auto md:px-4 lg:px-6'
+        >
+          <div className='mb-8'>
+            <h3 className='text-3xl font-bebas tracking-wider mb-2'>
+              Ways to Give
+            </h3>
+            <p className='text-muted-foreground'>
+              Choose your preferred method of contribution.
+            </p>
+          </div>
+          <div className='bg-secondary/10 border border-border rounded-3xl p-4 sm:p-8'>
+            <DonationOptions />
+          </div>
+        </div>
+      </section>
       <section className='bg-background sm:py-16 lg:py-24 mx-auto  sm:px-6 lg:px-8 max-w-7xl'>
         <div className='container space-y-10 lg:space-y-20'>
           <div data-usal='fade-u duration-500'>
@@ -186,30 +277,23 @@ export default function PartnerPage() {
               src='/images/community_worship.jpg'
             />
           </div>
-          <div className='grid grid-cols-1 gap-4 space-y-12 lg:grid-cols-6 lg:space-y-0' data-usal='fade-u duration-500'>
+          <div
+            className='grid grid-cols-1 gap-4 space-y-12 lg:grid-cols-6 lg:space-y-0'
+            data-usal='fade-u duration-500'
+          >
             <div className='order-2 col-span-2 lg:order-none lg:pr-16 lg:pl-10 flex '>
               <p className='text-foreground/60 text-xl md:text-xl '>
-                Sacrifice is the Language of Worship. Your contribution fuels the continuous flow of worship.
+                Sacrifice is the Language of Worship. Your contribution fuels
+                the continuous flow of worship.
               </p>
             </div>
             <div className='order-1 col-span-4 lg:order-none lg:mt-0 lg:pl-6 space-y-8'>
               <p className='text-3xl font-medium lg:text-4xl leading-relaxed '>
-                Whether you offer cash or donate logistics, provisions, and livestock, your generous support forms a fundamental pillar of this eternal altar. Together, we build a throne for the King and transform nations.
+                Whether you offer cash or donate logistics, provisions, and
+                livestock, your generous support forms a fundamental pillar of
+                this eternal altar. Together, we build a throne for the King and
+                transform nations.
               </p>
-              
-              <div className="flex flex-wrap items-center gap-4">
-                <DonationDialog>
-                  <button className='h-12 px-8 rounded-full bg-amber-500 hover:bg-amber-600 text-white font-bebas text-xl tracking-wider shadow-lg shadow-amber-500/20 active:scale-95 transition-all outline-none cursor-pointer'>
-                    Donate Cash
-                  </button>
-                </DonationDialog>
-                
-                <DonationDialog>
-                  <button className='h-12 px-8 rounded-full border border-border hover:bg-muted text-foreground font-bebas text-xl tracking-wider transition-all outline-none cursor-pointer'>
-                    Donate In-Kind
-                  </button>
-                </DonationDialog>
-              </div>
             </div>
           </div>
         </div>
