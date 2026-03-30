@@ -7,7 +7,7 @@ import { Separator } from "./ui/separator";
 const footer = () => {
   return (
     <>
-      <Separator className='my-5 mb-8' />
+      {/* <Separator className='my-5 mb-8' /> */}
       <CTASection />
       <FooterComponent />
     </>

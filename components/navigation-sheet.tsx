@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
-import { Menu, X } from "lucide-react";
+import { Menu, X, Heart } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   Sheet,
@@ -14,6 +14,7 @@ import { Logo } from "@/components/logo";
 import Link from "next/link";
 import { useCurrentSession } from "@/lib/use-current-session";
 import { motion, AnimatePresence, Variants } from "framer-motion";
+import InsideScrollDialog from "./InsideScrollDialog";
 import useSWR from "swr";
 
 const fetcher = (url: string) => fetch(url).then((res) => res.json());
@@ -161,7 +162,17 @@ export const NavigationSheet = () => {
                   <a href="https://www.tiktok.com/@thenonstopseries" target="_blank" className="hover:text-white transition-colors">TikTok</a>
                 </div>
 
-                {!isAuthenticated ? (
+                <div className="flex flex-col gap-3">
+                  <InsideScrollDialog>
+                    <button
+                      className='w-full rounded-full bg-amber-500 py-3.5 text-sm font-bold uppercase tracking-widest text-white transition-all hover:bg-amber-600 active:scale-95 flex items-center justify-center gap-2'
+                    >
+                      <Heart className="size-4 fill-white" />
+                      Partner
+                    </button>
+                  </InsideScrollDialog>
+
+                  {!isAuthenticated ? (
                   <Link
                     href='/login'
                     onClick={() => setOpen(false)}
@@ -186,6 +197,7 @@ export const NavigationSheet = () => {
                     View Profile
                   </Link>
                 )}
+                </div>
               </motion.div>
             </motion.nav>
           )}
