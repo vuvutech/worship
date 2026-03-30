@@ -1,8 +1,5 @@
 import type { Metadata } from "next";
-import {
-	opensans,
-	bebas,
-} from "@/config/fonts";
+import { opensans, bebas } from "@/config/fonts";
 import { Toaster } from "sonner";
 import LocomotiveScrollWrapper from "@/components/LocomotiveScrollWrapper";
 import NavbarWrapper from "@/components/NavbarWrapper";
@@ -11,8 +8,6 @@ import { ThemeProvider } from "@/app/providers";
 import PageTransition from "@/components/page-transition";
 import { PartnerFAB } from "@/components/PartnerFAB";
 import "./globals.css";
-
-
 
 const BASE_URL = "https://thenonstop.org";
 const OG_IMAGE = `${BASE_URL}/non-stop-logo.webp`;
@@ -91,39 +86,42 @@ export const metadata: Metadata = {
     },
   },
   icons: {
-    icon: "/images/non-stop-logo.jpg",
-    apple: "/images/non-stop-logo.jpg",
+    icon: "/favicon.ico",
+    apple: "/favicon.ico",
   },
 };
 
 export default function RootLayout({
-	children,
+  children,
 }: Readonly<{
-	children: React.ReactNode;
+  children: React.ReactNode;
 }>) {
-	return (
-		<html
-			lang='en'
-			className={`${opensans.variable} ${bebas.variable}`}
-			data-scroll-behavior='smooth'
-			scrollbar-width='thin'
-			scrollbar-color='#000 #fff'
-		>
-			<body
-				className={`${opensans.variable} ${bebas.variable} text-base antialiased`}
-			>
-				<ThemeProvider>
-					<NavbarWrapper />
-					<LocomotiveScrollWrapper>
-						<PageTransition>
-							{children}
-							<PartnerFAB />
-						</PageTransition>
-						<FooterWrapper />
-					</LocomotiveScrollWrapper>
-					<Toaster richColors position='bottom-right' />
-				</ThemeProvider>
-			</body>
-		</html>
-	);
+  return (
+    <html
+      lang='en'
+      className={`${opensans.variable} ${bebas.variable}`}
+      data-scroll-behavior='smooth'
+      scrollbar-width='thin'
+      scrollbar-color='#000 #fff'
+    >
+      <body
+        className={`${opensans.variable} ${bebas.variable} text-base antialiased`}
+      >
+        <ThemeProvider>
+          <NavbarWrapper />
+          <LocomotiveScrollWrapper>
+            <PageTransition>
+              {children}
+              <PartnerFAB />
+            </PageTransition>
+            <FooterWrapper />
+          </LocomotiveScrollWrapper>
+          <Toaster
+            richColors
+            position='bottom-right'
+          />
+        </ThemeProvider>
+      </body>
+    </html>
+  );
 }

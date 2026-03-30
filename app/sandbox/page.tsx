@@ -1,5 +1,14 @@
 "use client";
 import { motion } from "motion/react";
+import { Button } from "@/components/ui/button";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
 export default function Home() {
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -13,26 +22,30 @@ export default function Home() {
 
   const itemVariants = {
     hidden: { opacity: 0, y: 20 },
-    show: { opacity: 1, y: 0, transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] as const } },
+    show: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] as const },
+    },
   };
 
   return (
-    <section className="overflow-hidden">
+    <section className='overflow-hidden'>
       <div className='relative'>
-        <motion.div 
+        <motion.div
           className='relative max-w-7xl mx-auto xl:px-16 lg:px-8 px-4 w-full h-full z-20'
           variants={containerVariants}
-          initial="hidden"
-          animate="show"
+          initial='hidden'
+          animate='show'
         >
           <div className='flex lg:flex-row flex-col justify-between lg:items-end relative z-1 gap-6 py-8 md:py-20'>
-            <motion.h1 
+            <motion.h1
               className='text-5xl md:text-8xl font-bebas uppercase max-w-4xl tracking-tight'
               variants={itemVariants}
             >
               An Unbroken Altar of Worship for the Nations
             </motion.h1>
-            <motion.div 
+            <motion.div
               className='flex group items-center gap-1'
               variants={itemVariants}
             >
@@ -68,30 +81,33 @@ export default function Home() {
         </motion.div>
         <div className='absolute top-0 left-0 w-full h-full grid grid-cols-6 border-x right-0'>
           {[...Array(6)].map((_, i) => (
-            <div key={i} className='border-r border-border/50' />
+            <div
+              key={i}
+              className='border-r border-border/50'
+            />
           ))}
         </div>
       </div>
-      <motion.div 
+      <motion.div
         className='border-t border-border'
         initial={{ opacity: 0, y: 40 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
       >
-        <div 
+        <div
           className='relative max-w-full mx-auto overflow-hidden lg:aspect-16/6 md:aspect-16/8 aspect-video group/media'
           onMouseEnter={(e) => {
-            const video = e.currentTarget.querySelector('video');
+            const video = e.currentTarget.querySelector("video");
             if (video) {
               video.play().catch(() => {});
-              video.style.opacity = '1';
+              video.style.opacity = "1";
             }
           }}
           onMouseLeave={(e) => {
-            const video = e.currentTarget.querySelector('video');
+            const video = e.currentTarget.querySelector("video");
             if (video) {
               video.pause();
-              video.style.opacity = '0';
+              video.style.opacity = "0";
             }
           }}
         >
@@ -129,11 +145,38 @@ export default function Home() {
           </button>
           <div className='absolute bottom-10 left-10 lg:max-w-xl text-white md:block hidden transition-all duration-300 opacity-100 translate-y-0 z-30'>
             <p className='text-2xl lg:text-3xl text-white font-normal leading-tight'>
-              Sustaining 144 hours of unbroken praise, intercession, and the Word. Join the movement of recovery, revival, and restoration.
+              Sustaining 144 hours of unbroken praise, intercession, and the
+              Word. Join the movement of recovery, revival, and restoration.
             </p>
           </div>
         </div>
       </motion.div>
+      <Dialog>
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle>Scrollable Content</DialogTitle>
+            <DialogDescription>
+              This is a dialog with scrollable content.
+            </DialogDescription>
+          </DialogHeader>
+          <div className='-mx-4 no-scrollbar max-h-[50vh] overflow-y-auto px-4'>
+            {Array.from({ length: 10 }).map((_, index) => (
+              <p
+                key={index}
+                className='mb-4 leading-normal'
+              >
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
+                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+                enim ad minim veniam, quis nostrud exercitation ullamco laboris
+                nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
+                in reprehenderit in voluptate velit esse cillum dolore eu fugiat
+                nulla pariatur. Excepteur sint occaecat cupidatat non proident,
+                sunt in culpa qui officia deserunt mollit anim id est laborum.
+              </p>
+            ))}
+          </div>
+        </DialogContent>
+      </Dialog>
     </section>
   );
 }

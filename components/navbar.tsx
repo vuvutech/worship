@@ -20,7 +20,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { LogOut, Settings, Heart } from "lucide-react";
 import { signOut } from "@/lib/auth-client";
-import { DonationDialog } from "./DonationDialog";
+import InsideScrollDialog from "./InsideScrollDialog";
 import Link from "next/link";
 import { useState, useEffect } from "react";
 
@@ -85,7 +85,8 @@ const Navbar = () => {
         <NavMenu className='hidden lg:flex' />
 
         <div className='flex items-center gap-3'>
-          <DonationDialog>
+         
+          <InsideScrollDialog>
             <motion.button
               whileHover="hover"
               initial="initial"
@@ -103,7 +104,7 @@ const Navbar = () => {
                 Partner
               </motion.span>
             </motion.button>
-          </DonationDialog>
+          </InsideScrollDialog>
           <ThemeToggle />
           {isAuthenticated && user ? (
             <>
