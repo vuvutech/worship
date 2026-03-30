@@ -111,50 +111,54 @@ export const NavigationSheet = () => {
         <AnimatePresence>
           {open && (
             <motion.nav
-              className='flex flex-col justify-center gap-1 px-6 pt-6 pb-10 h-[calc(100dvh-73px)] overflow-hidden'
+              className='flex flex-col h-[calc(100dvh-73px)] px-6 pt-2 pb-8 overflow-hidden'
               variants={containerVariants}
               initial='hidden'
               animate='show'
               exit='exit'
             >
-              {navItems.map((item, i) => (
-                <motion.div
-                  key={item.label}
-                  variants={itemVariants}
-                  className='overflow-hidden border-b border-white/10 last:border-none'
-                >
-                  <Link
-                    href={item.href}
-                    onClick={() => setOpen(false)}
-                    className='group flex items-center justify-between py-3 transition-colors hover:text-white/60'
-                  >
-                    <div className='flex items-center gap-3'>
-                      <span
-                        className='text-3xl font-normal leading-none tracking-tight text-white'
-                        style={{ fontFamily: "var(--font-bebas)" }}
+              <div className="flex-1 flex flex-col justify-center">
+                <div className="flex flex-col gap-0.5">
+                  {navItems.map((item, i) => (
+                    <motion.div
+                      key={item.label}
+                      variants={itemVariants}
+                      className='shrink-0 border-b border-white/5 last:border-none'
+                    >
+                      <Link
+                        href={item.href}
+                        onClick={() => setOpen(false)}
+                        className='group flex items-center justify-between py-2.5 transition-colors hover:text-white/60'
                       >
-                        {item.label}
-                      </span>
-                      {item.label === "Live" && isLive && (
-                        <span className='relative flex h-3 w-3'>
-                          <span className='absolute inline-flex h-full w-full animate-ping rounded-full bg-red-400 opacity-75'></span>
-                          <span className='relative inline-flex h-3 w-3 rounded-full bg-red-500'></span>
+                        <div className='flex items-center gap-3'>
+                          <span
+                            className='text-2xl font-medium tracking-tight text-white leading-none'
+                            style={{ fontFamily: "var(--font-bebas)" }}
+                          >
+                            {item.label}
+                          </span>
+                          {item.label === "Live" && isLive && (
+                            <span className='relative flex h-2.5 w-2.5'>
+                              <span className='absolute inline-flex h-full w-full animate-ping rounded-full bg-red-400 opacity-75'></span>
+                              <span className='relative inline-flex h-2.5 w-2.5 rounded-full bg-red-500'></span>
+                            </span>
+                          )}
+                        </div>
+                        <span className='text-[10px] font-mono text-white/20 tabular-nums uppercase underline underline-offset-4 decoration-white/5'>
+                          0{i + 1}
                         </span>
-                      )}
-                    </div>
-                    <span className='text-sm font-mono text-white/30 tabular-nums'>
-                      0{i + 1}
-                    </span>
-                  </Link>
-                </motion.div>
-              ))}
+                      </Link>
+                    </motion.div>
+                  ))}
+                </div>
+              </div>
 
               {/* Footer of sheet */}
               <motion.div
                 variants={itemVariants}
-                className='mt-auto pt-8 flex flex-col gap-6'
+                className='pt-8 flex flex-col gap-5 shrink-0'
               >
-                <div className='flex flex-wrap items-center gap-x-6 gap-y-2 text-white/50 text-xs font-bold uppercase tracking-widest'>
+                <div className='flex flex-wrap items-center gap-x-5 gap-y-2 text-white/40 text-[10px] font-bold uppercase tracking-widest'>
                   <a
                     href='https://www.facebook.com/nonstopseries/'
                     target='_blank'
@@ -185,13 +189,13 @@ export const NavigationSheet = () => {
                   </a>
                 </div>
 
-                <div className='flex flex-col gap-3'>
+                <div className='grid grid-cols-2 gap-3'>
                   <Link
                     href='/partner#give'
                     onClick={() => setOpen(false)}
-                    className='text-center rounded-full bg-amber-500 py-3.5 text-sm font-bold uppercase tracking-widest text-white transition-all hover:bg-amber-600 active:scale-95 flex items-center justify-center gap-2'
+                    className='text-center rounded-full bg-amber-500 py-3 text-[11px] font-bold uppercase tracking-widest text-white transition-all hover:bg-amber-600 active:scale-95 flex items-center justify-center gap-2 shadow-lg shadow-amber-500/10'
                   >
-                    <Heart className='size-4 fill-white' />
+                    <Heart className='size-3.5 fill-white' />
                     Partner
                   </Link>
 
@@ -199,7 +203,7 @@ export const NavigationSheet = () => {
                     <Link
                       href='/login'
                       onClick={() => setOpen(false)}
-                      className='text-center rounded-full bg-white py-3.5 text-sm font-bold uppercase tracking-widest text-black transition-all hover:bg-white/90 active:scale-95'
+                      className='text-center rounded-full bg-white py-3 text-[11px] font-bold uppercase tracking-widest text-black transition-all hover:bg-white/90 active:scale-95 shadow-lg'
                     >
                       Sign In
                     </Link>
@@ -207,7 +211,7 @@ export const NavigationSheet = () => {
                     <Link
                       href='/dashboard'
                       onClick={() => setOpen(false)}
-                      className='text-center rounded-full bg-amber-500 py-3.5 text-sm font-bold uppercase tracking-widest text-white transition-all hover:bg-amber-600 active:scale-95'
+                      className='text-center rounded-full bg-slate-800 py-3 text-[11px] font-bold uppercase tracking-widest text-white transition-all hover:bg-slate-700 active:scale-95 border border-white/10 shadow-lg'
                     >
                       Dashboard
                     </Link>
@@ -215,9 +219,9 @@ export const NavigationSheet = () => {
                     <Link
                       href='/profile'
                       onClick={() => setOpen(false)}
-                      className='text-center rounded-full bg-white py-3.5 text-sm font-bold uppercase tracking-widest text-black transition-all hover:bg-white/90 active:scale-95'
+                      className='text-center rounded-full bg-white py-3 text-[11px] font-bold uppercase tracking-widest text-black transition-all hover:bg-white/90 active:scale-95 shadow-lg'
                     >
-                      View Profile
+                      Profile
                     </Link>
                   )}
                 </div>

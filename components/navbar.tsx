@@ -78,7 +78,7 @@ const Navbar = () => {
         transition: isMobile ? 'none' : 'max-width 1.2s cubic-bezier(0.22, 1, 0.36, 1)',
       }}
     >
-      <div className='mx-auto flex h-full items-center justify-between pl-2 pr-1'>
+      <div className='mx-auto flex h-full items-center justify-between sm:pl-2 pr-1'>
         <Logo />
 
         {/* Desktop Menu */}
