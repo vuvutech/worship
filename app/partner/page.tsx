@@ -250,10 +250,10 @@ export default function PartnerPage() {
         </div>
       </section>
 
-      <section className="py-8">
+      <section className='py-8'>
         <div
           id='give'
-          className='pt-12 scroll-mt-24 max-w-7xl mx-auto px-4 md:px-6 lg:px-8'
+          className='pt-12 scroll-mt-24 max-w-7xl mx-auto md:px-6 lg:px-8'
         >
           <div className='mb-8'>
             <h3 className='text-3xl font-bebas tracking-wider mb-2'>
@@ -263,7 +263,7 @@ export default function PartnerPage() {
               Choose your preferred method of contribution.
             </p>
           </div>
-          <div className='bg-secondary/10 border border-border rounded-3xl p-4 sm:p-8'>
+          <div className='bg-secondary/10 border border-border rounded-3xl p-2 sm:p-8'>
             <DonationOptions />
           </div>
         </div>
