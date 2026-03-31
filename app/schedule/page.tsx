@@ -34,7 +34,7 @@ export default async function SchedulePage() {
 
   if (!nextEvent) {
     return (
-      <main className="w-full py-32 text-center">
+      <main className="w-full py-16  text-center">
         <h1 className="text-4xl font-bebas mb-4">Silver Jubilee Schedule</h1>
         <p className="text-muted-foreground">Stay tuned! We are finalizing our upcoming gathering dates.</p>
         <div className="mt-10">

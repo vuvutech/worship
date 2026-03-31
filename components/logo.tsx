@@ -10,13 +10,10 @@ export const Logo = () => (
       <Infinity className='w-10 h-10 text-white group-hover:text-amber-400 transition-colors duration-500' />
       <div className='absolute inset-0 bg-amber-400/20 blur-xl rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500' />
     </div>
-    <div className='flex flex-col -gap-1'>
+    <div className='flex flex-col -space-y-1'>
       <span className='uppercase text-[14px] leading-none text-white font-extrabold tracking-tighter glow-sm whitespace-nowrap'>
-        The NonStop Series &trade;
+        The NonStop Series ™
       </span>
-      {/* <span className='text-[8px] sm:text-[9px] uppercase tracking-[0.25em] font-bold text-amber-500 transition-colors duration-500'>
-        25th Silver Jubilee
-      </span> */}
     </div>
   </Link>
 );

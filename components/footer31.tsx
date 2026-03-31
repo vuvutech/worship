@@ -35,7 +35,7 @@ interface Footer31Props {
 const Footer31 = ({ className }: Footer31Props) => {
   return (
     <section
-      className={cn("dark bg-background py-32 text-foreground", className)}
+      className={cn("dark bg-background py-16  text-foreground", className)}
     >
       <div className='container'>
         <div className='flex flex-col justify-between gap-15 lg:flex-row'>

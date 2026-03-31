@@ -225,7 +225,7 @@ const Hero231 = ({ className }: Hero231Props) => {
   `;
 
   return (
-    <section className={cn("py-32", className)}>
+    <section className={cn("py-16 ", className)}>
       <style>{css}</style>
       <div className="container mt-4 flex flex-col items-center justify-center gap-4 overflow-hidden text-left xl:mt-14 xl:flex-row xl:overflow-visible">
         <div className="w-full space-y-10 xl:w-1/2">

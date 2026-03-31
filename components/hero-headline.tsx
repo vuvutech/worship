@@ -67,15 +67,15 @@ export default function HeroHeadline({
           >
             {text3}
           </motion.div>
-          {/* <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: "easeOut", delay: 0.5 }}
-            className="text-xs sm:text-sm font-medium tracking-[0.3em] uppercase opacity-50 mt-4 text-amber-500"
-          >
-            25th Year • Silver Jubilee Edition
-          </motion.p> */}
         </h1>
+        <motion.p
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, ease: "easeOut", delay: 0.5 }}
+          className="text-xs sm:text-sm font-medium tracking-[0.3em] uppercase opacity-50 mt-4 text-amber-500"
+        >
+          25th Year • Silver Jubilee Edition
+        </motion.p>
       </div>
 
       <div className="hidden lg:block ">

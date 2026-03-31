@@ -204,7 +204,7 @@ const AboutCompliment = ({
           </div>
         </motion.div>
         {companies && (
-          <div className='py-32'>
+          <div className='py-16 '>
             <Marquee>
               <MarqueeContent speed={40}>
                 {companies.map(

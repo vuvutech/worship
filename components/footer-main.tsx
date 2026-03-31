@@ -61,7 +61,7 @@ const FooterComponent = ({
   return (
     <footer
       className={cn(
-        "flex flex-col items-center gap-14 pt-28 lg:pt-32",
+        "flex flex-col items-center px-2 gap-14 pt-28 lg:pt-32",
         className,
       )}
     >
@@ -128,7 +128,7 @@ const FooterComponent = ({
             </li>
           ))}
         </ul>
-        <div className='text-xs text-muted-foreground transition-opacity hover:opacity-75 pt-2 '>
+        <div className='text-xs text-muted-foreground text-center md:text-left transition-opacity hover:opacity-75 pt-2 '>
           &copy; {new Date().getFullYear()}{" "}
           <a href="/" className='font-semibold'>{" The Nonstop Series"}</a>.{" "}
           <span className='capitalize'>25th Anniversary Edition. All rights reserved.</span>
