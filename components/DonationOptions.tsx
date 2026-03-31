@@ -30,41 +30,41 @@ export function DonationOptions() {
   return (
     <div className="w-full">
       <Tabs defaultValue='cash' className='w-full'>
-        <TabsList className='grid w-full grid-cols-2 bg-secondary/30 p-1.5 border border-border/40 mb-10 h-16 sm:h-20 rounded-2xl'>
+        <TabsList className='flex w-full bg-secondary/30 p-1 border border-border/40 mb-8 h-auto rounded-xl items-stretch'>
           <TabsTrigger
             value='cash'
-            className='data-[state=active]:bg-background data-[state=active]:text-amber-500 data-[state=active]:shadow-lg data-[state=active]:shadow-amber-500/10 flex items-center gap-3 rounded-xl transition-all duration-300'
+            className='flex-1 data-[state=active]:bg-background data-[state=active]:text-amber-500 data-[state=active]:shadow-sm flex flex-col xs:flex-row items-center justify-center gap-1.5 xs:gap-3 rounded-lg py-2.5 transition-all duration-300'
           >
-            <div className='p-2 rounded-lg bg-amber-500/10 shrink-0 group-data-[state=active]:bg-amber-500 group-data-[state=active]:text-white transition-colors'>
-              <CreditCard className='size-4 sm:size-5' />
+            <div className='p-1.5 rounded-lg bg-amber-500/10 shrink-0 group-data-[state=active]:bg-amber-500 group-data-[state=active]:text-white transition-colors'>
+              <CreditCard className='size-4' />
             </div>
-            <div className='flex flex-col items-start'>
-              <span className='font-bebas text-lg sm:text-xl tracking-wider leading-none shrink-0 uppercase'>Cash</span>
-              <span className='text-[10px] hidden xs:inline-block font-medium opacity-60 uppercase tracking-[0.1em]'>Contribution</span>
+            <div className='flex flex-col items-center xs:items-start text-center xs:text-left'>
+              <span className='font-bebas text-base sm:text-xl tracking-wider uppercase leading-tight'>Cash</span>
+              <span className='text-[10px] hidden sm:inline-block font-medium opacity-60 uppercase tracking-widest'>Contribution</span>
             </div>
           </TabsTrigger>
           <TabsTrigger
             value='kind'
-            className='data-[state=active]:bg-background data-[state=active]:text-amber-500 data-[state=active]:shadow-lg data-[state=active]:shadow-amber-500/10 flex items-center gap-3 rounded-xl transition-all duration-300'
+            className='flex-1 data-[state=active]:bg-background data-[state=active]:text-amber-500 data-[state=active]:shadow-sm flex flex-col xs:flex-row items-center justify-center gap-1.5 xs:gap-3 rounded-lg py-2.5 transition-all duration-300'
           >
-            <div className='p-2 rounded-lg bg-amber-500/10 shrink-0 group-data-[state=active]:bg-amber-500 group-data-[state=active]:text-white transition-colors'>
-              <Gift className='size-4 sm:size-5' />
+            <div className='p-1.5 rounded-lg bg-amber-500/10 shrink-0 group-data-[state=active]:bg-amber-500 group-data-[state=active]:text-white transition-colors'>
+              <Gift className='size-4' />
             </div>
-            <div className='flex flex-col items-start'>
-              <span className='font-bebas text-lg sm:text-xl tracking-wider leading-none shrink-0 uppercase'>In-Kind</span>
-              <span className='text-[10px] hidden xs:inline-block font-medium opacity-60 uppercase tracking-[0.1em]'>Sacrifice</span>
+            <div className='flex flex-col items-center xs:items-start text-center xs:text-left'>
+              <span className='font-bebas text-base sm:text-xl tracking-wider uppercase leading-tight'>In-Kind</span>
+              <span className='text-[10px] hidden sm:inline-block font-medium opacity-60 uppercase tracking-widest'>Sacrifice</span>
             </div>
           </TabsTrigger>
         </TabsList>
 
         <TabsContent value='cash' className='space-y-6'>
-          <div className='flex items-center justify-between px-2 mb-2'>
+          <div className='flex flex-wrap items-center justify-between gap-3 px-1.5 mb-2'>
             <div className='flex items-center gap-2'>
-              <div className='size-2 rounded-full bg-amber-500 animate-pulse' />
-              <span className='text-xs font-semibold uppercase tracking-widest text-muted-foreground'>Secure Payment Methods</span>
+              <div className='size-1.5 rounded-full bg-amber-500 animate-pulse' />
+              <span className='text-[10px] sm:text-xs font-semibold uppercase tracking-widest text-muted-foreground'>Secure Payment Methods</span>
             </div>
-            <div className='flex items-center gap-1.5 bg-secondary/50 px-2.5 py-1 rounded-full border border-border/50'>
-              <span className='text-[10px] font-bold text-emerald-500 uppercase tracking-tighter'>🔒 256-bit SSL</span>
+            <div className='flex items-center gap-1.5 bg-secondary/50 px-2 py-0.5 rounded-full border border-border/50'>
+              <span className='text-[9px] sm:text-[10px] font-bold text-emerald-500 uppercase tracking-tighter'>🔒 256-bit SSL</span>
             </div>
           </div>
           <Accordion
@@ -80,8 +80,8 @@ export function DonationOptions() {
               <AccordionTrigger className='hover:no-underline py-5 px-0'>
                 <div className='flex flex-1 flex-wrap items-center justify-between gap-4 pr-4'>
                   <div className='flex items-center gap-3 sm:gap-5'>
-                    <div className='p-3 rounded-xl transition-colors bg-amber-500/10 group-data-[state=open]:bg-amber-500/20 group-hover:bg-amber-500/20'>
-                      <Smartphone className='size-7 text-amber-500 dark:text-amber-400' />
+                    <div className='p-2 sm:p-3 rounded-xl transition-colors bg-amber-500/10 group-data-[state=open]:bg-amber-500/20 group-hover:bg-amber-500/20'>
+                      <Smartphone className='size-5 sm:size-7 text-amber-500 dark:text-amber-400' />
                     </div>
                     <div className='text-left space-y-1'>
                       <p className='text-lg sm:text-xl text-foreground tracking-tight'>
@@ -163,9 +163,9 @@ export function DonationOptions() {
               <AccordionTrigger className='hover:no-underline py-5 px-0'>
                 <div className='flex flex-1 flex-wrap items-center justify-between gap-4 pr-4'>
                   <div className='flex items-center gap-3 sm:gap-5'>
-                    <div className='p-3 rounded-xl transition-colors bg-blue-500/10 group-data-[state=open]:bg-blue-500/20 group-hover:bg-blue-500/20'>
+                    <div className='p-2 sm:p-3 rounded-xl transition-colors bg-blue-500/10 group-data-[state=open]:bg-blue-500/20 group-hover:bg-blue-500/20'>
                       <svg
-                        className='size-7 text-blue-600 dark:text-blue-400'
+                        className='size-5 sm:size-7 text-blue-600 dark:text-blue-400'
                         viewBox='0 0 24 24'
                         fill='currentColor'
                       >
@@ -214,8 +214,8 @@ export function DonationOptions() {
               <AccordionTrigger className='hover:no-underline py-5 px-0'>
                 <div className='flex flex-1 flex-wrap items-center justify-between gap-4 pr-4'>
                   <div className='flex items-center gap-3 sm:gap-5'>
-                    <div className='p-3 rounded-xl transition-colors bg-emerald-500/10 group-data-[state=open]:bg-emerald-500/20 group-hover:bg-emerald-500/20'>
-                      <CreditCard className='size-7 text-emerald-600 dark:text-emerald-400' />
+                    <div className='p-2 sm:p-3 rounded-xl transition-colors bg-emerald-500/10 group-data-[state=open]:bg-emerald-500/20 group-hover:bg-emerald-500/20'>
+                      <CreditCard className='size-5 sm:size-7 text-emerald-600 dark:text-emerald-400' />
                     </div>
                     <div className='text-left space-y-1'>
                       <p className='text-lg sm:text-xl text-foreground tracking-tight'>
@@ -283,8 +283,8 @@ export function DonationOptions() {
               <AccordionTrigger className='hover:no-underline py-5 px-0'>
                 <div className='flex flex-1 flex-wrap items-center justify-between gap-4 pr-4'>
                   <div className='flex items-center gap-3 sm:gap-5'>
-                    <div className='p-3 rounded-xl transition-colors bg-amber-500/10 group-data-[state=open]:bg-amber-500/20 group-hover:bg-amber-500/20'>
-                      <Gift className='size-7 text-amber-600 dark:text-amber-400' />
+                    <div className='p-2 sm:p-3 rounded-xl transition-colors bg-amber-500/10 group-data-[state=open]:bg-amber-500/20 group-hover:bg-amber-500/20'>
+                      <Gift className='size-5 sm:size-7 text-amber-600 dark:text-amber-400' />
                     </div>
                     <div className='text-left space-y-1'>
                       <p className='text-lg sm:text-xl text-foreground tracking-tight'>
@@ -333,8 +333,8 @@ export function DonationOptions() {
               <AccordionTrigger className='hover:no-underline py-5 px-0'>
                 <div className='flex flex-1 flex-wrap items-center justify-between gap-4 pr-4'>
                   <div className='flex items-center gap-3 sm:gap-5'>
-                    <div className='p-3 rounded-xl transition-colors bg-green-500/10 group-data-[state=open]:bg-green-500/20 group-hover:bg-green-500/20'>
-                      <LeafyGreen className='size-7 text-green-600 dark:text-green-400' />
+                    <div className='p-2 sm:p-3 rounded-xl transition-colors bg-green-500/10 group-data-[state=open]:bg-green-500/20 group-hover:bg-green-500/20'>
+                      <LeafyGreen className='size-5 sm:size-7 text-green-600 dark:text-green-400' />
                     </div>
                     <div className='text-left space-y-1'>
                       <p className='text-lg sm:text-xl text-foreground tracking-tight'>
@@ -381,8 +381,8 @@ export function DonationOptions() {
               <AccordionTrigger className='hover:no-underline py-5 px-0'>
                 <div className='flex flex-1 flex-wrap items-center justify-between gap-4 pr-4'>
                   <div className='flex items-center gap-3 sm:gap-5'>
-                    <div className='p-3 rounded-xl transition-colors bg-blue-500/10 group-data-[state=open]:bg-blue-500/20 group-hover:bg-blue-500/20'>
-                      <Smartphone className='size-7 text-blue-600 dark:text-blue-400' />
+                    <div className='p-2 sm:p-3 rounded-xl transition-colors bg-blue-500/10 group-data-[state=open]:bg-blue-500/20 group-hover:bg-blue-500/20'>
+                      <Smartphone className='size-5 sm:size-7 text-blue-600 dark:text-blue-400' />
                     </div>
                     <div className='text-left space-y-1'>
                       <p className='text-lg sm:text-xl text-foreground tracking-tight'>
