@@ -4,7 +4,7 @@ export default function Privacy() {
   return (
 <>
     <div className="max-w-5xl mx-auto  md:p-16   space-y-6" >
-        <h1 className="text-3xl mb-4">Privacy Policy for The Non-Stop Series </h1>
+        <h1 className="text-3xl mb-4">Privacy Policy - 25th Silver Jubilee Edition</h1>
 
         <section className="">
             <h2 className="text-2xl font-semibold mb-2">Introduction</h2>
@@ -84,7 +84,7 @@ export default function Privacy() {
         </section>
 
         <footer className=" mt-6">
-            <p className="text-gray-600">Effective Date: 06/03/2026</p>
+            <p className="text-gray-600">Effective Date: 31/03/2026 (Silver Jubilee Edition Update)</p>
         </footer>
     </div>
 </>

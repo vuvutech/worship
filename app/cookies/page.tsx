@@ -7,7 +7,7 @@ export default function CookiesPolicy() {
     <>
       <div className='max-w-5xl mx-auto md:p-16 space-y-6'>
         <h1 className='text-3xl mb-4'>
-          Cookies Policy for The Non-Stop Series Website
+          Cookies Policy - 25th Silver Jubilee Edition
         </h1>
 
         <section className=''>
@@ -81,7 +81,7 @@ export default function CookiesPolicy() {
         </section>
 
         <footer className=' mt-6'>
-          <p className='text-muted-foreground'>Effective Date: 24/03/2026</p>
+          <p className='text-muted-foreground'>Effective Date: 31/03/2026 (Silver Jubilee Edition Update)</p>
         </footer>
       </div>
     </>

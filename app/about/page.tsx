@@ -95,13 +95,13 @@ export default function Home() {
                     className='mb-9 text-muted-foreground'
                     variants={fadeUp}
                   >
-                    For the past 22 years, the Logos-Rhema Foundation for
+                    For the past 25 years, the Logos-Rhema Foundation for
                     Leadership Resource Development, based in Accra, Ghana, has
                     organised and held under its auspices, a series of non-stop
-                    praise &amp; worship programmes. The series began with 24-hour
-                    sessions which progressed to 48 hours, 72 hours, 96 hours,
-                    120 hours, and now 144 hours; the first session of which was
-                    held 2021.
+                    praise &amp; worship programmes. This historic 25th Year Silver Jubilee 
+                    celebration marks a journey that began with 24-hour sessions 
+                    which progressed to 144 hours; the first session of which 
+                    was held in 2021.
                   </motion.p>
                 </div>
 

@@ -12,13 +12,13 @@ export default function CTASection() {
 
           <div className='grow space-y-6 relative z-10'>
                  <h2 className="text-3xl md:text-5xl font-bebas tracking-wider uppercase">Join the <span className='text-primary'>Eternal Sound</span> of
-              Heaven</h2>
+              Heaven <span className='text-xs font-sans align-middle bg-primary/10 text-primary px-2 py-1 rounded inline-block ml-2'>Silver Jubilee Edition</span></h2>
             {/* <h6 className='text-3xl font-bold md:text-4xl lg:text-5xl tracking-tight leading-tight'>
               Join the <span className='text-primary'>Eternal Sound</span> of
               Heaven
             </h6> */}
             <p className='text-muted-foreground lg:text-xl max-w-3xl leading-relaxed'>
-              Become part of a 22-year spiritual legacy. Join thousands across
+              Become part of a 25-year spiritual legacy. Join thousands across
               the globe in a movement of recovery, revival, and restoration
               through the power of unending worship.
             </p>

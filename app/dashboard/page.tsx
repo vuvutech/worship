@@ -116,9 +116,9 @@ export default function DashboardPage() {
     <div className="space-y-8 animate-in fade-in duration-500">
       <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
         <div>
-          <h1 className="text-3xl ">Mission Control</h1>
+          <h1 className="text-3xl ">Jubilee Mission Control</h1>
           <p className="text-muted-foreground mt-1 font-medium">
-            Directing the 144-Hour Altar: Overview of your ministry's reach.
+            Directing the 25th Anniversary Altar: Overview of your ministry's reach.
           </p>
         </div>
         <div className="flex items-center gap-2">

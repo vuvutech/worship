@@ -29,8 +29,8 @@ interface FooterComponentProps {
 }
 
 const FooterComponent = ({
-  heading = "Join the Nonstop Sacrifice of Praise",
-  description = "Experience unbroken worship, deep intercession, and the raw presence of God at The Non-Stop Series.",
+  heading = "Join the 25th Anniversary Sacrifice of Praise",
+  description = "Experience unbroken worship, deep intercession, and the raw presence of God as we celebrate 25 years of The Non-Stop Series.",
   ctaText = "Get Involved",
   ctaHref = "/get-involved",
   navigation = [
@@ -131,7 +131,7 @@ const FooterComponent = ({
         <div className='text-xs text-muted-foreground transition-opacity hover:opacity-75 pt-2 '>
           &copy; {new Date().getFullYear()}{" "}
           <a href="/" className='font-semibold'>{" The Nonstop Series"}</a>.{" "}
-          <span className='capitalize'>All rights reserved.</span>
+          <span className='capitalize'>25th Anniversary Edition. All rights reserved.</span>
         </div>
       </nav>
 

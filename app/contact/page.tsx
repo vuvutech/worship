@@ -9,9 +9,9 @@ export const metadata: Metadata = {
   alternates: { canonical: "https://thenonstop.org/contact" },
   openGraph: {
     url: "https://thenonstop.org/contact",
-    title: "Contact The Non-Stop Series™",
+    title: "Contact Us — 25th Silver Jubilee Edition",
     description:
-      "Reach out to the team behind Africa's premier continuous praise and worship event.",
+      "Join our Jubilee. Reach out to the team behind Africa's premier 25-year continuous praise and worship event.",
   },
 };
 

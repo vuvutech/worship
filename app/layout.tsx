@@ -15,11 +15,11 @@ const OG_IMAGE = `${BASE_URL}/non-stop-logo.webp`;
 export const metadata: Metadata = {
   metadataBase: new URL(BASE_URL),
   title: {
-    default: "The Non-Stop Series™ — 144 Hours of Continuous Praise & Worship",
+    default: "The Non-Stop Series™ — 25th Anniversary Silver Jubilee Edition",
     template: "%s | The Non-Stop Series™",
   },
   description:
-    "The Non-Stop Series™ is Africa's premier 144-hour non-stop praise and worship experience — 6 days and 6 nights of continuous, unbroken worship, intercession, and the Word. Organised by the Logos-Rhema Foundation in Accra, Ghana, and streamed live to the world.",
+    "Celebrating 25 years of faith, The Non-Stop Series™ is Africa's premier 144-hour non-stop praise and worship experience — 6 days and 6 nights of continuous, unbroken worship, intercession, and the Word. Organised by the Logos-Rhema Foundation in Accra, Ghana, and streamed live to the world.",
   keywords: [
     "non-stop praise and worship",
     "continuous praise and worship",

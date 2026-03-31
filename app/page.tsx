@@ -7,14 +7,14 @@ import FeaturedReflections from "@/components/featured-reflections";
 
 export const metadata: Metadata = {
   title: "Home",
-  description:  
-    "Welcome to The Non-Stop Series™ — Africa's premier 144-hour continuous praise and worship experience. 6 days and 6 nights of unbroken worship, intercession, and the Word of God, streaming live to the world from Accra, Ghana.",
+  description:
+    "Welcome to The Non-Stop Series™ — Africa's premier 144-hour continuous praise and worship experience. Celebrating our historic 25th Silver Jubilee Anniversary Edition: 6 days and 6 nights of unbroken worship, intercession, and the Word of God, streaming live to the world from Accra, Ghana.",
   alternates: { canonical: "https://thenonstop.org" },
   openGraph: {
     url: "https://thenonstop.org",
-    title: "The Non-Stop Series™ — 144 Hours of Continuous Praise & Worship",
+    title: "The Non-Stop Series™ — 25th Anniversary Silver Jubilee Edition",
     description:
-      "6 days. 6 nights. Non-stop praise, worship, and intercession from Accra, Ghana. Join thousands online and on-ground.",
+      "25 Years of Faith. 6 days. 6 nights. 144 Hours of non-stop praise, worship, and intercession from Accra, Ghana. Join the landmark Silver Jubilee celebration.",
   },
 };
 

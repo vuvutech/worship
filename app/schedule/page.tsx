@@ -12,9 +12,9 @@ export const metadata: Metadata = {
   alternates: { canonical: "https://thenonstop.org/schedule" },
   openGraph: {
     url: "https://thenonstop.org/schedule",
-    title: "Schedule — Upcoming Non-Stop Worship Events",
+    title: "Schedule — 25th Anniversary Silver Jubilee Edition",
     description:
-      "Find out when the next 144-hour Non-Stop praise and worship event is happening. Register now and be part of history.",
+      "25 Years of Ministry. Find out when our landmark 144-hour Silver Jubilee celebration is happening. Register now and be part of history.",
   },
 };
 
@@ -35,7 +35,7 @@ export default async function SchedulePage() {
   if (!nextEvent) {
     return (
       <main className="w-full py-32 text-center">
-        <h1 className="text-4xl font-bebas mb-4">Upcoming Schedule</h1>
+        <h1 className="text-4xl font-bebas mb-4">Silver Jubilee Schedule</h1>
         <p className="text-muted-foreground">Stay tuned! We are finalizing our upcoming gathering dates.</p>
         <div className="mt-10">
           <a

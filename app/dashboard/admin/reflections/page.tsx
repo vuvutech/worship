@@ -148,7 +148,7 @@ export default function AdminReflectionsPage() {
       <div>
         <h1 className='text-3xl  tracking-tight'>Sacred Reflections</h1>
         <p className='text-muted-foreground mt-1'>
-          Moderate and manage testimonies from the 144-Hour Altar.
+          Moderate and manage testimonies from the 25th Anniversary Altar.
         </p>
       </div>
 

@@ -31,11 +31,14 @@ export default function Home() {
                 <div className='to-primary h-52 w-4 bg-gradient-to-t from-transparent' />
                 <motion.div variants={{ hidden: { opacity: 0, y: 40 }, show: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" } } }}>
                   <div className='space-y-4'>
-                    <h2 className='text-2xl font-semibold md:text-3xl lg:text-4xl'>
+                    <h2 className='text-2xl font-semibold md:text-3xl lg:text-4xl flex items-center gap-3'>
                       Get Involved
+                      <span className='bg-primary/10 text-primary text-[10px] py-1 px-3 rounded-full border border-primary/20 font-bold tracking-widest uppercase'>
+                        Silver Jubilee
+                      </span>
                     </h2>
                     <p className='text-muted-foreground text-xl font-semibold md:text-3xl'>
-                      Step Into the Gap. Keep the Fire Burning.{' '}
+                      Celebrating 25 Years of Faith. Step Into the Gap. Keep the Fire Burning.{' '}
                       <span className='text-primary inline-block'>
                         Join The Non-Stop.
                       </span>
@@ -79,7 +82,7 @@ export default function Home() {
               <div className='flex flex-1 flex-col justify-center gap-9'>
                 <motion.div variants={{ hidden: { opacity: 0, y: 30 }, show: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" } } }}>
                   <p className='text-muted-foreground text-xl leading-relaxed'>
-                    The Non-Stop is fueled entirely by believers willing to offer their time, voices, and skills to keep the altar burning. Whether you are a worship leader, an intercessor, a volunteer, or someone hungry for His presence, there is a place for you in this 144-hour sacrifice.
+                    The Non-Stop is fueled entirely by believers willing to offer their time, voices, and skills to keep the altar burning. As we celebrate 25 years of unbroken worship, there is a special place for you in this historic 144-hour landmark edition.
                   </p>
                 </motion.div>
                 <motion.div variants={{ hidden: { opacity: 0, y: 30 }, show: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" } } }}>

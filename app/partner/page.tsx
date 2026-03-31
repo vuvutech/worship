@@ -45,11 +45,14 @@ export default function PartnerPage() {
                   }}
                 >
                   <div className='space-y-4'>
-                    <h2 className='text-2xl font-semibold md:text-3xl lg:text-4xl'>
+                    <h2 className='text-2xl font-semibold md:text-3xl lg:text-4xl flex items-center gap-3'>
                       Partner With Us
+                      <span className='bg-amber-500/10 text-amber-500 text-[10px] py-1 px-3 rounded-full border border-amber-500/20 font-bold tracking-widest uppercase'>
+                        Silver Jubilee
+                      </span>
                     </h2>
                     <p className='text-muted-foreground text-xl font-semibold md:text-3xl'>
-                      Fuel the Vision of Recovery, Revival, and Restoration.{" "}
+                      Celebrating 25 Years of Fueling the Vision of Recovery, Revival, and Restoration.{" "}
                       <span className='text-amber-500 inline-block'>
                         Join The Non-Stop.
                       </span>
@@ -134,7 +137,7 @@ export default function PartnerPage() {
                     global stream, to ensuring the logistics, safety, and
                     hospitality of thousands of attendees over 6 straight days.
                     By partnering with us, you become a foundational part of
-                    this historic altar of worship.
+                    this historic 25th Anniversary altar of worship.
                   </p>
                 </motion.div>
                 <motion.div
@@ -257,10 +260,10 @@ export default function PartnerPage() {
         >
           <div className='mb-8'>
             <h3 className='text-3xl font-bebas tracking-wider mb-2'>
-              Ways to Give
+              Ways to Give - 25th Year Jubilee
             </h3>
             <p className='text-muted-foreground'>
-              Choose your preferred method of contribution.
+              Choose your preferred method of contribution to this landmark edition.
             </p>
           </div>
           <div className='bg-secondary/10 border border-border rounded-3xl p-4 sm:p-8'>
@@ -292,8 +295,8 @@ export default function PartnerPage() {
               <p className='text-3xl font-medium lg:text-4xl leading-relaxed '>
                 Whether you offer cash or donate logistics, provisions, and
                 livestock, your generous support forms a fundamental pillar of
-                this eternal altar. Together, we build a throne for the King and
-                transform nations.
+                this eternal altar. Together, we celebrate two-and-a-half decades
+                of building a throne for the King and transforming nations.
               </p>
             </div>
           </div>

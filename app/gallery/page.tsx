@@ -9,9 +9,9 @@ export const metadata: Metadata = {
   alternates: { canonical: "https://thenonstop.org/gallery" },
   openGraph: {
     url: "https://thenonstop.org/gallery",
-    title: "Gallery — Moments of Non-Stop Worship",
+    title: "Gallery — 25 Years of Non-Stop Worship",
     description:
-      "Photos and videos from Africa's greatest continuous worship experience — The Non-Stop Series™.",
+      "A Quarter-Century of Glory: Photos and videos from Africa's greatest continuous worship experience — The Non-Stop Series™.",
   },
 };
 

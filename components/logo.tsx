@@ -14,9 +14,9 @@ export const Logo = () => (
       <span className='uppercase text-[14px] leading-none text-white font-extrabold tracking-tighter glow-sm whitespace-nowrap'>
         The NonStop Series &trade;
       </span>
-      <span className='text-[10px] hidden uppercase tracking-[0.2em] font-medium text-white/50 group-hover:text-amber-400/70 transition-colors duration-500'>
-        Worship Experience
-      </span>
+      {/* <span className='text-[8px] sm:text-[9px] uppercase tracking-[0.25em] font-bold text-amber-500 transition-colors duration-500'>
+        25th Silver Jubilee
+      </span> */}
     </div>
   </Link>
 );

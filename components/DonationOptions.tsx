@@ -263,9 +263,9 @@ export function DonationOptions() {
                 <Info className='size-7 text-amber-600 dark:text-amber-400' />
               </div>
               <div>
-                <h4 className='font-bebas text-2xl tracking-wide text-amber-600 dark:text-amber-400 mb-1'>Sacrifice in Kind</h4>
+                <h4 className='font-bebas text-2xl tracking-wide text-amber-600 dark:text-amber-400 mb-1'>Sacrifice in Kind - Silver Jubilee Edition</h4>
                 <p className='text-[15px] font-opensans text-muted-foreground leading-relaxed max-w-lg'>
-                  Beyond financial support, we gratefully accept resources that fuel the hospitality, logistics, and continuous worship of The Non-Stop.
+                  Beyond financial support, we gratefully accept resources that fuel the hospitality, logistics, and continuous worship of this historic 25th Anniversary Non-Stop.
                 </p>
               </div>
             </div>
@@ -425,7 +425,7 @@ export function DonationOptions() {
         </TabsContent>
       </Tabs>
       <p className='mt-8 text-center text-xs font-semibold text-muted-foreground uppercase tracking-[0.2em]'>
-        Thank you for your generosity
+        Thank you for your generosity in this 25th year of grace
       </p>
     </div>
   );
