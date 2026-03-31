@@ -30,22 +30,43 @@ export function DonationOptions() {
   return (
     <div className="w-full">
       <Tabs defaultValue='cash' className='w-full'>
-        <TabsList className='grid w-full grid-cols-2 bg-muted border border-border mb-8 h-14 min-h-[44px]'>
+        <TabsList className='grid w-full grid-cols-2 bg-secondary/30 p-1.5 border border-border/40 mb-10 h-16 sm:h-20 rounded-2xl'>
           <TabsTrigger
             value='cash'
-            className='data-[state=active]:bg-amber-500 data-[state=active]:text-primary-foreground uppercase font-semibold text-xs sm:text-sm tracking-wide h-full'
+            className='data-[state=active]:bg-background data-[state=active]:text-amber-500 data-[state=active]:shadow-lg data-[state=active]:shadow-amber-500/10 flex items-center gap-3 rounded-xl transition-all duration-300'
           >
-            Cash Donation
+            <div className='p-2 rounded-lg bg-amber-500/10 shrink-0 group-data-[state=active]:bg-amber-500 group-data-[state=active]:text-white transition-colors'>
+              <CreditCard className='size-4 sm:size-5' />
+            </div>
+            <div className='flex flex-col items-start'>
+              <span className='font-bebas text-lg sm:text-xl tracking-wider leading-none shrink-0 uppercase'>Cash</span>
+              <span className='text-[10px] hidden xs:inline-block font-medium opacity-60 uppercase tracking-[0.1em]'>Contribution</span>
+            </div>
           </TabsTrigger>
           <TabsTrigger
             value='kind'
-            className='data-[state=active]:bg-amber-500 data-[state=active]:text-primary-foreground uppercase font-semibold text-xs sm:text-sm tracking-wide h-full'
+            className='data-[state=active]:bg-background data-[state=active]:text-amber-500 data-[state=active]:shadow-lg data-[state=active]:shadow-amber-500/10 flex items-center gap-3 rounded-xl transition-all duration-300'
           >
-            In-Kind Sacrifice
+            <div className='p-2 rounded-lg bg-amber-500/10 shrink-0 group-data-[state=active]:bg-amber-500 group-data-[state=active]:text-white transition-colors'>
+              <Gift className='size-4 sm:size-5' />
+            </div>
+            <div className='flex flex-col items-start'>
+              <span className='font-bebas text-lg sm:text-xl tracking-wider leading-none shrink-0 uppercase'>In-Kind</span>
+              <span className='text-[10px] hidden xs:inline-block font-medium opacity-60 uppercase tracking-[0.1em]'>Sacrifice</span>
+            </div>
           </TabsTrigger>
         </TabsList>
 
-        <TabsContent value='cash' className='space-y-5'>
+        <TabsContent value='cash' className='space-y-6'>
+          <div className='flex items-center justify-between px-2 mb-2'>
+            <div className='flex items-center gap-2'>
+              <div className='size-2 rounded-full bg-amber-500 animate-pulse' />
+              <span className='text-xs font-semibold uppercase tracking-widest text-muted-foreground'>Secure Payment Methods</span>
+            </div>
+            <div className='flex items-center gap-1.5 bg-secondary/50 px-2.5 py-1 rounded-full border border-border/50'>
+              <span className='text-[10px] font-bold text-emerald-500 uppercase tracking-tighter'>🔒 256-bit SSL</span>
+            </div>
+          </div>
           <Accordion
             type='single'
             collapsible
@@ -57,13 +78,13 @@ export function DonationOptions() {
               className='bg-card dark:border-white/10 dark:bg-white/5 border-border data-[state=open]:border-amber-500/50 data-[state=open]:bg-amber-500/10 rounded-xl border transition-all duration-300 px-5 group'
             >
               <AccordionTrigger className='hover:no-underline py-5 px-0'>
-                <div className='flex flex-1 items-center justify-between pr-4'>
-                  <div className='flex items-center gap-5'>
+                <div className='flex flex-1 flex-wrap items-center justify-between gap-4 pr-4'>
+                  <div className='flex items-center gap-3 sm:gap-5'>
                     <div className='p-3 rounded-xl transition-colors bg-amber-500/10 group-data-[state=open]:bg-amber-500/20 group-hover:bg-amber-500/20'>
                       <Smartphone className='size-7 text-amber-500 dark:text-amber-400' />
                     </div>
                     <div className='text-left space-y-1'>
-                      <p className='text-xl text-foreground tracking-tight'>
+                      <p className='text-lg sm:text-xl text-foreground tracking-tight'>
                         Mobile Money
                       </p>
                       <p className='text-sm font-opensans text-muted-foreground'>
@@ -82,12 +103,12 @@ export function DonationOptions() {
               </AccordionTrigger>
               <AccordionContent className='pt-0 pb-5'>
                 <div className='pt-5 border-t border-border space-y-4'>
-                  <div className='flex items-center justify-between bg-muted/50 p-4 rounded-xl border border-border'>
+                  <div className='flex flex-col sm:flex-row sm:items-center justify-between bg-muted/50 p-4 rounded-xl border border-border gap-4'>
                     <div>
                       <p className='text-xs uppercase tracking-wide text-muted-foreground font-semibold mb-1'>
                         MTN / Telecel Cash
                       </p>
-                      <p className='font-mono text-xl text-amber-600 dark:text-amber-400 font-bold tracking-wider'>
+                      <p className='font-mono text-lg sm:text-xl text-amber-600 dark:text-amber-400 font-bold tracking-wider break-all'>
                         {phone}
                       </p>
                     </div>
@@ -108,7 +129,7 @@ export function DonationOptions() {
                       <p className='text-xs uppercase tracking-wide text-muted-foreground font-semibold mb-1'>
                         AT Money
                       </p>
-                      <p className='font-mono text-xl text-amber-600 dark:text-amber-400 font-bold tracking-wider'>
+                      <p className='font-mono text-lg sm:text-xl text-amber-600 dark:text-amber-400 font-bold tracking-wider break-all'>
                         {phone}
                       </p>
                     </div>
@@ -140,8 +161,8 @@ export function DonationOptions() {
               className='bg-card dark:border-white/10 dark:bg-white/5 border-border data-[state=open]:border-blue-500/50 data-[state=open]:bg-blue-500/10 rounded-xl border transition-all duration-300 px-5 group'
             >
               <AccordionTrigger className='hover:no-underline py-5 px-0'>
-                <div className='flex flex-1 items-center justify-between pr-4'>
-                  <div className='flex items-center gap-5'>
+                <div className='flex flex-1 flex-wrap items-center justify-between gap-4 pr-4'>
+                  <div className='flex items-center gap-3 sm:gap-5'>
                     <div className='p-3 rounded-xl transition-colors bg-blue-500/10 group-data-[state=open]:bg-blue-500/20 group-hover:bg-blue-500/20'>
                       <svg
                         className='size-7 text-blue-600 dark:text-blue-400'
@@ -152,7 +173,7 @@ export function DonationOptions() {
                       </svg>
                     </div>
                     <div className='text-left space-y-1'>
-                      <p className='text-xl text-foreground tracking-tight'>
+                      <p className='text-lg sm:text-xl text-foreground tracking-tight'>
                         PayPal
                       </p>
                       <p className='text-sm  font-opensans  text-muted-foreground'>
@@ -179,7 +200,7 @@ export function DonationOptions() {
                     className='inline-flex h-14 w-full items-center justify-center gap-2 rounded-xl bg-blue-600 hover:bg-blue-700 text-white text-base font-semibold transition-colors'
                   >
                     Proceed to PayPal{" "}
-                    <ExternalLink className='size-5' />
+                    <ExternalLink className='size-5 shrink-0' />
                   </a>
                 </div>
               </AccordionContent>
@@ -191,13 +212,13 @@ export function DonationOptions() {
               className='bg-card dark:border-white/10 dark:bg-white/5 border-border data-[state=open]:border-emerald-500/50 data-[state=open]:bg-emerald-500/10 rounded-xl border transition-all duration-300 px-5 group'
             >
               <AccordionTrigger className='hover:no-underline py-5 px-0'>
-                <div className='flex flex-1 items-center justify-between pr-4'>
-                  <div className='flex items-center gap-5'>
+                <div className='flex flex-1 flex-wrap items-center justify-between gap-4 pr-4'>
+                  <div className='flex items-center gap-3 sm:gap-5'>
                     <div className='p-3 rounded-xl transition-colors bg-emerald-500/10 group-data-[state=open]:bg-emerald-500/20 group-hover:bg-emerald-500/20'>
                       <CreditCard className='size-7 text-emerald-600 dark:text-emerald-400' />
                     </div>
                     <div className='text-left space-y-1'>
-                      <p className='text-xl text-foreground tracking-tight'>
+                      <p className='text-lg sm:text-xl text-foreground tracking-tight'>
                         Credit / Debit Card
                       </p>
                       <p className='text-sm  font-opensans  text-muted-foreground'>
@@ -224,7 +245,7 @@ export function DonationOptions() {
                     className='inline-flex h-14 w-full items-center justify-center gap-2 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-base font-semibold transition-colors'
                   >
                     Pay via Card{" "}
-                    <ExternalLink className='size-5' />
+                    <ExternalLink className='size-5 shrink-0' />
                   </a>
                 </div>
               </AccordionContent>
@@ -232,15 +253,21 @@ export function DonationOptions() {
           </Accordion>
         </TabsContent>
 
-        <TabsContent value='kind' className='space-y-5'>
-          <div className='p-5 rounded-xl border border-amber-500/30 bg-amber-500/10 mb-2'>
-            <div className='flex gap-4 items-start'>
-              <Info className='size-6 text-amber-600 dark:text-amber-400 shrink-0 mt-0.5' />
-              <p className='text-[15px]  font-opensans  text-foreground/80 leading-relaxed font-medium'>
-                We gratefully accept sacrifices in kind
-                to support the hospitality and logistics
-                of the Non-Stop.
-              </p>
+        <TabsContent value='kind' className='space-y-6'>
+          <div className='relative overflow-hidden p-6 rounded-2xl border border-amber-500/20 bg-amber-500/5 group'>
+            <div className='absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity'>
+              <Gift className='size-20 text-amber-500' />
+            </div>
+            <div className='relative z-10 flex gap-5 items-center'>
+              <div className='hidden sm:flex size-14 rounded-full bg-amber-500/10 items-center justify-center shrink-0'>
+                <Info className='size-7 text-amber-600 dark:text-amber-400' />
+              </div>
+              <div>
+                <h4 className='font-bebas text-2xl tracking-wide text-amber-600 dark:text-amber-400 mb-1'>Sacrifice in Kind</h4>
+                <p className='text-[15px] font-opensans text-muted-foreground leading-relaxed max-w-lg'>
+                  Beyond financial support, we gratefully accept resources that fuel the hospitality, logistics, and continuous worship of The Non-Stop.
+                </p>
+              </div>
             </div>
           </div>
 
@@ -254,13 +281,13 @@ export function DonationOptions() {
               className='bg-card dark:border-white/10 dark:bg-white/5 border-border data-[state=open]:border-amber-500/50 data-[state=open]:bg-amber-500/10 rounded-xl border transition-all duration-300 px-5 group'
             >
               <AccordionTrigger className='hover:no-underline py-5 px-0'>
-                <div className='flex flex-1 items-center justify-between pr-4'>
-                  <div className='flex items-center gap-5'>
+                <div className='flex flex-1 flex-wrap items-center justify-between gap-4 pr-4'>
+                  <div className='flex items-center gap-3 sm:gap-5'>
                     <div className='p-3 rounded-xl transition-colors bg-amber-500/10 group-data-[state=open]:bg-amber-500/20 group-hover:bg-amber-500/20'>
                       <Gift className='size-7 text-amber-600 dark:text-amber-400' />
                     </div>
                     <div className='text-left space-y-1'>
-                      <p className='text-xl text-foreground tracking-tight'>
+                      <p className='text-lg sm:text-xl text-foreground tracking-tight'>
                         Livestock
                       </p>
                       <p className='text-[13px]  font-opensans  font-medium text-muted-foreground uppercase tracking-wider'>
@@ -284,15 +311,15 @@ export function DonationOptions() {
                   <div className='flex flex-col gap-3'>
                     <a
                       href={`tel:${phone}`}
-                      className='flex items-center justify-center h-14 rounded-xl bg-muted hover:bg-muted/80 text-foreground font-mono text-lg font-medium transition-colors border border-transparent hover:border-border'
+                      className='flex items-center px-4 justify-center h-14 rounded-xl bg-muted hover:bg-muted/80 text-foreground font-mono text-base md:text-lg font-medium transition-colors border border-transparent hover:border-border gap-2'
                     >
-                      📞 {phone}
+                      <span className='shrink-0'>📞</span> <span className='truncate'>{phone}</span>
                     </a>
                     <a
                       href={`mailto:${email}`}
-                      className='flex items-center justify-center h-14 rounded-xl bg-muted hover:bg-muted/80 text-foreground font-mono text-lg font-medium transition-colors border border-transparent hover:border-border'
+                      className='flex items-center px-4 justify-center h-14 rounded-xl bg-muted hover:bg-muted/80 text-foreground font-mono text-base md:text-lg font-medium transition-colors border border-transparent hover:border-border gap-2'
                     >
-                      ✉️ {email}
+                      <span className='shrink-0'>✉️</span> <span className='truncate'>{email}</span>
                     </a>
                   </div>
                 </div>
@@ -304,13 +331,13 @@ export function DonationOptions() {
               className='bg-card dark:border-white/10 dark:bg-white/5 border-border data-[state=open]:border-green-500/50 data-[state=open]:bg-green-500/10 rounded-xl border transition-all duration-300 px-5 group'
             >
               <AccordionTrigger className='hover:no-underline py-5 px-0'>
-                <div className='flex flex-1 items-center justify-between pr-4'>
-                  <div className='flex items-center gap-5'>
+                <div className='flex flex-1 flex-wrap items-center justify-between gap-4 pr-4'>
+                  <div className='flex items-center gap-3 sm:gap-5'>
                     <div className='p-3 rounded-xl transition-colors bg-green-500/10 group-data-[state=open]:bg-green-500/20 group-hover:bg-green-500/20'>
                       <LeafyGreen className='size-7 text-green-600 dark:text-green-400' />
                     </div>
                     <div className='text-left space-y-1'>
-                      <p className='text-xl text-foreground tracking-tight'>
+                      <p className='text-lg sm:text-xl text-foreground tracking-tight'>
                         Food Supplies
                       </p>
                       <p className='text-[13px]  font-opensans  font-medium text-muted-foreground uppercase tracking-wider'>
@@ -333,15 +360,62 @@ export function DonationOptions() {
                   <div className='flex flex-col gap-3'>
                     <a
                       href={`tel:${phone}`}
-                      className='flex items-center justify-center h-14 rounded-xl bg-muted hover:bg-muted/80 text-foreground font-mono text-lg font-medium transition-colors border border-transparent hover:border-border'
+                      className='flex items-center px-4 justify-center h-14 rounded-xl bg-muted hover:bg-muted/80 text-foreground font-mono text-base md:text-lg font-medium transition-colors border border-transparent hover:border-border gap-2'
                     >
-                      📞 {phone}
+                      <span className='shrink-0'>📞</span> <span className='truncate'>{phone}</span>
                     </a>
                     <a
                       href={`mailto:${email}`}
-                      className='flex items-center justify-center h-14 rounded-xl bg-muted hover:bg-muted/80 text-foreground font-mono text-lg font-medium transition-colors border border-transparent hover:border-border'
+                      className='flex items-center px-4 justify-center h-14 rounded-xl bg-muted hover:bg-muted/80 text-foreground font-mono text-base md:text-lg font-medium transition-colors border border-transparent hover:border-border gap-2'
                     >
-                      ✉️ {email}
+                      <span className='shrink-0'>✉️</span> <span className='truncate'>{email}</span>
+                    </a>
+                  </div>
+                </div>
+               </AccordionContent>
+            </AccordionItem>
+            <AccordionItem
+              value='logistics'
+              className='bg-card dark:border-white/10 dark:bg-white/5 border-border data-[state=open]:border-blue-500/50 data-[state=open]:bg-blue-500/10 rounded-xl border transition-all duration-300 px-5 group'
+            >
+              <AccordionTrigger className='hover:no-underline py-5 px-0'>
+                <div className='flex flex-1 flex-wrap items-center justify-between gap-4 pr-4'>
+                  <div className='flex items-center gap-3 sm:gap-5'>
+                    <div className='p-3 rounded-xl transition-colors bg-blue-500/10 group-data-[state=open]:bg-blue-500/20 group-hover:bg-blue-500/20'>
+                      <Smartphone className='size-7 text-blue-600 dark:text-blue-400' />
+                    </div>
+                    <div className='text-left space-y-1'>
+                      <p className='text-lg sm:text-xl text-foreground tracking-tight'>
+                        Logistics & Equipment
+                      </p>
+                      <p className='text-[13px] font-opensans font-medium text-muted-foreground uppercase tracking-wider'>
+                        Tents, Chairs, Lighting
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </AccordionTrigger>
+              <AccordionContent className='pt-0 pb-5'>
+                <div className='pt-5 border-t border-border'>
+                  <p className='text-[15px] font-opensans text-muted-foreground mb-5 text-center leading-relaxed'>
+                    To provide{" "}
+                    <strong className='text-foreground font-semibold'>
+                      Logistics Support or Equipment
+                    </strong>
+                    , please coordinate with our operations team:
+                  </p>
+                  <div className='flex flex-col gap-3'>
+                    <a
+                      href={`tel:${phone}`}
+                      className='flex items-center px-4 justify-center h-14 rounded-xl bg-muted hover:bg-muted/80 text-foreground font-mono text-base md:text-lg font-medium transition-colors border border-transparent hover:border-border gap-2'
+                    >
+                      <span className='shrink-0'>📞</span> <span className='truncate'>{phone}</span>
+                    </a>
+                    <a
+                      href={`mailto:${email}`}
+                      className='flex items-center px-4 justify-center h-14 rounded-xl bg-muted hover:bg-muted/80 text-foreground font-mono text-base md:text-lg font-medium transition-colors border border-transparent hover:border-border gap-2'
+                    >
+                      <span className='shrink-0'>✉️</span> <span className='truncate'>{email}</span>
                     </a>
                   </div>
                 </div>

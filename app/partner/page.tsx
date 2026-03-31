@@ -250,10 +250,10 @@ export default function PartnerPage() {
         </div>
       </section>
 
-      <section>
+      <section className="py-8">
         <div
           id='give'
-          className='pt-12 scroll-mt-24 max-w-7xl mx-auto md:px-4 lg:px-6'
+          className='pt-12 scroll-mt-24 max-w-7xl mx-auto px-4 md:px-6 lg:px-8'
         >
           <div className='mb-8'>
             <h3 className='text-3xl font-bebas tracking-wider mb-2'>
@@ -268,6 +268,7 @@ export default function PartnerPage() {
           </div>
         </div>
       </section>
+
       <section className='bg-background sm:py-16 lg:py-24 mx-auto  sm:px-6 lg:px-8 max-w-7xl'>
         <div className='container space-y-10 lg:space-y-20'>
           <div data-usal='fade-u duration-500'>
