@@ -90,7 +90,7 @@ const Ministration = ({ className }: ministrationsHomeProps) => {
   }, [carouselApi]);
 
   return (
-    <section className={cn("py-16", className)}>
+    <section className={cn("py-8", className)}>
       <div
         className='w-full'
         data-usal='fade-u duration-500'
