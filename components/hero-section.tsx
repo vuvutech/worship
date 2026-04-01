@@ -7,13 +7,6 @@ import { createFetch } from "@better-fetch/fetch";
 import { useEffect, useRef, useState } from "react";
 import MuxPlayer from "@mux/mux-player-react";
 
-declare global {
-  interface Window {
-    onYouTubeIframeAPIReady: () => void;
-    YT: any;
-  }
-}
-
 const $fetch = createFetch({
   baseURL: "/api/settings",
 });
@@ -26,7 +19,6 @@ export default function HeroSection() {
     startTime: number;
   } | null>(null);
   const [isMuted, setIsMuted] = useState(true);
-  const [ytPlayer, setYtPlayer] = useState<any>(null);
   const iframeRef = useRef<HTMLIFrameElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
   const muxPlayerRef = useRef<any>(null);
@@ -41,7 +33,7 @@ export default function HeroSection() {
         } else {
           setHeroSettings({
             videoSource: "youtube",
-            videoId: "bDk_nNbccnc",
+            videoId: "w34sNb74sJs",
             startTime: 108,
           });
         }
@@ -58,39 +50,6 @@ export default function HeroSection() {
   }, []);
 
   useEffect(() => {
-    if (!heroSettings || heroSettings.videoSource !== "youtube") return;
-
-    // Load YouTube API script
-    if (!window.YT) {
-      const tag = document.createElement("script");
-      tag.src = "https://www.youtube.com/iframe_api";
-      const firstScriptTag = document.getElementsByTagName("script")[0];
-      firstScriptTag.parentNode?.insertBefore(tag, firstScriptTag);
-    }
-
-    // Initialize player when API is ready
-    const initPlayer = () => {
-      if (iframeRef.current && window.YT && window.YT.Player) {
-        new window.YT.Player(iframeRef.current, {
-          events: {
-            onReady: (event: any) => {
-              setYtPlayer(event.target);
-              // Ensure it starts muted as per background video norm
-              event.target.mute();
-            },
-          },
-        });
-      }
-    };
-
-    if (window.YT && window.YT.Player) {
-      initPlayer();
-    } else {
-      window.onYouTubeIframeAPIReady = initPlayer;
-    }
-  }, [heroSettings]);
-
-  useEffect(() => {
     setOrigin(window.location.origin);
   }, []);
 
@@ -98,25 +57,28 @@ export default function HeroSection() {
     const newMuted = !isMuted;
     setIsMuted(newMuted);
 
-    if (heroSettings?.videoSource === "youtube" && ytPlayer) {
+    if (heroSettings?.videoSource === "youtube" && iframeRef.current?.contentWindow) {
       if (newMuted) {
-        ytPlayer.mute();
+        iframeRef.current.contentWindow.postMessage('{"event":"command","func":"mute","args":[]}', '*');
       } else {
-        ytPlayer.unMute();
-        ytPlayer.setVolume(100);
+        iframeRef.current.contentWindow.postMessage('{"event":"command","func":"unMute","args":[]}', '*');
+        iframeRef.current.contentWindow.postMessage('{"event":"command","func":"setVolume","args":[100]}', '*');
       }
     } else if (heroSettings?.videoSource === "local" && videoRef.current) {
       videoRef.current.muted = newMuted;
+      videoRef.current.volume = 1.0;
     } else if (heroSettings?.videoSource === "mux" && muxPlayerRef.current) {
       muxPlayerRef.current.muted = newMuted;
+      muxPlayerRef.current.volume = 1.0;
     }
   };
+
 
   if (!heroSettings) {
     return (
       <header className='relative w-full h-[100dvh] bg-black flex items-center justify-center overflow-hidden'>
         <div 
-          className="absolute inset-0 w-full h-full bg-[url('/images/bgHero.jpg')] bg-cover bg-center bg-no-repeat opacity-50 block"
+          className="absolute inset-0 w-full h-full bg-[url('/images/bg.jpg')] bg-cover bg-center bg-no-repeat opacity-50 block"
         />
         <Loader2 className='h-8 w-8 animate-spin text-white/50 z-10' />
       </header>
@@ -146,10 +108,8 @@ export default function HeroSection() {
             ref={muxPlayerRef}
             src={videoUrl}
             autoPlay
-            muted
+            muted={isMuted}
             loop
-
-
             className='absolute top-1/2 left-1/2 w-full h-full -translate-x-1/2 -translate-y-1/2 object-cover min-w-full min-h-full'
             stream-type='on-demand'
           />
@@ -160,7 +120,7 @@ export default function HeroSection() {
             ref={videoRef}
             src={videoUrl}
             autoPlay
-            muted
+            muted={isMuted}
             loop
             playsInline
             className='absolute top-1/2 left-1/2 w-full h-full -translate-x-1/2 -translate-y-1/2 object-cover min-w-full min-h-full'
@@ -168,8 +128,14 @@ export default function HeroSection() {
         )}
       </div>
 
+      {/* Dark overlay for better text readability */}
+      <div
+        className='absolute inset-0 bg-black/40 z-10'
+        aria-hidden='true'
+      />
+
       {/* Mute/Unmute Toggle */}
-      <div className='absolute bottom-10 right-10 z-60'>
+      <div className='absolute bottom-10 right-10 z-50'>
         <Button
           variant='outline'
           size='icon'
@@ -185,13 +151,8 @@ export default function HeroSection() {
         </Button>
       </div>
 
-      {/* Dark overlay for better text readability */}
-      <div
-        className='absolute inset-0 bg-black/40'
-        aria-hidden='true'
-      />
-
       <HeroHeadline className="z-50 px-4 md:px-16  xl:px-32 2xl:px-40 text-white" />
+
       {/* Content */}
       <div className='relative px-4 sm:px-6 lg:px-8 hidden'>
         <div className='mx-auto max-w-(--breakpoint-xl)'>
