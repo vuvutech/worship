@@ -106,10 +106,10 @@ export default function HeroSection() {
   const originUrl = typeof window !== 'undefined' ? window.location.origin : "";
 
   return (
-    <header className='relative md:relative absolute top-0 left-0 w-full h-[100dvh] flex flex-col justify-center pb-10 overflow-hidden z-0 ' data-aos="fade-up"
+    <header className='relative md:relative absolute bg-black top-0 left-0 w-full h-[100dvh] flex flex-col justify-center pb-10 overflow-hidden z-0 ' data-aos="fade-up"
      data-aos-anchor-placement="top-bottom">
       {/* Video Background Selection */}
-      <div className='absolute inset-0 w-full h-full pointer-events-none overflow-hidden'>
+      <div className='absolute inset-0 w-full h-full pointer-events-none overflow-hidden '>
         {videoSource === "youtube" && videoId && (
           <iframe
             key={videoId}

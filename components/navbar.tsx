@@ -74,7 +74,7 @@ const Navbar = () => {
           : "inset-x-2 top-6 rounded-full border border-white/10 shadow-lg"
       )}
       style={{
-        maxWidth: isMobile ? '100%' : scrolledPast ? '84vw' : '96vw',
+        maxWidth: isMobile ? '100%' : scrolledPast ? '88vw' : '95vw',
         transition: isMobile ? 'none' : 'max-width 1.2s cubic-bezier(0.22, 1, 0.36, 1)',
       }}
     >
