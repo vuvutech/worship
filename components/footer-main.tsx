@@ -52,6 +52,7 @@ const FooterComponent = ({
   legal = [
     { name: "Terms of Service", href: "/terms" },
     { name: "Privacy Policy", href: "/privacy" },
+    { name: "DMCA Policy", href: "/dmca" },
     { name: "Cookies Policy", href: "/cookies" },
     { name: "FAQs", href: "/#faq" },
   ],
@@ -131,7 +132,7 @@ const FooterComponent = ({
         <div className='text-xs text-muted-foreground text-center md:text-left transition-opacity hover:opacity-75 pt-2 '>
           &copy; {new Date().getFullYear()}{" "}
           <a href="/" className='font-semibold'>{" The Nonstop Series"}</a>.{" "}
-          <span className='capitalize'>25th Anniversary Edition. All rights reserved.</span>
+          <span className='capitalize'>All rights reserved.</span>
         </div>
       </nav>
 
