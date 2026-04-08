@@ -101,7 +101,7 @@ const Navbar = () => {
                 transition={{ duration: 0.3, ease: "easeOut" }}
                 className="overflow-hidden whitespace-nowrap text-[11px] font-bold uppercase tracking-widest"
               >
-                Partner
+                Donate
               </motion.span>
             </motion.button>
           </InsideScrollDialog>

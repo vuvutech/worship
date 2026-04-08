@@ -15,12 +15,16 @@ export default function HeroSection({ nextEvent }: HeroSectionProps) {
 	const year = format(startDate, "yyyy");
 
 	return (
-		<div
-			className='w-full min-h-dvh bg-center bg-cover relative flex flex-col justify-end pt-32 pb-12 sm:pb-20'
-			style={{
-				backgroundImage: "url('/images/community_worship.jpg')",
-			}}
-		>
+		<div className='w-full min-h-dvh relative flex flex-col justify-end pt-32 pb-12 sm:pb-20 overflow-hidden'>
+			<div
+				className='absolute inset-0 bg-center bg-cover scale-110'
+				style={{
+					backgroundImage: "url('/images/community_worship2.jpg')",
+					filter: "blur(1.5px)",
+					backgroundSize: "cover",
+					backgroundRepeat: "no-repeat",
+				}}
+			/>
 			<div className='absolute inset-0 bg-black/60' />
 
 			{/* Hero Content */}
