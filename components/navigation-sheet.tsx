@@ -23,6 +23,7 @@ const navItems = [
   { label: "Home", href: "/" },
   { label: "About", href: "/about" },
   { label: "Schedule", href: "/schedule" },
+  { label: "Partner", href: "/partner" },
   { label: "Live", href: "/live" },
   { label: "Gallery", href: "/gallery" },
   { label: "Get Involved", href: "/get-involved" },
@@ -196,7 +197,7 @@ export const NavigationSheet = () => {
                     className='text-center rounded-full bg-amber-500 py-3 text-[11px] font-bold uppercase tracking-widest text-white transition-all hover:bg-amber-600 active:scale-95 flex items-center justify-center gap-2 shadow-lg shadow-amber-500/10'
                   >
                     <Heart className='size-3.5 fill-white' />
-                    Partner
+                    Donate
                   </Link>
 
                   {!isAuthenticated ? (

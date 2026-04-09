@@ -30,7 +30,7 @@ export function DonationOptions() {
   return (
     <div className="w-full">
       <Tabs defaultValue='cash' className='w-full'>
-        <TabsList className='flex w-full bg-secondary/30 p-1 border border-border/40 mb-8 h-auto rounded-xl items-stretch'>
+        <TabsList className='flex w-full bg-secondary/30 sm:p-1 border border-border/40 mb-8 h-auto rounded-xl items-stretch'>
           <TabsTrigger
             value='cash'
             className='flex-1 data-[state=active]:bg-background data-[state=active]:text-amber-500 data-[state=active]:shadow-sm flex flex-col xs:flex-row items-center justify-center gap-1.5 xs:gap-3 rounded-lg py-2.5 transition-all duration-300'

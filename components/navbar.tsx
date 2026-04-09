@@ -74,12 +74,18 @@ const Navbar = () => {
           : "inset-x-2 top-6 rounded-full border border-white/10 shadow-lg"
       )}
       style={{
-        maxWidth: isMobile ? '100%' : scrolledPast ? '88vw' : '95vw',
+        maxWidth: isMobile ? '100%' : scrolledPast ? '87vw' : '95vw',
         transition: isMobile ? 'none' : 'max-width 1.2s cubic-bezier(0.22, 1, 0.36, 1)',
       }}
     >
       <div className='mx-auto flex h-full items-center justify-between sm:pl-2 pr-1'>
         <Logo />
+        {user?.image && (
+          <img src={user.image} alt={user.name} className='h-10 w-10 rounded-full' />
+        )}
+        {user?.name && (
+          <p className="text-white">{user.name}</p>
+        )}
 
         {/* Desktop Menu */}
         <NavMenu className='hidden lg:flex' />
