@@ -42,6 +42,11 @@ export async function PATCH(req: NextRequest) {
 
     const body = await req.json();
 
+    const currentProfile = await prisma.profile.findUnique({
+      where: { userId: session.user.id },
+      select: { firstName: true, lastName: true, displayName: true },
+    });
+
     const {
       firstName,
       lastName,
@@ -57,7 +62,12 @@ export async function PATCH(req: NextRequest) {
       membershipPlan,
     } = body;
 
-    // Build update payload with only provided fields
+    // Calculate synchronized names
+    const newFirstName = firstName !== undefined ? firstName : (currentProfile?.firstName || "");
+    const newLastName = lastName !== undefined ? lastName : (currentProfile?.lastName || "");
+    const computedFullName = `${newFirstName} ${newLastName}`.trim() || session.user.name;
+
+    // Build update payload
     const updateData: Record<string, any> = {};
     if (firstName !== undefined) updateData.firstName = firstName;
     if (lastName !== undefined) updateData.lastName = lastName;
@@ -66,22 +76,39 @@ export async function PATCH(req: NextRequest) {
     if (company !== undefined) updateData.company = company;
     if (location !== undefined) updateData.location = location;
     if (bio !== undefined) updateData.bio = bio;
-    if (displayName !== undefined) updateData.displayName = displayName;
+    
+    // Always sync displayName to computed name if names were provided, 
+    // or use provided displayName if names weren't touched
+    if (firstName !== undefined || lastName !== undefined) {
+      updateData.displayName = computedFullName;
+    } else if (displayName !== undefined) {
+      updateData.displayName = displayName;
+    }
+
     if (username !== undefined) updateData.username = username;
     if (avatarUrl !== undefined) updateData.avatarUrl = avatarUrl;
     if (volunteerAreas !== undefined) updateData.volunteerAreas = volunteerAreas;
     if (membershipPlan !== undefined) updateData.membershipPlan = membershipPlan;
 
+    // 1. Update Profile
     const profile = await prisma.profile.upsert({
       where: { userId: session.user.id },
       update: updateData,
       create: {
         userId: session.user.id,
         username: username || session.user.email.split("@")[0],
-        displayName: displayName || session.user.name,
+        displayName: updateData.displayName || computedFullName,
         ...updateData,
       },
     });
+
+    // 2. Synchronize to User model
+    if (firstName !== undefined || lastName !== undefined) {
+      await prisma.user.update({
+        where: { id: session.user.id },
+        data: { name: computedFullName },
+      });
+    }
 
     return NextResponse.json(profile);
   } catch (error) {

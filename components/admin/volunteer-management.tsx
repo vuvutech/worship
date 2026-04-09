@@ -11,10 +11,21 @@ import {
   Phone, 
   CheckCircle2,
   Clock,
-  ArrowRight
+  ArrowRight,
+  MapPin,
+  Briefcase,
+  Building,
+  Info
 } from "lucide-react";
 import { toast } from "sonner";
 
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogDescription,
+} from "@/components/ui/dialog";
 import {
   Table,
   TableBody,
@@ -51,6 +62,11 @@ interface User {
     volunteerAreas: string[];
     phone?: string;
     location?: string;
+    bio?: string;
+    jobTitle?: string;
+    company?: string;
+    membershipPlan?: string;
+    displayName?: string;
   } | null;
 }
 
@@ -69,6 +85,7 @@ export function VolunteerManagement() {
   const [loading, setLoading] = useState(true);
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedArea, setSelectedArea] = useState<string>("all");
+  const [selectedVolunteer, setSelectedVolunteer] = useState<User | null>(null);
 
   const fetchUsers = async () => {
     try {
@@ -242,7 +259,12 @@ export function VolunteerManagement() {
                     </div>
                   </TableCell>
                   <TableCell className="text-right">
-                    <Button variant="ghost" size="sm" className="h-8 gap-1 group">
+                    <Button 
+                      variant="ghost" 
+                      size="sm" 
+                      className="h-8 gap-1 group"
+                      onClick={() => setSelectedVolunteer(volunteer)}
+                    >
                       View Profile
                       <ArrowRight className="size-3 group-hover:translate-x-0.5 transition-transform" />
                     </Button>
@@ -253,6 +275,112 @@ export function VolunteerManagement() {
           </TableBody>
         </Table>
       </div>
+      <Dialog open={!!selectedVolunteer} onOpenChange={(open) => !open && setSelectedVolunteer(null)}>
+        <DialogContent className="max-w-2xl sm:p-0 overflow-hidden border-none shadow-2xl">
+          {selectedVolunteer && (
+            <div className="flex flex-col">
+              {/* Profile Header */}
+              <div className="relative h-32 bg-gradient-to-r from-primary/20 to-primary/5">
+                 <div className="absolute -bottom-12 left-6">
+                    <Avatar className="h-24 w-24 border-4 border-background shadow-xl">
+                      <AvatarImage src={selectedVolunteer.image || ""} />
+                      <AvatarFallback className="bg-amber-500 text-white text-2xl font-bold">
+                        {getInitials(selectedVolunteer.name)}
+                      </AvatarFallback>
+                    </Avatar>
+                 </div>
+              </div>
+
+              <div className="pt-16 pb-6 px-6 space-y-6">
+                <div className="flex justify-between items-start">
+                  <div className="space-y-1">
+                    <h2 className="text-2xl font-bold tracking-tight">{selectedVolunteer.name}</h2>
+                    <div className="flex items-center gap-2 text-sm text-muted-foreground font-medium">
+                      <Mail className="size-3.5 text-primary" />
+                      {selectedVolunteer.email}
+                      {selectedVolunteer.profile?.phone && (
+                        <>
+                          <span className="mx-1">•</span>
+                          <Phone className="size-3.5 text-primary" />
+                          {selectedVolunteer.profile.phone}
+                        </>
+                      )}
+                    </div>
+                  </div>
+                  <Badge variant="secondary" className="bg-primary/10 text-primary border-primary/20 uppercase tracking-widest text-[10px] font-bold">
+                    {selectedVolunteer.profile?.membershipPlan || "Member"}
+                  </Badge>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pb-2">
+                  <div className="space-y-4">
+                    <div className="space-y-2">
+                      <h3 className="text-xs font-bold uppercase tracking-wider text-muted-foreground flex items-center gap-2">
+                        <Users className="size-3.5" />
+                        Dedicated Departments
+                      </h3>
+                      <div className="flex flex-wrap gap-1.5">
+                        {selectedVolunteer.profile?.volunteerAreas.map(area => (
+                          <Badge key={area} variant="outline" className="bg-background text-[11px] font-medium">
+                            {area}
+                          </Badge>
+                        ))}
+                      </div>
+                    </div>
+
+                    <div className="space-y-2">
+                      <h3 className="text-xs font-bold uppercase tracking-wider text-muted-foreground flex items-center gap-2">
+                        <Info className="size-3.5" />
+                        Professional Background
+                      </h3>
+                      <div className="space-y-1.5">
+                        <div className="flex items-center gap-2 text-sm font-medium">
+                          <Briefcase className="size-3.5 text-muted-foreground" />
+                          {selectedVolunteer.profile?.jobTitle || "No job title provided"}
+                        </div>
+                        {selectedVolunteer.profile?.company && (
+                          <div className="flex items-center gap-2 text-sm font-medium">
+                            <Building className="size-3.5 text-muted-foreground" />
+                            {selectedVolunteer.profile.company}
+                          </div>
+                        )}
+                        <div className="flex items-center gap-2 text-sm font-medium">
+                          <MapPin className="size-3.5 text-muted-foreground" />
+                          {selectedVolunteer.profile?.location || "No location provided"}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="space-y-4">
+                    <div className="space-y-2">
+                      <h3 className="text-xs font-bold uppercase tracking-wider text-muted-foreground">About the Volunteer</h3>
+                      <p className="text-sm leading-relaxed text-muted-foreground bg-muted/30 p-3 rounded-lg border italic">
+                        {selectedVolunteer.profile?.bio || "No biography provided yet."}
+                      </p>
+                    </div>
+                    
+                    <div className="pt-4 mt-auto">
+                      <div className="flex items-center gap-2 text-[10px] text-muted-foreground uppercase font-semibold">
+                        <Clock className="size-3" />
+                        Registered {new Date(selectedVolunteer.createdAt).toLocaleDateString("en-US", { month: "long", year: "numeric", day: "numeric" })}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="pt-4 border-t flex justify-end gap-3">
+                  <Button variant="outline" size="sm" onClick={() => setSelectedVolunteer(null)}>Close</Button>
+                  <Button size="sm" onClick={() => window.location.href = `mailto:${selectedVolunteer.email}`}>
+                    <Mail className="mr-2 size-3.5" />
+                    Contact Directly
+                  </Button>
+                </div>
+              </div>
+            </div>
+          )}
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }
