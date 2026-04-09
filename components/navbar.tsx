@@ -80,18 +80,13 @@ const Navbar = () => {
     >
       <div className='mx-auto flex h-full items-center justify-between sm:pl-2 pr-1'>
         <Logo />
-        {user?.image && (
-          <img src={user.image} alt={user.name} className='h-10 w-10 rounded-full' />
-        )}
-        {user?.name && (
-          <p className="text-white">{user.name}</p>
-        )}
 
         {/* Desktop Menu */}
-        <NavMenu className='hidden lg:flex' />
+        <div className="flex-1 flex justify-center">
+            <NavMenu className='hidden lg:flex' />
+        </div>
 
         <div className='flex items-center gap-3'>
-         
           <InsideScrollDialog>
             <motion.button
               whileHover="hover"
